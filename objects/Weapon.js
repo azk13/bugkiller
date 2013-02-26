@@ -13,4 +13,6 @@ function Weapon(type,name)
     this.name=name;
     //Change the goal of the Agent
     this.inuse=true;
+    //health of the weapon
+    this.health=100;
 }
