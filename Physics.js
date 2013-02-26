@@ -1,39 +1,39 @@
 function Physics(){
     var gravity = 9.81;
 
-	this.applyForceAtAngle = function(ant, force, forceAngle){
+	this.applyForceAtAngle = function(object, force, forceAngle){
 		var direction = forceAngle;
-		//var acceleration = getAccelerationFromForce(force,ant.mass);
+		//var acceleration = getAccelerationFromForce(force,object.Intrinsic.mass);
 
-		ant.direction = direction;
-		//ant.acceleration = acceleration*5.5;
-		//ant.velocity = force*0.2;
-		ant.velocity = force;
+		object.Intrinsic.direction = direction;
+		//object.Intrinsic.acceleration = acceleration*5.5;
+		//object.Intrinsic.velocity = force*0.2;
+		object.Intrinsic.velocity = force;
 		//console.log("Force applied: "+force+" at angle: " + forceAngle);
 
-		return ant;
+		return object;
 	}
 
-	this.updatePoint = function(ant){
+	this.updatePoint = function(object){
 
 
-		var endVelocity = vuat(ant.velocity, ant.acceleration, 0.1);
-		var distMoved = sutat2(ant.velocity, 0.1, ant.acceleration);
+		var endVelocity = vuat(object.Intrinsic.velocity, object.Intrinsic.acceleration, 0.1);
+		var distMoved = sutat2(object.Intrinsic.velocity, 0.1, object.Intrinsic.acceleration);
 
-		var quadrant = math.getQuadrantByAngle(ant.direction);
-		var angleWithHoriz = math.getAngleWithQuadrant(ant.direction);
+		var quadrobject = math.getQuadrobjectByAngle(object.Intrinsic.direction);
+		var angleWithHoriz = math.getAngleWithQuadrobject(object.Intrinsic.direction);
 
 		var x_disp = 0;
 		var y_disp = 0;
 
 		if (distMoved > 0){
-			if (quadrant == 1){
+			if (quadrobject == 1){
 				x_disp = distMoved*Math.cos(angleWithHoriz);
 				y_disp = -1*distMoved*Math.sin(angleWithHoriz);
-			} else if (quadrant == 2){
+			} else if (quadrobject == 2){
 				x_disp = -1*distMoved*Math.cos(angleWithHoriz);
 				y_disp = -1*distMoved*Math.sin(angleWithHoriz);
-			} else if (quadrant == 3){
+			} else if (quadrobject == 3){
 				x_disp = -1*distMoved*Math.cos(angleWithHoriz);
 				y_disp = distMoved*Math.sin(angleWithHoriz);
 			} else {
@@ -42,47 +42,47 @@ function Physics(){
 			}
 		}
 
-		ant.centerPoint.x = Math.floor(ant.centerPoint.x + x_disp);
-		ant.centerPoint.y = ant.centerPoint.y + y_disp;
-		ant.velocity = endVelocity;
+		object.Intrinsic.centerPoint.x = Math.floor(object.Intrinsic.centerPoint.x + x_disp);
+		object.Intrinsic.centerPoint.y = object.Intrinsic.centerPoint.y + y_disp;
+		object.Intrinsic.velocity = endVelocity;
 
-		if (ant.velocity > 0){
-			if (ant.acceleration > 0){
-			ant.acceleration = ant.acceleration - getAccelerationFromFriction(ant.centerPoint);
+		if (object.Intrinsic.velocity > 0){
+			if (object.Intrinsic.acceleration > 0){
+			object.Intrinsic.acceleration = object.Intrinsic.acceleration - getAccelerationFromFriction(object.Intrinsic.centerPoint);
 			} else {
-				ant.acceleration = - getAccelerationFromFriction(ant.centerPoint);
-			}//end if(ant.acceleration > 0)
+				object.Intrinsic.acceleration = - getAccelerationFromFriction(object.Intrinsic.centerPoint);
+			}//end if(object.Intrinsic.acceleration > 0)
 		} else {
-			ant.acceleration = 0;
-			ant.velocity = 0;
-			ant.spin = 0;
-		}//end if(ant.velocity > 0)
+			object.Intrinsic.acceleration = 0;
+			object.Intrinsic.velocity = 0;
+			object.Intrinsic.spin = 0;
+		}//end if(object.Intrinsic.velocity > 0)
 		// console.log("distMoved"+ distMoved);
 		if (x_disp != 0 || y_disp != 0){
-			/* console.log("Direction "+ ant.direction);
+			/* console.log("Direction "+ object.Intrinsic.direction);
 			 console.log("X disp "+ x_disp);
 			 console.log("Y disp "+ y_disp);
-			 console.log("Quadrant "+ quadrant);
+			 console.log("Quadrobject "+ quadrobject);
 			 console.log("angleWithHoriz "+ angleWithHoriz);
-			 console.log("Ant position updated to "+ant.centerPoint.x);
-			 console.log ("Ant acceleration " + ant.acceleration);
-			 console.log ("Ant velocity " + ant.velocity);*/
+			 console.log("Ant position updated to "+object.Intrinsic.centerPoint.x);
+			 console.log ("Ant acceleration " + object.Intrinsic.acceleration);
+			 console.log ("Ant velocity " + object.Intrinsic.velocity);*/
 		}//end if(x_disp != 0 || y_disp != 0)
-		return ant;
+		return object;
 	}
 
 	this.getVector = function(x,y){
 		var result = new Vector();
 		var magnitude = math.pythagorasTheorem(x,y);
 
-		var quadrant = math.getQuadrantByPoint(x,y);
+		var quadrobject = math.getQuadrobjectByPoint(x,y);
 		var angle = Math.atan(Math.abs(y)/Math.abs(x));
 
-		if (quadrant == 4){
+		if (quadrobject == 4){
 			result.direction = angle;
-		} else if (quadrant == 3) {
+		} else if (quadrobject == 3) {
 			result.direction = Math.PI - angle;
-		} else if (quadrant == 2) {
+		} else if (quadrobject == 2) {
 			result.direction = Math.PI + angle;
 		} else {
 			result.direction = (2* Math.PI) - angle;
@@ -131,9 +131,9 @@ function Physics(){
 		var mom_x = mass*velocityVector.getXComponent();
 		var mom_y = mass*velocityVector.getYComponent();
 
-		var resultant = this.getVector(mom_x, mom_y);
+		var resultobject = this.getVector(mom_x, mom_y);
 
-		return resultant;
+		return resultobject;
 	}
 
 }

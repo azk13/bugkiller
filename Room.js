@@ -4,8 +4,8 @@ function Room(){
 
 	map[0] = new Point();
 
-	this.width = 800;
-	this.height = 600;
+	this.width = 880;
+	this.height = 560;
 	this.cellsize = 40;
 
 	this.totalbox = (this.width/this.cellsize) * (this.height/this.cellsize);
@@ -28,7 +28,7 @@ function Room(){
 		map[i].y = (this.cellsize/2) + increy;
 
 		increy+=this.cellsize;
-	console.log("Grid Positions : X = "+ map[i].x + " Y = " + map[i].y);
+//	console.log("Grid Positions : X = "+ map[i].x + " Y = " + map[i].y);
 	}
 
 

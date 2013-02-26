@@ -14,8 +14,8 @@
   var hudCanvas;
   var hudCtx;
 
-  var potCanvas;
-  var potCtx;
+  var sideCanvas;
+  var sideCtx;
 
   // Objects
   var logger = new Logger();
@@ -25,7 +25,7 @@
   var physicsEngine = new Physics();
   var debugMode = false;
   var hud = new HUD();
-  var player = new Ants(new Point(25,25),25,2);
+  var player = new Bob(new Point(20,20),20,2);
   var boundcheck = new Boundcheck();
   var ai = new AI();
 
@@ -36,11 +36,15 @@
     logDiv = document.getElementById('logger');
     canvas = document.getElementById('gameCanvas');
     hudCanvas = document.getElementById('hudCanvas');
+    sideCanvas = document.getElementById('sideCanvas');
 
 
     if (hudCanvas.getContext){
       hudCtx = hudCanvas.getContext('2d');
     }
+    if (sideCanvas.getContext){
+      sideCtx = sideCanvas.getContext('2d');
+    }    
 
 
     if (canvas.getContext){

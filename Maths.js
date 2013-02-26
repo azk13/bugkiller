@@ -1,25 +1,25 @@
 function Maths(){
-	this.calculatePointInCircumference = function(ant, angularPoint){
+	this.calculatePointInCircumference = function(object, angularPoint){
 		var resultPoint = new Point(0,0);
 
-		var angleInQuadrant = this.getAngleWithQuadrant(angularPoint);
-		var quadrant = this.getQuadrantByAngle(angularPoint);
+		var angleInQuadrobject = this.getAngleWithQuadrobject(angularPoint);
+		var quadrobject = this.getQuadrobjectByAngle(angularPoint);
 
-		var displace_x = ant.radius*Math.cos(angleInQuadrant);
-		var displace_y = ant.radius*Math.sin(angleInQuadrant);
+		var displace_x = object.Intrinsic.radius*Math.cos(angleInQuadrobject);
+		var displace_y = object.Intrinsic.radius*Math.sin(angleInQuadrobject);
 
-		if (quadrant == 1){
-			resultPoint.x = ant.centerPoint.x + displace_x;
-			resultPoint.y = ant.centerPoint.y - displace_y;
-		} else if (quadrant == 2){
-			resultPoint.x = ant.centerPoint.x - displace_x;
-			resultPoint.y = ant.centerPoint.y - displace_y;
-		} else if (quadrant == 3){
-			resultPoint.x = ant.centerPoint.x - displace_x;
-			resultPoint.y = ant.centerPoint.y + displace_y;
+		if (quadrobject == 1){
+			resultPoint.x = object.Intrinsic.centerPoint.x + displace_x;
+			resultPoint.y = object.Intrinsic.centerPoint.y - displace_y;
+		} else if (quadrobject == 2){
+			resultPoint.x = object.Intrinsic.centerPoint.x - displace_x;
+			resultPoint.y = object.Intrinsic.centerPoint.y - displace_y;
+		} else if (quadrobject == 3){
+			resultPoint.x = object.Intrinsic.centerPoint.x - displace_x;
+			resultPoint.y = object.Intrinsic.centerPoint.y + displace_y;
 		} else {
-			resultPoint.x = ant.centerPoint.x + displace_x;
-			resultPoint.y = ant.centerPoint.y + displace_y;
+			resultPoint.x = object.Intrinsic.centerPoint.x + displace_x;
+			resultPoint.y = object.Intrinsic.centerPoint.y + displace_y;
 		}
 
 		resultPoint = this.roundPoint(resultPoint);
@@ -35,15 +35,15 @@ function Maths(){
 	}
 
 
-	this.getAngleFromCollisionPoint = function(ant, point){
-		var quadrant = this.getQuadrantByPoint(point.x - ant.centerPoint.x, point.y - ant.centerPoint.y);
+	this.getAngleFromCollisionPoint = function(object, point){
+		var quadrobject = this.getQuadrobjectByPoint(point.x - object.Intrinsic.centerPoint.x, point.y - object.Intrinsic.centerPoint.y);
 		var angle;
-		if (point.y-ant.centerPoint.y == 0){
+		if (point.y-object.Intrinsic.centerPoint.y == 0){
 			logger.log("Div by zero error: line 42: Maths.js")
 		}
 
-		var x = point.x-ant.centerPoint.x;
-		var y = point.y-ant.centerPoint.y;
+		var x = point.x-object.Intrinsic.centerPoint.x;
+		var y = point.y-object.Intrinsic.centerPoint.y;
 
 		if (x < 0){
 			x = -1*x;
@@ -53,64 +53,64 @@ function Maths(){
 			y = -1*y;
 		}
 
-		if (quadrant == 1){
+		if (quadrobject == 1){
 			angle = (2*Math.PI) - Math.atan(y/x);
 		}
-		else if (quadrant == 4){
+		else if (quadrobject == 4){
 			angle = Math.atan(y/x);
 		} 
-		else if (quadrant == 2){
+		else if (quadrobject == 2){
 			angle = Math.PI + Math.atan(y/x);
 		}
-		else if (quadrant == 3){
+		else if (quadrobject == 3){
 			angle = Math.PI - Math.atan(y/x);
 		}
-		//console.log(quadrant);
+		//console.log(quadrobject);
 		//console.log(angle);
 		//angle = Math.round(angle*100)/100;
 		return angle;
 	}
 
-//Need to recalculate for every quadrant because t is not a circle.
-	this.getAngleFromAnyPoint = function(ant, point){
-		var quadrant = this.getQuadrantByPointforshoot(ant.centerPoint.x - point.x, ant.centerPoint.y - point.y);
+//Need to recalculate for every quadrobject because t is not a circle.
+	this.getAngleFromAnyPoint = function(object, point){
+		var quadrobject = this.getQuadrobjectByPointforshoot(object.Intrinsic.centerPoint.x - point.x, object.Intrinsic.centerPoint.y - point.y);
 		var angle;
-		var distancebetpoints = this.getDistanceBetweenTwoPoints(ant.centerPoint,point);
+		var distancebetpoints = this.getDistanceBetweenTwoPoints(object.Intrinsic.centerPoint,point);
 
-	//	if ((point.y-ant.centerPoint.y == 0)||(ant.centerPoint.x-point.x)){
+	//	if ((point.y-object.Intrinsic.centerPoint.y == 0)||(object.Intrinsic.centerPoint.x-point.x)){
 	//		logger.log("Div by zero error: line 69: Maths.js")
 	//	}
 
-		if (quadrant == 1)
+		if (quadrobject == 1)
 		{
-			if((point.x-ant.centerPoint.x) != 0)
-			{angle = Math.atan((point.y - ant.centerPoint.y)/(point.x-ant.centerPoint.x));}
+			if((point.x-object.Intrinsic.centerPoint.x) != 0)
+			{angle = Math.atan((point.y - object.Intrinsic.centerPoint.y)/(point.x-object.Intrinsic.centerPoint.x));}
 		else
 			{angle = Math.atan(0);}
 		}
-		else if(quadrant == 2)
+		else if(quadrobject == 2)
 		{
-			if((point.y - ant.centerPoint.y) != 0)
-			{angle = (Math.PI/2) + Math.atan((ant.centerPoint.x-point.x)/(point.y - ant.centerPoint.y));}
+			if((point.y - object.Intrinsic.centerPoint.y) != 0)
+			{angle = (Math.PI/2) + Math.atan((object.Intrinsic.centerPoint.x-point.x)/(point.y - object.Intrinsic.centerPoint.y));}
 		else
 			{angle = Math.atan(0);}		
 		}
-		else if(quadrant == 3)
+		else if(quadrobject == 3)
 		{
-			if((ant.centerPoint.x-point.x) != 0)
-			{angle = (Math.PI) + Math.atan((ant.centerPoint.y - point.y)/(ant.centerPoint.x-point.x));}
+			if((object.Intrinsic.centerPoint.x-point.x) != 0)
+			{angle = (Math.PI) + Math.atan((object.Intrinsic.centerPoint.y - point.y)/(object.Intrinsic.centerPoint.x-point.x));}
 		else
 			{angle = Math.atan(0);}			
 		}
 		else
 		{
-			if((ant.centerPoint.y - point.y) != 0)			
-			{angle = (3*Math.PI/2) + Math.atan((point.x - ant.centerPoint.x)/(ant.centerPoint.y - point.y));}
+			if((object.Intrinsic.centerPoint.y - point.y) != 0)			
+			{angle = (3*Math.PI/2) + Math.atan((point.x - object.Intrinsic.centerPoint.x)/(object.Intrinsic.centerPoint.y - point.y));}
 		else
 			{angle = Math.atan(0);}			
 		}
 
-		//console.log(quadrant);
+		//console.log(quadrobject);
 		
 		angle = Math.round(angle*100)/100;
 
@@ -121,7 +121,7 @@ function Maths(){
 		return angle;
 	}
 
-		this.getQuadrantByPointforshoot = function(xDiff,yDiff){
+		this.getQuadrobjectByPointforshoot = function(xDiff,yDiff){
 		//if point is on the right side
 		if (xDiff < 0){
 			//if on top
@@ -143,7 +143,7 @@ function Maths(){
 		}
 	}
 
-	this.getQuadrantByPoint = function(xDiff,yDiff){
+	this.getQuadrobjectByPoint = function(xDiff,yDiff){
 		//if point is on the right side
 		if (xDiff < 0){
 			//if on top
@@ -172,7 +172,7 @@ function Maths(){
 		return rounded;
 	}
 
-	this.getAngleWithQuadrant = function(angle){
+	this.getAngleWithQuadrobject = function(angle){
 		if (angle >= 0 && angle <= Math.PI/2){
 			return angle;
 		}
@@ -187,7 +187,7 @@ function Maths(){
 		}
 	}
 
-	this.getQuadrantByAngle = function(angle){
+	this.getQuadrobjectByAngle = function(angle){
 		if (angle > 2*Math.PI){
 			angle = this.correctAngleToFirstCircle(angle);
 		}

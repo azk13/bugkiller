@@ -1,15 +1,7 @@
 function Renderer(){
-	var antsPosXToClear = new Array();
-	var antsPosYToClear = new Array();
-	var antsRadToClear = new Array();
-	var ctr = 0;
 
 	this.updatePoints = function(){
 		var ants = room.getAnts();
-		antsPosXToClear.length = 0;
-		antsPosYToClear.length = 0;
-		antsRadToClear.length = 0;
-
 
 		//Ai.towin(ants)
 		//if(player == winningbig)
@@ -17,22 +9,20 @@ function Renderer(){
 		//Ai.towin(bee)
 		physicsEngine.updatePoint(player);
 		boundcheck.detectCollisionWithWalls(player);
-		physicsEngine.updatePoint(ants[0]);
-		
+		physicsEngine.updatePoint(ants[0]);	
 		room.setAnts(ants);
-
-
 	}
 
 	this.drawRoom = function (){
 		//clearing function
 		canvas.width = room.width;
 		canvas.height = room.height;
-
-		for (var i = 0; i<room.regions.length; i++){
-			ctx.fillStyle = room.regions[i].color;
-			ctx.fillRect(room.regions[i].x, room.regions[i].y, room.regions[i].width, room.regions[i].height);
-		}		
+	    ctx.fillStyle = "rgba(0, 0, 0, 0.5)";
+	    ctx.fillRect(0, 0, room.width, room.height);
+//		for (var i = 0; i<room.regions.length; i++){
+//			ctx.fillStyle = room.regions[i].color;
+//			ctx.fillRect(room.regions[i].x, room.regions[i].y, room.regions[i].width, room.regions[i].height);
+//		}		
 	}
 	
 	this.draw = function(){
@@ -40,7 +30,8 @@ function Renderer(){
 		this.drawAnts();
 		this.drawAnt(player);
 		hud.updateHUD();
-		renderingEngine.writeText("X:"+player.centerPoint.x+" Y:"+player.centerPoint.y,player.centerPoint);
+		renderingEngine.writeText("X:"+player.Intrinsic.centerPoint.x+" Y:"+player.Intrinsic.centerPoint.y,player.Intrinsic.centerPoint);
+		player.Intrinsic.color +=1;
 	}
 
 	this.drawAnts = function(){
@@ -56,8 +47,8 @@ function Renderer(){
 	this.drawAnt = function(ant){
 
 		ctx.beginPath();
-		ctx.arc(ant.centerPoint.x, ant.centerPoint.y, ant.radius, 0, 2 * Math.PI, false);
-		ctx.fillStyle = ant.color;
+		ctx.arc(ant.Intrinsic.centerPoint.x, ant.Intrinsic.centerPoint.y, ant.Intrinsic.radius, 0, 2 * Math.PI, false);
+		ctx.fillStyle = ant.Intrinsic.color;
 		ctx.fill();
 		ctx.lineWidth = 1;
 
@@ -66,50 +57,50 @@ function Renderer(){
 
 /*
 		if(debugMode == true){
-			var stringToSend = "Vel:"+ant.velocity;
-			var antX = ant.centerPoint.x + ant.radius;
-			var antY = ant.centerPoint.y;
+			var stringToSend = "Vel:"+ant.Intrinsic.velocity;
+			var antX = ant.Intrinsic.centerPoint.x + ant.Intrinsic.radius;
+			var antY = ant.Intrinsic.centerPoint.y;
 			var pointToDisplay = new Point(antX, antY);
 			this.writeText(stringToSend, pointToDisplay);
 			pointToDisplay.y += 10;
-			stringToSend = "Dir:"+ant.direction;
+			stringToSend = "Dir:"+ant.Intrinsic.direction;
 			this.writeText(stringToSend, pointToDisplay);
 			pointToDisplay.y += 10;
-			stringToSend = "Acc:"+ant.acceleration;
+			stringToSend = "Acc:"+ant.Intrinsic.acceleration;
 			this.writeText(stringToSend, pointToDisplay);
 			pointToDisplay.y += 10;
-			stringToSend = "Spin:"+ant.spin;
+			stringToSend = "Spin:"+ant.Intrinsic.spin;
 			this.writeText(stringToSend, pointToDisplay);
 
-			pointToDisplay.y = ant.centerPoint.y-3;
-			pointToDisplay.x = ant.centerPoint.x-4;
-			stringToSend = ant.id;
+			pointToDisplay.y = ant.Intrinsic.centerPoint.y-3;
+			pointToDisplay.x = ant.Intrinsic.centerPoint.x-4;
+			stringToSend = ant.Intrinsic.id;
 			this.writeText(stringToSend, pointToDisplay);
 	    	// Draw arrow of velocity
 
-	    	var endX = ant.centerPoint.x + ant.velocity * Math.cos(ant.direction);
-	    	var endY = ant.centerPoint.y + ant.velocity * Math.sin(ant.direction);
+	    	var endX = ant.Intrinsic.centerPoint.x + ant.Intrinsic.velocity * Math.cos(ant.Intrinsic.direction);
+	    	var endY = ant.Intrinsic.centerPoint.y + ant.Intrinsic.velocity * Math.sin(ant.Intrinsic.direction);
 	    	ctx.beginPath();
-	    	ctx.moveTo(ant.centerPoint.x,ant.centerPoint.y);
+	    	ctx.moveTo(ant.Intrinsic.centerPoint.x,ant.Intrinsic.centerPoint.y);
 	    	ctx.lineTo(endX,endY);
 	    	ctx.lineWidth = 5;
 	    	ctx.strokeStyle = 'red';
 	    	ctx.stroke();
 
-	    	var horizX = ant.centerPoint.x - 45;
-	    	var horizY = ant.centerPoint.x + 45;
+	    	var horizX = ant.Intrinsic.centerPoint.x - 45;
+	    	var horizY = ant.Intrinsic.centerPoint.x + 45;
 	    	ctx.beginPath();
-	    	ctx.moveTo(horizX,ant.centerPoint.y);
-	    	ctx.lineTo(horizY,ant.centerPoint.y);
+	    	ctx.moveTo(horizX,ant.Intrinsic.centerPoint.y);
+	    	ctx.lineTo(horizY,ant.Intrinsic.centerPoint.y);
 	    	ctx.lineWidth = 1;
 	    	ctx.strokeStyle = 'black';
 	    	ctx.stroke();
 
-	    	var vertX = ant.centerPoint.y - 45;
-	    	var vertY = ant.centerPoint.y + 45;
+	    	var vertX = ant.Intrinsic.centerPoint.y - 45;
+	    	var vertY = ant.Intrinsic.centerPoint.y + 45;
 	    	ctx.beginPath();
-	    	ctx.moveTo(ant.centerPoint.x,vertX);
-	    	ctx.lineTo(ant.centerPoint.x,vertY);
+	    	ctx.moveTo(ant.Intrinsic.centerPoint.x,vertX);
+	    	ctx.lineTo(ant.Intrinsic.centerPoint.x,vertY);
 	    	ctx.lineWidth = 0.5;
 	    	ctx.strokeStyle = 'blue';
 	    	ctx.stroke();

@@ -1,18 +1,10 @@
 function Ants(centerPoint, radius, mass){
-	this.centerPoint = centerPoint;
-	this.radius = radius;
-	this.mass = mass;
-	this.velocity = 0;
-	this.direction = 0;
-	this.color = 'white';
-	this.acceleration = 0;
-	this.cellpos = 0;
-	
-
-	this.stop = function() {
-		this.direction=0;
-		this.velocity = 0;
-		this.acceleration = 0;
-	}
-
+	this.Intrinsic = new Intrinsic(centerPoint, radius, mass);
+	this.hasKnifeEquipped = false;
+	this.hasSheildEquipped = false;
+	this.isfleeing = false;
+	this.isnearmysterybox = false;
+	this.ispursuingweapon = false;
+	this.ispursuingmysterybox = false;
+	this.isdestroyingmysterybox = false;
 }
