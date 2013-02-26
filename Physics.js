@@ -109,7 +109,7 @@ function Physics(){
 	function getAccelerationFromFriction(point){
 		var region = room.getRegionFromPoint(point);
 		//logger.log("Friction is "+ region.coefficientOfFriction);
-		return region.coefficientOfFriction*gravity*999;
+		return region.coefficientOfFriction*gravity*999999;
 	}
 
 	// F = ma

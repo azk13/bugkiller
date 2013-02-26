@@ -4,7 +4,7 @@
   //IE does not support const, so must use var
   var FPS = 30;
   var screenUpdateTime = 1000/FPS;
-  var playerspeed = 330;
+  var playerspeed = 400;
 
   // Canvas
   var canvas;
@@ -25,7 +25,7 @@
   var physicsEngine = new Physics();
   var debugMode = false;
   var hud = new HUD();
-  var player = new Ants(new Point(100,250),23,2);
+  var player = new Ants(new Point(100,250),25,2);
   var boundcheck = new Boundcheck();
   var ai = new AI();
 

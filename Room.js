@@ -1,8 +1,8 @@
 function Room(){
 	var ants = new Array();
 
-	this.width = 1000;
-	this.height = 500;
+	this.width = 800;
+	this.height = 600;
 
 	this.regions = new Array();
 
