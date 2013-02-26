@@ -1,8 +1,39 @@
 function Room(){
 	var ants = new Array();
+	var map = new Array();
+
+	map[0] = new Point();
 
 	this.width = 800;
 	this.height = 600;
+	this.cellsize = 40;
+
+	this.totalbox = (this.width/this.cellsize) * (this.height/this.cellsize);
+
+	for(var i=0;i<this.totalbox;i++)
+	{
+		map[i] = new Point();
+	}	 
+	var increx = 0;
+	var increy = 0;
+	for(var i =0;i<this.totalbox;i++)
+	{
+
+		if((increy+(this.cellsize/2)) > (this.height-(this.cellsize/2)))
+		{
+			increx +=this.cellsize;
+			increy = 0;
+		}	
+		map[i].x = (this.cellsize/2) + increx;
+		map[i].y = (this.cellsize/2) + increy;
+
+		increy+=this.cellsize;
+	console.log("Grid Positions : X = "+ map[i].x + " Y = " + map[i].y);
+	}
+
+
+
+
 
 	this.regions = new Array();
 

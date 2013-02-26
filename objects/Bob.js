@@ -1,5 +1,4 @@
 function Bob(centerPoint, radius, mass){
-	this.id = 0;
 	this.centerPoint = centerPoint;
 	this.radius = radius;
 	this.mass = mass;
@@ -7,6 +6,8 @@ function Bob(centerPoint, radius, mass){
 	this.direction = 0;
 	this.color = 'white';
 	this.acceleration = 0;
+	this.cellpos = new Point();
+	
 
 	this.stop = function() {
 		this.direction=0;

@@ -42,7 +42,7 @@ function Physics(){
 			}
 		}
 
-		ant.centerPoint.x = ant.centerPoint.x + x_disp;
+		ant.centerPoint.x = Math.floor(ant.centerPoint.x + x_disp);
 		ant.centerPoint.y = ant.centerPoint.y + y_disp;
 		ant.velocity = endVelocity;
 
@@ -109,7 +109,7 @@ function Physics(){
 	function getAccelerationFromFriction(point){
 		var region = room.getRegionFromPoint(point);
 		//logger.log("Friction is "+ region.coefficientOfFriction);
-		return region.coefficientOfFriction*gravity*999999;
+		return region.coefficientOfFriction*gravity*99999999999999999;
 	}
 
 	// F = ma

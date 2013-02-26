@@ -25,7 +25,7 @@
   var physicsEngine = new Physics();
   var debugMode = false;
   var hud = new HUD();
-  var player = new Ants(new Point(100,250),25,2);
+  var player = new Ants(new Point(25,25),25,2);
   var boundcheck = new Boundcheck();
   var ai = new AI();
 

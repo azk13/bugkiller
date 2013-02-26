@@ -40,7 +40,7 @@ function Renderer(){
 		this.drawAnts();
 		this.drawAnt(player);
 		hud.updateHUD();
-		renderingEngine.writeText(player.velocity,player.centerPoint);
+		renderingEngine.writeText("X:"+player.centerPoint.x+" Y:"+player.centerPoint.y,player.centerPoint);
 	}
 
 	this.drawAnts = function(){

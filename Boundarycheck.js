@@ -6,24 +6,24 @@ function Boundcheck(){
 
 		if (((ant.centerPoint.x + ant.radius) > room.width)){
 		ant.stop();
-		ant.centerPoint.x = room.width - ant.radius;
+		ant.centerPoint.x = Math.floor(room.width - ant.radius);
 			//logger.log('ant hit right wall!');
 
 		}
 		else if (((ant.centerPoint.y + ant.radius) > room.height)){
 			//logger.log('ant hit bottom wall');
 		ant.stop();
-		ant.centerPoint.y = room.height - ant.radius;
+		ant.centerPoint.y = Math.floor(room.height - ant.radius);
 		}
 		else if (((ant.centerPoint.y - ant.radius) < 0)){
 			//logger.log('ant hit top wall');	
 		ant.stop();
-		ant.centerPoint.y = ant.radius;
+		ant.centerPoint.y = Math.floor(ant.radius);
 		}
 		else if (((ant.centerPoint.x - ant.radius) < 0)){
 			//logger.log('Ant hit left wall');
 		ant.stop();
-		ant.centerPoint.x = ant.radius;
+		ant.centerPoint.x = Math.floor(ant.radius);
 		}
 	}
 
