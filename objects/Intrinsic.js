@@ -6,6 +6,9 @@ function Intrinsic(centerPoint, radius, mass){
 	this.direction = 0;
 	this.color = 'white';
 	this.acceleration = 0;
+    //Added by renga
+    this.health=100;
+    //
 	this.cellpos = new Point();
 	this.attackrating = 0;
 	this.defenserating = 0;
