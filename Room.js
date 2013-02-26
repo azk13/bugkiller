@@ -28,7 +28,7 @@ function Room(){
 		map[i].y = (this.cellsize/2) + increy;
 
 		increy+=this.cellsize;
-//	console.log("Grid Positions : X = "+ map[i].x + " Y = " + map[i].y);
+	console.log("Grid Positions : X = "+ map[i].x + " Y = " + map[i].y);
 	}
 
 
