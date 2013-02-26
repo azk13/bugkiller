@@ -28,6 +28,7 @@
   var player = new Bob(new Point(20,20),20,2);
   var boundcheck = new Boundcheck();
   var ai = new AI();
+  var pathfinding = new Pathfinding();
 
 //function called in index
   function init(){
