@@ -36,16 +36,21 @@
     //the different canvas
     logDiv = document.getElementById('logger');
     canvas = document.getElementById('gameCanvas');
-    hudCanvas = document.getElementById('hudCanvas');
-    sideCanvas = document.getElementById('sideCanvas');
+    //hudCanvas = document.getElementById('hudCanvas');
+    //sideCanvas = document.getElementById('sideCanvas');
+    //we don't need canvas for the side and header - can use HTML <section> - Jensen
 
+    /*
 
     if (hudCanvas.getContext){
       hudCtx = hudCanvas.getContext('2d');
-    }
+    } */
+
+    /*
     if (sideCanvas.getContext){
       sideCtx = sideCanvas.getContext('2d');
-    }    
+    }    */
+    //we don't need canvas for the side - can use HTML <section> - Jensen
 
 
     if (canvas.getContext){

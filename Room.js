@@ -38,12 +38,14 @@ function Room(){
 	this.regions = new Array();
 
 	// Always label regions from largest to smallest
+
+	/* It is better to use CSS to color static stuff like backgrounds - Jensen
 	this.regions[0] = new Region(0,0,1000,500, 0.8);
 	this.regions[0].color = 'brown';
 	this.regions[1] = new Region(50,50,900,400, 0.6);
 	this.regions[1].color = '#31B404';
 	this.regions[2] = new Region(150,130,700,240, 0.3);
-	this.regions[2].color = '#00FF00';
+	this.regions[2].color = '#00FF00'; */
 
 
 
