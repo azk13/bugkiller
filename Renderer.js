@@ -28,7 +28,7 @@ function Renderer(){
 	this.draw = function(){
 		this.drawRoom();
 		this.drawAnts();
-		this.drawAnt(player);
+		this.drawCharacter(player); // Jensen
 		hud.updateHUD();
 		renderingEngine.writeText("X:"+player.Intrinsic.centerPoint.x+" Y:"+player.Intrinsic.centerPoint.y,player.Intrinsic.centerPoint);
 		player.Intrinsic.color +=1;
@@ -38,22 +38,30 @@ function Renderer(){
 		var ants = room.getAnts();
 
 		for (var i=0;i<ants.length;i++){
-			this.drawAnt(ants[i]);  
+			this.drawCharacter(ants[i]);  // Jensen
 		}
 
 		//console.log("Drew "+ ants.length + " ants");
 	}
 
-	this.drawAnt = function(ant){
+	this.drawCharacter = function(character){
+
+		// clear current image
+		//ctx.clearRect(character.Intrinsic.centerPoint-20, character.Intrinsic.centerPoint-20, character.Intrinsic.width, character.Intrinsic.height);
+
+
+		//ctx.drawImage(character.image, character.Intrinsic.centerPoint-20, character.Intrinsic.centerPoint-20);
+
+		//console.log(character.image)
+
 
 		ctx.beginPath();
-		ctx.arc(ant.Intrinsic.centerPoint.x, ant.Intrinsic.centerPoint.y, ant.Intrinsic.radius, 0, 2 * Math.PI, false);
-		ctx.fillStyle = ant.Intrinsic.color;
+		ctx.arc(character.Intrinsic.centerPoint.x, character.Intrinsic.centerPoint.y, character.Intrinsic.radius, 0, 2 * Math.PI, false);
+		ctx.fillStyle = character.Intrinsic.color;
 		ctx.fill();
 		ctx.lineWidth = 1;
-
 		ctx.strokeStyle = '#000000';
-		ctx.stroke();
+		ctx.stroke(); 
 
 /*
 		if(debugMode == true){

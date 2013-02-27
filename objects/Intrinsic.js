@@ -1,7 +1,11 @@
-function Intrinsic(centerPoint, radius, mass){
+function Intrinsic(centerPoint, width, height){
+
 	this.centerPoint = centerPoint;
-	this.radius = radius;
-	this.mass = mass;
+	this.width = width;
+	this.height = height;
+
+	this.radius = 20;
+
 	this.velocity = 0;
 	this.direction = 0;
 	this.color = 'white';

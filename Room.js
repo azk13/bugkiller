@@ -4,6 +4,7 @@ function item(x,y){
 }
 
 
+
 function Room(){
 
 	var ants = new Array();
@@ -55,7 +56,7 @@ function Room(){
     }
 
 	//object setup
-	ants[0] = new Ants(new Point(699,250),23,2);
+	ants[0] = new Ants(new Point(699,250),40,40);
 	ants[0].color = 'red';
 	ants[0].id = 0;
 

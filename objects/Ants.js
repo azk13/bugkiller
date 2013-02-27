@@ -1,5 +1,6 @@
-function Ants(centerPoint, radius, mass){
-	this.Intrinsic = new Intrinsic(centerPoint, radius, mass);
+function Ants(centerPoint, width, height){
+	this.Intrinsic = new Intrinsic(centerPoint, width, height);
+
 
     //Added by Renga
     //Array of weapons for the Ants to use
@@ -13,4 +14,11 @@ function Ants(centerPoint, radius, mass){
 	this.ispursuingweapon = false;
 	this.ispursuingmysterybox = false;
 	this.isdestroyingmysterybox = false;
+
+	this.image = new Image();
+	this.image.src = "imgs/char_ant.png";
+
+
+
+
 }
