@@ -31,7 +31,7 @@ function Renderer(){
 		this.drawCharacter(player); // Jensen
 		hud.updateHUD();
 		renderingEngine.writeText("X:"+player.Intrinsic.centerPoint.x+" Y:"+player.Intrinsic.centerPoint.y,player.Intrinsic.centerPoint);
-		player.Intrinsic.color +=1;
+		//player.Intrinsic.color +=1;
 	}
 
 	this.drawAnts = function(){
@@ -54,14 +54,16 @@ function Renderer(){
 
 		//console.log(character.image)
 
-
+	
 		ctx.beginPath();
 		ctx.arc(character.Intrinsic.centerPoint.x, character.Intrinsic.centerPoint.y, character.Intrinsic.radius, 0, 2 * Math.PI, false);
 		ctx.fillStyle = character.Intrinsic.color;
 		ctx.fill();
 		ctx.lineWidth = 1;
 		ctx.strokeStyle = '#000000';
-		ctx.stroke(); 
+		ctx.stroke();
+
+		//console.log(character.Intrinsic.color);
 
 /*
 		if(debugMode == true){

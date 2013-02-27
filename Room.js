@@ -8,6 +8,7 @@ function item(x,y){
 function Room(){
 
 	var ants = new Array();
+	var bees = new Array();
 
     /*
      Abstract map drawn on top of the room to help path finding class to locate the object
@@ -45,7 +46,7 @@ function Room(){
                 x=0;
             else
                 x=x+this.cellsize;
-            console.log("Grid Positions : X = "+ map[i][j].point.x + " Y = " + map[i][j].point.y);
+           // console.log("Grid Positions : X = "+ map[i][j].point.x + " Y = " + map[i][j].point.y);
         }
         //increment the y coordinate
 
@@ -57,8 +58,11 @@ function Room(){
 
 	//object setup
 	ants[0] = new Ants(new Point(699,250),40,40);
-	ants[0].color = 'red';
+	// ants[0].Intrinsic.color = 'red'; (ant's color is defined in its object - Jensen)
 	ants[0].id = 0;
+	//console.log(player.Intrinsic.color);
+
+	bees[0] = new Bees(new Point(500,250),40,40);
 
 	this.getAnts = function(){
 		return ants;

@@ -1,5 +1,6 @@
 function Bees(centerPoint, radius, mass){
 	this.Intrinsic = new Intrinsic(centerPoint, radius, mass);
+	this.Intrinsic.color = 'orange';	
 
 	this.hassting = false;
 	this.enemyinsight = false;

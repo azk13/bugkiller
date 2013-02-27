@@ -26,6 +26,7 @@
   var debugMode = false;
   var hud = new HUD();
   var player = new Bob(new Point(20,20),40,40);
+  
   var boundcheck = new Boundcheck();
   var ai = new AI();
   var pathfinding = new Pathfinding();
