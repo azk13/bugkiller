@@ -40,7 +40,7 @@ function Room(){
 
             //increment the y coordinate
 
-            if(x==880)
+            if(x==this.width)
                 x=0;
             else
                 x=x+this.cellsize;
@@ -48,7 +48,7 @@ function Room(){
         }
         //increment the y coordinate
 
-        if(y==560)
+        if(y==this.height)
             y=0;
         else
             y=y+this.cellsize;
