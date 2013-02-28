@@ -20,8 +20,8 @@ function Room(){
 	//var ctx = canvas.getContext('2d');
 
     /*
-     Abstract map drawn on top of the room to help path finding class to locate the object
-     Every cell in the map can either can be occupied by an item object
+     Abstract this.map drawn on top of the room to help path finding class to locate the object
+     Every cell in the this.map can either can be occupied by an item object
      the item object will have the top left most corner point  and whether it is occupied by
      an item.In this implementation there won't be any use for the last row and coloum
      anyway just added
@@ -35,13 +35,13 @@ function Room(){
      ______________________________________________________________________________________
      */
 
-    var map = [];
+    this.map = [];
 
     
     this.width = 880;
     this.height = 560;
     this.cellsize = 40;
-    this.rows=this.width/this.cellsize
+    this.rows=this.width/this.cellsize;
     this.columns=this.height/this.cellsize;
 
 
@@ -51,15 +51,15 @@ function Room(){
     {
  
 
-        map[i]=[];
+        this.map[i]=[];
         for(var j= 0,l2=this.columns;j<l2;j++) {
-        	map[i][j]= new item(x,y);
+        	this.map[i][j]= new item(x,y);
             //increment the y coordinate
             if(x==this.width)
                 x=0;
             else
                 x=x+this.cellsize;
-           // console.log("Grid Positions : X = "+ map[i][j].point.x + " Y = " + map[i][j].point.y);
+           // console.log("Grid Positions : X = "+ this.this.map[i][j].point.x + " Y = " + this.map[i][j].point.y);
         }
         //increment the y coordinate
 
@@ -70,18 +70,26 @@ function Room(){
     }
 
 
+    console.log(this.map[0][0].point.x);
+    console.log(this.map[0][1].point.x);
+
+
 	//Objects Creation
 	/************************************
 	*/
-	ants[0] = new Ants(new Point(map[10][0].point.x, map[10][0].point.y),40,40);
-	ants[1] = new Ants(new Point(map[2][13].point.x,map[2][0].point.y),40,40);
+	ants[0] = new Ants(new Point(this.map[10][10].point.x, this.map[10][10].point.y),40,40);
+
+
+	ants[1] = new Ants(new Point(this.map[2][13].point.x,this.map[2][0].point.y),40,40);
 	ants[0].id = 0;
 
-	bees[0] = new Bees(new Point(map[15][7].point.x,map[15][7].point.y),40,40);
+	//console.log('ant is ' +ants[0].Intrinsic.color);
 
-	baskets[0] = new Basket(new Point(map[4][3].point.x, map[4][3].point.y), 40, 40);
-	baskets[1] = new Basket(new Point(map[8][10].point.x, map[8][10].point.y), 40, 40);
-	baskets[2] = new Basket(new Point(map[12][11].point.x, map[12][11].point.y), 40, 40);
+	bees[0] = new Bees(new Point(this.map[15][7].point.x,this.map[15][7].point.y),40,40);
+
+	baskets[0] = new Basket(new Point(this.map[4][3].point.x, this.map[4][3].point.y), 40, 40);
+	baskets[1] = new Basket(new Point(this.map[8][10].point.x, this.map[8][10].point.y), 40, 40);
+	baskets[2] = new Basket(new Point(this.map[12][11].point.x, this.map[12][11].point.y), 40, 40);
 
 	weapons[0] = new Weapon(new Point(map[13][10].point.x, map[13][10].point.y), 'Attack', 'Knife');
 	weapons[1] = new Weapon(new Point(map[11][10].point.x, map[11][10].point.y), 'Attack', 'Bomb');

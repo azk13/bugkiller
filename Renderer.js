@@ -8,14 +8,17 @@ function Renderer(){
 		//if(player == winningbig)
 		//Ai.lose(ants)
 		//Ai.towin(bee)
+		pathfinding.objectgo(ants[0],player);			
 		physicsEngine.updatePoint(player);
 		
 		boundcheck.detectCollisionWithWalls(player);
-		physicsEngine.updatePoint(ants[0]);	
 
-
-		room.setAnts(ants); //?
-
+		for(var i=0;i<ants.length;i++)
+		{
+			boundcheck.detectCollisionWithWalls(ants[i]);
+			physicsEngine.updatePoint(ants[i]);	
+		}				
+		room.setAnts(ants);
 	}
 
 	this.drawRoom = function (){

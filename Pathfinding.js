@@ -1,21 +1,90 @@
 function Pathfinding(grid)
 {
-	
-  // Jensen = Render to destination (simple)
-  this.move = function(obj, dest) {
-    
-    obj.x = obj.Intrinsic.centerPoint.x;
-    obj.y = obj.Intrinsic.centerPoint.y;
-    
-    if(obj.x == dest.x) {
-      obj.Intrinsic.centerPoint.x += 2;
-      obj.Intrinsic.centerPoint.y += 2;
+
+  var prevx = 0,prevy = 0;
+	this.objectgo = function(object,endpoint)
+  {
+    var goup = false;
+    var godown = false;
+    var goright = false;
+    var goleft = false;
+    var diagonalmovevel = 400/Math.sin((Math.PI/4));
+    //console.log("Diag Vel = "+diagonalmovevel);
+    var objectrow = getObjectIndexRow(object);
+    var objectcol = getObjectIndexCol(object);  
+
+    var endpointrow = getObjectIndexRow(endpoint);
+    var endpointcol = getObjectIndexCol(endpoint);  
+
+//row index increment to go down
+    if(objectrow < endpointrow)
+    {
+      if(!room.map[objectrow+1][objectcol].occupied)         
+      {godown = true;}
     }
-      
+//row index increment to go up    
+    if(objectrow > endpointrow)
+    {
+      if(!room.map[objectrow-1][objectcol].occupied)  
+      {goup = true;}
+    }
+//col index increment to go right    
+    if(objectcol < endpointcol)
+    {
+      if(!room.map[objectrow][objectcol+1].occupied)  
+      {goright = true;}
+    }
+//col index increment to go left   
+    if(objectcol > endpointcol)
+    {
+    //left
+      if(!room.map[objectrow][objectcol-1].occupied)
+      {goleft = true;}
+//    physicsEngine.applyForceAtAngle(object,400,Math.PI);
+    }           
+
+      console.log("Up:"+goup+" Down:"+godown+" Left:"+goleft+" Right:"+goright);  
+      console.log("prevx:"+prevx+" Current X:"+ object.Intrinsic.centerPoint.x);
+//if((prevy == object.Intrinsic.centerPoint.y && prevx == object.Intrinsic.centerPoint.x))
+//  {
+  if(goright && goup)
+  {physicsEngine.applyForceAtAngle(object,diagonalmovevel,Math.PI*3.5/2);}
+  else if(goright && godown)
+  {physicsEngine.applyForceAtAngle(object,diagonalmovevel,Math.PI/4);}
+  else if(goleft && goup)
+  {physicsEngine.applyForceAtAngle(object,diagonalmovevel,Math.PI*2.5/2);}
+  else if(goleft && godown)
+  {physicsEngine.applyForceAtAngle(object,diagonalmovevel,Math.PI*1.5/2);}
+  else if(goup)
+  {physicsEngine.applyForceAtAngle(object,400,Math.PI*3/2);}
+  else if(godown)
+  {physicsEngine.applyForceAtAngle(object,400,Math.PI/2);}
+  else if(goleft)
+  {physicsEngine.applyForceAtAngle(object,400,Math.PI);}
+  else if(goright)
+  {physicsEngine.applyForceAtAngle(object,400,0);}
+//  }
+  prevy = object.Intrinsic.centerPoint.y;
+  prevx = object.Intrinsic.centerPoint.x;
+
+  }//end of objectgo function
 
 
-  }
-  
+}
+
+function getObjectIndexCol(object)
+{
+  var col = Math.floor(object.Intrinsic.centerPoint.x/room.cellsize);
+  console.log("Col:"+col);
+  return col;
+}
+function getObjectIndexRow(object)
+{
+  var row = Math.floor(object.Intrinsic.centerPoint.y/room.cellsize);
+  console.log("Row:"+row);
+
+  return row;
+
 }
 
 //Point class, used to refer to a specific square on the grid

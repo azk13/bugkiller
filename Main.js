@@ -2,7 +2,7 @@
   /*const FPS = 30;
   const screenUpdateTime = 1000/FPS;*/
   //IE does not support const, so must use var
-  var FPS = 30;
+  var FPS = 1;
   var screenUpdateTime = 1000/FPS;
   var playerspeed = 400;
 
@@ -63,8 +63,8 @@
       renderingEngine.drawRoom();
 
       //update points in renderer
-  //    setInterval(function () {renderingEngine.updatePoints();}, screenUpdateTime);
-  //    setInterval(function () {renderingEngine.draw();}, screenUpdateTime);
+      setInterval(function () {renderingEngine.updatePoints();}, screenUpdateTime);
+      setInterval(function () {renderingEngine.draw();}, screenUpdateTime);
     }
 
     document.addEventListener('keydown', function(event) {
@@ -95,7 +95,7 @@
             window.oRequestAnimationFrame      ||
             window.msRequestAnimationFrame     ||
             function( callback ){
-              window.setTimeout(callback, 1000 / 60);
+              window.setTimeout(callback, 1000 / 1);
             };
           })();
   // usage:
@@ -103,12 +103,8 @@
   (function animloop(){
     requestAnimFrame(animloop);
     //what to render here
-    renderingEngine.updatePoints();
-    renderingEngine.draw();
-
-    // Ai function here
-
-
+//    renderingEngine.updatePoints();
+//    renderingEngine.draw();
   })();
 
 
