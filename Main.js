@@ -2,7 +2,7 @@
   /*const FPS = 30;
   const screenUpdateTime = 1000/FPS;*/
   //IE does not support const, so must use var
-  var FPS = 2;
+  var FPS = 5;
   var screenUpdateTime = 1000/FPS;
   var playerspeed = 400;
 
@@ -25,7 +25,7 @@
   var physicsEngine = new Physics();
   var debugMode = false;
   var hud = new HUD();
-  var player = new Bob(new Point(20,20),40,40);
+  var player = new Bob(new Point(500,380),40,40);
 
   var boundcheck = new Boundcheck();
   var ai = new AI();

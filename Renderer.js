@@ -3,11 +3,44 @@ function Renderer(){
 
 	this.updatePoints = function(){
 		var ants = room.getAnts();
+		var bees = room.getBees();
 
 		//Ai.towin(ants)
 		//if(player == winningbig)
 		//Ai.lose(ants)
 		//Ai.towin(bee)
+//		this.occupancy();
+					
+
+
+				
+		for(var i=0;i<ants.length;i++)
+		{		
+			physicsEngine.updatePoint(ants[i]);	
+			boundcheck.detectCollisionWithWalls(ants[i]);
+			pathfinding.objectgo(ants[i],player);
+
+		}
+		for(var i=0;i<bees.length;i++)
+		{		
+			physicsEngine.updatePoint(bees[i]);	
+			boundcheck.detectCollisionWithWalls(bees[i]);
+			pathfinding.objectgo(bees[i],player);
+
+		}		
+
+		physicsEngine.updatePoint(player);
+		boundcheck.detectCollisionWithWalls(player);		
+
+		room.setAnts(ants);
+		room.setBees(bees);		
+		this.occupancy();
+	}
+
+	this.occupancy = function()
+	{
+		var ants = room.getAnts();
+		var bees = room.getBees();
 
 		//Initialize all occupancy zero;
 		for(var i=0;i<room.rows;i++)
@@ -25,31 +58,16 @@ function Renderer(){
 					{
 						room.map[i][j].occupied=true;
 					}		
-				}	
+				}
+				for(var k=0;k<bees.length;k++)
+				{
+					if(bees[k].Intrinsic.centerPoint.x == room.map[i][j].point.x && bees[k].Intrinsic.centerPoint.y == room.map[i][j].point.y)
+					{
+						room.map[i][j].occupied=true;
+					}		
+				}					
 			}
-		}
-		//update occupied spaces
-		
-		renderingEngine.filloccupancy(player);
-		pathfinding.objectgo(ants[0],player);			
-		physicsEngine.updatePoint(player);
-		boundcheck.detectCollisionWithWalls(player);
-
-				
-		for(var i=0;i<ants.length;i++)
-		{		
-			physicsEngine.updatePoint(ants[i]);	
-			boundcheck.detectCollisionWithWalls(ants[i]);
-		}				
-		for(var i=0;i<room.rows;i++)
-		{
-			for(var j=0;j<room.columns;j++)
-			{
-				renderingEngine.writeText(room.map[i][j].occupied,room.map[i][j].point);
-			}
-		}
-
-		room.setAnts(ants);
+		}		
 	}
 
 	this.drawRoom = function (){
@@ -82,7 +100,7 @@ function Renderer(){
 	}
 	
 	this.draw = function(){
-		
+		var ants = room.getAnts();
 		this.drawRoom();
 		this.drawBaskets();
 		this.drawAnts();
@@ -92,6 +110,7 @@ function Renderer(){
 		this.drawPath();
 		//hud.updateHUD();
 		renderingEngine.writeText("X:"+player.Intrinsic.centerPoint.x+" Y:"+player.Intrinsic.centerPoint.y,player.Intrinsic.centerPoint);
+				renderingEngine.writeText("X:"+ants[0].Intrinsic.centerPoint.x+" Y:"+ants[0].Intrinsic.centerPoint.y,ants[0].Intrinsic.centerPoint);
 		//player.Intrinsic.color +=1;
 	}
 
@@ -238,7 +257,7 @@ function Renderer(){
 
 	/*write text to the canvas*/
 	this.writeText = function (myString, myPoint) {
-		ctx.fillStyle = "black";
+		ctx.fillStyle = "purple";
 		ctx.font = "bold 10px Arial";
 		ctx.fillText(myString, myPoint.x, myPoint.y);
 	}//end writeText*/

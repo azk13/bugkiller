@@ -82,7 +82,7 @@ function Room(){
 
 	//console.log('ant is ' +ants[0].Intrinsic.color);
 
-	bees[0] = new Bees(new Point(this.map[13][7].point.x,this.map[13][7].point.y),40,40);
+	bees[0] = new Bees(new Point(this.map[11][7].point.x,this.map[11][7].point.y),40,40);
 
 	baskets[0] = new Basket(new Point(this.map[4][3].point.x, this.map[4][3].point.y), 40, 40);
 	baskets[1] = new Basket(new Point(this.map[8][10].point.x, this.map[8][10].point.y), 40, 40);
@@ -111,6 +111,9 @@ function Room(){
 	this.setAnts = function(allAnts){
 	 	this.ants = allAnts;
 	}
+    this.setBees = function(allBees){
+        this.bees = allBees;
+    }    
 
 
 

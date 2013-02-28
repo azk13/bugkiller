@@ -40,8 +40,40 @@ function Pathfinding(grid)
     //left
       if(!(room.map[objectrow][(objectcol-1)].occupied))
       {goleft = true;}
-//    physicsEngine.applyForceAtAngle(object,400,Math.PI);
-    }           
+    }
+
+
+    //downright
+//    if(objectrow < room.rows && objectcol < room.columns)
+    if(room.map[objectrow+1][objectcol+1].occupied && goright && godown)
+    {
+      goright = false;
+      godown = false;
+    }
+
+    //downleft
+//    if(objectcol >0 && objectrow < room.rows)
+    if(room.map[(objectrow+1)][objectcol-1].occupied && goleft && godown)
+    {
+      goleft = false;
+      goright = false;
+    }    
+
+    //upright
+//    if(objectrow >0 && objectcol < room.columns)
+    if(room.map[(objectrow-1)][objectcol+1].occupied && goright && goup)
+    {
+      goright = false;
+      goup = false;
+    }
+
+    //upleft
+//    if(objectrow >0 && objectcol >0)    
+    if(room.map[(objectrow-1)][objectcol-1].occupied && goleft && goup)
+    {
+      goleft = false;
+      goup = false;
+    }       
 
 //      console.log("Up:"+goup+" Down:"+godown+" Left:"+goleft+" Right:"+goright);  
 //      console.log("prevx:"+prevx+" Current X:"+ object.Intrinsic.centerPoint.x);
