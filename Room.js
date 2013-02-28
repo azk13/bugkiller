@@ -3,6 +3,9 @@ function item(x,y){
     this.occupied=false;
 }
 
+function gridIndex(number) {
+	return number*40+20;
+}
 
 
 function Room(){
@@ -10,6 +13,7 @@ function Room(){
 	var ants = new Array();
 	var bees = new Array();
 	var baskets = new Array();
+
 
 	//var canvas = document.getElementById('gameCanvas');
 	//var ctx = canvas.getContext('2d');
@@ -65,13 +69,15 @@ function Room(){
 	//Objects Creation
 	/************************************
 	*/
-	ants[0] = new Ants(new Point(660,140),40,40);
-	// ants[0].Intrinsic.color = 'red'; (ant's color is defined in its object - Jensen)
+	ants[0] = new Ants(new Point(gridIndex(18),gridIndex(5)),40,40);
+	ants[1] = new Ants(new Point(gridIndex(2),gridIndex(13)),40,40);
 	ants[0].id = 0;
-	//console.log(player.Intrinsic.color);
 
-	bees[0] = new Bees(new Point(460,220),40,40);
-	baskets[0] = new Basket(new Point(140, 100), 40, 40);
+	bees[0] = new Bees(new Point(gridIndex(15),gridIndex(7)),40,40);
+
+	baskets[0] = new Basket(new Point(gridIndex(3), gridIndex(3)), 40, 40);
+	baskets[1] = new Basket(new Point(gridIndex(8), gridIndex(10)), 40, 40);
+	baskets[2] = new Basket(new Point(gridIndex(12), gridIndex(11)), 40, 40);
 
 
 	this.getBaskets = function() {
@@ -87,9 +93,9 @@ function Room(){
 		return bees;
 	}
 
-	 this.setAnts = function(allAnts){
+	this.setAnts = function(allAnts){
 	 	this.ants = allAnts;
-	 }
+	}
 
 
 

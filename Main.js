@@ -31,6 +31,8 @@
   var ai = new AI();
   var pathfinding = new Pathfinding();
 
+  var gridIndex = new gridIndex();
+
 //function called in index
   function init(){
 
