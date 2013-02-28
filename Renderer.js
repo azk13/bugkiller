@@ -15,11 +15,25 @@ function Renderer(){
 	}
 
 	this.drawRoom = function (){
-		//clearing function
+		//Draw the entire room
 		canvas.width = room.width;
 		canvas.height = room.height;
 	    ctx.fillStyle = "rgba(0, 0, 0, 0.5)";
 	    ctx.fillRect(0, 0, room.width, room.height);
+
+	    // Draw the grids
+	    for( var i= 0,l=room.rows;i<l;i++)
+    	{
+    		// horizontal
+		    ctx.moveTo(0,i*room.cellsize);
+			ctx.lineTo(room.width,i*room.cellsize);
+
+			// vertical
+			ctx.moveTo(i*room.cellsize, 0);
+			ctx.lineTo(i*room.cellsize, room.height);
+
+			ctx.stroke();
+		}
 
 
 	    
@@ -34,6 +48,7 @@ function Renderer(){
 		this.drawRoom();
 		this.drawBaskets();
 		this.drawAnts();
+		this.drawBees();
 		this.drawCharacter(player); // Jensen
 		//hud.updateHUD();
 		renderingEngine.writeText("X:"+player.Intrinsic.centerPoint.x+" Y:"+player.Intrinsic.centerPoint.y,player.Intrinsic.centerPoint);
@@ -56,8 +71,14 @@ function Renderer(){
 		for (var i=0;i<ants.length;i++){
 			this.drawCharacter(ants[i]);  // Jensen
 		}
+	}
 
-		//console.log("Drew "+ ants.length + " ants");
+	this.drawBees = function(){
+		var bees = room.getBees();
+
+		for (var i=0;i<bees.length;i++){
+			this.drawCharacter(bees[i]);  // Jensen
+		}
 	}
 
 

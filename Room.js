@@ -11,6 +11,9 @@ function Room(){
 	var bees = new Array();
 	var baskets = new Array();
 
+	//var canvas = document.getElementById('gameCanvas');
+	//var ctx = canvas.getContext('2d');
+
     /*
      Abstract map drawn on top of the room to help path finding class to locate the object
      Every cell in the map can either can be occupied by an item object
@@ -32,17 +35,19 @@ function Room(){
     this.height = 560;
     this.cellsize = 40;
     this.rows=this.width/this.cellsize
-    this.coloums=this.height/this.cellsize;
+    this.columns=this.height/this.cellsize;
+
+
 
     var y=0,x=0;
     for( var i= 0,l=this.rows;i<l;i++)
     {
+ 
+
         map[i]=[];
-        for(var j= 0,l2=this.coloums;j<l2;j++)
-        { map[i][j]= new item( x,y);
-
+        for(var j= 0,l2=this.columns;j<l2;j++) {
+        	map[i][j]= new item(x,y);
             //increment the y coordinate
-
             if(x==this.width)
                 x=0;
             else
@@ -60,12 +65,12 @@ function Room(){
 	//Objects Creation
 	/************************************
 	*/
-	ants[0] = new Ants(new Point(699,250),40,40);
+	ants[0] = new Ants(new Point(660,140),40,40);
 	// ants[0].Intrinsic.color = 'red'; (ant's color is defined in its object - Jensen)
 	ants[0].id = 0;
 	//console.log(player.Intrinsic.color);
 
-	bees[0] = new Bees(new Point(500,250),40,40);
+	bees[0] = new Bees(new Point(460,220),40,40);
 	baskets[0] = new Basket(new Point(140, 100), 40, 40);
 
 
@@ -76,6 +81,10 @@ function Room(){
 
 	this.getAnts = function(){
 		return ants;
+	}
+
+	this.getBees = function(){
+		return bees;
 	}
 
 	 this.setAnts = function(allAnts){
