@@ -56,7 +56,7 @@ function Room(){
         	this.map[i][j]= new item(x,y);
             //increment the x coordinate
                 x=x+this.cellsize;
-            console.log("Grid Positions : X = "+ this.map[i][j].point.x + " Y = " + this.map[i][j].point.y);
+//            console.log("Grid Positions : X = "+ this.map[i][j].point.x + " Y = " + this.map[i][j].point.y);
         }
         //increment the y coordinate
         x=0;

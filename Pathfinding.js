@@ -43,8 +43,8 @@ function Pathfinding(grid)
 //    physicsEngine.applyForceAtAngle(object,400,Math.PI);
     }           
 
-      console.log("Up:"+goup+" Down:"+godown+" Left:"+goleft+" Right:"+goright);  
-      console.log("prevx:"+prevx+" Current X:"+ object.Intrinsic.centerPoint.x);
+//      console.log("Up:"+goup+" Down:"+godown+" Left:"+goleft+" Right:"+goright);  
+//      console.log("prevx:"+prevx+" Current X:"+ object.Intrinsic.centerPoint.x);
 //if((prevy == object.Intrinsic.centerPoint.y && prevx == object.Intrinsic.centerPoint.x))
 //  {
   if(goright && goup)
@@ -75,13 +75,13 @@ function Pathfinding(grid)
 function getObjectIndexCol(object)
 {
   var col = Math.floor(object.Intrinsic.centerPoint.x/room.cellsize);
-  console.log("Col:"+col);
+  //console.log("Col:"+col);
   return col;
 }
 function getObjectIndexRow(object)
 {
   var row = Math.floor(object.Intrinsic.centerPoint.y/room.cellsize);
-  console.log("Row:"+row);
+  //console.log("Row:"+row);
 
   return row;
 

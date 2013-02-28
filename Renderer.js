@@ -15,19 +15,31 @@ function Renderer(){
 			for(var j=0;j<room.columns;j++)
 			{
 				room.map[i][j].occupied = false;
+				if(player.Intrinsic.centerPoint.x == room.map[i][j].point.x && player.Intrinsic.centerPoint.y == room.map[i][j].point.y)
+					{
+						room.map[i][j].occupied=true;
+					}
+				for(var k=0;k<ants.length;k++)
+				{
+					if(ants[k].Intrinsic.centerPoint.x == room.map[i][j].point.x && ants[k].Intrinsic.centerPoint.y == room.map[i][j].point.y)
+					{
+						room.map[i][j].occupied=true;
+					}		
+				}	
 			}
 		}
-
+		//update occupied spaces
+		
+		renderingEngine.filloccupancy(player);
 		pathfinding.objectgo(ants[0],player);			
 		physicsEngine.updatePoint(player);
 		boundcheck.detectCollisionWithWalls(player);
-		this.filloccupancy(player);
 
+				
 		for(var i=0;i<ants.length;i++)
-		{
+		{		
 			physicsEngine.updatePoint(ants[i]);	
 			boundcheck.detectCollisionWithWalls(ants[i]);
-			this.filloccupancy(ants[i]);
 		}				
 		for(var i=0;i<room.rows;i++)
 		{
@@ -87,10 +99,14 @@ function Renderer(){
 	{
 		for(var i=0;i<room.rows;i++)
 		{
+			
 			for(var j=0;j<room.columns;j++)
 			{
+				
 				for(var k=0;k<object.length;k++)
 				{
+					alert("im in k");
+					console.log("Object X:"+object.Intrinsic.centerPoint.x+" Room X:"+room.map[i][j].x);
 					if(object.Intrinsic.centerPoint.x == room.map[i][j].point.x && object.Intrinsic.centerPoint.y == room.map[i][j].point.y)
 					{
 						room.map[i][j].occupied=true;
