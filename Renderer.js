@@ -12,7 +12,7 @@ function Renderer(){
 		boundcheck.detectCollisionWithWalls(player);
 		physicsEngine.updatePoint(ants[0]);	
 
-		
+
 		room.setAnts(ants); //?
 
 	}
@@ -52,11 +52,21 @@ function Renderer(){
 		this.drawBaskets();
 		this.drawAnts();
 		this.drawBees();
-		this.drawCharacter(player); // Jensen
+		this.drawCharacter(player); 
+		this.drawWeapons();
 		this.drawPath();
 		//hud.updateHUD();
 		renderingEngine.writeText("X:"+player.Intrinsic.centerPoint.x+" Y:"+player.Intrinsic.centerPoint.y,player.Intrinsic.centerPoint);
 		//player.Intrinsic.color +=1;
+	}
+
+	this.drawWeapons = function() {
+		var weapons = room.getWeapons();
+
+		for (var i=0;i<weapons.length;i++){
+			ctx.fillStyle = weapons[i].Intrinsic.color;
+	    	ctx.fillRect(weapons[i].Intrinsic.centerPoint.x-10, weapons[i].Intrinsic.centerPoint.y-10, weapons[i].Intrinsic.width, weapons[i].Intrinsic.height);
+		}
 	}
 
 	this.drawPath = function() {
@@ -71,8 +81,7 @@ function Renderer(){
 
 		for (var i=0;i<baskets.length;i++){
 			ctx.fillStyle = baskets[i].Intrinsic.color;
-	    	ctx.fillRect(baskets[i].Intrinsic.centerPoint.x-20, baskets[i].Intrinsic.centerPoint.y-20, 40, 40);
-	
+	    	ctx.fillRect(baskets[i].Intrinsic.centerPoint.x-20, baskets[i].Intrinsic.centerPoint.y-20, baskets[i].Intrinsic.width, baskets[i].Intrinsic.height);
 		}
 	}
 

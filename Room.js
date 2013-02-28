@@ -13,6 +13,7 @@ function Room(){
 	var ants = new Array();
 	var bees = new Array();
 	var baskets = new Array();
+	var weapons = new Array();
 
 
 	//var canvas = document.getElementById('gameCanvas');
@@ -73,12 +74,8 @@ function Room(){
 	/************************************
 	*/
 	ants[0] = new Ants(new Point(map[10][0].point.x, map[10][0].point.y),40,40);
-
-
 	ants[1] = new Ants(new Point(map[2][13].point.x,map[2][0].point.y),40,40);
 	ants[0].id = 0;
-
-	//console.log('ant is ' +ants[0].Intrinsic.color);
 
 	bees[0] = new Bees(new Point(map[15][7].point.x,map[15][7].point.y),40,40);
 
@@ -86,11 +83,17 @@ function Room(){
 	baskets[1] = new Basket(new Point(map[8][10].point.x, map[8][10].point.y), 40, 40);
 	baskets[2] = new Basket(new Point(map[12][11].point.x, map[12][11].point.y), 40, 40);
 
+	weapons[0] = new Weapon(new Point(map[13][10].point.x, map[13][10].point.y), 'Attack', 'Knife');
+	weapons[1] = new Weapon(new Point(map[11][10].point.x, map[11][10].point.y), 'Attack', 'Bomb');
+	weapons[2] = new Weapon(new Point(map[13][13].point.x, map[13][13].point.y), 'Attack', 'Shuriken');
+
 
 	this.getBaskets = function() {
 		return baskets;
 	}
-
+	this.getWeapons = function() {
+		return weapons;
+	}
 
 	this.getAnts = function(){
 		return ants;
