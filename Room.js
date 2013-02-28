@@ -91,9 +91,9 @@ function Room(){
 	baskets[1] = new Basket(new Point(this.map[8][10].point.x, this.map[8][10].point.y), 40, 40);
 	baskets[2] = new Basket(new Point(this.map[12][11].point.x, this.map[12][11].point.y), 40, 40);
 
-	weapons[0] = new Weapon(new Point(map[13][10].point.x, map[13][10].point.y), 'Attack', 'Knife');
-	weapons[1] = new Weapon(new Point(map[11][10].point.x, map[11][10].point.y), 'Attack', 'Bomb');
-	weapons[2] = new Weapon(new Point(map[13][13].point.x, map[13][13].point.y), 'Attack', 'Shuriken');
+	weapons[0] = new Weapon(new Point(this.map[13][10].point.x, this.map[13][10].point.y), 'Attack', 'Knife');
+	weapons[1] = new Weapon(new Point(this.map[11][10].point.x, this.map[11][10].point.y), 'Attack', 'Bomb');
+	weapons[2] = new Weapon(new Point(this.map[13][13].point.x, this.map[13][13].point.y), 'Attack', 'Shuriken');
 
 
 	this.getBaskets = function() {
