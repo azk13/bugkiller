@@ -8,16 +8,35 @@ function Renderer(){
 		//if(player == winningbig)
 		//Ai.lose(ants)
 		//Ai.towin(bee)
+
+		//Initialize all occupancy zero;
+		for(var i=0;i<room.rows;i++)
+		{
+			for(var j=0;j<room.columns;j++)
+			{
+				room.map[i][j].occupied = false;
+			}
+		}
+
 		pathfinding.objectgo(ants[0],player);			
 		physicsEngine.updatePoint(player);
-		
 		boundcheck.detectCollisionWithWalls(player);
+		this.filloccupancy(player);
 
 		for(var i=0;i<ants.length;i++)
 		{
-			boundcheck.detectCollisionWithWalls(ants[i]);
 			physicsEngine.updatePoint(ants[i]);	
+			boundcheck.detectCollisionWithWalls(ants[i]);
+			this.filloccupancy(ants[i]);
 		}				
+		for(var i=0;i<room.rows;i++)
+		{
+			for(var j=0;j<room.columns;j++)
+			{
+				renderingEngine.writeText(room.map[i][j].occupied,room.map[i][j].point);
+			}
+		}
+
 		room.setAnts(ants);
 	}
 
@@ -29,7 +48,7 @@ function Renderer(){
 	    ctx.fillRect(0, 0, room.width, room.height);
 
 	    // Draw the grids
-	    for( var i= 0,l=room.rows;i<l;i++)
+	    for( var i= 0,l=room.columns;i<l;i++)
     	{
     		// horizontal
 		    ctx.moveTo(0,i*room.cellsize);
@@ -63,6 +82,25 @@ function Renderer(){
 		renderingEngine.writeText("X:"+player.Intrinsic.centerPoint.x+" Y:"+player.Intrinsic.centerPoint.y,player.Intrinsic.centerPoint);
 		//player.Intrinsic.color +=1;
 	}
+
+	this.filloccupancy = function(object)
+	{
+		for(var i=0;i<room.rows;i++)
+		{
+			for(var j=0;j<room.columns;j++)
+			{
+				for(var k=0;k<object.length;k++)
+				{
+					if(object.Intrinsic.centerPoint.x == room.map[i][j].point.x && object.Intrinsic.centerPoint.y == room.map[i][j].point.y)
+					{
+						room.map[i][j].occupied=true;
+					}	
+				}
+				
+			}
+		}		
+	}
+
 
 	this.drawWeapons = function() {
 		var weapons = room.getWeapons();

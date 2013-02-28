@@ -19,26 +19,26 @@ function Pathfinding(grid)
 //row index increment to go down
     if(objectrow < endpointrow)
     {
-      if(!room.map[objectrow+1][objectcol].occupied)         
+      if(!(room.map[(objectrow+1)][objectcol].occupied))         
       {godown = true;}
     }
 //row index increment to go up    
     if(objectrow > endpointrow)
     {
-      if(!room.map[objectrow-1][objectcol].occupied)  
+      if(!(room.map[(objectrow-1)][objectcol].occupied))  
       {goup = true;}
     }
 //col index increment to go right    
     if(objectcol < endpointcol)
     {
-      if(!room.map[objectrow][objectcol+1].occupied)  
+      if(!(room.map[objectrow][(objectcol+1)].occupied))  
       {goright = true;}
     }
 //col index increment to go left   
     if(objectcol > endpointcol)
     {
     //left
-      if(!room.map[objectrow][objectcol-1].occupied)
+      if(!(room.map[objectrow][(objectcol-1)].occupied))
       {goleft = true;}
 //    physicsEngine.applyForceAtAngle(object,400,Math.PI);
     }           
@@ -87,6 +87,8 @@ function getObjectIndexRow(object)
 
 }
 
+
+/*
 //Point class, used to refer to a specific square on the grid
 function point(pos_x,pos_y)
 {
@@ -318,3 +320,4 @@ function Astar(start, end, world, grid) // Start represents the current position
   return path;
 
 }
+*/

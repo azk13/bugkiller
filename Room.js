@@ -41,36 +41,33 @@ function Room(){
     this.width = 880;
     this.height = 560;
     this.cellsize = 40;
-    this.rows=this.width/this.cellsize;
-    this.columns=this.height/this.cellsize;
+    this.columns=this.width/this.cellsize;
+    this.rows=this.height/this.cellsize;
 
 
 
     var y=0,x=0;
-    for( var i= 0,l=this.rows;i<l;i++)
+    for( var i=0;i<this.rows;i++)
     {
- 
-
         this.map[i]=[];
-        for(var j= 0,l2=this.columns;j<l2;j++) {
+
+        for(var j=0;j<this.columns;j++) 
+        {
         	this.map[i][j]= new item(x,y);
-            //increment the y coordinate
-            if(x==this.width)
-                x=0;
-            else
+            //increment the x coordinate
                 x=x+this.cellsize;
-           // console.log("Grid Positions : X = "+ this.this.map[i][j].point.x + " Y = " + this.map[i][j].point.y);
+            console.log("Grid Positions : X = "+ this.map[i][j].point.x + " Y = " + this.map[i][j].point.y);
         }
         //increment the y coordinate
-
-        if(y==this.height)
+        x=0;
+        if(y > this.height-(this.cellsize/2))
             y=0;
         else
             y=y+this.cellsize;
     }
 
 
-    console.log(this.map[0][0].point.x);
+    console.log(this.map[0][18].point.x);
     console.log(this.map[0][1].point.x);
 
 
@@ -85,7 +82,7 @@ function Room(){
 
 	//console.log('ant is ' +ants[0].Intrinsic.color);
 
-	bees[0] = new Bees(new Point(this.map[15][7].point.x,this.map[15][7].point.y),40,40);
+	bees[0] = new Bees(new Point(this.map[13][7].point.x,this.map[13][7].point.y),40,40);
 
 	baskets[0] = new Basket(new Point(this.map[4][3].point.x, this.map[4][3].point.y), 40, 40);
 	baskets[1] = new Basket(new Point(this.map[8][10].point.x, this.map[8][10].point.y), 40, 40);

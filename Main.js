@@ -2,7 +2,7 @@
   /*const FPS = 30;
   const screenUpdateTime = 1000/FPS;*/
   //IE does not support const, so must use var
-  var FPS = 1;
+  var FPS = 2;
   var screenUpdateTime = 1000/FPS;
   var playerspeed = 400;
 
