@@ -26,7 +26,7 @@
   var debugMode = false;
   var hud = new HUD();
   var player = new Bob(new Point(20,20),40,40);
-  
+
   var boundcheck = new Boundcheck();
   var ai = new AI();
   var pathfinding = new Pathfinding();
@@ -84,6 +84,7 @@
 
 
 
+
   // shim layer with setTimeout fallback
   window.requestAnimFrame = (function(){
     return  window.requestAnimationFrame       ||
@@ -100,8 +101,8 @@
   (function animloop(){
     requestAnimFrame(animloop);
     //what to render here
-renderingEngine.updatePoints();
-renderingEngine.draw();
+    renderingEngine.updatePoints();
+    renderingEngine.draw();
   })();
 
 

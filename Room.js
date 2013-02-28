@@ -9,6 +9,7 @@ function Room(){
 
 	var ants = new Array();
 	var bees = new Array();
+	var baskets = new Array();
 
     /*
      Abstract map drawn on top of the room to help path finding class to locate the object
@@ -56,13 +57,22 @@ function Room(){
             y=y+this.cellsize;
     }
 
-	//object setup
+	//Objects Creation
+	/************************************
+	*/
 	ants[0] = new Ants(new Point(699,250),40,40);
 	// ants[0].Intrinsic.color = 'red'; (ant's color is defined in its object - Jensen)
 	ants[0].id = 0;
 	//console.log(player.Intrinsic.color);
 
 	bees[0] = new Bees(new Point(500,250),40,40);
+	baskets[0] = new Basket(new Point(140, 100), 40, 40);
+
+
+	this.getBaskets = function() {
+		return baskets;
+	}
+
 
 	this.getAnts = function(){
 		return ants;

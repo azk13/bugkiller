@@ -1,5 +1,6 @@
 function Renderer(){
 
+
 	this.updatePoints = function(){
 		var ants = room.getAnts();
 
@@ -19,6 +20,9 @@ function Renderer(){
 		canvas.height = room.height;
 	    ctx.fillStyle = "rgba(0, 0, 0, 0.5)";
 	    ctx.fillRect(0, 0, room.width, room.height);
+
+
+	    
 //		for (var i = 0; i<room.regions.length; i++){
 //			ctx.fillStyle = room.regions[i].color;
 //			ctx.fillRect(room.regions[i].x, room.regions[i].y, room.regions[i].width, room.regions[i].height);
@@ -26,12 +30,24 @@ function Renderer(){
 	}
 	
 	this.draw = function(){
+		
 		this.drawRoom();
+		this.drawBaskets();
 		this.drawAnts();
 		this.drawCharacter(player); // Jensen
-		hud.updateHUD();
+		//hud.updateHUD();
 		renderingEngine.writeText("X:"+player.Intrinsic.centerPoint.x+" Y:"+player.Intrinsic.centerPoint.y,player.Intrinsic.centerPoint);
 		//player.Intrinsic.color +=1;
+	}
+
+	this.drawBaskets = function() {
+		var baskets = room.getBaskets();
+
+		for (var i=0;i<baskets.length;i++){
+			ctx.fillStyle = baskets[i].Intrinsic.color;
+	    	ctx.fillRect(baskets[i].Intrinsic.centerPoint.x-20, baskets[i].Intrinsic.centerPoint.y-20, 40, 40);
+	
+		}
 	}
 
 	this.drawAnts = function(){
@@ -44,6 +60,7 @@ function Renderer(){
 		//console.log("Drew "+ ants.length + " ants");
 	}
 
+
 	this.drawCharacter = function(character){
 
 		// clear current image
@@ -54,6 +71,7 @@ function Renderer(){
 
 		//console.log(character.image)
 
+	
 	
 		ctx.beginPath();
 		ctx.arc(character.Intrinsic.centerPoint.x, character.Intrinsic.centerPoint.y, character.Intrinsic.radius, 0, 2 * Math.PI, false);
