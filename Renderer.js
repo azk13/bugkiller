@@ -50,9 +50,17 @@ function Renderer(){
 		this.drawAnts();
 		this.drawBees();
 		this.drawCharacter(player); // Jensen
+		this.drawPath();
 		//hud.updateHUD();
 		renderingEngine.writeText("X:"+player.Intrinsic.centerPoint.x+" Y:"+player.Intrinsic.centerPoint.y,player.Intrinsic.centerPoint);
 		//player.Intrinsic.color +=1;
+	}
+
+	this.drawPath = function() {
+
+		// draw the path of all enemies
+		// use bees[] and ants[] etc.
+
 	}
 
 	this.drawBaskets = function() {
