@@ -11,7 +11,10 @@ function Renderer(){
 		physicsEngine.updatePoint(player);
 		boundcheck.detectCollisionWithWalls(player);
 		physicsEngine.updatePoint(ants[0]);	
-		room.setAnts(ants);
+
+		
+		room.setAnts(ants); //?
+
 	}
 
 	this.drawRoom = function (){
@@ -100,7 +103,6 @@ function Renderer(){
 
 		//console.log(character.image)
 
-	
 	
 		ctx.beginPath();
 		ctx.arc(character.Intrinsic.centerPoint.x, character.Intrinsic.centerPoint.y, character.Intrinsic.radius, 0, 2 * Math.PI, false);

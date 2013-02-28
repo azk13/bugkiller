@@ -68,7 +68,6 @@ function Room(){
             y=y+this.cellsize;
     }
 
-    console.log(map[1][0].point.x);
 
 	//Objects Creation
 	/************************************

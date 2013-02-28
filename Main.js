@@ -33,8 +33,6 @@
 
   var gridIndex = new gridIndex();
 
-  
-
 //function called in index
   function init(){
 
@@ -107,6 +105,10 @@
     //what to render here
     renderingEngine.updatePoints();
     renderingEngine.draw();
+
+    // Ai function here
+
+
   })();
 
 

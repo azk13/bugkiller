@@ -1,6 +1,20 @@
-function Pathfinding()
+function Pathfinding(grid)
 {
 	
+  // Jensen = Render to destination (simple)
+  this.move = function(obj, dest) {
+    
+    obj.x = obj.Intrinsic.centerPoint.x;
+    obj.y = obj.Intrinsic.centerPoint.y;
+    
+    if(obj.x == dest.x) {
+      obj.Intrinsic.centerPoint.x += 2;
+      obj.Intrinsic.centerPoint.y += 2;
+    }
+      
+
+
+  }
   
 }
 
