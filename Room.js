@@ -76,12 +76,12 @@ function Room(){
 	ants[0] = new Ants(new Point(map[2][0].point.x, map[1][0].point.y),40,40);
 
 
-	ants[1] = new Ants(new Point(gridIndex(2),gridIndex(13)),40,40);
+	ants[1] = new Ants(new Point(map[2][13].point.x,map[2][0].point.y),40,40);
 	ants[0].id = 0;
 
 	//console.log('ant is ' +ants[0].Intrinsic.color);
 
-	bees[0] = new Bees(new Point(gridIndex(15),gridIndex(7)),40,40);
+	bees[0] = new Bees(new Point(map[15][7].point.x,map[15][7].point.y),40,40);
 
 	baskets[0] = new Basket(new Point(gridIndex(3), gridIndex(3)), 40, 40);
 	baskets[1] = new Basket(new Point(gridIndex(8), gridIndex(10)), 40, 40);
