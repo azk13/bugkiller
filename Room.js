@@ -73,7 +73,7 @@ function Room(){
 	//Objects Creation
 	/************************************
 	*/
-	ants[0] = new Ants(new Point(map[2][0].point.x, map[1][0].point.y),40,40);
+	ants[0] = new Ants(new Point(map[10][0].point.x, map[10][0].point.y),40,40);
 
 
 	ants[1] = new Ants(new Point(map[2][13].point.x,map[2][0].point.y),40,40);
@@ -83,9 +83,9 @@ function Room(){
 
 	bees[0] = new Bees(new Point(map[15][7].point.x,map[15][7].point.y),40,40);
 
-	baskets[0] = new Basket(new Point(gridIndex(3), gridIndex(3)), 40, 40);
-	baskets[1] = new Basket(new Point(gridIndex(8), gridIndex(10)), 40, 40);
-	baskets[2] = new Basket(new Point(gridIndex(12), gridIndex(11)), 40, 40);
+	baskets[0] = new Basket(new Point(map[4][3].point.x, map[4][3].point.y), 40, 40);
+	baskets[1] = new Basket(new Point(map[8][10].point.x, map[8][10].point.y), 40, 40);
+	baskets[2] = new Basket(new Point(map[12][11].point.x, map[12][11].point.y), 40, 40);
 
 
 	this.getBaskets = function() {
