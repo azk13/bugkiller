@@ -1,5 +1,5 @@
 function item(x,y){
-    this.point=new Point(x,y);
+    this.point=new Point(x+20,y+20);
     this.occupied=false;
 }
 
@@ -35,6 +35,8 @@ function Room(){
      */
 
     var map = [];
+
+    
     this.width = 880;
     this.height = 560;
     this.cellsize = 40;
@@ -66,12 +68,18 @@ function Room(){
             y=y+this.cellsize;
     }
 
+    console.log(map[1][0].point.x);
+
 	//Objects Creation
 	/************************************
 	*/
-	ants[0] = new Ants(new Point(gridIndex(18),gridIndex(5)),40,40);
+	ants[0] = new Ants(new Point(map[2][0].point.x, map[1][0].point.y),40,40);
+
+
 	ants[1] = new Ants(new Point(gridIndex(2),gridIndex(13)),40,40);
 	ants[0].id = 0;
+
+	//console.log('ant is ' +ants[0].Intrinsic.color);
 
 	bees[0] = new Bees(new Point(gridIndex(15),gridIndex(7)),40,40);
 

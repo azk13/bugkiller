@@ -1,6 +1,7 @@
 function Pathfinding()
 {
 	
+  
 }
 
 //Point class, used to refer to a specific square on the grid
