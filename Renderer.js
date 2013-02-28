@@ -9,6 +9,7 @@ function Renderer(){
 		//Ai.lose(ants)
 		//Ai.towin(bee)
 		physicsEngine.updatePoint(player);
+		
 		boundcheck.detectCollisionWithWalls(player);
 		physicsEngine.updatePoint(ants[0]);	
 

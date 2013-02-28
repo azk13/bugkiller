@@ -17,17 +17,17 @@ function Weapon(centerPoint,type,name)
 
     switch(name)
 	{
-	case 'Knife':
-	  	this.Intrinsic.color = 'grey';
-	  	break;
-	case 'Bomb':
-	  	this.Intrinsic.color = 'aqua';
-	  	break;
-	case 'Shuriken':
-		this.Intrinsic.color = 'red';
-		break;
-	default:
-	  	break;
+		case 'Knife':
+		  	this.Intrinsic.color = 'grey';
+		  	break;
+		case 'Bomb':
+		  	this.Intrinsic.color = 'aqua';
+		  	break;
+		case 'Shuriken':
+			this.Intrinsic.color = 'red';
+			break;
+		default:
+		  	break;
 	}
 
     //Change the goal of the Agent

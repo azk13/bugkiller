@@ -134,7 +134,9 @@ function Room(){
 	 		return this.regions[0];
 	 	}
 
-	 }
+	}
+
+	
 
 
 }
