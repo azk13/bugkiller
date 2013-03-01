@@ -1,5 +1,5 @@
 function Renderer(){
-var alt=1,rr=6;
+var alt=1,rr=10;
 
 
 	this.updatePoints = function(){

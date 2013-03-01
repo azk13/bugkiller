@@ -16,23 +16,31 @@ function Pathfinding(grid)
     var endpointrow = getObjectIndexRow(endpoint);
     var endpointcol = getObjectIndexCol(endpoint);  
 
+
+var upfailed =0,downfailed=0,leftfailed=0,rightfailed=0;
 //row index increment to go down
     if(objectrow < endpointrow)
     {
       if(!(room.map[(objectrow+1)][objectcol].occupied))         
       {godown = true;}
+      else
+      {downfailed = 1;}
     }
 //row index increment to go up    
     if(objectrow > endpointrow)
     {
       if(!(room.map[(objectrow-1)][objectcol].occupied))  
       {goup = true;}
+    else
+      {upfailed=1;}
     }
 //col index increment to go right    
     if(objectcol < endpointcol)
     {
       if(!(room.map[objectrow][(objectcol+1)].occupied))  
       {goright = true;}
+    else
+      {rightfailed=1;}
     }
 //col index increment to go left   
     if(objectcol > endpointcol)
@@ -40,14 +48,103 @@ function Pathfinding(grid)
     //left
       if(!(room.map[objectrow][(objectcol-1)].occupied))
       {goleft = true;}
+    else
+      {leftfailed=1;}
     }
+
+
+
+    //if not going any direction
+    if(!goleft && !goright && !goup && !godown)
+    {
+      //only if not more than 1 cell size apart
+      if(math.getDistanceBetweenTwoPoints(object.Intrinsic.centerPoint,endpoint.Intrinsic.centerPoint) > (room.cellsize*1.5))
+      {
+      if(leftfailed)
+      {
+        if(objectrow != 0)  //not 1st row
+        {
+          //goupleft
+          if(!(room.map[(objectrow-1)][objectcol-1].occupied))  
+          {
+            goup = true;
+            goleft=true;
+          } 
+          else if(objectrow != (room.rows-1)) //not last row
+          if(!(room.map[(objectrow+1)][objectcol-1].occupied))         
+          {
+            godown = true;
+            goleft=true;
+          }             
+        }
+      }
+      if(rightfailed)
+      {
+        if(objectrow != 0)  //not 1st row
+        {
+          //goupright
+          if(!(room.map[(objectrow-1)][objectcol+1].occupied))  
+          {
+            goup = true;
+            goright=true;
+          } 
+          else if(objectrow != (room.rows-1)) //not last row
+          if(!(room.map[(objectrow+1)][objectcol+1].occupied))         
+          {
+            godown = true;
+            goright=true;
+          }             
+        }
+      }
+      if(upfailed)
+      {
+        if(objectcol != 0)  //not 1st col
+        {
+          //goupleft
+          if(!(room.map[(objectrow-1)][objectcol-1].occupied))  
+          {
+            goleft=true;            
+            goup = true;
+
+          } 
+          else if(objectcol != (room.columns-1)) //not last col
+          if(!(room.map[(objectrow-1)][objectcol+1].occupied))         
+          {
+            goright = true;
+            goup = true;
+          }             
+        }    
+      }
+      if(downfailed)
+      {
+        if(objectcol != 0)  //not 1st col
+        {
+          //godownleft
+          if(!(room.map[(objectrow+1)][objectcol-1].occupied))  
+          {
+            goleft=true;            
+            goup = true;
+
+          } 
+          else if(objectcol != (room.columns-1)) //not last col
+          if(!(room.map[(objectrow+1)][objectcol+1].occupied))         
+          {
+            goright = true;
+            goup = true;
+          }             
+        }         
+      }
+      }
+    }
+
+
 
 //DIAGONALS
 
-/*
+
 
     //downright
-    if(objectrow < room.rows && objectcol < room.columns)
+    if(objectrow < room.rows-1 && objectcol < room.columns-1)
     if(room.map[objectrow+1][objectcol+1].occupied && goright && godown)
     {
       goright = false;
@@ -55,7 +152,7 @@ function Pathfinding(grid)
     }
 
     //downleft
-    if(objectcol >0 && objectrow < room.rows)
+    if(objectcol >0 && objectrow < room.rows-1)
     if(room.map[(objectrow+1)][objectcol-1].occupied && goleft && godown)
     {
       goleft = false;
@@ -63,7 +160,7 @@ function Pathfinding(grid)
     }    
 
     //upright
-    if(objectrow >0 && objectcol < room.columns)
+    if(objectrow >0 && objectcol < room.columns-1)
     if(room.map[(objectrow-1)][objectcol+1].occupied && goright && goup)
     {
       goright = false;
@@ -76,21 +173,21 @@ function Pathfinding(grid)
     {
       goleft = false;
       goup = false;
-    }       */
+    }       
 
 //      console.log("Up:"+goup+" Down:"+godown+" Left:"+goleft+" Right:"+goright);  
 //      console.log("prevx:"+prevx+" Current X:"+ object.Intrinsic.centerPoint.x);
 //if((prevy == object.Intrinsic.centerPoint.y && prevx == object.Intrinsic.centerPoint.x))
 //  {
-//  if(goright && goup)
-//  {physicsEngine.applyForceAtAngle(object,diagonalmovevel,Math.PI*3.5/2);}
-//  else if(goright && godown)
-//  {physicsEngine.applyForceAtAngle(object,diagonalmovevel,Math.PI/4);}
-//  else if(goleft && goup)
-//  {physicsEngine.applyForceAtAngle(object,diagonalmovevel,Math.PI*2.5/2);}
-//  else if(goleft && godown)
-//  {physicsEngine.applyForceAtAngle(object,diagonalmovevel,Math.PI*1.5/2);}
-/*  else */if(goup)
+  if(goright && goup)
+  {physicsEngine.applyForceAtAngle(object,diagonalmovevel,Math.PI*3.5/2);}
+  else if(goright && godown)
+  {physicsEngine.applyForceAtAngle(object,diagonalmovevel,Math.PI/4);}
+  else if(goleft && goup)
+  {physicsEngine.applyForceAtAngle(object,diagonalmovevel,Math.PI*2.5/2);}
+  else if(goleft && godown)
+  {physicsEngine.applyForceAtAngle(object,diagonalmovevel,Math.PI*1.5/2);}
+  else if(goup)
   {physicsEngine.applyForceAtAngle(object,400,Math.PI*3/2);}
   else if(godown)
   {physicsEngine.applyForceAtAngle(object,400,Math.PI/2);}
