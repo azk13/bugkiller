@@ -42,6 +42,14 @@ function Pathfinding(grid)
       {goleft = true;}
     }
 
+//upright
+if(goright && goup)
+{
+
+}
+//if
+
+
 //DIAGONALS
 
 /*

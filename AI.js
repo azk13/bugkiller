@@ -10,12 +10,12 @@ this.attackNearestBasket = function(enemy)
 function getNearestBasketIndex(enemy)
 {
 	var baskets = room.getBaskets();
-	var prevDistance=0,Distance =0;
+	var prevDistance=999999,Distance =0;
 	var Index = 0;
 	for(var i=0;i<baskets.length;i++)
 	{
 		Distance=math.getDistanceBetweenTwoPoints(enemy.Intrinsic.centerPoint,baskets[i].centerPoint);
-		if(Distance>prevDistance)
+		if(Distance<prevDistance)
 		{
 			Index=i;
 			prevDistance=Distance;

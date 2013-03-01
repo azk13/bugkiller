@@ -40,7 +40,7 @@ var alt=1,rr=6;
 		physicsEngine.updatePoint(ants[0]);	
 		boundcheck.detectCollisionWithWalls(ants[0]);
 		this.occupancy();		
-		pathfinding.objectgo(ants[0],baskets[0]);
+		ai.attackNearestBasket(ants[0]);
 
 		for(var i=0;i<bees.length;i++)
 		{		
