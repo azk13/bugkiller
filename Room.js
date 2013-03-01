@@ -55,6 +55,7 @@ function Room(){
              x=x+this.cellsize;
             count++;
 //            console.log("Grid Positions : X = "+ this.map[i][j].point.x + " Y = " + this.map[i][j].point.y);
+
         }
           y=y+this.cellsize;
           if(x=this.width)
@@ -69,16 +70,14 @@ function Room(){
     var baskets = new Array();
     var weapons = new Array();
 
-	ants[0] = new Ants(new Point(this.map[13][21].point.x, this.map[7][9].point.y),40,40);
+
+	ants[0] = new Ants(new Point(this.map[18][9].point.x, this.map[18][9].point.y),40,40);
+	ants[1] = new Ants(new Point(this.map[2][10].point.x,this.map[2][10].point.y),40,40);
+	//ants[0].id = 0;
+    ants[2] = new Ants(new Point(this.map[6][0].point.x,this.map[6][0].point.y),40,40);
 
 
-	ants[1] = new Ants(new Point(this.map[3][2].point.x,this.map[3][2].point.y),40,40);
-	ants[0].id = 0;
-
-    ants[2] = new Ants(new Point(this.map[6][6].point.x,this.map[6][6].point.y),40,40);
-
-
-	bees[0] = new Bees(new Point(this.map[11][7].point.x,this.map[11][7].point.y),40,40);
+	bees[0] = new Bees(new Point(this.map[11][1].point.x,this.map[11][1].point.y),40,40);
 
 	baskets[0] = new Basket(new Point(this.map[4][3].point.x, this.map[4][3].point.y), 40, 40);
 	baskets[1] = new Basket(new Point(this.map[8][10].point.x, this.map[8][10].point.y), 40, 40);
@@ -87,6 +86,8 @@ function Room(){
 	weapons[0] = new Weapon(new Point(this.map[13][10].point.x, this.map[13][10].point.y), 'Attack', 'Knife');
 	weapons[1] = new Weapon(new Point(this.map[11][10].point.x, this.map[11][10].point.y), 'Attack', 'Bomb');
 	weapons[2] = new Weapon(new Point(this.map[13][13].point.x, this.map[13][13].point.y), 'Attack', 'Shuriken');
+
+
 
 
 	this.getBaskets = function() {

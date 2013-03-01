@@ -34,4 +34,6 @@ function Weapon(centerPoint,type,name)
     this.inuse=true;
     //health of the weapon
     this.health=100;
+
+    //room.map[(centerPoint.x - 20)/40][(centerPoint.y - 20)/40].isWeapon = true;
 }
