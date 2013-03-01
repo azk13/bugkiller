@@ -42,9 +42,12 @@ function Pathfinding(grid)
       {goleft = true;}
     }
 
+//DIAGONALS
+
+/*
 
     //downright
-//    if(objectrow < room.rows && objectcol < room.columns)
+    if(objectrow < room.rows && objectcol < room.columns)
     if(room.map[objectrow+1][objectcol+1].occupied && goright && godown)
     {
       goright = false;
@@ -52,7 +55,7 @@ function Pathfinding(grid)
     }
 
     //downleft
-//    if(objectcol >0 && objectrow < room.rows)
+    if(objectcol >0 && objectrow < room.rows)
     if(room.map[(objectrow+1)][objectcol-1].occupied && goleft && godown)
     {
       goleft = false;
@@ -60,7 +63,7 @@ function Pathfinding(grid)
     }    
 
     //upright
-//    if(objectrow >0 && objectcol < room.columns)
+    if(objectrow >0 && objectcol < room.columns)
     if(room.map[(objectrow-1)][objectcol+1].occupied && goright && goup)
     {
       goright = false;
@@ -68,26 +71,26 @@ function Pathfinding(grid)
     }
 
     //upleft
-//    if(objectrow >0 && objectcol >0)    
+    if(objectrow >0 && objectcol >0)    
     if(room.map[(objectrow-1)][objectcol-1].occupied && goleft && goup)
     {
       goleft = false;
       goup = false;
-    }       
+    }       */
 
 //      console.log("Up:"+goup+" Down:"+godown+" Left:"+goleft+" Right:"+goright);  
 //      console.log("prevx:"+prevx+" Current X:"+ object.Intrinsic.centerPoint.x);
 //if((prevy == object.Intrinsic.centerPoint.y && prevx == object.Intrinsic.centerPoint.x))
 //  {
-  if(goright && goup)
-  {physicsEngine.applyForceAtAngle(object,diagonalmovevel,Math.PI*3.5/2);}
-  else if(goright && godown)
-  {physicsEngine.applyForceAtAngle(object,diagonalmovevel,Math.PI/4);}
-  else if(goleft && goup)
-  {physicsEngine.applyForceAtAngle(object,diagonalmovevel,Math.PI*2.5/2);}
-  else if(goleft && godown)
-  {physicsEngine.applyForceAtAngle(object,diagonalmovevel,Math.PI*1.5/2);}
-  else if(goup)
+//  if(goright && goup)
+//  {physicsEngine.applyForceAtAngle(object,diagonalmovevel,Math.PI*3.5/2);}
+//  else if(goright && godown)
+//  {physicsEngine.applyForceAtAngle(object,diagonalmovevel,Math.PI/4);}
+//  else if(goleft && goup)
+//  {physicsEngine.applyForceAtAngle(object,diagonalmovevel,Math.PI*2.5/2);}
+//  else if(goleft && godown)
+//  {physicsEngine.applyForceAtAngle(object,diagonalmovevel,Math.PI*1.5/2);}
+/*  else */if(goup)
   {physicsEngine.applyForceAtAngle(object,400,Math.PI*3/2);}
   else if(godown)
   {physicsEngine.applyForceAtAngle(object,400,Math.PI/2);}

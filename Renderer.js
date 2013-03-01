@@ -1,4 +1,5 @@
 function Renderer(){
+var alt=1,rr=6;
 
 
 	this.updatePoints = function(){
@@ -18,6 +19,7 @@ function Renderer(){
 		{		
 			physicsEngine.updatePoint(ants[i]);	
 			boundcheck.detectCollisionWithWalls(ants[i]);
+			if(alt%rr == 0)
 			pathfinding.objectgo(ants[i],player);
 
 		}
@@ -25,10 +27,11 @@ function Renderer(){
 		{		
 			physicsEngine.updatePoint(bees[i]);	
 			boundcheck.detectCollisionWithWalls(bees[i]);
+			if(alt%rr == 0)
 			pathfinding.objectgo(bees[i],player);
 
 		}		
-
+		alt++;
 		physicsEngine.updatePoint(player);
 		boundcheck.detectCollisionWithWalls(player);		
 
