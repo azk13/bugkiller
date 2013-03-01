@@ -12,43 +12,44 @@ var alt=1,rr=6;
 		//if(player == winningbig)
 		//Ai.lose(ants)
 		//Ai.towin(bee)
-//		this.occupancy();
-					
-
-//		this.occupancy();
-
 		for(var i=0;i<baskets.length;i++)
 		{		
 			physicsEngine.updatePoint(baskets[i]);	
-			this.occupancy();
+			gridvacancy.occupancy();
 		}
 		for(var i=0;i<weapons.length;i++)
 		{		
 			physicsEngine.updatePoint(weapons[i]);	
-			this.occupancy();
+			gridvacancy.occupancy();
 		}		
 				
 		for(var i=1;i<ants.length;i++)
-		{		
+		{	
+			if(alt%rr == 0)			
+			pathfinding.objectgo(ants[i],player);	
+			
 			physicsEngine.updatePoint(ants[i]);	
 			boundcheck.detectCollisionWithWalls(ants[i]);
-			this.occupancy();
-			if(alt%rr == 0)
-			pathfinding.objectgo(ants[i],player);
+			gridvacancy.occupancy();
+
+			
 
 		}
+
+		//ant to go for basket
 		physicsEngine.updatePoint(ants[0]);	
 		boundcheck.detectCollisionWithWalls(ants[0]);
-		this.occupancy();		
+		gridvacancy.occupancy();		
 		ai.attackNearestBasket(ants[0]);
 
 		for(var i=0;i<bees.length;i++)
 		{		
-			physicsEngine.updatePoint(bees[i]);	
-			boundcheck.detectCollisionWithWalls(bees[i]);
-			this.occupancy();
 			if(alt%rr == 0)
 			pathfinding.objectgo(bees[i],player);
+			physicsEngine.updatePoint(bees[i]);	
+			boundcheck.detectCollisionWithWalls(bees[i]);
+			gridvacancy.occupancy();
+			
 
 		}		
 		alt++;
@@ -58,55 +59,6 @@ var alt=1,rr=6;
 //		room.setAnts(ants);
 //		room.setBees(bees);		
 		
-	}
-
-	this.occupancy = function()
-	{
-		var ants = room.getAnts();
-		var bees = room.getBees();
-		var baskets = room.getBaskets();
-		var weapons = room.getWeapons();		
-
-		//Initialize all occupancy zero;
-		for(var i=0;i<room.rows;i++)
-		{
-			for(var j=0;j<room.columns;j++)
-			{
-				room.map[i][j].occupied = false;
-				if(player.Intrinsic.centerPoint.x == room.map[i][j].point.x && player.Intrinsic.centerPoint.y == room.map[i][j].point.y)
-					{
-						room.map[i][j].occupied=true;
-					}
-				for(var k=0;k<ants.length;k++)
-				{
-					if(ants[k].Intrinsic.centerPoint.x == room.map[i][j].point.x && ants[k].Intrinsic.centerPoint.y == room.map[i][j].point.y)
-					{
-						room.map[i][j].occupied=true;
-					}		
-				}
-				for(var k=0;k<bees.length;k++)
-				{
-					if(bees[k].Intrinsic.centerPoint.x == room.map[i][j].point.x && bees[k].Intrinsic.centerPoint.y == room.map[i][j].point.y)
-					{
-						room.map[i][j].occupied=true;
-					}		
-				}		
-				for(var k=0;k<baskets.length;k++)
-				{
-					if(baskets[k].Intrinsic.centerPoint.x == room.map[i][j].point.x && baskets[k].Intrinsic.centerPoint.y == room.map[i][j].point.y)
-					{
-						room.map[i][j].occupied=true;
-					}		
-				}
-				for(var k=0;k<weapons.length;k++)
-				{
-					if(weapons[k].Intrinsic.centerPoint.x == room.map[i][j].point.x && weapons[k].Intrinsic.centerPoint.y == room.map[i][j].point.y)
-					{
-						room.map[i][j].occupied=true;
-					}		
-				}											
-			}
-		}		
 	}
 
 	this.drawRoom = function (){
@@ -151,28 +103,6 @@ var alt=1,rr=6;
 		renderingEngine.writeText("X:"+player.Intrinsic.centerPoint.x+" Y:"+player.Intrinsic.centerPoint.y,player.Intrinsic.centerPoint);
 				renderingEngine.writeText("X:"+ants[0].Intrinsic.centerPoint.x+" Y:"+ants[0].Intrinsic.centerPoint.y,ants[0].Intrinsic.centerPoint);
 		//player.Intrinsic.color +=1;
-	}
-
-	this.filloccupancy = function(object)
-	{
-		for(var i=0;i<room.rows;i++)
-		{
-			
-			for(var j=0;j<room.columns;j++)
-			{
-				
-				for(var k=0;k<object.length;k++)
-				{
-					alert("im in k");
-					console.log("Object X:"+object.Intrinsic.centerPoint.x+" Room X:"+room.map[i][j].x);
-					if(object.Intrinsic.centerPoint.x == room.map[i][j].point.x && object.Intrinsic.centerPoint.y == room.map[i][j].point.y)
-					{
-						room.map[i][j].occupied=true;
-					}	
-				}
-				
-			}
-		}		
 	}
 
 

@@ -72,7 +72,7 @@ function Room(){
     var baskets = new Array();
     var weapons = new Array();
 
-	ants[0] = new Ants(new Point(this.map[7][9].point.x, this.map[7][9].point.y),40,40);
+	ants[0] = new Ants(new Point(this.map[13][21].point.x, this.map[7][9].point.y),40,40);
 
 
 	ants[1] = new Ants(new Point(this.map[3][2].point.x,this.map[3][2].point.y),40,40);

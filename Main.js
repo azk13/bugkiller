@@ -30,7 +30,7 @@
   var boundcheck = new Boundcheck();
   var ai = new AI();
   var pathfinding = new Pathfinding();
-
+  var gridvacancy = new Gridvacancy();
   var gridIndex = new gridIndex();
 
 //function called in index
