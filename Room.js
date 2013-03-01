@@ -20,23 +20,23 @@ function Room(){
      an item.In this implementation there won't be any use for the last row and column
      anyway just added.
      e.g. To get the center point of the last cell  in the  map
-           this.map[21][13].point.x,this.map[21][13].point.y
+           this.map[13][21].point.x,this.map[13][21].point.y
           TO know whether the last cell is occupied by an item
-           this.map[21]13].occupied will return true if occupied
-           this.map[21][13].occupied will return false if not occupied.
+           this.map[13]21].occupied will return true if occupied
+           this.map[13][21].occupied will return false if not occupied.
           TO know whether the last cell is occupied by an weapon
-            this.map[21]13].isWeapon will return true if occupied
-            this.map[21][13].isWeapon will return false if not occupied.
+            this.map[13]21].isWeapon will return true if occupied
+            this.map[13][21].isWeapon will return false if not occupied.
 
      _______________________________________________________________________________
-     |0,0| |1,0| |2,0| |3,0| |4,0|....................................................|21,0|
-     |0,1| |1,1| |2,1| |3,1| |4,1|....................................................|21,1|
-     |0,2| |1,2| |2,2| |3,2| |4,2|....................................................|21,2|
-     |0,3| |1,3| |2,3| |3,3| |4,3|....................................................|21,3|
+     |0,0| |0,1| |0,2| |0,3| |0,4|....................................................|0,21|
+     |1,0| |1,1| |1,2| |1,3| |1,4|....................................................|1,21|
+     |2,0| |2,1| |2,2| |2,3| |2,4|....................................................|2,21|
+     |3,0| |3,1| |3,2| |3,3| |3,4|....................................................|3,21|
      .......................................................................................
      .......................................................................................
      .......................................................................................
-     |0,13| |1,13| |2,13| |3,13| |4,13|...............................................|21,13|
+     |9,0| |9,1| |9,2| |9,3| |9,4|....................................................|9,21|
      _____________________________________________________________________________________
      */
 
@@ -48,20 +48,20 @@ function Room(){
     this.rows=this.height/this.cellsize;
     var y=0,x=0;
     var count=0;
-    for( var i=0;i<this.columns;i++)
+    for( var i=0;i<this.rows;i++)
     {
         this.map[i]=[];
 
-        for(var j=0;j<this.rows;j++)
+        for(var j=0;j<this.columns;j++)
         {
         	this.map[i][j]= new cell(x+(this.cellsize/2),y+(this.cellsize/2));
-             y=y+this.cellsize;
+             x=x+this.cellsize;
             count++;
-            console.log("Grid Positions : X = "+ this.map[i][j].point.x + " Y = " + this.map[i][j].point.y);
+//            console.log("Grid Positions : X = "+ this.map[i][j].point.x + " Y = " + this.map[i][j].point.y);
         }
-          x=x+this.cellsize;
-          if(y=this.width)
-             y=0;
+          y=y+this.cellsize;
+          if(x=this.width)
+             x=0;
     }
 	//Objects Creation
 	/************************************
@@ -72,13 +72,13 @@ function Room(){
     var baskets = new Array();
     var weapons = new Array();
 
-	ants[0] = new Ants(new Point(this.map[21][13].point.x, this.map[21][13].point.y),40,40);
+	ants[0] = new Ants(new Point(this.map[7][9].point.x, this.map[7][9].point.y),40,40);
 
 
-	ants[1] = new Ants(new Point(this.map[0][2].point.x,this.map[0][2].point.y),40,40);
+	ants[1] = new Ants(new Point(this.map[3][2].point.x,this.map[3][2].point.y),40,40);
 	ants[0].id = 0;
 
-    ants[2] = new Ants(new Point(this.map[6][0].point.x,this.map[6][0].point.y),40,40);
+    ants[2] = new Ants(new Point(this.map[6][6].point.x,this.map[6][6].point.y),40,40);
 
 
 	bees[0] = new Bees(new Point(this.map[11][7].point.x,this.map[11][7].point.y),40,40);
