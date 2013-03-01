@@ -54,13 +54,13 @@ function Room(){
 
         for(var j=0;j<this.rows;j++)
         {
-        	this.map[i][j]= new cell(x+20,y+20);
-             y=y+40;
+        	this.map[i][j]= new cell(x+(this.cellsize/2),y+(this.cellsize/2));
+             y=y+this.cellsize;
             count++;
             console.log("Grid Positions : X = "+ this.map[i][j].point.x + " Y = " + this.map[i][j].point.y);
         }
-          x=x+40;
-          if(y=880)
+          x=x+this.cellsize;
+          if(y=this.width)
              y=0;
     }
 	//Objects Creation
