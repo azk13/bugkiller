@@ -1,8 +1,4 @@
 
-/*Remove if not needed*****/
-function gridIndex(number) {
-	return number*40+20;
-}
 
 function cell(x,y){
     this.point=new Point(x,y);
@@ -12,6 +8,7 @@ function cell(x,y){
     this.isEnemy=false;
     this.isBob=false;
 }
+
 function Room(){
     /*
      Abstract this.map drawn on top of the room to help path finding class to locate the object
@@ -142,7 +139,7 @@ function Room(){
 
 	}
 
-	
+
 
 
 }

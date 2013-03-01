@@ -31,7 +31,7 @@
   var ai = new AI();
   var pathfinding = new Pathfinding();
   var gridvacancy = new Gridvacancy();
-  var gridIndex = new gridIndex();
+
 
 //function called in index
   function init(){
@@ -68,7 +68,6 @@
     }
 
     document.addEventListener('keydown', function(event) {
-
           if(event.keyCode == 37) {
             physicsEngine.applyForceAtAngle(player,playerspeed,Math.PI);
           }//end if(event.keyCode == 37)
