@@ -19,6 +19,7 @@ var alt=1,rr=6;
 		{		
 			physicsEngine.updatePoint(ants[i]);	
 			boundcheck.detectCollisionWithWalls(ants[i]);
+			this.occupancy();
 			if(alt%rr == 0)
 			pathfinding.objectgo(ants[i],player);
 
@@ -27,6 +28,7 @@ var alt=1,rr=6;
 		{		
 			physicsEngine.updatePoint(bees[i]);	
 			boundcheck.detectCollisionWithWalls(bees[i]);
+			this.occupancy();
 			if(alt%rr == 0)
 			pathfinding.objectgo(bees[i],player);
 
@@ -37,7 +39,7 @@ var alt=1,rr=6;
 
 		room.setAnts(ants);
 		room.setBees(bees);		
-		this.occupancy();
+		
 	}
 
 	this.occupancy = function()
