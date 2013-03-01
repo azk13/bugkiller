@@ -155,8 +155,8 @@ var upfailed =0,downfailed=0,leftfailed=0,rightfailed=0;
     if(objectcol >0 && objectrow < room.rows-1)
     if(room.map[(objectrow+1)][objectcol-1].occupied && goleft && godown)
     {
+      godown = false;
       goleft = false;
-      goright = false;
     }    
 
     //upright
