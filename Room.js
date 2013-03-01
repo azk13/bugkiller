@@ -1,86 +1,77 @@
-function item(x,y){
-    this.point=new Point(x+20,y+20);
-    this.occupied=false;
-}
 
+/*Remove if not needed*****/
 function gridIndex(number) {
 	return number*40+20;
 }
 
-
+function cell(x,y){
+    this.point=new Point(x,y);
+    this.occupied=false;
+}
 function Room(){
-
-	var ants = new Array();
-	var bees = new Array();
-	var baskets = new Array();
-	var weapons = new Array();
-
-
-	//var canvas = document.getElementById('gameCanvas');
-	//var ctx = canvas.getContext('2d');
-
     /*
      Abstract this.map drawn on top of the room to help path finding class to locate the object
      Every cell in the this.map can either can be occupied by an item object
-     the item object will have the top left most corner point  and whether it is occupied by
-     an item.In this implementation there won't be any use for the last row and coloum
-     anyway just added
+     the item object will have centrepoint of the cell  and whether it is occupied by
+     an item.In this implementation there won't be any use for the last row and column
+     anyway just added.
+     e.g. To get the center point of the last cell  in the  map
+           this.map[21][13].point.x,this.map[21][13].point.y
+          TO know whether the last cell is ocupied by an item
+           this.map[21]13].occupied will return true if occupied
+           this.map[21][13].occupied will return false if not occupied.
      ______________________________________________________________________________________
-     |0,0||0,1| |0,2| |0,3| |0,4| |0,5| |0,6| |0,7| |0,8| |0,9| |0,10| |0,11| |0,12| |0,13|
-     |1,0||1,1| |1,2| |1,3| |1,4| |1,5| |1,6| |1,7| |1,8| |1,9| |1,10| |1,11| |1,12| |1,13|
-     |2,0||2,1| |2,2| |2,3| |2,4| |2,5| |2,6| |2,7| |2,8| |2,9| |2,10| |2,11| |2,12| |2,13|
-     |3,0||3,1| |3,2| |3,3| |3,4| |3,5| |3,6| |3,7| |3,8| |3,9| |3,10| |3,11| |3,12| |3,13|
-     |4,0||4,1| |4,2| |4,3| |4,4| |4,5| |4,6| |4,7| |4,8| |4,9| |4,10| |4,11| |4,12| |4,13|
-     |5,0||5,1| |5,2| |5,3| |5,4| |5,5| |5,6| |5,7| |5,8| |5,9| |5,10| |5,11| |5,12| |5,13|
-     ______________________________________________________________________________________
+     |0,0| |1,0| |2,0| |3,0| |4,0|....................................................|21,0|
+     |0,1| |1,1| |2,1| |3,1| |4,1|....................................................|21,1|
+     |0,2| |1,2| |2,2| |3,2| |4,2|....................................................|21,2|
+     |0,3| |1,3| |2,3| |3,3| |4,3|....................................................|21,3|
+     .......................................................................................
+     .......................................................................................
+     .......................................................................................
+     |0,13| |1,13| |2,13| |3,13| |4,13|...............................................|21,13|
+     _____________________________________________________________________________________
      */
 
     this.map = [];
-
-    
     this.width = 880;
     this.height = 560;
     this.cellsize = 40;
     this.columns=this.width/this.cellsize;
     this.rows=this.height/this.cellsize;
-
-
-
     var y=0,x=0;
-    for( var i=0;i<this.rows;i++)
+    var count=0;
+    for( var i=0;i<this.columns;i++)
     {
         this.map[i]=[];
 
-        for(var j=0;j<this.columns;j++) 
+        for(var j=0;j<this.rows;j++)
         {
-        	this.map[i][j]= new item(x,y);
-            //increment the x coordinate
-                x=x+this.cellsize;
-//            console.log("Grid Positions : X = "+ this.map[i][j].point.x + " Y = " + this.map[i][j].point.y);
+        	this.map[i][j]= new cell(x+20,y+20);
+             y=y+40;
+            count++;
+            console.log("Grid Positions : X = "+ this.map[i][j].point.x + " Y = " + this.map[i][j].point.y);
         }
-        //increment the y coordinate
-        x=0;
-        if(y > this.height-(this.cellsize/2))
-            y=0;
-        else
-            y=y+this.cellsize;
+          x=x+40;
+          if(y=880)
+             y=0;
     }
-
-
-    console.log(this.map[0][18].point.x);
-    console.log(this.map[0][1].point.x);
-
-
 	//Objects Creation
 	/************************************
 	*/
-	ants[0] = new Ants(new Point(this.map[10][10].point.x, this.map[10][10].point.y),40,40);
+
+    var ants = new Array();
+    var bees = new Array();
+    var baskets = new Array();
+    var weapons = new Array();
+
+	ants[0] = new Ants(new Point(this.map[21][13].point.x, this.map[21][13].point.y),40,40);
 
 
-	ants[1] = new Ants(new Point(this.map[2][13].point.x,this.map[2][0].point.y),40,40);
+	ants[1] = new Ants(new Point(this.map[0][2].point.x,this.map[0][2].point.y),40,40);
 	ants[0].id = 0;
 
-	//console.log('ant is ' +ants[0].Intrinsic.color);
+    ants[2] = new Ants(new Point(this.map[6][0].point.x,this.map[6][0].point.y),40,40);
+
 
 	bees[0] = new Bees(new Point(this.map[11][7].point.x,this.map[11][7].point.y),40,40);
 
@@ -120,7 +111,6 @@ function Room(){
     this.regions = new Array();
 
     // Always label regions from largest to smallest
-
     this.regions[0] = new Region(0,0,1000,500, 0.8);
     this.regions[0].color = 'brown';
     this.regions[1] = new Region(50,50,900,400, 0.6);
