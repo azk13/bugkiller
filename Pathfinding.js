@@ -147,7 +147,9 @@ var upfailed =0,downfailed=0,leftfailed=0,rightfailed=0;
     if(objectrow < room.rows-1 && objectcol < room.columns-1)
     if(room.map[objectrow+1][objectcol+1].occupied && goright && godown)
     {
+      if(room.map[objectrow][objectcol+1].occupied)
       goright = false;
+      else
       godown = false;
     }
 
@@ -155,7 +157,9 @@ var upfailed =0,downfailed=0,leftfailed=0,rightfailed=0;
     if(objectcol >0 && objectrow < room.rows-1)
     if(room.map[(objectrow+1)][objectcol-1].occupied && goleft && godown)
     {
+      if(room.map[objectrow+1][objectcol].occupied)
       godown = false;
+      else
       goleft = false;
     }    
 
@@ -163,15 +167,19 @@ var upfailed =0,downfailed=0,leftfailed=0,rightfailed=0;
     if(objectrow >0 && objectcol < room.columns-1)
     if(room.map[(objectrow-1)][objectcol+1].occupied && goright && goup)
     {
+      if(room.map[objectrow][objectcol+1].occupied)
       goright = false;
+      else
       goup = false;
     }
 
     //upleft
     if(objectrow >0 && objectcol >0)    
     if(room.map[(objectrow-1)][objectcol-1].occupied && goleft && goup)
-    {
+    { 
+      if(room.map[objectrow][objectcol-1].occupied)
       goleft = false;
+      else
       goup = false;
     }       
 
