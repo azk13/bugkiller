@@ -50,7 +50,7 @@ function Gridvacancy()
 				{
 					if(weapons[k].Intrinsic.centerPoint.x == room.map[i][j].point.x && weapons[k].Intrinsic.centerPoint.y == room.map[i][j].point.y)
 					{
-						room.map[i][j].occupied=true;
+				//		room.map[i][j].occupied=true;
 						room.map[i][j].isWeapon = true;
 					}		
 				}											
