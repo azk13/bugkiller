@@ -8,6 +8,9 @@ function cell(x,y){
     this.point=new Point(x,y);
     this.occupied=false;
     this.isWeapon=false;
+    this.isBasket=false;
+    this.isEnemy=false;
+    this.isBob=false;
 }
 function Room(){
     /*
