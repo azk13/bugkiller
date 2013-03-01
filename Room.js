@@ -7,6 +7,7 @@ function gridIndex(number) {
 function cell(x,y){
     this.point=new Point(x,y);
     this.occupied=false;
+    this.isWeapon=false;
 }
 function Room(){
     /*
@@ -17,10 +18,14 @@ function Room(){
      anyway just added.
      e.g. To get the center point of the last cell  in the  map
            this.map[21][13].point.x,this.map[21][13].point.y
-          TO know whether the last cell is ocupied by an item
+          TO know whether the last cell is occupied by an item
            this.map[21]13].occupied will return true if occupied
            this.map[21][13].occupied will return false if not occupied.
-     ______________________________________________________________________________________
+          TO know whether the last cell is occupied by an weapon
+            this.map[21]13].isWeapon will return true if occupied
+            this.map[21][13].isWeapon will return false if not occupied.
+
+     _______________________________________________________________________________
      |0,0| |1,0| |2,0| |3,0| |4,0|....................................................|21,0|
      |0,1| |1,1| |2,1| |3,1| |4,1|....................................................|21,1|
      |0,2| |1,2| |2,2| |3,2| |4,2|....................................................|21,2|
