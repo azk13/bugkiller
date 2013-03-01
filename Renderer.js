@@ -5,6 +5,8 @@ var alt=1,rr=6;
 	this.updatePoints = function(){
 		var ants = room.getAnts();
 		var bees = room.getBees();
+		var baskets = room.getBaskets();
+		var weapons = room.getWeapons();
 
 		//Ai.towin(ants)
 		//if(player == winningbig)
@@ -13,9 +15,20 @@ var alt=1,rr=6;
 //		this.occupancy();
 					
 
+//		this.occupancy();
 
+		for(var i=0;i<baskets.length;i++)
+		{		
+			physicsEngine.updatePoint(baskets[i]);	
+			this.occupancy();
+		}
+		for(var i=0;i<weapons.length;i++)
+		{		
+			physicsEngine.updatePoint(weapons[i]);	
+			this.occupancy();
+		}		
 				
-		for(var i=0;i<ants.length;i++)
+		for(var i=1;i<ants.length;i++)
 		{		
 			physicsEngine.updatePoint(ants[i]);	
 			boundcheck.detectCollisionWithWalls(ants[i]);
@@ -24,6 +37,11 @@ var alt=1,rr=6;
 			pathfinding.objectgo(ants[i],player);
 
 		}
+		physicsEngine.updatePoint(ants[0]);	
+		boundcheck.detectCollisionWithWalls(ants[0]);
+		this.occupancy();		
+		pathfinding.objectgo(ants[0],baskets[0]);
+
 		for(var i=0;i<bees.length;i++)
 		{		
 			physicsEngine.updatePoint(bees[i]);	
@@ -37,8 +55,8 @@ var alt=1,rr=6;
 		physicsEngine.updatePoint(player);
 		boundcheck.detectCollisionWithWalls(player);		
 
-		room.setAnts(ants);
-		room.setBees(bees);		
+//		room.setAnts(ants);
+//		room.setBees(bees);		
 		
 	}
 
@@ -46,6 +64,8 @@ var alt=1,rr=6;
 	{
 		var ants = room.getAnts();
 		var bees = room.getBees();
+		var baskets = room.getBaskets();
+		var weapons = room.getWeapons();		
 
 		//Initialize all occupancy zero;
 		for(var i=0;i<room.rows;i++)
@@ -70,7 +90,21 @@ var alt=1,rr=6;
 					{
 						room.map[i][j].occupied=true;
 					}		
-				}					
+				}		
+				for(var k=0;k<baskets.length;k++)
+				{
+					if(baskets[k].Intrinsic.centerPoint.x == room.map[i][j].point.x && baskets[k].Intrinsic.centerPoint.y == room.map[i][j].point.y)
+					{
+						room.map[i][j].occupied=true;
+					}		
+				}
+				for(var k=0;k<weapons.length;k++)
+				{
+					if(weapons[k].Intrinsic.centerPoint.x == room.map[i][j].point.x && weapons[k].Intrinsic.centerPoint.y == room.map[i][j].point.y)
+					{
+						room.map[i][j].occupied=true;
+					}		
+				}											
 			}
 		}		
 	}
