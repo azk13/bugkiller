@@ -70,7 +70,7 @@ function Room(){
     var baskets = new Array();
     var weapons = new Array();
 
-	ants[0] = new Ants(new Point(this.map[10][9].point.x, this.map[10][9].point.y),40,40);
+	ants[0] = new Ants(new Point(this.map[7][21].point.x, this.map[7][21].point.y),40,40);
 	ants[1] = new Ants(new Point(this.map[2][10].point.x,this.map[2][10].point.y),40,40);
 	//ants[0].id = 0;
     ants[2] = new Ants(new Point(this.map[6][0].point.x,this.map[6][0].point.y),40,40);
@@ -81,6 +81,9 @@ function Room(){
 	baskets[0] = new Basket(new Point(this.map[4][3].point.x, this.map[4][3].point.y), 40, 40);
 	baskets[1] = new Basket(new Point(this.map[8][10].point.x, this.map[8][10].point.y), 40, 40);
 	baskets[2] = new Basket(new Point(this.map[12][11].point.x, this.map[12][11].point.y), 40, 40);
+    baskets[3] = new Basket(new Point(this.map[5][11].point.x, this.map[5][11].point.y), 40, 40);
+    baskets[4] = new Basket(new Point(this.map[2][11].point.x, this.map[2][11].point.y), 40, 40);
+    baskets[5] = new Basket(new Point(this.map[12][5].point.x, this.map[12][5].point.y), 40, 40);
 
 	weapons[0] = new Weapon(new Point(this.map[13][10].point.x, this.map[13][10].point.y), 'Attack', 'Knife');
 	weapons[1] = new Weapon(new Point(this.map[11][10].point.x, this.map[11][10].point.y), 'Attack', 'Bomb');

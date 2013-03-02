@@ -68,16 +68,32 @@
     }
 
     document.addEventListener('keydown', function(event) {
+           var playerrow = pathfinding.getObjectIndexRow(player);
+           var playercol = pathfinding.getObjectIndexCol(player);
+          
+
           if(event.keyCode == 37) {
+            //go left
+            if(playercol != 0)
+            if(!room.map[playerrow][playercol-1].occupied)
             physicsEngine.applyForceAtAngle(player,playerspeed,Math.PI);
           }//end if(event.keyCode == 37)
           if(event.keyCode == 39) {
+            //go right
+            if(playercol != room.columns-1)
+            if(!room.map[playerrow][playercol+1].occupied)
             physicsEngine.applyForceAtAngle(player,playerspeed,0);
           }//end if(event.keyCode == 39)
           if(event.keyCode == 38) {
+            //go up
+            if(playerrow != 0)
+            if(!room.map[playerrow-1][playercol].occupied)
             physicsEngine.applyForceAtAngle(player,playerspeed,Math.PI*3/2);
           }//end if(event.keyCode == 38)
           if(event.keyCode == 40) {
+            //go down
+            if(playerrow != room.rows-1)
+            if(!room.map[playerrow+1][playercol].occupied)
             physicsEngine.applyForceAtAngle(player,playerspeed,Math.PI/2);
           }//end if(event.keyCode == 40)
         } 
