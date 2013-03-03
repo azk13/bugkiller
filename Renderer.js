@@ -67,10 +67,22 @@ var alt=1,rr=8;
 		//console.log(mysterybox.counter);
 		if(mysterybox.updateCounter() == 1)
 			{
-				mysterybox.spawn(new Point((Math.floor((Math.random() * 880) / 40) + 1) * 40 + 20, (Math.floor((Math.random() * 560) / 40) + 1) * 40 + 20), mysterybox.mysteryBox_spawn(timer));
+				var available = new Array();
+				// Find places that contain no items to spawn 
+				for(var i = 0; i < room.rows; i++)
+				{
+					for(var j = 0; j < room.columns; j++)
+					{
+						available.push(room.map[i][j]);
+					}
+				}
+				//mysterybox.spawn(new Point((Math.floor((Math.random() * 880) / 40) + 1) * 40 + 20, (Math.floor((Math.random() * 560) / 40) + 1) * 40 + 20), mysterybox.mysteryBox_spawn(timer));
+				index = Math.floor(Math.random() * (available.length - 1));
+
+				mysterybox.spawn(available[index].point, mysterybox.mysteryBox_spawn(timer));
 				//console.log(timer);
 				//console.log(mysterybox.mysteryBox_spawn(timer));
-				//console.log(mysterybox.item);
+				console.log(index);
 			}
 	}
 
