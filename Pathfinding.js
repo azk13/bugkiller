@@ -10,11 +10,11 @@ function Pathfinding(grid)
     var goleft = false;
     var diagonalmovevel = 400/Math.sin((Math.PI/4));
     //console.log("Diag Vel = "+diagonalmovevel);
-    var objectrow = getObjectIndexRow(object);
-    var objectcol = getObjectIndexCol(object);  
+    var objectrow = this.getObjectIndexRow(object);
+    var objectcol = this.getObjectIndexCol(object);  
 
-    var endpointrow = getObjectIndexRow(endpoint);
-    var endpointcol = getObjectIndexCol(endpoint);  
+    var endpointrow = this.getObjectIndexRow(endpoint);
+    var endpointcol = this.getObjectIndexCol(endpoint);  
 
 
 var upfailed =0,downfailed=0,leftfailed=0,rightfailed=0;
@@ -209,23 +209,30 @@ var upfailed =0,downfailed=0,leftfailed=0,rightfailed=0;
 
   }//end of objectgo function
 
-
+this.enemyclose = function(enemy)
+{
+  if(math.getDistanceBetweenTwoPoints(player.Intrinsic.centerPoint,enemy.Intrinsic.centerPoint) < (room.cellsize*1.1))
+    {alert("You are captured!");}
 }
 
-function getObjectIndexCol(object)
+this.getObjectIndexCol = function(object)
 {
   var col = Math.floor(object.Intrinsic.centerPoint.x/room.cellsize);
   //console.log("Col:"+col);
   return col;
 }
-function getObjectIndexRow(object)
+this.getObjectIndexRow = function(object)
 {
   var row = Math.floor(object.Intrinsic.centerPoint.y/room.cellsize);
   //console.log("Row:"+row);
-
   return row;
+}
+
 
 }
+
+
+
 
 
 /*

@@ -1,5 +1,5 @@
 function Renderer(){
-var alt=1,rr=10;
+var alt=1,rr=8;
 
 
 	this.updatePoints = function(){
@@ -31,9 +31,7 @@ var alt=1,rr=10;
 			physicsEngine.updatePoint(ants[i]);	
 			boundcheck.detectCollisionWithWalls(ants[i]);
 			gridvacancy.occupancy();
-
-			
-
+			pathfinding.enemyclose(ants[i]);
 		}
 
 		//ant to go for basket
@@ -49,7 +47,7 @@ var alt=1,rr=10;
 			physicsEngine.updatePoint(bees[i]);	
 			boundcheck.detectCollisionWithWalls(bees[i]);
 			gridvacancy.occupancy();
-			
+			pathfinding.enemyclose(bees[i]);
 
 		}		
 		alt++;
