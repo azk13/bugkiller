@@ -78,9 +78,7 @@
             if(!room.map[playerrow][playercol-1].occupied)
             physicsEngine.applyForceAtAngle(player,playerspeed,Math.PI);
             if(room.map[playerrow][playercol-1].isWeapon) {
-              
               ai.pickedUpWeapon();
-
             }
           }//end if(event.keyCode == 37)
           if(event.keyCode == 39) {
@@ -88,18 +86,27 @@
             if(playercol != room.columns-1)
             if(!room.map[playerrow][playercol+1].occupied)
             physicsEngine.applyForceAtAngle(player,playerspeed,0);
+            if(room.map[playerrow][playercol+1].isWeapon) {
+              ai.pickedUpWeapon();
+            }
           }//end if(event.keyCode == 39)
           if(event.keyCode == 38) {
             //go up
             if(playerrow != 0)
             if(!room.map[playerrow-1][playercol].occupied)
             physicsEngine.applyForceAtAngle(player,playerspeed,Math.PI*3/2);
+            if(room.map[playerrow-1][playercol].isWeapon) {
+              ai.pickedUpWeapon();
+            }
           }//end if(event.keyCode == 38)
           if(event.keyCode == 40) {
             //go down
             if(playerrow != room.rows-1)
             if(!room.map[playerrow+1][playercol].occupied)
             physicsEngine.applyForceAtAngle(player,playerspeed,Math.PI/2);
+            if(room.map[playerrow+1][playercol].isWeapon) {
+              ai.pickedUpWeapon();
+            }
           }//end if(event.keyCode == 40)
         } 
     );///end addEventListener

@@ -28,11 +28,7 @@ function Bob(centerPoint, width, height){
 		//if(room.map[])
 	}
 
-	this.pickupWeapon = function(){
 
-	
-
-	}
 
 
 
