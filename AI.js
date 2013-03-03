@@ -56,13 +56,12 @@ return Index;
 
  }
 
- this.pickedUpWeapon = function(){
- 		var row = player.row;
- 		var column = player.column;
+ this.pickedUpWeapon = function(row, column){
+
 		var weaponIdentity;
 
-		weaponIdentity = room.map[row][column-1].weapon.identity;
-		weaponIndex = room.map[row][column-1].weapon.index;
+		weaponIdentity = room.map[row][column].weapon.identity;
+		weaponIndex = room.map[row][column].weapon.index;
 
 		switch(weaponIdentity)
 		{
