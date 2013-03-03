@@ -90,7 +90,7 @@ function Room(){
 	weapons[1] = new Weapon(new Point(this.map[11][10].point.x, this.map[11][10].point.y), 'Attack', 'Bomb');
 	weapons[2] = new Weapon(new Point(this.map[13][13].point.x, this.map[13][13].point.y), 'Attack', 'Shuriken');
 
-
+    var mysterybox = new MysteryBox(new Point(this.map[1][12].point.x, this.map[1][12].point.y), 40, 40);
 
 
 	this.getBaskets = function() {
@@ -114,6 +114,10 @@ function Room(){
     this.setBees = function(allBees){
         this.bees = allBees;
     }    
+
+    this.getmysterybox = function(){
+        return mysterybox;
+    }
 
 
 

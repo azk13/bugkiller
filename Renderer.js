@@ -1,13 +1,15 @@
 function Renderer(){
 var alt=1,rr=8;
 
+	var timer = 0;
 
 	this.updatePoints = function(){
 		var ants = room.getAnts();
 		var bees = room.getBees();
 		var baskets = room.getBaskets();
 		var weapons = room.getWeapons();
-
+		var mysterybox = room.getmysterybox();
+		
 		//Ai.towin(ants)
 		//if(player == winningbig)
 		//Ai.lose(ants)
@@ -56,6 +58,15 @@ var alt=1,rr=8;
 
 //		room.setAnts(ants);
 //		room.setBees(bees);		
+
+		
+		// -Mysterybox updating-
+		// Updates the co-ordinates of the mysterybox every 10 counts if it is untouched
+		//
+
+		//console.log(mysterybox.counter);
+		if(mysterybox.updateCounter() == 1)
+			mysterybox.spawn(new Point((Math.floor((Math.random() * 880) / 40) + 1) * 40 + 20, (Math.floor((Math.random() * 560) / 40) + 1) * 40 + 20));
 		
 	}
 
@@ -97,10 +108,13 @@ var alt=1,rr=8;
 		this.drawCharacter(player); 
 		this.drawWeapons();
 		this.drawPath();
+		this.drawMysteryBox();
 		//hud.updateHUD();
 		renderingEngine.writeText("X:"+player.Intrinsic.centerPoint.x+" Y:"+player.Intrinsic.centerPoint.y,player.Intrinsic.centerPoint);
 				renderingEngine.writeText("X:"+ants[0].Intrinsic.centerPoint.x+" Y:"+ants[0].Intrinsic.centerPoint.y,ants[0].Intrinsic.centerPoint);
 		//player.Intrinsic.color +=1;
+
+
 	}
 
 
@@ -152,6 +166,12 @@ var alt=1,rr=8;
 		if(player.health == 0) {
 			alert("You are dead!");
 		}
+	}
+
+	this.drawMysteryBox = function(){
+		var mysterybox = room.getmysterybox();
+		ctx.fillStyle = '#FF00FF';
+		ctx.fillRect(mysterybox.Intrinsic.centerPoint.x-20, mysterybox.Intrinsic.centerPoint.y-20, mysterybox.Intrinsic.width, mysterybox.Intrinsic.height);
 	}
 
 
