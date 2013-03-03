@@ -1,5 +1,7 @@
 function Gridvacancy()
 {
+
+		var row, columns; // jensen (used for weapons)
 		this.occupancy = function()
 	{
 		var ants = room.getAnts();
@@ -51,8 +53,22 @@ function Gridvacancy()
 					if(weapons[k].Intrinsic.centerPoint.x == room.map[i][j].point.x && weapons[k].Intrinsic.centerPoint.y == room.map[i][j].point.y)
 					{
 				//		room.map[i][j].occupied=true;
+				//console.log('loading weapon');
+
 						room.map[i][j].isWeapon = true;
-					}		
+
+						// load weapon object in the cell
+						room.map[i][j].weapon = weapons[k];
+
+						// set the weapon's row and columns
+						weapons[k].row = pathfinding.getObjectIndexRow(weapons[k]);
+						weapons[k].column = pathfinding.getObjectIndexCol(weapons[k]);
+
+						
+
+
+
+					}	
 				}											
 			}
 		}		

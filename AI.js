@@ -55,6 +55,43 @@ return Index;
      }
 
  }
+
+ this.pickedUpWeapon = function(){
+ 		var row = player.row;
+ 		var column = player.column;
+		var weaponIdentity;
+
+		weaponIdentity = room.map[row][column-1].weapon.identity;
+		weaponIndex = room.map[row][column-1].weapon.index;
+
+		switch(weaponIdentity)
+		{
+			case 'knife':
+			  	document.getElementById("knife-picked").innerHTML = 1;
+			  	player.hasKnifeEquipped = true;
+			  	break;
+			case 'bomb':
+			  	document.getElementById("bomb-picked").innerHTML = 1;
+			  	player.hasBombEqupped = true;
+			  	break;
+			case 'shuriken':
+				document.getElementById("shuriken-picked").innerHTML = 1;
+				player.hasShurikenEqupped = true;
+				break;
+			default:
+			  	break;
+		}
+
+		// delete weapon
+		weapons.splice(weaponIndex, 1);
+
+		// update the weapon's location in the wewapons array
+		for(var k=0; k<weapons.length; k++){
+			weapons[k].index = k;
+		}
+
+
+ }
  this.moveAntToBob=function(bob,enemy)
  {
 

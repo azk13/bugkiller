@@ -163,7 +163,7 @@ var alt=1,rr=8;
 		var BobHealth = player.health;
 		document.getElementById("bob-health").style.width= BobHealth + '%';
 		
-		if(player.health == 0) {
+		if(BobHealth <= 0) {
 			alert("You are dead!");
 		}
 	}
@@ -193,6 +193,10 @@ var alt=1,rr=8;
 		ctx.lineWidth = 1;
 		ctx.strokeStyle = '#000000';
 		ctx.stroke();
+
+		// Jensen
+		character.row = pathfinding.getObjectIndexRow(character);
+		character.column = pathfinding.getObjectIndexCol(character);
 
 		//console.log(character.Intrinsic.color);
 

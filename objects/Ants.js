@@ -1,6 +1,7 @@
 function Ants(centerPoint, width, height){
 	this.Intrinsic = new Intrinsic(centerPoint, width, height);
 	this.Intrinsic.color = 'black';	
+	this.identity = 'ant';
 
     //Added by Renga
     //Array of weapons for the Ants to use

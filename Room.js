@@ -1,3 +1,5 @@
+// Set weapon as global variable, as bob is accessing it ~ jensen
+var weapons = new Array();
 
 
 function cell(x,y){
@@ -7,6 +9,9 @@ function cell(x,y){
     this.isBasket=false;
     this.isEnemy=false;
     this.isBob=false;
+
+    // put the weapon object here, see Gridvacancy.js around line 55++
+    this.weapon='null';
 }
 
 function Room(){
@@ -68,7 +73,8 @@ function Room(){
     var ants = new Array();
     var bees = new Array();
     var baskets = new Array();
-    var weapons = new Array();
+    // var weapons = new Array();
+    // for now, put it as global variable as will access is when bob picked up a weapon
 
 
 	ants[0] = new Ants(new Point(this.map[7][21].point.x, this.map[7][21].point.y),40,40);
@@ -86,9 +92,10 @@ function Room(){
     baskets[4] = new Basket(new Point(this.map[2][11].point.x, this.map[2][11].point.y), 40, 40);
     baskets[5] = new Basket(new Point(this.map[12][5].point.x, this.map[12][5].point.y), 40, 40);
 
-	weapons[0] = new Weapon(new Point(this.map[13][10].point.x, this.map[13][10].point.y), 'Attack', 'Knife');
-	weapons[1] = new Weapon(new Point(this.map[11][10].point.x, this.map[11][10].point.y), 'Attack', 'Bomb');
-	weapons[2] = new Weapon(new Point(this.map[13][13].point.x, this.map[13][13].point.y), 'Attack', 'Shuriken');
+	weapons[0] = new Weapon(new Point(this.map[13][10].point.x, this.map[13][10].point.y), 0, 'Attack', 'knife');
+	weapons[1] = new Weapon(new Point(this.map[11][10].point.x, this.map[11][10].point.y), 1, 'Attack', 'bomb');
+	weapons[2] = new Weapon(new Point(this.map[13][13].point.x, this.map[13][13].point.y), 2, 'Attack', 'shuriken');
+
 
     var mysterybox = new MysteryBox(new Point(this.map[1][12].point.x, this.map[1][12].point.y), 40, 40);
 

@@ -2,6 +2,7 @@ function Pathfinding(grid)
 {
 
   var prevx = 0,prevy = 0;
+  
 	this.objectgo = function(object,endpoint)
   {
     var goup = false;
@@ -214,10 +215,8 @@ this.enemyclose = function(enemy)
   if(math.getDistanceBetweenTwoPoints(player.Intrinsic.centerPoint,enemy.Intrinsic.centerPoint) < (room.cellsize*1.1))
     {
       //alert("You are captured!");
-
-        player.health -= 0.5;
+        player.health -= 0.2;
         renderingEngine.setBobHealth();
-
     }
 }
 
