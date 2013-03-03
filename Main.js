@@ -65,6 +65,9 @@
       //update points in renderer
       setInterval(function () {renderingEngine.updatePoints();}, screenUpdateTime);
       setInterval(function () {renderingEngine.draw();}, screenUpdateTime);
+
+      // Update the game clock
+      setInterval(function () {renderingEngine.update_timer();}, screenUpdateTime);
     }
 
     document.addEventListener('keydown', function(event) {

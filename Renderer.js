@@ -66,8 +66,12 @@ var alt=1,rr=8;
 
 		//console.log(mysterybox.counter);
 		if(mysterybox.updateCounter() == 1)
-			mysterybox.spawn(new Point((Math.floor((Math.random() * 880) / 40) + 1) * 40 + 20, (Math.floor((Math.random() * 560) / 40) + 1) * 40 + 20));
-		
+			{
+				mysterybox.spawn(new Point((Math.floor((Math.random() * 880) / 40) + 1) * 40 + 20, (Math.floor((Math.random() * 560) / 40) + 1) * 40 + 20), mysterybox.mysteryBox_spawn(timer));
+				//console.log(timer);
+				//console.log(mysterybox.mysteryBox_spawn(timer));
+				//console.log(mysterybox.item);
+			}
 	}
 
 	this.drawRoom = function (){
@@ -262,4 +266,11 @@ var alt=1,rr=8;
 		ctx.fillText(myString, myPoint.x, myPoint.y);
 	}//end writeText*/
 
+	
+	this.update_timer = function(){
+		timer++;
+		//console.log(timer);
+		return timer;
+	}
+	
 }
