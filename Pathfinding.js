@@ -212,7 +212,13 @@ var upfailed =0,downfailed=0,leftfailed=0,rightfailed=0;
 this.enemyclose = function(enemy)
 {
   if(math.getDistanceBetweenTwoPoints(player.Intrinsic.centerPoint,enemy.Intrinsic.centerPoint) < (room.cellsize*1.1))
-    {alert("You are captured!");}
+    {
+      //alert("You are captured!");
+
+        player.health -= 0.5;
+        renderingEngine.setBobHealth();
+
+    }
 }
 
 this.getObjectIndexCol = function(object)

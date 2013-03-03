@@ -145,6 +145,15 @@ var alt=1,rr=8;
 		}
 	}
 
+	this.setBobHealth = function(){
+		var BobHealth = player.health;
+		document.getElementById("bob-health").style.width= BobHealth + '%';
+		
+		if(player.health == 0) {
+			alert("You are dead!");
+		}
+	}
+
 
 	this.drawCharacter = function(character){
 
