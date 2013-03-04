@@ -1,12 +1,6 @@
 function AI(){
 
 
-this.attackNearestBasket = function(enemy)
-{
-	var baskets = room.getBaskets();
-	pathfinding.objectgo(enemy,baskets[getNearestBasketIndex(enemy)]);
-}
-
 function getNearestBasketIndex(enemy)
 {
 	var baskets = room.getBaskets();
@@ -24,38 +18,123 @@ function getNearestBasketIndex(enemy)
 return Index;
 			
 }
-
- this.antAttackBob=function()
- {
-     //get the ants
-     var Ants  = room.getAnts();
-     var distance =0;
-     var distanceFromAntstobob=new Array();
-     var centerPointOfPlayer=player.Intrinsic.centerPoint
-     var specifics={index:0,Dis:0 }
-     for(var i=0;i<Ants.length;i++)
-     {
-      distance=math.getDistanceBetweenTwoPoints(centerPointOfPlayer,Ants[i].centerPoint);
-      distanceFromAntstobob.push(new specifics(i,distance));
-     }
-     //sort the distance in ascending order with the index to know which ant is the shortest
-     distanceFromAntstobob.sort(function(a,b){if (+a.Dis > +b.Dis) return 1;  return -1;});
-     for(var i=0;i<specifics.length;i++)
-     {
-         // if the player centre point is 5 times the centerpoint of ant then attack the player
-        if(Ants[specifics.index].centerPoint*5<=centerPointOfPlayer)
+function getNearestAntIndex(enemy,indextoexclude)
+{
+        var ants = room.getAnts();
+        var prevDistance=999999,Distance =0;
+        var Index = 0;
+        for(var i=0;i<ants.length;i++)
         {
-            if(Ants[specifics.index].weapons>=1&&Ants[specifics.index].Intrinsic.health>70)
-            {
-                //move to the player
-                pathfinding.objectgo(Ants[specifics.index],player);
-                //attack the player
-            }
+            Distance=math.getDistanceBetweenTwoPoints(enemy.Intrinsic.centerPoint,ants[i].Intrinsic.centerPoint);
+           if(i!=indextoexclude)
+             if(Distance<prevDistance)
+               {
+                   Index=i;
+                   prevDistance=Distance;
+               }
         }
+        return Index;
+
+  }
+/************************************
+     Intput : Enemy centrepoint,player centre point,how many cells to check
+     Output: True if Enemy no of from boe cell
+     ************************************/
+function checkEnemyFromBob(enemy,player,noOfCells)
+{
+  var checkdistance=40*noOfCells;
+  var distance =math.getDistanceBetweenTwoPoints(enemy,player);
+  if(distance<=checkdistance)
+    return true;
+  else
+    return false;
+}
+this.attackNearestBasket = function(enemy)
+{
+  var baskets = room.getBaskets();
+  pathfinding.objectgo(enemy,baskets[getNearestBasketIndex(enemy)]);
+}
+/************************************
+ Intput : ant that need to go to the nearest ant and its index
+ Output: The enemy move to nearest ant
+************************************/
+this.antMoveToNearestAnt=function(enemy,ants,excludeindex)
+{
+ pathfinding.objectgo(enemy,ants[getNearestAntIndex(enemy,excludeindex)]);
+}
+
+/************************************
+Intput : Ant
+Output:Decide whether this ant can attack bob
+************************************/
+ this.antAttackBob=function(ant,bob)
+ {
+     //TodO must implement attack function for the ant to attack
+
+     //how many cell difference
+     var noofCells=5;
+     //ant properties
+     var antCenterPoint=ant.Intrinsic.centerPoint;
+     var anthealth=ant.Intrinsic.health;
+     var anthasweapon=ant.hasWeapons();
+     //player properties
+     var bobCenterPoint =bob.Intrinsic.centerPoint;
+     var bobhealth=bob.health;
+     var bobhasWeapons=bob.hasWeapons();
+
+     var attack=false;
+    // check whether ant is within no of cells specified
+    if(checkEnemyFromBob(antCenterPoint,bobCenterPoint,noofCells))
+    {
+        //move towards the bob first
+        pathfinding.objectgo(ant,bob);
+         //if ant health below 10%  and has weapon just try to attack and die
+         if(anthealth<10&anthasweapon)
+         {
+             attack=true;
+         }
+         //if anthealth is greater than bob health and ant has a weapon
+         else if((anthealth>bobhealth)&&anthasweapon)
+         {
+             attack =true
+         }
+         // bobhashealth is greater than 70 %  and no weapon go then attach
+         else if(!bobhasWeapons&&bobhealth>70)
+         {
+             attack=true
+
+         }
+      }
+     // any of the above three conditions meet
+     if(attack)
+     {
+         //find bob
+         pathfinding.objectgo(ant,bob);
+         //and attack him
      }
 
  }
+/************************************
+Intput : Ants and bob and the index of the ant
+Output: Id ant is 10 cells closet to bob it will move towards another ant
+ ************************************/
+ this.antfleefromBob=function(ants,bob)
+ {
+     //if bob is 3 cell away from ant
+        var  noofcells=3;
+     var antCenterPoint;
+     var bobCenterPoint=bob.Intrinsic.centerPoint;;
+     for(var i=0;i<ants.length;i++)
+     {
+         antCenterPoint=ants[i].Intrinsic.centerPoint;;
 
+     if(checkEnemyFromBob(antCenterPoint,bobCenterPoint,noofcells))
+     {
+         this.antMoveToNearestAnt(ants[i],ants,i)
+     }
+     }
+
+ }
  this.pickedUpWeapon = function(row, column){
 
 		var weaponIdentity;
@@ -91,42 +170,30 @@ return Index;
 
 
  }
- this.moveAntToBob=function(bob,enemy)
+
+ this.Action = function(enemies)
+ {
+}
+ function ToWin(enemies)
  {
 
- }
 
-
-this.Action = function(enemies)
+	}
+function ToLose(enemies)
 {
-}
-
-
-	function ToWin(enemies)
-	{
 
 
 	}
-
-	function ToLose(enemies)
-	{
-
+function Attack(enemies,bob)
+{
 
 	}
-
-
-	function Attack(enemies,bob)
-	{
+function Defend(self)
+{
 
 	}
-
-	function Defend(self)
-	{
-
-	}
-
-	function Construct(self)
-	{
+function Construct(self)
+{
 
 	}
 

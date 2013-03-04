@@ -26,30 +26,32 @@ var alt=1,rr=8;
 		}		
 				
 		for(var i=1;i<ants.length;i++)
-		{	
+		{
+
 			if(alt%rr == 0)			
-			pathfinding.objectgo(ants[i],player);	
-			
+			//pathfinding.objectgo(ants[i],player);
+              //  ai.antAttackBob();
 			physicsEngine.updatePoint(ants[i]);	
 			boundcheck.detectCollisionWithWalls(ants[i]);
 			gridvacancy.occupancy();
-			pathfinding.enemyclose(ants[i]);
+			//pathfinding.enemyclose(ants[i]);
+
 		}
 
 		//ant to go for basket
 		physicsEngine.updatePoint(ants[0]);	
 		boundcheck.detectCollisionWithWalls(ants[0]);
-		gridvacancy.occupancy();		
-		ai.attackNearestBasket(ants[0]);
+		gridvacancy.occupancy();
+        ai.antfleefromBob(ants,player);
 
 		for(var i=0;i<bees.length;i++)
 		{		
 			if(alt%rr == 0)
-			pathfinding.objectgo(bees[i],player);
+			//pathfinding.objectgo(bees[i],player);
 			physicsEngine.updatePoint(bees[i]);	
 			boundcheck.detectCollisionWithWalls(bees[i]);
 			gridvacancy.occupancy();
-			pathfinding.enemyclose(bees[i]);
+			//pathfinding.enemyclose(bees[i]);
 
 		}		
 		alt++;
@@ -133,8 +135,6 @@ var alt=1,rr=8;
 
 
 	}
-
-
 	this.drawWeapons = function() {
 		var weapons = room.getWeapons();
 
@@ -143,14 +143,12 @@ var alt=1,rr=8;
 	    	ctx.fillRect(weapons[i].Intrinsic.centerPoint.x-10, weapons[i].Intrinsic.centerPoint.y-10, weapons[i].Intrinsic.width, weapons[i].Intrinsic.height);
 		}
 	}
-
 	this.drawPath = function() {
 
 		// draw the path of all enemies
 		// use bees[] and ants[] etc.
 
 	}
-
 	this.drawBaskets = function() {
 		var baskets = room.getBaskets();
 
@@ -159,7 +157,6 @@ var alt=1,rr=8;
 	    	ctx.fillRect(baskets[i].Intrinsic.centerPoint.x-20, baskets[i].Intrinsic.centerPoint.y-20, baskets[i].Intrinsic.width, baskets[i].Intrinsic.height);
 		}
 	}
-
 	this.drawAnts = function(){
 		var ants = room.getAnts();
 
@@ -167,7 +164,6 @@ var alt=1,rr=8;
 			this.drawCharacter(ants[i]);  // Jensen
 		}
 	}
-
 	this.drawBees = function(){
 		var bees = room.getBees();
 
@@ -175,7 +171,6 @@ var alt=1,rr=8;
 			this.drawCharacter(bees[i]);  // Jensen
 		}
 	}
-
 	this.setBobHealth = function(){
 		var BobHealth = player.health;
 		document.getElementById("bob-health").style.width= BobHealth + '%';
@@ -184,14 +179,11 @@ var alt=1,rr=8;
 			alert("You are dead!");
 		}
 	}
-
 	this.drawMysteryBox = function(){
 		var mysterybox = room.getmysterybox();
 		ctx.fillStyle = '#FF00FF';
 		ctx.fillRect(mysterybox.Intrinsic.centerPoint.x-20, mysterybox.Intrinsic.centerPoint.y-20, mysterybox.Intrinsic.width, mysterybox.Intrinsic.height);
 	}
-
-
 	this.drawCharacter = function(character){
 
 		// clear current image
@@ -270,8 +262,6 @@ var alt=1,rr=8;
 */
 	
 	}
-
-
 	/*write text to the canvas*/
 	this.writeText = function (myString, myPoint) {
 		ctx.fillStyle = "purple";

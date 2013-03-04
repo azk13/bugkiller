@@ -6,7 +6,9 @@ function Ants(centerPoint, width, height){
     //Added by Renga
     //Array of weapons for the Ants to use
     this.weapons=new Array();
-    this.weapons.push(new Weapon("",""));
+    this.addWeapons=function(centerPoint,index,type,name){this.weapons.push(new Weapon(centerPoint,index,type,name));}
+    this.removeWeapons=function(){this.weapons.pop();}
+    this.hasWeapons=function(){if(this.weapons.length>1) return true;}
 
 	this.hasKnifeEquipped = false;
 	this.hasSheildEquipped = false;

@@ -22,6 +22,10 @@ function Bob(centerPoint, width, height){
 	//this.hasSheildEquipped = false;
 	this.activeWeapon = 'null';
 
+    this.weapons=new Array();
+    this.addWeapons=function(){this.weapons.push(new Weapon("",""));}
+    this.hasWeapons=function(){if(this.weapons.length>1) return true;}
+
 
 	
 
