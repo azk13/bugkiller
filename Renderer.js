@@ -73,7 +73,8 @@ var alt=1,rr=8;
 				{
 					for(var j = 0; j < room.columns; j++)
 					{
-						available.push(room.map[i][j]);
+						if(room.map[i][j].occupied == false)
+							available.push(room.map[i][j]);
 					}
 				}
 				//mysterybox.spawn(new Point((Math.floor((Math.random() * 880) / 40) + 1) * 40 + 20, (Math.floor((Math.random() * 560) / 40) + 1) * 40 + 20), mysterybox.mysteryBox_spawn(timer));
@@ -82,7 +83,7 @@ var alt=1,rr=8;
 				mysterybox.spawn(available[index].point, mysterybox.mysteryBox_spawn(timer));
 				//console.log(timer);
 				//console.log(mysterybox.mysteryBox_spawn(timer));
-				console.log(index);
+				//console.log(index);
 			}
 	}
 
