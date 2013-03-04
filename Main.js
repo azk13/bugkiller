@@ -73,6 +73,32 @@
     document.addEventListener('keydown', function(event) {
            var playerrow = pathfinding.getObjectIndexRow(player);
            var playercol = pathfinding.getObjectIndexCol(player);
+           var trackActiveWeapon = 0;
+           var activeWeapon = trackActiveWeapon%3; // three types of weapons
+
+           // Press Enter to switch active weapon
+           if(event.keyCode == 13) {
+
+              switch(activeWeapon)
+              {
+                case 'knife':
+                    document.getElementById("knife-picked").innerHTML = 1;
+                    player.hasKnifeEquipped = true;
+                    break;
+                case 'bomb':
+                    document.getElementById("bomb-picked").innerHTML = 1;
+                    player.hasBombEquipped = true;
+                    break;
+                case 'shuriken':
+                  document.getElementById("shuriken-picked").innerHTML = 1;
+                  player.hasShurikenEquipped = true;
+                  break;
+                default:
+                    break;
+              }
+
+            trackActiveWeapon++;
+           }
           
 
           if(event.keyCode == 37) {

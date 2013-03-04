@@ -60,7 +60,7 @@ function Gridvacancy()
 						// load weapon object in the cell
 						room.map[i][j].weapon = weapons[k];
 
-						// set the weapon's row and columns
+						// set the weapon's row and columns - for picking up weapon purposes ~ jensen
 						weapons[k].row = pathfinding.getObjectIndexRow(weapons[k]);
 						weapons[k].column = pathfinding.getObjectIndexCol(weapons[k]);
 

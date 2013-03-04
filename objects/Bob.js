@@ -7,7 +7,7 @@ function Bob(centerPoint, width, height){
 	//Jensen
 	this.row = 0;
 	this.column = 0;
-	this.identity = 'bob';
+	//this.identity = 'bob'; 
 
 	this.Intrinsic.color = 'yellow';	
 	this.health = 100;
@@ -16,10 +16,11 @@ function Bob(centerPoint, width, height){
 	this.image.src = "imgs/char_bob.png";
 
 	this.hasKnifeEquipped = false;
-	this.hasBombEqupped = false;
-	this.hasShurikenEqupped = false;
+	this.hasBombEquipped = false;
+	this.hasShurikenEquipped = false;
 	//this.hasConverterEquipped = false;
 	//this.hasSheildEquipped = false;
+	this.activeWeapon = 'null';
 
 
 	

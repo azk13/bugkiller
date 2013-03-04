@@ -71,11 +71,11 @@ return Index;
 			  	break;
 			case 'bomb':
 			  	document.getElementById("bomb-picked").innerHTML = 1;
-			  	player.hasBombEqupped = true;
+			  	player.hasBombEquipped = true;
 			  	break;
 			case 'shuriken':
 				document.getElementById("shuriken-picked").innerHTML = 1;
-				player.hasShurikenEqupped = true;
+				player.hasShurikenEquipped = true;
 				break;
 			default:
 			  	break;

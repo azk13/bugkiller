@@ -14,6 +14,9 @@ function Weapon(centerPoint, index, type,name)
 	this.column = 0;
 	this.identity = null; // weapon identity, e.g. knife, bomb etc. (to pick up weapon purposes)
 
+	// true when Bob is holding on to it - decrease life
+	this.active = false;
+
     //Type of the weapon can be Defend,Construct,Attack
     this.type=type;
     // Every goal has a speicfic name for the weapon
