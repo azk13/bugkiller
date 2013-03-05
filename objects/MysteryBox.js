@@ -38,22 +38,34 @@ function MysteryBox(centerPoint, width, height){
 		{
 			case 1:
 				this.item = 1;
-				isknife = true;
+				this.isknife = true;
+				this.isbomb = false;
+				this.isshuriken = false;
+				this.isenemy = false;
 				//Mystery box contains knife
 				break;
 			case 2:
 				this.item = 2;
-				isbomb = true;
+				this.isknife = false;
+				this.isbomb = true;
+				this.isshuriken = false;
+				this.isenemy = false;
 				//Mystery box contains bomb
 				break;
 			case 3:
 				this.item = 3;
-				isshuriken = true;
+				this.isknife = false;
+				this.isbomb = false;
+				this.isshuriken = true;
+				this.isenemy = false;
 				//Mystery box contains shuriken
 				break;
 			case 4:
 				this.item = 4;
-				isenemy = true;
+				this.isknife = false;
+				this.isbomb = false;
+				this.isshuriken = false;
+				this.isenemy = true;
 				//Mystery box contains enemy
 				break;
 		}
