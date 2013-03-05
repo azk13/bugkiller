@@ -92,9 +92,9 @@ function Room(){
     baskets[4] = new Basket(new Point(this.map[2][11].point.x, this.map[2][11].point.y), 40, 40);
     baskets[5] = new Basket(new Point(this.map[12][5].point.x, this.map[12][5].point.y), 40, 40);
 
-	weapons[0] = new Weapon(new Point(this.map[13][10].point.x, this.map[13][10].point.y), 0, 'Attack', 'knife');
-	weapons[1] = new Weapon(new Point(this.map[11][10].point.x, this.map[11][10].point.y), 1, 'Attack', 'bomb');
-	weapons[2] = new Weapon(new Point(this.map[13][13].point.x, this.map[13][13].point.y), 2, 'Attack', 'shuriken');
+	weapons[0] = new Weapon(new Point(this.map[13][10].point.x, this.map[13][10].point.y), 0, 'Attack', 'Knife');
+	weapons[1] = new Weapon(new Point(this.map[11][10].point.x, this.map[11][10].point.y), 1, 'Attack', 'Bomb');
+	weapons[2] = new Weapon(new Point(this.map[13][13].point.x, this.map[13][13].point.y), 2, 'Attack', 'Shuriken');
 
 
     var mysterybox = new MysteryBox(new Point(this.map[1][12].point.x, this.map[1][12].point.y), 40, 40);

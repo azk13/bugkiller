@@ -28,17 +28,17 @@ function Weapon(centerPoint, index, type,name)
 
     switch(name)
 	{
-		case 'knife':
+		case 'Knife':
 		  	this.Intrinsic.color = 'grey';
-		  	this.identity = 'knife';
+		  	this.identity = 'Knife';
 		  	break;
-		case 'bomb':
+		case 'Bomb':
 		  	this.Intrinsic.color = 'aqua';
-		  	this.identity = 'bomb';
+		  	this.identity = 'Bomb';
 		  	break;
-		case 'shuriken':
+		case 'Shuriken':
 			this.Intrinsic.color = 'red';
-			this.identity = 'shuriken';
+			this.identity = 'Shuriken';
 			break;
 		default:
 		  	break;

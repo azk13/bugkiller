@@ -80,7 +80,7 @@
            // Press 1,2,3 to switch weapon
            if(event.keyCode == 49) {
                 if(player.hasBombEquipped) {
-                    player.activeWeapon = 'bomb';
+                    player.activeWeapon = 'Bomb';
                     document.getElementById("active-weapon").innerHTML = 'Bomb';
                 }
                     
@@ -89,7 +89,7 @@
            if(event.keyCode == 50) {
                 if(player.hasKnifeEquipped){
                     
-                    player.activeWeapon = 'knife';
+                    player.activeWeapon = 'Knife';
                     document.getElementById("active-weapon").innerHTML = 'Knife';
                 }
                     
@@ -97,7 +97,7 @@
 
            if(event.keyCode == 51) {
                 if(player.hasShurikenEquipped){
-                  player.activeWeapon = 'shuriken';
+                  player.activeWeapon = 'Shuriken';
                   document.getElementById("active-weapon").innerHTML = 'Shuriken';
                 }
                     

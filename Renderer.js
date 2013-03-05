@@ -128,6 +128,7 @@ var alt=1,rr=8;
 		this.drawWeapons();
 		this.drawPath();
 		this.drawMysteryBox();
+		this.setWeaponHealth();
 		//hud.updateHUD();
 		renderingEngine.writeText("X:"+player.Intrinsic.centerPoint.x+" Y:"+player.Intrinsic.centerPoint.y,player.Intrinsic.centerPoint);
 				renderingEngine.writeText("X:"+ants[0].Intrinsic.centerPoint.x+" Y:"+ants[0].Intrinsic.centerPoint.y,ants[0].Intrinsic.centerPoint);
@@ -171,12 +172,47 @@ var alt=1,rr=8;
 			this.drawCharacter(bees[i]);  // Jensen
 		}
 	}
-	this.setBobHealth = function(){
+	this.setBobHealth = function(){ // Jensen
 		var BobHealth = player.health;
 		document.getElementById("bob-health").style.width= BobHealth + '%';
 		
 		if(BobHealth <= 0) {
 			alert("You are dead!");
+		}
+	}
+	this.setWeaponHealth = function(){
+
+		var activeWeaponHealth = player.activeWeapon;
+
+
+		switch(activeWeaponHealth)
+		{
+			case 'Knife':
+			  	player.knifeHealth -=0.5;
+			  	document.getElementById("knife-health").style.width= player.knifeHealth + '%';
+			  	if(player.knifeHealth <= 0) {
+					player.hasKnifeEquipped = false;
+					document.getElementById("knife-picked").innerHTML = 0;
+				}
+			  	break;
+			case 'Bomb':
+			  	player.bombHealth -=0.5;
+			  	document.getElementById("bomb-health").style.width= player.bombHealth + '%';
+			  	if(player.bombHealth <= 0) {
+					player.hasBombEquipped = false;
+					document.getElementById("bomb-picked").innerHTML = 0;
+				}
+			  	break;
+			case 'Shuriken':
+				player.shurikenHealth -=0.5;
+			  	document.getElementById("shuriken-health").style.width= player.shurikenHealth + '%';
+			  	if(player.shurikenHealth <= 0) {
+					player.hasShurikenEquipped = false;
+					document.getElementById("shuriken-picked").innerHTML = 0;
+				}
+				break;
+			default:
+			  	break;
 		}
 	}
 

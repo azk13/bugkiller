@@ -16,8 +16,11 @@ function Bob(centerPoint, width, height){
 	this.image.src = "imgs/char_bob.png";
 
 	this.hasKnifeEquipped = false;
+	this.knifeHealth = 100;
 	this.hasBombEquipped = false;
+	this.bombHealth = 100;
 	this.hasShurikenEquipped = false;
+	this.shurikenHealth = 100;
 	//this.hasConverterEquipped = false;
 	//this.hasSheildEquipped = false;
 	this.activeWeapon = 'null';

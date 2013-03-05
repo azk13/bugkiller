@@ -144,17 +144,20 @@ Output: Id ant is 10 cells closet to bob it will move towards another ant
 
 		switch(weaponIdentity)
 		{
-			case 'knife':
+			case 'Knife':
 			  	document.getElementById("knife-picked").innerHTML = 1;
 			  	player.hasKnifeEquipped = true;
+                player.knifeHealth = 100;
 			  	break;
-			case 'bomb':
+			case 'Bomb':
 			  	document.getElementById("bomb-picked").innerHTML = 1;
 			  	player.hasBombEquipped = true;
+                player.bombHealth = 100;
 			  	break;
-			case 'shuriken':
+			case 'Shuriken':
 				document.getElementById("shuriken-picked").innerHTML = 1;
 				player.hasShurikenEquipped = true;
+                player.shurikenHealth = 100;
 				break;
 			default:
 			  	break;
