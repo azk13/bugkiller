@@ -29,8 +29,8 @@ var alt=1,rr=8;
 		{
 
 			if(alt%rr == 0)			
-			//pathfinding.objectgo(ants[i],player);
-              //  ai.antAttackBob();
+			pathfinding.objectgo(ants[i],player);
+                ai.antAttackBob(ants[i],player);
 			physicsEngine.updatePoint(ants[i]);	
 			boundcheck.detectCollisionWithWalls(ants[i]);
 			gridvacancy.occupancy();
@@ -42,7 +42,7 @@ var alt=1,rr=8;
 		physicsEngine.updatePoint(ants[0]);	
 		boundcheck.detectCollisionWithWalls(ants[0]);
 		gridvacancy.occupancy();
-        ai.antfleefromBob(ants,player);
+      //  ai.antfleefromBob(ants,player);
 
 		for(var i=0;i<bees.length;i++)
 		{		

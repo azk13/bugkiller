@@ -37,8 +37,8 @@ function getNearestAntIndex(enemy,indextoexclude)
 
   }
 /************************************
-     Intput : Enemy centrepoint,player centre point,how many cells to check
-     Output: True if Enemy no of from boe cell
+     Input : Enemy centrepoint,player centre point,how many cells to check
+     Output: True if Enemy no of cells  from bee cell
      ************************************/
 function checkEnemyFromBob(enemy,player,noOfCells)
 {
@@ -55,7 +55,7 @@ this.attackNearestBasket = function(enemy)
   pathfinding.objectgo(enemy,baskets[getNearestBasketIndex(enemy)]);
 }
 /************************************
- Intput : ant that need to go to the nearest ant and its index
+ Input : ant that need to go to the nearest ant and its index
  Output: The enemy move to nearest ant
 ************************************/
 this.antMoveToNearestAnt=function(enemy,ants,excludeindex)
@@ -64,8 +64,8 @@ this.antMoveToNearestAnt=function(enemy,ants,excludeindex)
 }
 
 /************************************
-Intput : Ant
-Output:Decide whether this ant can attack bob
+Input : Ant,bob
+Output:Decide whether this ant can attack bob and then attack
 ************************************/
  this.antAttackBob=function(ant,bob)
  {
@@ -115,7 +115,16 @@ Output:Decide whether this ant can attack bob
 
  }
 /************************************
-Intput : Ants and bob and the index of the ant
+Input : Ant,bob
+ Output:Decide whether this ant can attack bob
+************************************/
+ this.antDefendBob=function(ant,bob)
+ {
+
+
+ }
+/************************************
+Input : All the Ants and bob and the index of the ant
 Output: Id ant is 10 cells closet to bob it will move towards another ant
  ************************************/
  this.antfleefromBob=function(ants,bob)
@@ -135,6 +144,24 @@ Output: Id ant is 10 cells closet to bob it will move towards another ant
      }
 
  }
+/************************************
+Input : Ants which need to pickup health
+ Output: Ant will pickup health
+************************************/
+ this.antpickUpHealth=function(ant)
+ {
+
+ }
+    /************************************
+     Input : Ants which need to construct hive
+     Output: Ant start constructing hive at appropriate place
+     ************************************/
+ this.antConstructHive=function(ant)
+ {
+
+ }
+
+
  this.pickedUpWeapon = function(row, column){
 
 		var weaponIdentity;
@@ -144,20 +171,17 @@ Output: Id ant is 10 cells closet to bob it will move towards another ant
 
 		switch(weaponIdentity)
 		{
-			case 'Knife':
+			case 'knife':
 			  	document.getElementById("knife-picked").innerHTML = 1;
 			  	player.hasKnifeEquipped = true;
-                player.knifeHealth = 100;
 			  	break;
-			case 'Bomb':
+			case 'bomb':
 			  	document.getElementById("bomb-picked").innerHTML = 1;
 			  	player.hasBombEquipped = true;
-                player.bombHealth = 100;
 			  	break;
-			case 'Shuriken':
+			case 'shuriken':
 				document.getElementById("shuriken-picked").innerHTML = 1;
 				player.hasShurikenEquipped = true;
-                player.shurikenHealth = 100;
 				break;
 			default:
 			  	break;
@@ -175,10 +199,8 @@ Output: Id ant is 10 cells closet to bob it will move towards another ant
  }
 
 
-this.Action = function(enemies)
-{
-	
-
+ this.Action = function(enemies)
+ {
 }
  function ToWin(enemies)
  {
