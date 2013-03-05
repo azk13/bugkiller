@@ -3,8 +3,10 @@
 <head>
   <title>AI</title>
   <meta charset="utf-8">
-  <link href='http://fonts.googleapis.com/css?family=Iceland' rel='stylesheet' type='text/css'>
+  <!--
+  <link href='http://fonts.googleapis.com/css?family=Iceland' rel='stylesheet' type='text/css'>-->
   <link href="style.css" rel="stylesheet" type="text/css">
+  <script type="text/javascript" language="javascript" src="getClassName.js"></script>
   <script type="text/javascript" language="javascript" src="Logger.js"></script>
   <script type="text/javascript" language="javascript" src="Point.js"></script>
   <script type="text/javascript" language="javascript" src="objects\Intrinsic.js"></script> 
@@ -72,21 +74,21 @@
       <div id="weapon-display">
         <h2>Weapon</h2>
         <ul>
-          <li>
+          <li id='bomb'>
             <aside id='bomb-color'></aside>
             <h4>Bomb  x <span id='bomb-picked'>0</span></h4>
             <div class="progress progress-warning progress-striped active">
               <div class="bar" style="width: 40%;"></div>
             </div>
           </li>
-          <li>
+          <li id='knife'>
             <aside id='knife-color'></aside>
             <h4>Knife  x <span id='knife-picked'>0</span></h4>
             <div class="progress progress-warning progress-striped active">
               <div class="bar" style="width: 60%;"></div>
             </div>
           </li>
-          <li>
+          <li id='shuriken'>
             <aside id='shuriken-color'></aside>
             <h4>Shuriken  x <span id='shuriken-picked'>0</span></h4>
             <div class="progress progress-warning progress-striped active">
@@ -94,6 +96,9 @@
             </div>
           </li>
         </ul>
+
+        <h2>Loaded</h2>
+          <h4 id="active-weapon">None</h4>
       </div>
 
 

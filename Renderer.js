@@ -179,6 +179,26 @@ var alt=1,rr=8;
 			alert("You are dead!");
 		}
 	}
+
+	// Jensen.
+	this.activeWeapon = function(){
+
+		switch(player.activeWeapon)
+		{
+			case 'knife':
+			  	
+			  	break;
+			case 'bomb':
+			  	document.getElementById("bomb").style.fontSize="25px";
+			  	break;
+			case 'shuriken':
+				document.getElementById("shuriken").style.fontSize="25px";
+				break;
+			default:
+			  	break;
+		}
+	}
+
 	this.drawMysteryBox = function(){
 		var mysterybox = room.getmysterybox();
 		ctx.fillStyle = '#FF00FF';

@@ -71,36 +71,41 @@
     }
 
     document.addEventListener('keydown', function(event) {
+
            var playerrow = pathfinding.getObjectIndexRow(player);
            var playercol = pathfinding.getObjectIndexCol(player);
            var trackActiveWeapon = 0;
            var activeWeapon = trackActiveWeapon%3; // three types of weapons
 
-           // Press Enter to switch active weapon
-           if(event.keyCode == 13) {
-
-              switch(activeWeapon)
-              {
-                case 'knife':
-                    document.getElementById("knife-picked").innerHTML = 1;
-                    player.hasKnifeEquipped = true;
-                    break;
-                case 'bomb':
-                    document.getElementById("bomb-picked").innerHTML = 1;
-                    player.hasBombEquipped = true;
-                    break;
-                case 'shuriken':
-                  document.getElementById("shuriken-picked").innerHTML = 1;
-                  player.hasShurikenEquipped = true;
-                  break;
-                default:
-                    break;
-              }
-
-            trackActiveWeapon++;
+           // Press 1,2,3 to switch weapon
+           if(event.keyCode == 49) {
+                if(player.hasBombEquipped) {
+                    player.activeWeapon = 'bomb';
+                    document.getElementById("active-weapon").innerHTML = 'Bomb';
+                }
+                    
            }
-          
 
+           if(event.keyCode == 50) {
+                if(player.hasKnifeEquipped){
+                    
+                    player.activeWeapon = 'knife';
+                    document.getElementById("active-weapon").innerHTML = 'Knife';
+                }
+                    
+           }
+
+           if(event.keyCode == 51) {
+                if(player.hasShurikenEquipped){
+                  player.activeWeapon = 'shuriken';
+                  document.getElementById("active-weapon").innerHTML = 'Shuriken';
+                }
+                    
+           }
+
+    
+          
+           // Press up down left right to move Bob
           if(event.keyCode == 37) {
             //go left
             if(playercol != 0)
