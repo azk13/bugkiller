@@ -6,24 +6,24 @@ function Boundcheck(){
 
 		if (((object.Intrinsic.centerPoint.x + object.Intrinsic.radius) > room.width)){
 		object.Intrinsic.stop();
-		object.Intrinsic.centerPoint.x = Math.floor(room.width - object.Intrinsic.radius);
+		object.Intrinsic.centerPoint.x = room.map[0][room.columns-1].point.x;
 			//logger.log('object hit right wall!');
 
 		}
 		else if (((object.Intrinsic.centerPoint.y + object.Intrinsic.radius) > room.height)){
 			//logger.log('object hit bottom wall');
 		object.Intrinsic.stop();
-		object.Intrinsic.centerPoint.y = Math.floor(room.height - object.Intrinsic.radius);
+		object.Intrinsic.centerPoint.y = room.map[room.rows-1][0].point.y;
 		}
 		else if (((object.Intrinsic.centerPoint.y - object.Intrinsic.radius) < 0)){
 			//logger.log('object hit top wall');	
 		object.Intrinsic.stop();
-		object.Intrinsic.centerPoint.y = Math.floor(object.Intrinsic.radius);
+		object.Intrinsic.centerPoint.y = room.map[0][0].point.y;
 		}
-		else if (((object.Intrinsic.centerPoint.x - object.Intrinsic.radius) < 0)){
-			//logger.log('Ant hit left wall');
+		else if ((Math.floor(object.Intrinsic.centerPoint.x - object.Intrinsic.radius) < 0)){
+		//	logger.log('Ant hit left wall');
 		object.Intrinsic.stop();
-		object.Intrinsic.centerPoint.x = Math.floor(object.Intrinsic.radius);
+		object.Intrinsic.centerPoint.x = room.map[0][0].point.x;
 		}
 	}
 

@@ -3,7 +3,7 @@ function Bob(centerPoint, width, height){
 	var x, y, row, column;
 
 	this.Intrinsic = new Intrinsic(centerPoint, width, height);
-
+	this.identity='Bob'
 	//Jensen
 	this.row = 0;
 	this.column = 0;

@@ -33,6 +33,7 @@ var alt=1,rr=8;
                 ai.antAttackBob(ants[i],player);
             }
 			physicsEngine.updatePoint(ants[i]);	
+
 			boundcheck.detectCollisionWithWalls(ants[i]);
 			gridvacancy.occupancy();
 			//pathfinding.enemyclose(ants[i]);
@@ -40,15 +41,15 @@ var alt=1,rr=8;
 		}
 
 		//ant to go for basket
-		physicsEngine.updatePoint(ants[0]);	
-		boundcheck.detectCollisionWithWalls(ants[0]);
-		gridvacancy.occupancy();
-      //  ai.antfleefromBob(ants,player);
+//		physicsEngine.updatePoint(ants[0]);	
+//		boundcheck.detectCollisionWithWalls(ants[0]);
+//		gridvacancy.occupancy();
+//        ai.antfleefromBob(ants,player);
 
 		for(var i=0;i<bees.length;i++)
 		{		
 			if(alt%rr == 0)
-			pathfinding.objectgo(bees[i],player,true);
+			pathfinding.objectgo(bees[i],player);
 			physicsEngine.updatePoint(bees[i]);	
 			boundcheck.detectCollisionWithWalls(bees[i]);
 			gridvacancy.occupancy();
@@ -131,8 +132,6 @@ var alt=1,rr=8;
 		this.drawMysteryBox();
 		this.setWeaponHealth();
 		//hud.updateHUD();
-		renderingEngine.writeText("X:"+player.Intrinsic.centerPoint.x+" Y:"+player.Intrinsic.centerPoint.y,player.Intrinsic.centerPoint);
-				renderingEngine.writeText("X:"+ants[0].Intrinsic.centerPoint.x+" Y:"+ants[0].Intrinsic.centerPoint.y,ants[0].Intrinsic.centerPoint);
 		//player.Intrinsic.color +=1;
 
 
@@ -266,62 +265,41 @@ var alt=1,rr=8;
 
 		//console.log(character.Intrinsic.color);
 
-/*
-		if(debugMode == true){
-			var stringToSend = "Vel:"+ant.Intrinsic.velocity;
-			var antX = ant.Intrinsic.centerPoint.x + ant.Intrinsic.radius;
-			var antY = ant.Intrinsic.centerPoint.y;
-			var pointToDisplay = new Point(antX, antY);
-			this.writeText(stringToSend, pointToDisplay);
-			pointToDisplay.y += 10;
-			stringToSend = "Dir:"+ant.Intrinsic.direction;
-			this.writeText(stringToSend, pointToDisplay);
-			pointToDisplay.y += 10;
-			stringToSend = "Acc:"+ant.Intrinsic.acceleration;
-			this.writeText(stringToSend, pointToDisplay);
-			pointToDisplay.y += 10;
-			stringToSend = "Spin:"+ant.Intrinsic.spin;
-			this.writeText(stringToSend, pointToDisplay);
 
-			pointToDisplay.y = ant.Intrinsic.centerPoint.y-3;
-			pointToDisplay.x = ant.Intrinsic.centerPoint.x-4;
-			stringToSend = ant.Intrinsic.id;
+		if(debugMode == true){
+			var linelength = 25;
+			var characterX = character.Intrinsic.centerPoint.x + character.Intrinsic.radius;
+			var characterY = character.Intrinsic.centerPoint.y;
+			var stringToSend = "X:"+Math.floor(character.Intrinsic.centerPoint.x/room.cellsize)+" Y:"+Math.floor(characterY/room.cellsize);			
+			var pointToDisplay = new Point(characterX, characterY);
+			this.writeText(stringToSend, pointToDisplay);
+			pointToDisplay.y += 10;
+			stringToSend = "Dir:"+character.Intrinsic.direction;
+			this.writeText(stringToSend, pointToDisplay);
+			pointToDisplay.y += 10;
+
+			pointToDisplay.y = character.Intrinsic.centerPoint.y-10;
+			pointToDisplay.x = character.Intrinsic.centerPoint.x-4;
+			stringToSend = character.identity;
 			this.writeText(stringToSend, pointToDisplay);
 	    	// Draw arrow of velocity
 
-	    	var endX = ant.Intrinsic.centerPoint.x + ant.Intrinsic.velocity * Math.cos(ant.Intrinsic.direction);
-	    	var endY = ant.Intrinsic.centerPoint.y + ant.Intrinsic.velocity * Math.sin(ant.Intrinsic.direction);
+	    	var endX = character.Intrinsic.centerPoint.x + linelength * Math.cos(character.Intrinsic.direction);
+	    	var endY = character.Intrinsic.centerPoint.y + linelength * Math.sin(character.Intrinsic.direction);
 	    	ctx.beginPath();
-	    	ctx.moveTo(ant.Intrinsic.centerPoint.x,ant.Intrinsic.centerPoint.y);
+	    	ctx.moveTo(character.Intrinsic.centerPoint.x,character.Intrinsic.centerPoint.y);
 	    	ctx.lineTo(endX,endY);
 	    	ctx.lineWidth = 5;
 	    	ctx.strokeStyle = 'red';
 	    	ctx.stroke();
 
-	    	var horizX = ant.Intrinsic.centerPoint.x - 45;
-	    	var horizY = ant.Intrinsic.centerPoint.x + 45;
-	    	ctx.beginPath();
-	    	ctx.moveTo(horizX,ant.Intrinsic.centerPoint.y);
-	    	ctx.lineTo(horizY,ant.Intrinsic.centerPoint.y);
-	    	ctx.lineWidth = 1;
-	    	ctx.strokeStyle = 'black';
-	    	ctx.stroke();
-
-	    	var vertX = ant.Intrinsic.centerPoint.y - 45;
-	    	var vertY = ant.Intrinsic.centerPoint.y + 45;
-	    	ctx.beginPath();
-	    	ctx.moveTo(ant.Intrinsic.centerPoint.x,vertX);
-	    	ctx.lineTo(ant.Intrinsic.centerPoint.x,vertY);
-	    	ctx.lineWidth = 0.5;
-	    	ctx.strokeStyle = 'blue';
-	    	ctx.stroke();
 	    }//end if(debugMode == true)
-*/
+
 	
 	}
 	/*write text to the canvas*/
 	this.writeText = function (myString, myPoint) {
-		ctx.fillStyle = "purple";
+		ctx.fillStyle = "blue";
 		ctx.font = "bold 10px Arial";
 		ctx.fillText(myString, myPoint.x, myPoint.y);
 	}//end writeText*/
