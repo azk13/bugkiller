@@ -189,21 +189,45 @@ var upfailed =0,downfailed=0,leftfailed=0,rightfailed=0;
 //if((prevy == object.Intrinsic.centerPoint.y && prevx == object.Intrinsic.centerPoint.x))
 //  {
   if(goright && goup)
-  {physicsEngine.applyForceAtAngle(object,diagonalmovevel,Math.PI*3.5/2);}
+  {
+    physicsEngine.applyForceAtAngle(object,diagonalmovevel,Math.PI*3.5/2);
+    room.map[objectrow-1][objectcol+1].occupied = true;
+  }
   else if(goright && godown)
-  {physicsEngine.applyForceAtAngle(object,diagonalmovevel,Math.PI/4);}
+  {
+    physicsEngine.applyForceAtAngle(object,diagonalmovevel,Math.PI/4);
+    room.map[objectrow+1][objectcol+1].occupied = true;
+  }
   else if(goleft && goup)
-  {physicsEngine.applyForceAtAngle(object,diagonalmovevel,Math.PI*2.5/2);}
+  {
+    physicsEngine.applyForceAtAngle(object,diagonalmovevel,Math.PI*2.5/2);
+    room.map[objectrow-1][objectcol-1].occupied = true;
+  }
   else if(goleft && godown)
-  {physicsEngine.applyForceAtAngle(object,diagonalmovevel,Math.PI*1.5/2);}
+  {
+    physicsEngine.applyForceAtAngle(object,diagonalmovevel,Math.PI*1.5/2);
+    room.map[objectrow+1][objectcol-1].occupied = true;
+  }
   else if(goup)
-  {physicsEngine.applyForceAtAngle(object,400,Math.PI*3/2);}
+  {
+    physicsEngine.applyForceAtAngle(object,400,Math.PI*3/2);
+    room.map[objectrow-1][objectcol].occupied = true;
+  }
   else if(godown)
-  {physicsEngine.applyForceAtAngle(object,400,Math.PI/2);}
+  {
+    physicsEngine.applyForceAtAngle(object,400,Math.PI/2);
+    room.map[objectrow+1][objectcol].occupied = true;
+  }
   else if(goleft)
-  {physicsEngine.applyForceAtAngle(object,400,Math.PI);}
+  {
+    physicsEngine.applyForceAtAngle(object,400,Math.PI);
+    room.map[objectrow][objectcol-1].occupied = true;
+  }
   else if(goright)
-  {physicsEngine.applyForceAtAngle(object,400,0);}
+  {
+    physicsEngine.applyForceAtAngle(object,400,0);
+    room.map[objectrow][objectcol+1].occupied = true;
+  }
 //  }
   prevy = object.Intrinsic.centerPoint.y;
   prevx = object.Intrinsic.centerPoint.x;
