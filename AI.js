@@ -42,7 +42,7 @@ function getNearestAntIndex(enemy,indextoexclude)
      ************************************/
 function checkEnemyFromBob(enemy,player,noOfCells)
 {
-  var checkdistance=40*noOfCells;
+  var checkdistance=room.cellsize*noOfCells;
   var distance =math.getDistanceBetweenTwoPoints(enemy,player);
   if(distance<=checkdistance)
     return true;

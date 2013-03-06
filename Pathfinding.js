@@ -3,12 +3,13 @@ function Pathfinding(grid)
 
   var prevx = 0,prevy = 0;
   
-	this.objectgo = function(object,endpoint)
+	this.objectgo = function(object,endpoint,reverse = false)
   {
     var goup = false;
     var godown = false;
     var goright = false;
-    var goleft = false;
+    var goleft = false;      
+
     var diagonalmovevel = 400/Math.sin((Math.PI/4));
     //console.log("Diag Vel = "+diagonalmovevel);
     var objectrow = this.getObjectIndexRow(object);
@@ -20,6 +21,8 @@ function Pathfinding(grid)
 
 var upfailed =0,downfailed=0,leftfailed=0,rightfailed=0;
 //row index increment to go down
+      if(!reverse)
+    {
     if(objectrow < endpointrow)
     {
       if(!(room.map[(objectrow+1)][objectcol].occupied))         
@@ -52,8 +55,47 @@ var upfailed =0,downfailed=0,leftfailed=0,rightfailed=0;
     else
       {leftfailed=1;}
     }
-
-
+    }
+    //if reverse activated for fleeing--------------------------------------------------
+    else
+    {
+    if(objectrow > endpointrow)
+    {
+      if(objectrow!=room.rows-1)
+      if(!(room.map[(objectrow+1)][objectcol].occupied))         
+      {godown = true;}
+      else
+      {downfailed = 1;}
+    }
+//row index increment to go up  
+    if(objectrow!=0)  
+    if(objectrow < endpointrow)
+    {
+      if(!(room.map[(objectrow-1)][objectcol].occupied))  
+      {goup = true;}
+    else
+      {upfailed=1;}
+    }
+//col index increment to go right    
+    if(objectcol > endpointcol)
+    {
+      if(objectcol!=room.columns-1)
+      if(!(room.map[objectrow][(objectcol+1)].occupied))  
+      {goright = true;}
+    else
+      {rightfailed=1;}
+    }
+//col index increment to go left   
+    if(objectcol < endpointcol)
+    {
+    //left
+    if(objectcol!=0)
+      if(!(room.map[objectrow][(objectcol-1)].occupied))
+      {goleft = true;}
+    else
+      {leftfailed=1;}
+    }      
+    }
 
     //if not going any direction
     if(!goleft && !goright && !goup && !godown)
@@ -188,47 +230,50 @@ var upfailed =0,downfailed=0,leftfailed=0,rightfailed=0;
 //      console.log("prevx:"+prevx+" Current X:"+ object.Intrinsic.centerPoint.x);
 //if((prevy == object.Intrinsic.centerPoint.y && prevx == object.Intrinsic.centerPoint.x))
 //  {
+  
   if(goright && goup)
   {
     physicsEngine.applyForceAtAngle(object,diagonalmovevel,Math.PI*3.5/2);
-    room.map[objectrow-1][objectcol+1].occupied = true;
+//    room.map[objectrow-1][objectcol+1].occupied = true;
   }
   else if(goright && godown)
   {
     physicsEngine.applyForceAtAngle(object,diagonalmovevel,Math.PI/4);
-    room.map[objectrow+1][objectcol+1].occupied = true;
+//    room.map[objectrow+1][objectcol+1].occupied = true;
   }
   else if(goleft && goup)
   {
     physicsEngine.applyForceAtAngle(object,diagonalmovevel,Math.PI*2.5/2);
-    room.map[objectrow-1][objectcol-1].occupied = true;
+//    room.map[objectrow-1][objectcol-1].occupied = true;
   }
   else if(goleft && godown)
   {
     physicsEngine.applyForceAtAngle(object,diagonalmovevel,Math.PI*1.5/2);
-    room.map[objectrow+1][objectcol-1].occupied = true;
+//    room.map[objectrow+1][objectcol-1].occupied = true;
   }
   else if(goup)
   {
     physicsEngine.applyForceAtAngle(object,400,Math.PI*3/2);
-    room.map[objectrow-1][objectcol].occupied = true;
+//    room.map[objectrow-1][objectcol].occupied = true;
   }
   else if(godown)
   {
     physicsEngine.applyForceAtAngle(object,400,Math.PI/2);
-    room.map[objectrow+1][objectcol].occupied = true;
+//    room.map[objectrow+1][objectcol].occupied = true;
   }
   else if(goleft)
   {
     physicsEngine.applyForceAtAngle(object,400,Math.PI);
-    room.map[objectrow][objectcol-1].occupied = true;
+//    room.map[objectrow][objectcol-1].occupied = true;
   }
   else if(goright)
   {
     physicsEngine.applyForceAtAngle(object,400,0);
-    room.map[objectrow][objectcol+1].occupied = true;
+//    room.map[objectrow][objectcol+1].occupied = true;
   }
 //  }
+
+room.map[objectrow][objectcol].occupied=true;
   prevy = object.Intrinsic.centerPoint.y;
   prevx = object.Intrinsic.centerPoint.x;
 
