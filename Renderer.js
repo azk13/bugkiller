@@ -270,11 +270,14 @@ var alt=1,rr=8;
 			var linelength = 25;
 			var characterX = character.Intrinsic.centerPoint.x + character.Intrinsic.radius;
 			var characterY = character.Intrinsic.centerPoint.y;
-			var stringToSend = "X:"+Math.floor(character.Intrinsic.centerPoint.x/room.cellsize)+" Y:"+Math.floor(characterY/room.cellsize);			
+			var stringToSend = "Row:"+Math.floor(character.Intrinsic.centerPoint.x/room.cellsize)+" Column:"+Math.floor(characterY/room.cellsize);			
 			var pointToDisplay = new Point(characterX, characterY);
 			this.writeText(stringToSend, pointToDisplay);
 			pointToDisplay.y += 10;
-			stringToSend = "Dir:"+character.Intrinsic.direction;
+			stringToSend = "X:"+character.Intrinsic.centerPoint.x+" Y:"+characterY;
+			this.writeText(stringToSend, pointToDisplay);
+			pointToDisplay.y += 10;			
+			stringToSend = "Dir:"+character.Intrinsic.direction.toFixed(2);
 			this.writeText(stringToSend, pointToDisplay);
 			pointToDisplay.y += 10;
 

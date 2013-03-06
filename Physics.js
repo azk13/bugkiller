@@ -42,8 +42,8 @@ function Physics(){
 			}
 		}
 		//this is where the next position of x and y is decided
-		object.Intrinsic.centerPoint.x = Math.floor(object.Intrinsic.centerPoint.x + x_disp);
-		object.Intrinsic.centerPoint.y = Math.floor(object.Intrinsic.centerPoint.y + y_disp);
+		object.Intrinsic.centerPoint.x = Math.round(object.Intrinsic.centerPoint.x + x_disp);
+		object.Intrinsic.centerPoint.y = Math.round(object.Intrinsic.centerPoint.y + y_disp);
 		object.Intrinsic.velocity = endVelocity;
 
 		if (object.Intrinsic.velocity > 0){
