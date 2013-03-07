@@ -193,6 +193,31 @@ Input : Ants which need to pickup health
 
  }
 
+ this.stepBombCheck = function(enemy){
+    enemyRow = enemy.Intrinsic.cellpos.x;
+    enemyColumn = enemy.Intrinsic.cellpos.y;
+    enemyType = enemy.identity;
+
+    if(room.map[enemyRow][enemyColumn].weapon.identity == 'Bomb') {
+        // delete the enemy
+        if(enemyType == 'bee') {
+            bees.splice(enemy.index, 1);
+            // update all enemy's location in the wewapons array
+            for(var k=0; k<bees.length; k++){
+                bees[k].index = k;
+            }
+        } else if (enemyType == 'ant') {
+            ants.splice(enemy.index, 1);
+            // update all enemy's location in the wewapons array
+            for(var k=0; k<ants.length; k++){
+                ants[k].index = k;
+            }
+        }
+        
+        
+    }
+ }
+
  this.Action = function(enemies)
  {
 }

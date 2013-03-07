@@ -36,6 +36,9 @@ var alt=1,rr=8;
 
 			boundcheck.detectCollisionWithWalls(ants[i]);
 			gridvacancy.occupancy();
+
+			// step on Bomb ~ Jensen
+			ai.stepBombCheck(ants[i]);
 			//pathfinding.enemyclose(ants[i]);
 
 		}
@@ -53,6 +56,8 @@ var alt=1,rr=8;
 			physicsEngine.updatePoint(bees[i]);	
 			boundcheck.detectCollisionWithWalls(bees[i]);
 			gridvacancy.occupancy();
+
+			ai.stepBombCheck(bees[i]);
 			//pathfinding.enemyclose(bees[i]);
 
 		}		
