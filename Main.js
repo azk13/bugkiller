@@ -103,6 +103,52 @@
                     
            }
 
+           // Press Shift to use Active Weapon
+           if(event.keyCode == 16) {
+              
+                switch(player.activeWeapon)
+                {
+                  case 'Knife':
+                      console.log('use knife');
+                      player.knifeHealth -= 20;
+                      document.getElementById("knife-health").style.width= player.knifeHealth + '%';
+                      if(player.knifeHealth <= 0) {
+                        player.hasKnifeEquipped = false;
+                        document.getElementById("knife-picked").innerHTML = 0;
+                        document.getElementById("active-weapon").innerHTML = 'none';
+                        player.activeWeapon = 'null';
+
+                      }
+                      break;
+                  case 'Bomb':
+                      console.log('place bomb');
+                      player.bombHealth -= 100;
+                      document.getElementById("bomb-health").style.width= player.bombHealth + '%';
+                      if(player.bombHealth <= 0) {
+                        player.hasBombEquipped = false;
+                        document.getElementById("bomb-picked").innerHTML = 0;
+                        document.getElementById("active-weapon").innerHTML = 'none';
+                        player.activeWeapon = 'null';
+                      }
+                      break;
+                  case 'Shuriken':
+                      player.shurikenHealth -=20;
+                      document.getElementById("shuriken-health").style.width= player.shurikenHealth + '%';
+                      console.log('shoot Shuriken');
+                      if(player.shurikenHealth <= 0) {
+                        player.hasShurikenEquipped = false;
+                        document.getElementById("shuriken-picked").innerHTML = 0;
+                        document.getElementById("active-weapon").innerHTML = 'none';
+                        player.activeWeapon = 'null';
+                      }
+                                  
+                    break;
+                  default:
+                      break;
+                }
+                    
+           }
+
     
           
            // Press up down left right to move Bob

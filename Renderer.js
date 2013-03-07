@@ -130,7 +130,7 @@ var alt=1,rr=8;
 		this.drawWeapons();
 		this.drawPath();
 		this.drawMysteryBox();
-		this.setWeaponHealth();
+		//this.setWeaponHealth();
 		//hud.updateHUD();
 		//player.Intrinsic.color +=1;
 
@@ -188,15 +188,16 @@ var alt=1,rr=8;
 		switch(activeWeaponHealth)
 		{
 			case 'Knife':
-			  	player.knifeHealth -=0.5;
+			  	//player.knifeHealth -=0.5;
 			  	document.getElementById("knife-health").style.width= player.knifeHealth + '%';
 			  	if(player.knifeHealth <= 0) {
 					player.hasKnifeEquipped = false;
 					document.getElementById("knife-picked").innerHTML = 0;
+
 				}
 			  	break;
 			case 'Bomb':
-			  	player.bombHealth -=0.5;
+			  	//player.bombHealth -=0.5;
 			  	document.getElementById("bomb-health").style.width= player.bombHealth + '%';
 			  	if(player.bombHealth <= 0) {
 					player.hasBombEquipped = false;
@@ -204,7 +205,7 @@ var alt=1,rr=8;
 				}
 			  	break;
 			case 'Shuriken':
-				player.shurikenHealth -=0.5;
+				//player.shurikenHealth -=0.5;
 			  	document.getElementById("shuriken-health").style.width= player.shurikenHealth + '%';
 			  	if(player.shurikenHealth <= 0) {
 					player.hasShurikenEquipped = false;
@@ -216,24 +217,6 @@ var alt=1,rr=8;
 		}
 	}
 
-	// Jensen.
-	this.activeWeapon = function(){
-
-		switch(player.activeWeapon)
-		{
-			case 'knife':
-			  	
-			  	break;
-			case 'bomb':
-			  	document.getElementById("bomb").style.fontSize="25px";
-			  	break;
-			case 'shuriken':
-				document.getElementById("shuriken").style.fontSize="25px";
-				break;
-			default:
-			  	break;
-		}
-	}
 
 	this.drawMysteryBox = function(){
 		var mysterybox = room.getmysterybox();
