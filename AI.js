@@ -166,14 +166,17 @@ Input : Ants which need to pickup health
 			case 'Knife':
 			  	document.getElementById("knife-picked").innerHTML = 1;
 			  	player.hasKnifeEquipped = true;
+                player.knifeHealth = 100;
 			  	break;
 			case 'Bomb':
 			  	document.getElementById("bomb-picked").innerHTML = 1;
 			  	player.hasBombEquipped = true;
+                player.bombHealth = 100;
 			  	break;
 			case 'Shuriken':
 				document.getElementById("shuriken-picked").innerHTML = 1;
 				player.hasShurikenEquipped = true;
+                player.shurikenHealth = 100;
 				break;
 			default:
 			  	break;

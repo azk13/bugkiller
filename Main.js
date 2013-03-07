@@ -124,6 +124,15 @@
                   case 'Bomb':
                       console.log('place bomb');
                       player.bombHealth -= 100;
+                      weapons[weapons.length] = new Weapon(new Point(room.map[playerrow][playercol].point.x, room.map[playerrow][playercol].point.y), weapons.length, 'Attack', 'Bomb');
+                      room.map[playerrow][playercol].isWeapon = true;
+                      //weapons[weapons.length].Intrinsic.cellpos.x = playerrow;
+                      //weapons[weapons.length].Intrinsic.cellpos.y = playercol;           
+
+                      // load weapon object in the cell
+                      room.map[playerrow][playercol].weapon = weapons[weapons.length];
+
+
                       document.getElementById("bomb-health").style.width= player.bombHealth + '%';
                       if(player.bombHealth <= 0) {
                         player.hasBombEquipped = false;
@@ -150,8 +159,6 @@
                     
            }
 
-    
-          
            // Press up down left right to move Bob
           if(event.keyCode == 37) {
             //go left

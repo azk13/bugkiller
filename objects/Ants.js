@@ -24,14 +24,14 @@ function Ants(centerPoint, width, height){
 	this.image.src = "imgs/char_ant.png";
     /*****************************************
      * Added by renga for  Idea testing
-     * Goal-1:Attack bob-------Relevant Goal:2,4,3,7
-     * Goal-2:Defend bob-------Relevant Goal:1,3,5,7
-     * Goal-3:Pick up weapon----Relevant Goal: 4,3
-     * Goal-4:Pick up health----Relevant Goal: 4,3
-     * Goal-5:Flee away from bob------Relevant Goal: 4
-     * Goal-6:Attack Basket--------Relevant Goal: none
+     * Goal-1: Attack bob-------Relevant Goal:2,4,3,7
+     * Goal-2: Defend bob-------Relevant Goal:1,3,5,7
+     * Goal-3: Pick up weapon----Relevant Goal: 4,3
+     * Goal-4: Pick up health----Relevant Goal: 4,3
+     * Goal-5: Flee away from bob------Relevant Goal: 4
+     * Goal-6: Attack Basket--------Relevant Goal: none
      * Goal-7: Ant Move to nearest Ant---Relevant Goal: 2,1
-     * Goal-8 :Stay Idle
+     * Goal-8: Stay Idle
      *******************************************/
     this.defaultGoal=6;
     this.goals=new Array();
