@@ -243,8 +243,8 @@ var alt=1,rr=8;
 		ctx.stroke();
 
 		// Jensen
-		character.row = pathfinding.getObjectIndexRow(character);
-		character.column = pathfinding.getObjectIndexCol(character);
+		character.Intrinsic.cellPos.x = pathfinding.getObjectIndexRow(character);
+		character.Intrinsic.cellPos.y = pathfinding.getObjectIndexCol(character);
 
 		//console.log(character.Intrinsic.color);
 
