@@ -14,14 +14,14 @@ function MysteryBox(centerPoint, width, height){
 	this.issheild = false;
 	this.isant = false;
 	this.isenemy = false;
-	this.cellpos = new Point();
+	this.cellpos = new Point((centerPoint.x - 20)/40, (centerPoint.y - 20)/40);
 	this.counter = 0; // Counter to keep track of how long the mystery box has not been touched
 	this.item = 0; // Item 1 = knife, 2 = bomb, 3 = shuriken, 4 = enemy
 
 	
 	this.updateCounter = function(){
 		this.counter++;
-		if(this.counter == 100)
+		if(this.counter == 500)
 		{
 			this.counter = 0;
 			return 1;
@@ -33,6 +33,7 @@ function MysteryBox(centerPoint, width, height){
 	// Spawns new point
 	this.spawn = function(newPoint, item){
 		this.Intrinsic.centerPoint = newPoint;
+		this.cellpos = new Point((newPoint.x - 20) / 40 , (newPoint.y-20)/40); 
 
 		switch(item)
 		{
@@ -106,4 +107,49 @@ function MysteryBox(centerPoint, width, height){
 
 	return item;
 	}
+
+	this.unlock_mysteryBox = function(room, timer){
+
+		var number = weapons.length;
+
+		switch(this.item)
+		{
+			case 1:// Spawn knife
+				weapons.push(new Weapon(this.Intrinsic.centerPoint, number, 'Attack', 'Knife'));
+				console.log(weapons[number].identity);
+				break;
+			case 2:// Spawn bomb
+				weapons.push(new Weapon(this.Intrinsic.centerPoint, number, 'Attack', 'Bomb'));
+				console.log(weapons[number].identity);
+				break;
+			case 3:// Spawn shuriken
+				weapons[number] = (new Weapon(this.Intrinsic.centerPoint, number, 'Attack', 'Shuriken'))
+				console.log(weapons[number].identity);
+				break;
+			case 4:// Spawn enemy
+				break;
+		}
+
+
+		//this.spawn(new Point(60, 60), 1);
+		
+		var available = new Array();
+		// Find places that contain no items to spawn 
+		for(var i = 0; i < room.rows; i++)
+		{
+			for(var j = 0; j < room.columns; j++)
+			{
+				if(!room.map[i][j].occupied && !room.map[i][j].isWeapon) //&& room.map[i][j].isHealth < 0)
+					available.push(room.map[i][j]);
+			}
+		}
+		//mysterybox.spawn(new Point((Math.floor((Math.random() * 880) / 40) + 1) * 40 + 20, (Math.floor((Math.random() * 560) / 40) + 1) * 40 + 20), mysterybox.mysteryBox_spawn(timer));
+		var index = Math.floor(Math.random() * (available.length - 1));
+
+		this.spawn(available[index].point, this.mysteryBox_spawn(timer));
+		console.log(this.mysteryBox_spawn(timer));
+
+	}
+
+	
 }

@@ -76,6 +76,7 @@
            var playercol = pathfinding.getObjectIndexCol(player);
            var trackActiveWeapon = 0;
            var activeWeapon = trackActiveWeapon%3; // three types of weapons
+           var mb = room.getmysterybox();
 
            // Press 1,2,3 to switch weapon
            if(event.keyCode == 49) {
@@ -156,10 +157,15 @@
             //go left
             if(playercol != 0)
             {
+            if(playercol - 1 == mb.cellpos.x && playerrow == mb.cellpos.y) // This is to check if there is a mysterybox, if so, unlock instead of moving into it
+              mb.unlock_mysteryBox(room, renderingEngine.timer);
+            else
+            {
             if(!room.map[playerrow][playercol-1].occupied)
               physicsEngine.applyForceAtAngle(player,playerspeed,Math.PI);
             if(room.map[playerrow][playercol-1].isWeapon) {
               ai.pickedUpWeapon(playerrow, playercol-1);
+            }
             }
             }
           }//end if(event.keyCode == 37)
@@ -167,10 +173,15 @@
             //go right
             if(playercol != room.columns-1)
             {
+            if(playercol + 1 == mb.cellpos.x && playerrow == mb.cellpos.y)
+              mb.unlock_mysteryBox(room, renderingEngine.timer);
+            else
+            {
             if(!room.map[playerrow][playercol+1].occupied)
             physicsEngine.applyForceAtAngle(player,playerspeed,0);
             if(room.map[playerrow][playercol+1].isWeapon) {
               ai.pickedUpWeapon(playerrow, playercol+1);
+            }
             }
             }
           }//end if(event.keyCode == 39)
@@ -178,10 +189,15 @@
             //go up
             if(playerrow != 0)
             {
+            if(playercol == mb.cellpos.x && playerrow - 1 == mb.cellpos.y)
+              mb.unlock_mysteryBox(room, renderingEngine.timer);
+            else
+            {
             if(!room.map[playerrow-1][playercol].occupied)
             physicsEngine.applyForceAtAngle(player,playerspeed,Math.PI*3/2);
             if(room.map[playerrow-1][playercol].isWeapon) {
               ai.pickedUpWeapon(playerrow-1, playercol);
+            }
             }
             }
           }//end if(event.keyCode == 38)
@@ -189,10 +205,15 @@
             //go down
             if(playerrow != room.rows-1)
             {
+            if(playercol == mb.cellpos.x && playerrow + 1 == mb.cellpos.y)
+              mb.unlock_mysteryBox(room, renderingEngine.timer);
+            else
+            {
             if(!room.map[playerrow+1][playercol].occupied)
             physicsEngine.applyForceAtAngle(player,playerspeed,Math.PI/2);
             if(room.map[playerrow+1][playercol].isWeapon) {
               ai.pickedUpWeapon(playerrow+1, playercol);
+            }
             }
             }
           }//end if(event.keyCode == 40)
