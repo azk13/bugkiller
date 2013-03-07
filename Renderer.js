@@ -25,7 +25,7 @@ var alt=1,rr=8;
 			gridvacancy.occupancy();
 		}		
 				
-		for(var i=1;i<ants.length;i++)
+		for(var i=0;i<ants.length;i++)
 		{
 
 			if(alt%rr == 0)			
