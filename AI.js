@@ -159,17 +159,19 @@ Input : Ants which need to pickup health
 		weaponIdentity = room.map[row][column].weapon.identity;
 		weaponIndex = room.map[row][column].weapon.index;
 
+        console.log(weaponIdentity);
+
 		switch(weaponIdentity)
 		{
-			case 'knife':
+			case 'Knife':
 			  	document.getElementById("knife-picked").innerHTML = 1;
 			  	player.hasKnifeEquipped = true;
 			  	break;
-			case 'bomb':
+			case 'Bomb':
 			  	document.getElementById("bomb-picked").innerHTML = 1;
 			  	player.hasBombEquipped = true;
 			  	break;
-			case 'shuriken':
+			case 'Shuriken':
 				document.getElementById("shuriken-picked").innerHTML = 1;
 				player.hasShurikenEquipped = true;
 				break;

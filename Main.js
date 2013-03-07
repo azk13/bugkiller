@@ -157,7 +157,7 @@
             if(playercol != 0)
             {
             if(!room.map[playerrow][playercol-1].occupied)
-            physicsEngine.applyForceAtAngle(player,playerspeed,Math.PI);
+              physicsEngine.applyForceAtAngle(player,playerspeed,Math.PI);
             if(room.map[playerrow][playercol-1].isWeapon) {
               ai.pickedUpWeapon(playerrow, playercol-1);
             }
