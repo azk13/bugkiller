@@ -152,16 +152,6 @@ Input : Ants which need to pickup health
  {
 
  }
-    /************************************
-     Input : Ants which need to construct hive
-     Output: Ant start constructing hive at appropriate place
-     ************************************/
- this.antConstructHive=function(ant)
- {
-
- }
-
-
  this.pickedUpWeapon = function(row, column){
 
 		var weaponIdentity;
@@ -198,7 +188,6 @@ Input : Ants which need to pickup health
 
  }
 
-
  this.Action = function(enemies)
  {
 }
@@ -207,22 +196,19 @@ Input : Ants which need to pickup health
 
 
 	}
-function ToLose(enemies)
-{
+ function ToLose(enemies)
+ {
 
 
 	}
-function Attack(enemies,bob)
-{
+ function Attack(enemies,bob)
+ {
 
 	}
-function Defend(self)
-{
+ function Defend(self)
+ {
 
 	}
-function Construct(self)
-{
 
-	}
 
 }

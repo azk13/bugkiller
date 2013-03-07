@@ -3,8 +3,10 @@ function Pathfinding(grid)
 
   var prevx = 0,prevy = 0;
   
-	this.objectgo = function(object,endpoint,reverse = false)
+	this.objectgo = function(object,endpoint,reverse)
   {
+      if(reverse!=true)
+         reverse=false;
     var goup = false;
     var godown = false;
     var goright = false;

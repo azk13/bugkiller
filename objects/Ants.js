@@ -29,8 +29,8 @@ function Ants(centerPoint, width, height){
      * Goal-3:Pick up weapon----Relevant Goal: 4,3
      * Goal-4:Pick up health----Relevant Goal: 4,3
      * Goal-5:Flee away from bob------Relevant Goal: 4
-     * Goal-6:Attack Basket--------Relevant Goal: 3
-     * Goal-7: Ant Move to nearest Ant---Relevant Goal: 5
+     * Goal-6:Attack Basket--------Relevant Goal: none
+     * Goal-7: Ant Move to nearest Ant---Relevant Goal: 2,1
      * Goal-8 :Stay Idle
      *******************************************/
     this.defaultGoal=6;
@@ -71,7 +71,8 @@ function Ants(centerPoint, width, height){
 
 }
 /*****************************************
- * Added by renga for Idea  testing purpose*/
+ * Added by renga for Idea  testing purpose
+ * ****************************************/
 
 function Goal(goalnumber,releventgoal,priority){
     this.goalNumber=goalnumber;
