@@ -78,7 +78,7 @@
            var activeWeapon = trackActiveWeapon%3; // three types of weapons
            var mb = room.getmysterybox();
 
-           // Press 1,2,3 to switch weapon
+           // Press 1,2,3 to switch weapon ~ jensen
            if(event.keyCode == 49) {
                 if(player.hasBombEquipped) {
                     player.activeWeapon = 'Bomb';
@@ -104,13 +104,12 @@
                     
            }
 
-           // Press Shift to use Active Weapon
+           // Press Shift to use Active Weapon ~ jensen
            if(event.keyCode == 16) {
               
                 switch(player.activeWeapon)
                 {
                   case 'Knife':
-                      console.log('use knife');
                       player.knifeHealth -= 20;
                       document.getElementById("knife-health").style.width= player.knifeHealth + '%';
                       if(player.knifeHealth <= 0) {
@@ -122,15 +121,22 @@
                       }
                       break;
                   case 'Bomb':
-                      console.log('place bomb');
                       player.bombHealth -= 100;
-                      weapons[weapons.length] = new Weapon(new Point(room.map[playerrow][playercol].point.x, room.map[playerrow][playercol].point.y), weapons.length, 'Attack', 'Bomb');
-                      room.map[playerrow][playercol].isWeapon = true;
-                      //weapons[weapons.length].Intrinsic.cellpos.x = playerrow;
-                      //weapons[weapons.length].Intrinsic.cellpos.y = playercol;           
 
+                      weapons[weapons.length] = new Weapon(new Point(room.map[playerrow][playercol].point.x, room.map[playerrow][playercol].point.y), weapons.length, 'Attack', 'Bomb');
+
+                      // set the bomb to be active
+                      weapons[weapons.length-1].activeBomb = true;
+
+                      // update map
+                      room.map[playerrow][playercol].isWeapon = true;
+                      // specify it as active Bomb
+                      
                       // load weapon object in the cell
                       room.map[playerrow][playercol].weapon = weapons[weapons.length];
+
+
+
 
 
                       document.getElementById("bomb-health").style.width= player.bombHealth + '%';

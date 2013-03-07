@@ -26,6 +26,9 @@ function Weapon(centerPoint, index, type,name)
     // e.g. I picked up a knife, where is it located in this array - Jensen
     this.index = index;
 
+    // special property for BOMB
+    this.activeBomb = false;
+
     switch(name)
 	{
 		case 'Knife':

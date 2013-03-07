@@ -57,6 +57,7 @@ var alt=1,rr=8;
 			boundcheck.detectCollisionWithWalls(bees[i]);
 			gridvacancy.occupancy();
 
+			// step on Bomb ~ Jensen
 			ai.stepBombCheck(bees[i]);
 			//pathfinding.enemyclose(bees[i]);
 
@@ -144,8 +145,13 @@ var alt=1,rr=8;
 	this.drawWeapons = function() {
 		var weapons = room.getWeapons();
 
+
 		for (var i=0;i<weapons.length;i++){
-			ctx.fillStyle = weapons[i].Intrinsic.color;
+			if(weapons[i].activeBomb == true) {
+				ctx.fillStyle = 'white';
+			} else
+				ctx.fillStyle = weapons[i].Intrinsic.color;
+
 	    	ctx.fillRect(weapons[i].Intrinsic.centerPoint.x-10, weapons[i].Intrinsic.centerPoint.y-10, weapons[i].Intrinsic.width, weapons[i].Intrinsic.height);
 		}
 	}
@@ -185,42 +191,7 @@ var alt=1,rr=8;
 			alert("You are dead!");
 		}
 	}
-	this.setWeaponHealth = function(){
-
-		var activeWeaponHealth = player.activeWeapon;
-
-
-		switch(activeWeaponHealth)
-		{
-			case 'Knife':
-			  	//player.knifeHealth -=0.5;
-			  	document.getElementById("knife-health").style.width= player.knifeHealth + '%';
-			  	if(player.knifeHealth <= 0) {
-					player.hasKnifeEquipped = false;
-					document.getElementById("knife-picked").innerHTML = 0;
-
-				}
-			  	break;
-			case 'Bomb':
-			  	//player.bombHealth -=0.5;
-			  	document.getElementById("bomb-health").style.width= player.bombHealth + '%';
-			  	if(player.bombHealth <= 0) {
-					player.hasBombEquipped = false;
-					document.getElementById("bomb-picked").innerHTML = 0;
-				}
-			  	break;
-			case 'Shuriken':
-				//player.shurikenHealth -=0.5;
-			  	document.getElementById("shuriken-health").style.width= player.shurikenHealth + '%';
-			  	if(player.shurikenHealth <= 0) {
-					player.hasShurikenEquipped = false;
-					document.getElementById("shuriken-picked").innerHTML = 0;
-				}
-				break;
-			default:
-			  	break;
-		}
-	}
+	
 
 
 	this.drawMysteryBox = function(){
@@ -248,8 +219,8 @@ var alt=1,rr=8;
 		ctx.stroke();
 
 		// Jensen
-		character.row = pathfinding.getObjectIndexRow(character);
-		character.column = pathfinding.getObjectIndexCol(character);
+		character.Intrinsic.cellpos.x = pathfinding.getObjectIndexRow(character);
+		character.Intrinsic.cellpos.y = pathfinding.getObjectIndexCol(character);
 
 		//console.log(character.Intrinsic.color);
 

@@ -159,7 +159,6 @@ Input : Ants which need to pickup health
 		weaponIdentity = room.map[row][column].weapon.identity;
 		weaponIndex = room.map[row][column].weapon.index;
 
-        console.log(weaponIdentity);
 
 		switch(weaponIdentity)
 		{
@@ -182,23 +181,17 @@ Input : Ants which need to pickup health
 			  	break;
 		}
 
-		// delete weapon
-		weapons.splice(weaponIndex, 1);
-
-		// update the weapon's location in the wewapons array
-		for(var k=0; k<weapons.length; k++){
-			weapons[k].index = k;
-		}
-
-
+        // Update the Room's knowledge of existing weapons
+		this.updateWeapon(weaponIndex);
  }
 
  this.stepBombCheck = function(enemy){
-    enemyRow = enemy.Intrinsic.cellpos.x;
-    enemyColumn = enemy.Intrinsic.cellpos.y;
-    enemyType = enemy.identity;
+    var enemyRow = enemy.Intrinsic.cellpos.x;
+    var enemyColumn = enemy.Intrinsic.cellpos.y;
+    var enemyType = enemy.identity;
+    var bombLocation = room.map[enemyRow][enemyColumn].weapon;
 
-    if(room.map[enemyRow][enemyColumn].weapon.identity == 'Bomb') {
+    if(bombLocation.activeBomb == true) {
         // delete the enemy
         if(enemyType == 'bee') {
             bees.splice(enemy.index, 1);
@@ -213,8 +206,17 @@ Input : Ants which need to pickup health
                 ants[k].index = k;
             }
         }
-        
-        
+       this.updateWeapon(bombLocation.index);
+    }
+ }
+
+ this.updateWeapon = function(weaponIndex){
+    // delete weapon
+    weapons.splice(weaponIndex, 1);
+
+    // update the weapon's location in the wewapons array
+    for(var k=0; k<weapons.length; k++){
+        weapons[k].index = k;
     }
  }
 
