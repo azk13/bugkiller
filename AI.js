@@ -194,6 +194,7 @@ Input : Ants which need to pickup health
     if(bombLocation.activeBomb == true) {
         // delete the enemy
         if(enemyType == 'bee') {
+            this.bombBlast();
             bees.splice(enemy.index, 1);
             // update all enemy's location in the wewapons array
             for(var k=0; k<bees.length; k++){
@@ -209,12 +210,23 @@ Input : Ants which need to pickup health
        this.updateWeapon(bombLocation.index);
     }
  }
+ 
+ this.bombBlast = function(){
+    var blastRadius = 100;
+    ctx.fillStyle = 'white';
+    ctx.fillRect(100, 100, 100, 100);
+    //alert('entered BombBlast');
+    //setTimeout( this.bombBlast(), 1 );
+}
 
+
+ // jensen
  this.updateWeapon = function(weaponIndex){
+
     // delete weapon
     weapons.splice(weaponIndex, 1);
 
-    // update the weapon's location in the wewapons array
+    // update the weapon's location in the weapons array
     for(var k=0; k<weapons.length; k++){
         weapons[k].index = k;
     }

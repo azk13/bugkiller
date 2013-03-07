@@ -110,54 +110,13 @@
                 switch(player.activeWeapon)
                 {
                   case 'Knife':
-                      player.knifeHealth -= 20;
-                      document.getElementById("knife-health").style.width= player.knifeHealth + '%';
-                      if(player.knifeHealth <= 0) {
-                        player.hasKnifeEquipped = false;
-                        document.getElementById("knife-picked").innerHTML = 0;
-                        document.getElementById("active-weapon").innerHTML = 'none';
-                        player.activeWeapon = 'null';
-
-                      }
+                      player.usingKnife();
                       break;
                   case 'Bomb':
-                      player.bombHealth -= 100;
-
-                      weapons[weapons.length] = new Weapon(new Point(room.map[playerrow][playercol].point.x, room.map[playerrow][playercol].point.y), weapons.length, 'Attack', 'Bomb');
-
-                      // set the bomb to be active
-                      weapons[weapons.length-1].activeBomb = true;
-
-                      // update map
-                      room.map[playerrow][playercol].isWeapon = true;
-                      // specify it as active Bomb
-                      
-                      // load weapon object in the cell
-                      room.map[playerrow][playercol].weapon = weapons[weapons.length];
-
-
-
-
-
-                      document.getElementById("bomb-health").style.width= player.bombHealth + '%';
-                      if(player.bombHealth <= 0) {
-                        player.hasBombEquipped = false;
-                        document.getElementById("bomb-picked").innerHTML = 0;
-                        document.getElementById("active-weapon").innerHTML = 'none';
-                        player.activeWeapon = 'null';
-                      }
+                      player.usingBomb(playerrow, playercol);
                       break;
                   case 'Shuriken':
-                      player.shurikenHealth -=20;
-                      document.getElementById("shuriken-health").style.width= player.shurikenHealth + '%';
-                      console.log('shoot Shuriken');
-                      if(player.shurikenHealth <= 0) {
-                        player.hasShurikenEquipped = false;
-                        document.getElementById("shuriken-picked").innerHTML = 0;
-                        document.getElementById("active-weapon").innerHTML = 'none';
-                        player.activeWeapon = 'null';
-                      }
-                                  
+                     player.usingShuriken();
                     break;
                   default:
                       break;
