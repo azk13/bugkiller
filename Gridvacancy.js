@@ -23,6 +23,9 @@ function Gridvacancy()
 					{
 						room.map[i][j].occupied=true;
 						room.map[i][j].isBob = true;
+						player.Intrinsic.cellpos.x = i;
+						player.Intrinsic.cellpos.y = j;
+
 					}
 				for(var k=0;k<ants.length;k++)
 				{
@@ -30,6 +33,8 @@ function Gridvacancy()
 					{
 						room.map[i][j].occupied=true;
 						room.map[i][j].isEnemy = true;
+						ants[k].Intrinsic.cellpos.x = i;
+						ants[k].Intrinsic.cellpos.y = j;
 					}		
 				}
 				for(var k=0;k<bees.length;k++)
@@ -38,6 +43,8 @@ function Gridvacancy()
 					{
 						room.map[i][j].occupied=true;
 						room.map[i][j].isEnemy = true;
+						bees[k].Intrinsic.cellpos.x = i;
+						bees[k].Intrinsic.cellpos.y = j;						
 					}		
 				}		
 				for(var k=0;k<baskets.length;k++)
@@ -46,6 +53,8 @@ function Gridvacancy()
 					{
 						room.map[i][j].occupied=true;
 						room.map[i][j].isBasket = true;
+						baskets[k].Intrinsic.cellpos.x = i;
+						baskets[k].Intrinsic.cellpos.y = j;					
 					}		
 				}
 				for(var k=0;k<weapons.length;k++)
@@ -56,13 +65,14 @@ function Gridvacancy()
 				//console.log('loading weapon');
 
 						room.map[i][j].isWeapon = true;
+						weapons[k].Intrinsic.cellpos.x = i;
+						weapons[k].Intrinsic.cellpos.y = j;						
 
 						// load weapon object in the cell
 						room.map[i][j].weapon = weapons[k];
 
 						// set the weapon's row and columns - for picking up weapon purposes ~ jensen
-						weapons[k].row = pathfinding.getObjectIndexRow(weapons[k]);
-						weapons[k].column = pathfinding.getObjectIndexCol(weapons[k]);
+
 
 						
 
