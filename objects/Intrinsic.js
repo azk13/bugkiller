@@ -13,7 +13,7 @@ function Intrinsic(centerPoint, width, height){
     //Added by renga
     this.health=100;
     //
-	this.cellpos = new Point(0,0);
+	this.cellPos = new Point(0,0);
 	this.attackrating = 0;
 	this.defenserating = 0;
 	this.isalive = false;

@@ -231,8 +231,8 @@ var alt=1,rr=8;
 		ctx.stroke();
 
 		// Jensen
-		character.Intrinsic.cellpos.x = pathfinding.getObjectIndexRow(character);
-		character.Intrinsic.cellpos.y = pathfinding.getObjectIndexCol(character);
+		character.Intrinsic.cellPos.x = pathfinding.getObjectIndexRow(character);
+		character.Intrinsic.cellPos.y = pathfinding.getObjectIndexCol(character);
 
 		//console.log(character.Intrinsic.color);
 
