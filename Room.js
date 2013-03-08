@@ -101,6 +101,7 @@ function Room(){
 
 
     var mysterybox = new MysteryBox(new Point(this.map[1][12].point.x, this.map[1][12].point.y), 40, 40);
+    var health = new Health(new Point(this.map[0][21].point.x, this.map[0][21].point.y), 30, 30);
 
 
 	this.getBaskets = function() {
@@ -127,6 +128,10 @@ function Room(){
 
     this.getmysterybox = function(){
         return mysterybox;
+    }
+
+    this.getHealth = function(){
+        return health;
     }
 
 

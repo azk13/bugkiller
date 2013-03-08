@@ -136,6 +136,7 @@ var alt=1,rr=8;
 		this.drawWeapons();
 		this.drawPath();
 		this.drawMysteryBox();
+		this.drawHealth();
 		//this.setWeaponHealth();
 		//hud.updateHUD();
 		//player.Intrinsic.color +=1;
@@ -199,6 +200,17 @@ var alt=1,rr=8;
 		ctx.fillStyle = '#FF00FF';
 		ctx.fillRect(mysterybox.Intrinsic.centerPoint.x-20, mysterybox.Intrinsic.centerPoint.y-20, mysterybox.Intrinsic.width, mysterybox.Intrinsic.height);
 	}
+
+	this.drawHealth = function(){
+		var health = room.getHealth();
+		//for (var i = 0; i < health.length; i++)
+		//{
+			ctx.fillStyle = health.Intrinsic.color;
+			ctx.fillRect(health.Intrinsic.centerPoint.x - 15, health.Intrinsic.centerPoint.y - 15, health.Intrinsic.width, health.Intrinsic.height);
+		//}
+
+	}
+
 	this.drawCharacter = function(character){
 
 		// clear current image
