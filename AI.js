@@ -212,7 +212,8 @@ Input : Ants which need to pickup health
             }*/
         }
 
-        weaponIndex = weapons.indexOf(room.map[enemyRow][enemyColumn].weapon);
+        // Get Bomb's location in weapons array
+        weaponIndex = weapons.indexOf(bombLocation);
         // delete weapon from weapons array
         weapons.splice(weaponIndex, 1);
 

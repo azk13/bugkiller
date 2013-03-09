@@ -5,7 +5,7 @@
  * Time: 9:49 PM
  * To change this template use File | Settings | File Templates.
  */
-function Weapon(centerPoint, index, type,name)
+function Weapon(centerPoint, type,name)
 {
 	
 	this.Intrinsic = new Intrinsic(centerPoint, 20, 20);
@@ -24,7 +24,7 @@ function Weapon(centerPoint, index, type,name)
 
     // Where is the weapon located in the weapon array
     // e.g. I picked up a knife, where is it located in this array - Jensen
-    this.index = index;
+    //this.index = index;
 
     // special property for BOMB
     this.activeBomb = false;

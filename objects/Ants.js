@@ -1,13 +1,13 @@
 
 
-function Ants(centerPoint, index){
+function Ants(centerPoint){
 	this.Intrinsic = new Intrinsic(centerPoint, 40, 40);
 	this.Intrinsic.color = 'black';	
 
 	this.identity = 'ant';
 
     // check location of ant in array ~ Jensen
-    this.index = index;
+    //this.index = index;
 
     //Added by Renga
     //Array of weapons for the Ants to use

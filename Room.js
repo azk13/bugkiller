@@ -80,24 +80,25 @@ function Room(){
     // for now, put it as global variable as will access is when bob picked up a weapon
 
 
-	ants[0] = new Ants(new Point(this.map[7][21].point.x, this.map[7][21].point.y),0);
-	ants[1] = new Ants(new Point(this.map[2][10].point.x,this.map[2][10].point.y),1);
+	ants[0] = new Ants(new Point(this.map[7][21].point.x, this.map[7][21].point.y));
+	ants[1] = new Ants(new Point(this.map[2][10].point.x,this.map[2][10].point.y));
 	//ants[0].id = 0;
-    ants[2] = new Ants(new Point(this.map[6][0].point.x,this.map[6][0].point.y),2);
+    ants[2] = new Ants(new Point(this.map[6][0].point.x,this.map[6][0].point.y));
 
 
-	bees[0] = new Bees(new Point(this.map[11][1].point.x,this.map[11][1].point.y),0);
+	bees[0] = new Bees(new Point(this.map[11][1].point.x,this.map[11][1].point.y));
 
-	baskets[0] = new Basket(new Point(this.map[4][3].point.x, this.map[4][3].point.y), 40, 40);
-	baskets[1] = new Basket(new Point(this.map[8][10].point.x, this.map[8][10].point.y), 40, 40);
+	baskets[0] = new Basket(new Point(this.map[4][3].point.x, this.map[4][3].point.y));
+	baskets[1] = new Basket(new Point(this.map[8][10].point.x, this.map[8][10].point.y));
 	baskets[2] = new Basket(new Point(this.map[12][11].point.x, this.map[12][11].point.y));
     baskets[3] = new Basket(new Point(this.map[5][11].point.x, this.map[5][11].point.y));
     baskets[4] = new Basket(new Point(this.map[2][11].point.x, this.map[2][11].point.y));
     baskets[5] = new Basket(new Point(this.map[12][5].point.x, this.map[12][5].point.y));
 
-	weapons[0] = new Weapon(new Point(this.map[13][10].point.x, this.map[13][10].point.y), 0, 'Attack', 'Knife');
-	weapons[1] = new Weapon(new Point(this.map[11][10].point.x, this.map[11][10].point.y), 1, 'Attack', 'Bomb');
-	weapons[2] = new Weapon(new Point(this.map[13][13].point.x, this.map[13][13].point.y), 2, 'Attack', 'Shuriken');
+	weapons[0] = new Weapon(new Point(this.map[13][10].point.x, this.map[13][10].point.y), 'Attack', 'Knife');
+	weapons[1] = new Weapon(new Point(this.map[11][10].point.x, this.map[11][10].point.y), 'Attack', 'Bomb');
+	weapons[2] = new Weapon(new Point(this.map[13][13].point.x, this.map[13][13].point.y), 'Attack', 'Shuriken');
+
 
 
     var mysterybox = new MysteryBox(new Point(this.map[1][12].point.x, this.map[1][12].point.y), 40, 40);

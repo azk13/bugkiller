@@ -53,7 +53,7 @@ var alt=1,rr=8;
 		for(var i=0;i<bees.length;i++)
 		{		
 			if(alt%rr == 0)
-			pathfinding.objectgo(bees[i],player);
+			// pathfinding.objectgo(bees[i],player);
 			physicsEngine.updatePoint(bees[i]);	
 			boundcheck.detectCollisionWithWalls(bees[i]);
 			gridvacancy.occupancy();
