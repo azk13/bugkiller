@@ -13,5 +13,8 @@ function Bees(centerPoint){
 	this.enemyinsight = false;
 	this.ispursuinghealth = false;
 	this.ispursuingsting = false;
+	this.shootcounter = 5;
+	this.stingpos = new Point(9999,9999);
+	this.stingdir = 'none';
 
 }

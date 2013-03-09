@@ -53,7 +53,12 @@ var alt=1,rr=8;
 		for(var i=0;i<bees.length;i++)
 		{		
 			if(alt%rr == 0)
+			{
 			// pathfinding.objectgo(bees[i],player);
+				ai.beeclose(bees[i]);
+
+			}
+			physicsEngine.updateSting(bees[i]);
 			physicsEngine.updatePoint(bees[i]);	
 			boundcheck.detectCollisionWithWalls(bees[i]);
 			gridvacancy.occupancy();
@@ -138,6 +143,7 @@ var alt=1,rr=8;
 		this.drawPath();
 		this.drawMysteryBox();
 		this.drawHealth();
+		this.drawStings();
 		//this.setWeaponHealth();
 		//hud.updateHUD();
 		//player.Intrinsic.color +=1;
@@ -211,6 +217,58 @@ var alt=1,rr=8;
 		//}
 
 	}
+	this.drawStings = function(){
+		var bees = room.getBees();
+		for(var i=0;i<bees.length;i++)
+		{
+			drawSting(bees[i]);
+		}
+
+	}
+	function drawSting(bee)
+	{
+		if(bee.stingdir == 'left')
+		{		    
+			ctx.beginPath();
+		    ctx.moveTo(bee.stingpos.x,bee.stingpos.y);
+		    ctx.lineTo(bee.stingpos.x-(room.cellsize/2),bee.stingpos.y);
+		    ctx.lineWidth = 5;
+		    ctx.strokeStyle = 'black';
+		    ctx.stroke();				
+
+		}
+		if(bee.stingdir == 'right')
+		{
+			ctx.beginPath();
+		    ctx.moveTo(bee.stingpos.x,bee.stingpos.y);
+		    ctx.lineTo(bee.stingpos.x+(room.cellsize/2),bee.stingpos.y);
+		    ctx.lineWidth = 5;
+		    ctx.strokeStyle = 'black';
+		    ctx.stroke();				
+//		    console.log(bee.stingpos.x+(room.cellsize*bee.shootcounter));
+			
+		}
+		if(bee.stingdir == 'up')
+		{
+			ctx.beginPath();
+		    ctx.moveTo(bee.stingpos.x,bee.stingpos.y);
+		    ctx.lineTo(bee.stingpos.x,bee.stingpos.y-(room.cellsize/2));
+		    ctx.lineWidth = 5;
+		    ctx.strokeStyle = 'black';
+		    ctx.stroke();					
+		}
+		if(bee.stingdir == 'down')
+		{
+			ctx.beginPath();
+		    ctx.moveTo(bee.stingpos.x,bee.stingpos.y);
+		    ctx.lineTo(bee.stingpos.x,bee.stingpos.y+(room.cellsize/2));
+		    ctx.lineWidth = 5;
+		    ctx.strokeStyle = 'black';
+		    ctx.stroke();					
+
+		}
+	}
+
 
 	this.drawCharacter = function(character){
 

@@ -248,24 +248,56 @@ this.antclose = function(ant)
 
 this.beeclose = function(bee)
 {
+    bee.Intrinsic.attackrating = 5;
+    var count = 5;
   if(math.getDistanceBetweenTwoPoints(player.Intrinsic.centerPoint,bee.Intrinsic.centerPoint) < (room.cellsize*5.2))
     {
         var beecell = bee.Intrinsic.cellPos;
         var playercell = player.Intrinsic.cellPos;
 
+        if(bee.shootcounter == count)
+        {
+        //alert("bee shoot");
         //shoot down
         if((beecell.y == playercell.y) && bee.Intrinsic.direction.toFixed(2) == (Math.PI/2).toFixed(2) && playercell.x>beecell.x) 
-        {}
+        {
+            bee.stingpos.x = bee.Intrinsic.centerPoint.x;
+            bee.stingpos.y = bee.Intrinsic.centerPoint.y;
+            bee.stingdir ='down';                                        
+        }
         //shoot up
-        if((beecell.y == playercell.y) && bee.Intrinsic.direction.toFixed(2) == (Math.PI*3/2).toFixed(2) && playercell.x<beecell.x) 
-        {}
+        else if((beecell.y == playercell.y) && bee.Intrinsic.direction.toFixed(2) == (Math.PI*3/2).toFixed(2) && playercell.x<beecell.x) 
+        {
+            bee.stingpos.x = bee.Intrinsic.centerPoint.x;
+            bee.stingpos.y = bee.Intrinsic.centerPoint.y;
+            bee.stingdir = 'up';       
+        }
         //shoot right
-        if((beecell.x == playercell.x) && bee.Intrinsic.direction == 0 && playercell.y>beecell.y) 
-        {}
+        else if((beecell.x == playercell.x) && bee.Intrinsic.direction == 0 && playercell.y>beecell.y) 
+        {
+            bee.stingpos.x = bee.Intrinsic.centerPoint.x;
+            bee.stingpos.y = bee.Intrinsic.centerPoint.y;
+            bee.stingdir = 'right';                     
+        }
         //shoot left
-        if((beecell.x == playercell.x) && bee.Intrinsic.direction.toFixed(2) == Math.PI.toFixed(2) && playercell.y<beecell.y)
-        {}
-    }
+        else if((beecell.x == playercell.x) && bee.Intrinsic.direction.toFixed(2) == Math.PI.toFixed(2) && playercell.y<beecell.y)
+        {
+            bee.stingpos.x = bee.Intrinsic.centerPoint.x;
+            bee.stingpos.y = bee.Intrinsic.centerPoint.y;            
+            bee.stingdir = 'left';            
+        }
+
+        }//bee shootcounter ==5
+    bee.shootcounter--;
+    if(bee.shootcounter <= 0)
+    {bee.shootcounter=count;}        
+    }//end of if distance within range
+    else
+        {
+            bee.stingpos.x = bee.stingpos.y = 9999;
+            bee.shootcounter = count;
+        }
+
 }
 
 

@@ -71,6 +71,34 @@ function Physics(){
 		return object;
 	}
 
+this.updateSting = function(bee)
+	{
+//		console.log(bee.stingdir);
+		if(bee.stingdir == 'left')
+		{		    
+			bee.stingpos.x = bee.stingpos.x-room.cellsize;
+		}
+		if(bee.stingdir == 'right')
+		{
+			bee.stingpos.x = bee.stingpos.x+room.cellsize;			
+		}
+		if(bee.stingdir == 'up')
+		{
+			bee.stingpos.y=bee.stingpos.y-room.cellsize;				
+		}
+		if(bee.stingdir == 'down')
+		{
+			bee.stingpos.y=bee.stingpos.y+room.cellsize;	
+		}
+		if(bee.stingpos.x == player.Intrinsic.centerPoint.x && bee.stingpos.y == player.Intrinsic.centerPoint.y)
+		{
+		    player.Intrinsic.health -= bee.Intrinsic.attackrating;
+		    renderingEngine.setBobHealth();				
+		}			
+
+		return bee;
+	}	
+
 	this.getVector = function(x,y){
 		var result = new Vector();
 		var magnitude = math.pythagorasTheorem(x,y);
