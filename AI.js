@@ -237,6 +237,7 @@ Input : Ants which need to pickup health
 
 
 
+//ant attack function Azri
 this.antclose = function(ant)
 {
   if(math.getDistanceBetweenTwoPoints(player.Intrinsic.centerPoint,ant.Intrinsic.centerPoint) < (room.cellsize*1.5))
@@ -255,7 +256,27 @@ this.antclose = function(ant)
     }
 }
 
+this.beeclose = function(bee)
+{
+  if(math.getDistanceBetweenTwoPoints(player.Intrinsic.centerPoint,bee.Intrinsic.centerPoint) < (room.cellsize*5.2))
+    {
+        var beecell = bee.Intrinsic.cellPos;
+        var playercell = player.Intrinsic.cellPos;
 
+        //shoot down
+        if((beecell.y == playercell.y) && bee.Intrinsic.direction.toFixed(2) == (Math.PI/2).toFixed(2) && playercell.x>beecell.x) 
+        {}
+        //shoot up
+        if((beecell.y == playercell.y) && bee.Intrinsic.direction.toFixed(2) == (Math.PI*3/2).toFixed(2) && playercell.x<beecell.x) 
+        {}
+        //shoot right
+        if((beecell.x == playercell.x) && bee.Intrinsic.direction == 0 && playercell.y>beecell.y) 
+        {}
+        //shoot left
+        if((beecell.x == playercell.x) && bee.Intrinsic.direction.toFixed(2) == Math.PI.toFixed(2) && playercell.y<beecell.y)
+        {}
+    }
+}
 
 
 

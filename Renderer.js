@@ -238,7 +238,7 @@ var alt=1,rr=8;
 		//console.log(character.Intrinsic.color);
 
 		//draw health      Azri
-	//	if(character.identity != 'Bob')
+		if(character.identity != 'Bob')
 		{
 		var hppoint = new Point(character.Intrinsic.centerPoint.x-character.Intrinsic.radius, character.Intrinsic.centerPoint.y-character.Intrinsic.radius);		
 		ctx.beginPath();
