@@ -30,11 +30,7 @@ function Bob(centerPoint, width, height){
     this.hasWeapons=function(){if(this.weapons.length>1) return true;}
 
 
-	
 
-	this.checkWeapon = function(){
-		//if(room.map[])
-	}
 
 	this.usingKnife = function(){
 
@@ -49,40 +45,40 @@ function Bob(centerPoint, width, height){
 	}
 
 	this.usingBomb = function(playerrow, playercol){
-		player.bombHealth -= 100;
 
-      weapons[weapons.length] = new Weapon(new Point(room.map[playerrow][playercol].point.x, room.map[playerrow][playercol].point.y), weapons.length, 'Attack', 'Bomb');
+		this.bombHealth -= 100;
 
-      // set the bomb to be active
-      weapons[weapons.length-1].activeBomb = true;
+		weapons[weapons.length] = new Weapon(new Point(room.map[playerrow][playercol].point.x, room.map[playerrow][playercol].point.y), weapons.length, 'Attack', 'Bomb');
 
-      // update map
-      room.map[playerrow][playercol].isWeapon = true;
-      // specify it as active Bomb
-      
-      // load weapon object in the cell
-      room.map[playerrow][playercol].weapon = weapons[weapons.length];
+		// set the bomb to be active
+		weapons[weapons.length-1].activeBomb = true;
 
-      document.getElementById("bomb-health").style.width= player.bombHealth + '%';
-      if(player.bombHealth <= 0) {
-        player.hasBombEquipped = false;
-        document.getElementById("bomb-picked").innerHTML = 0;
-        document.getElementById("active-weapon").innerHTML = 'none';
-        player.activeWeapon = 'null';
-      }
+		// update map
+		room.map[playerrow][playercol].isWeapon = true;
+		// specify it as active Bomb
 
+		// load weapon object in the cell
+		room.map[playerrow][playercol].weapon = weapons[weapons.length];
+
+		document.getElementById("bomb-health").style.width= this.bombHealth + '%';
+
+		if(this.bombHealth <= 0) {
+			this.hasBombEquipped = false;
+			document.getElementById("bomb-picked").innerHTML = 0;
+			document.getElementById("active-weapon").innerHTML = 'none';
+			this.activeWeapon = 'null';
+		}
 	}
 
 	this.usingShuriken = function(){
-		 player.shurikenHealth -=20;
-	      document.getElementById("shuriken-health").style.width= player.shurikenHealth + '%';
-	      console.log('shoot Shuriken');
-	      if(player.shurikenHealth <= 0) {
-	        player.hasShurikenEquipped = false;
-	        document.getElementById("shuriken-picked").innerHTML = 0;
-	        document.getElementById("active-weapon").innerHTML = 'none';
-	        player.activeWeapon = 'null';
-	      }
+		this.shurikenHealth -=20;
+		document.getElementById("shuriken-health").style.width= this.shurikenHealth + '%';
+		if(this.shurikenHealth <= 0) {
+			this.hasShurikenEquipped = false;
+			document.getElementById("shuriken-picked").innerHTML = 0;
+			document.getElementById("active-weapon").innerHTML = 'none';
+			this.activeWeapon = 'null';
+		}
 	}
 
 
