@@ -62,14 +62,13 @@ this.antMoveToNearestAnt=function(enemy,ants,excludeindex)
 {
  pathfinding.objectgo(enemy,ants[getNearestAntIndex(enemy,excludeindex)]);
 }
-
 /************************************
 Input : Ant,bob
 Output:Decide whether this ant can attack bob and then attack
 ************************************/
  this.antAttackBob=function(ant,bob)
  {
-     //TodO must implement attack function for the ant to attack
+     //Todo must implement attack function for the ant to attack
 
      //how many cell difference
      var noofCells=5;
@@ -186,8 +185,8 @@ Input : Ants which need to pickup health
  }
 
  this.stepBombCheck = function(enemy){
-    var enemyRow = enemy.Intrinsic.cellpos.x;
-    var enemyColumn = enemy.Intrinsic.cellpos.y;
+    var enemyRow = enemy.Intrinsic.cellPos.x;
+    var enemyColumn = enemy.Intrinsic.cellPos.y;
     var enemyType = enemy.identity;
     var bombLocation = room.map[enemyRow][enemyColumn].weapon;
 
@@ -232,6 +231,29 @@ Input : Ants which need to pickup health
     }
  }
 
+
+this.antclose = function(ant)
+{
+  if(math.getDistanceBetweenTwoPoints(player.Intrinsic.centerPoint,ant.Intrinsic.centerPoint) < (room.cellsize*1.5))
+    {
+        var antcell = ant.Intrinsic.cellPos;
+        var playercell = player.Intrinsic.cellPos;
+
+
+        if( ((antcell.y == playercell.y) && ant.Intrinsic.direction.toFixed(2) == (Math.PI/2).toFixed(2) && playercell.x>antcell.x) || ((antcell.y == playercell.y) && ant.Intrinsic.direction.toFixed(2) == (Math.PI*3/2).toFixed(2) && playercell.x<antcell.x) || ((antcell.x == playercell.x) && ant.Intrinsic.direction == 0 && playercell.y>antcell.y) || ((antcell.x == playercell.x) && ant.Intrinsic.direction.toFixed(2) == Math.PI.toFixed(2) && playercell.y<antcell.y) )
+        {
+        //alert("health decreasing");
+        console.log(antcell.y+":"+playercell.y);
+        player.Intrinsic.health -= ant.Intrinsic.attackrating;
+        renderingEngine.setBobHealth();
+        }
+    }
+}
+
+
+
+
+
  this.Action = function(enemies)
  {
 }
@@ -253,6 +275,4 @@ Input : Ants which need to pickup health
  {
 
 	}
-
-
 }

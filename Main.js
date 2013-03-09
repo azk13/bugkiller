@@ -129,6 +129,7 @@
             //go left
             if(playercol != 0)
             {
+              physicsEngine.applyForceAtAngle(player,0,Math.PI);
             if(playercol - 1 == mb.cellpos.x && playerrow == mb.cellpos.y) // This is to check if there is a mysterybox, if so, unlock instead of moving into it
               mb.unlock_mysteryBox(room, renderingEngine.timer);
             else
@@ -145,6 +146,7 @@
             //go right
             if(playercol != room.columns-1)
             {
+              physicsEngine.applyForceAtAngle(player,0,0);
             if(playercol + 1 == mb.cellpos.x && playerrow == mb.cellpos.y)
               mb.unlock_mysteryBox(room, renderingEngine.timer);
             else
@@ -161,6 +163,7 @@
             //go up
             if(playerrow != 0)
             {
+              physicsEngine.applyForceAtAngle(player,0,Math.PI*3/2);
             if(playercol == mb.cellpos.x && playerrow - 1 == mb.cellpos.y)
               mb.unlock_mysteryBox(room, renderingEngine.timer);
             else
@@ -175,6 +178,7 @@
           }//end if(event.keyCode == 38)
           if(event.keyCode == 40) {
             //go down
+            physicsEngine.applyForceAtAngle(player,0,Math.PI/2);
             if(playerrow != room.rows-1)
             {
             if(playercol == mb.cellpos.x && playerrow + 1 == mb.cellpos.y)

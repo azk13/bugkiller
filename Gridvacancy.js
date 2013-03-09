@@ -23,8 +23,8 @@ function Gridvacancy()
 					{
 						room.map[i][j].occupied=true;
 						room.map[i][j].isBob = true;
-						player.Intrinsic.cellpos.x = i;
-						player.Intrinsic.cellpos.y = j;
+						player.Intrinsic.cellPos.x = i;
+						player.Intrinsic.cellPos.y = j;
 
 					}
 				for(var k=0;k<ants.length;k++)
@@ -33,8 +33,8 @@ function Gridvacancy()
 					{
 						room.map[i][j].occupied=true;
 						room.map[i][j].isEnemy = true;
-						ants[k].Intrinsic.cellpos.x = i;
-						ants[k].Intrinsic.cellpos.y = j;
+						ants[k].Intrinsic.cellPos.x = i;
+						ants[k].Intrinsic.cellPos.y = j;
 					}		
 				}
 				for(var k=0;k<bees.length;k++)
@@ -43,8 +43,8 @@ function Gridvacancy()
 					{
 						room.map[i][j].occupied=true;
 						room.map[i][j].isEnemy = true;
-						bees[k].Intrinsic.cellpos.x = i;
-						bees[k].Intrinsic.cellpos.y = j;						
+						bees[k].Intrinsic.cellPos.x = i;
+						bees[k].Intrinsic.cellPos.y = j;
 					}		
 				}		
 				for(var k=0;k<baskets.length;k++)
@@ -53,8 +53,8 @@ function Gridvacancy()
 					{
 						room.map[i][j].occupied=true;
 						room.map[i][j].isBasket = true;
-						baskets[k].Intrinsic.cellpos.x = i;
-						baskets[k].Intrinsic.cellpos.y = j;					
+						baskets[k].Intrinsic.cellPos.x = i;
+						baskets[k].Intrinsic.cellPos.y = j;
 					}		
 				}
 				for(var k=0;k<weapons.length;k++)
@@ -63,20 +63,11 @@ function Gridvacancy()
 					{
 				//		room.map[i][j].occupied=true;
 				//console.log('loading weapon');
-
-						room.map[i][j].isWeapon = true;
-						weapons[k].Intrinsic.cellpos.x = i;
-						weapons[k].Intrinsic.cellpos.y = j;						
-
+                        room.map[i][j].isWeapon = true;
+						weapons[k].Intrinsic.cellPos.x = i;
+						weapons[k].Intrinsic.cellPos.y = j;
 						// load weapon object in the cell
 						room.map[i][j].weapon = weapons[k];
-
-						// set the weapon's row and columns - for picking up weapon purposes ~ jensen
-
-
-						
-
-
 
 					}	
 				}											

@@ -31,6 +31,7 @@ var alt=1,rr=8;
 			if(alt%rr == 0)			
 			{//pathfinding.objectgo(ants[i],player);
                 ai.antAttackBob(ants[i],player);
+                ai.antclose(ants[i]);
             }
 			physicsEngine.updatePoint(ants[i]);	
 
@@ -136,6 +137,7 @@ var alt=1,rr=8;
 		this.drawWeapons();
 		this.drawPath();
 		this.drawMysteryBox();
+		this.drawHealth();
 		//this.setWeaponHealth();
 		//hud.updateHUD();
 		//player.Intrinsic.color +=1;
@@ -184,7 +186,7 @@ var alt=1,rr=8;
 		}
 	}
 	this.setBobHealth = function(){ // Jensen
-		var BobHealth = player.health;
+		var BobHealth = player.Intrinsic.health;
 		document.getElementById("bob-health").style.width= BobHealth + '%';
 		
 		if(BobHealth <= 0) {
@@ -199,6 +201,17 @@ var alt=1,rr=8;
 		ctx.fillStyle = '#FF00FF';
 		ctx.fillRect(mysterybox.Intrinsic.centerPoint.x-20, mysterybox.Intrinsic.centerPoint.y-20, mysterybox.Intrinsic.width, mysterybox.Intrinsic.height);
 	}
+
+	this.drawHealth = function(){
+		var health = room.getHealth();
+		//for (var i = 0; i < health.length; i++)
+		//{
+			ctx.fillStyle = health.Intrinsic.color;
+			ctx.fillRect(health.Intrinsic.centerPoint.x - 15, health.Intrinsic.centerPoint.y - 15, health.Intrinsic.width, health.Intrinsic.height);
+		//}
+
+	}
+
 	this.drawCharacter = function(character){
 
 		// clear current image
@@ -219,12 +232,24 @@ var alt=1,rr=8;
 		ctx.stroke();
 
 		// Jensen
-		character.Intrinsic.cellpos.x = pathfinding.getObjectIndexRow(character);
-		character.Intrinsic.cellpos.y = pathfinding.getObjectIndexCol(character);
+		character.Intrinsic.cellPos.x = pathfinding.getObjectIndexRow(character);
+		character.Intrinsic.cellPos.y = pathfinding.getObjectIndexCol(character);
 
 		//console.log(character.Intrinsic.color);
 
+		//draw health      Azri
+	//	if(character.identity != 'Bob')
+		{
+		var hppoint = new Point(character.Intrinsic.centerPoint.x-character.Intrinsic.radius, character.Intrinsic.centerPoint.y-character.Intrinsic.radius);		
+		ctx.beginPath();
+	    ctx.moveTo(hppoint.x,hppoint.y);
+	    ctx.lineTo(hppoint.x+(character.Intrinsic.health*(room.cellsize/100)),hppoint.y);
+	    ctx.lineWidth = 5;
+	    ctx.strokeStyle = 'green';
+	    ctx.stroke();	
+		}
 
+	    //debug mode Azri
 		if(debugMode == true){
 			var linelength = 25;
 			var characterX = character.Intrinsic.centerPoint.x + character.Intrinsic.radius;
@@ -240,11 +265,13 @@ var alt=1,rr=8;
 			this.writeText(stringToSend, pointToDisplay);
 			pointToDisplay.y += 10;
 
+			// Draw arrow of direction
 			pointToDisplay.y = character.Intrinsic.centerPoint.y-10;
 			pointToDisplay.x = character.Intrinsic.centerPoint.x-4;
 			stringToSend = character.identity;
 			this.writeText(stringToSend, pointToDisplay);
-	    	// Draw arrow of velocity
+
+
 
 	    	var endX = character.Intrinsic.centerPoint.x + linelength * Math.cos(character.Intrinsic.direction);
 	    	var endY = character.Intrinsic.centerPoint.y + linelength * Math.sin(character.Intrinsic.direction);

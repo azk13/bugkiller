@@ -10,7 +10,7 @@ function Bob(centerPoint, width, height){
 	//this.identity = 'bob'; 
 
 	this.Intrinsic.color = 'yellow';	
-	this.health = 100;
+	this.health = 10;
 
 	this.image = new Image();
 	this.image.src = "imgs/char_bob.png";
