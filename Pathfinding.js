@@ -107,8 +107,10 @@ var upfailed =0,downfailed=0,leftfailed=0,rightfailed=0;
       {
       if(leftfailed)
       {
+        
         if(objectrow != 0)  //not 1st row
         {
+          
           //goupleft
           if(!(room.map[(objectrow-1)][objectcol-1].occupied))  
           {
@@ -125,8 +127,10 @@ var upfailed =0,downfailed=0,leftfailed=0,rightfailed=0;
       }
       if(rightfailed)
       {
+        
         if(objectrow != 0)  //not 1st row
         {
+          
           //goupright
           if(!(room.map[(objectrow-1)][objectcol+1].occupied))  
           {
@@ -143,8 +147,10 @@ var upfailed =0,downfailed=0,leftfailed=0,rightfailed=0;
       }
       if(upfailed)
       {
+        
         if(objectcol != 0)  //not 1st col
         {
+          
           //goupleft
           if(!(room.map[(objectrow-1)][objectcol-1].occupied))  
           {
@@ -162,8 +168,10 @@ var upfailed =0,downfailed=0,leftfailed=0,rightfailed=0;
       }
       if(downfailed)
       {
+        
         if(objectcol != 0)  //not 1st col
         {
+          
           //godownleft
           if(!(room.map[(objectrow+1)][objectcol-1].occupied))  
           {
@@ -182,6 +190,14 @@ var upfailed =0,downfailed=0,leftfailed=0,rightfailed=0;
       }
     }
 
+      if(leftfailed)
+      {physicsEngine.applyForceAtAngle(object,0,Math.PI);}
+      if(rightfailed)
+      {physicsEngine.applyForceAtAngle(object,0,0);}
+      if(upfailed)
+      {physicsEngine.applyForceAtAngle(object,0,Math.PI*3/2);}
+      if(downfailed)
+      {physicsEngine.applyForceAtAngle(object,0,Math.PI/2);}
 
 
 //DIAGONALS
