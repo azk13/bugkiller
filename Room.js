@@ -82,7 +82,6 @@ function Room(){
 
 	ants[0] = new Ants(new Point(this.map[7][21].point.x, this.map[7][21].point.y));
 	ants[1] = new Ants(new Point(this.map[2][10].point.x,this.map[2][10].point.y));
-	//ants[0].id = 0;
     ants[2] = new Ants(new Point(this.map[6][0].point.x,this.map[6][0].point.y));
 
 
@@ -104,6 +103,7 @@ function Room(){
     var mysterybox = new MysteryBox(new Point(this.map[1][12].point.x, this.map[1][12].point.y), 40, 40);
     var health = new Health(new Point(this.map[0][21].point.x, this.map[0][21].point.y), 30, 30);
 
+    
 
 	this.getBaskets = function() {
 		return baskets;

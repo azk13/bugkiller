@@ -5,9 +5,10 @@ function Ants(centerPoint){
 	this.Intrinsic.color = 'black';	
 
 	this.identity = 'ant';
+    this.bombed = false; // ~ jensen
 
-    // check location of ant in array ~ Jensen
-    //this.index = index;
+    // check location of ant in array for bombing ~ jensen
+    //this.indexSpecial = null;
 
     //Added by Renga
     //Array of weapons for the Ants to use

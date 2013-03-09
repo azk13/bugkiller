@@ -191,47 +191,37 @@ Input : Ants which need to pickup health
     var bombLocation = room.map[enemyRow][enemyColumn].weapon;
 
     if(bombLocation.activeBomb == true) {
-        // delete the enemy
-        if(enemyType == 'bee') {
-            //this.bombBlast(bombLocation);
-            bees.splice(bees.indexOf(enemy),1);
-            //bees.splice(enemy.index, 1);
-            // update all enemy's location in the weapons array
-            /*
-            for(var k=0; k<bees.length; k++){
-                bees[k].index = k;
-            } */
-        } else if (enemyType == 'ant') {
-            //this.bombBlast(bombLocation);
-            ants.splice(ants.indexOf(enemy),1);
-            // ants.splice(enemy.index, 1);
-            // update all enemy's location in the weapons array
-            /*
-            for(var k=0; k<ants.length; k++){
-                ants[k].index = k;
-            }*/
-        }
+
+        this.bombBlast(bombLocation);
 
         // Get Bomb's location in weapons array
         weaponIndex = weapons.indexOf(bombLocation);
         // delete weapon from weapons array
         weapons.splice(weaponIndex, 1);
 
-       //this.updateWeapon(bombLocation.index);
     }
  }
  
  this.bombBlast = function(bombLocation){
-    
-    for(var k=0; k<bees.length; k++){
-        var distance =math.getDistanceBetweenTwoPoints(bees[k],bombLocation);
-        if(distance <= 10){
-            bees.splice(bees.indexOf(bees[k]), 1);
+
+    for(var k=0; k<ants.length; ){
+        var distance =math.getDistanceBetweenTwoPoints(ants[k].Intrinsic.centerPoint,bombLocation.Intrinsic.centerPoint);
+        if(distance <= 400){
+            ants.splice(ants.indexOf(ants[k]),1);
+        }else{
+            k++;
         }
     }
 
-    //alert('entered BombBlast');
-    //setTimeout( this.bombBlast(), 1 );
+    for(var k=0; k<bees.length; ){
+        var distance =math.getDistanceBetweenTwoPoints(bees[k].Intrinsic.centerPoint,bombLocation.Intrinsic.centerPoint);
+        if(distance <= 400){
+            bees.splice(ants.indexOf(bees[k]),1);
+        }else{
+            k++;
+        }
+    }
+
 }
 
 

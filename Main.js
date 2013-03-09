@@ -54,7 +54,7 @@
       sideCtx = sideCanvas.getContext('2d');
     }    */
     //we don't need canvas for the side - can use HTML <section> - Jensen
-
+    var distance =math.getDistanceBetweenTwoPoints(bees[0].Intrinsic.centerPoint,player.Intrinsic.centerPoint);
 
     if (canvas.getContext){
       ctx = canvas.getContext('2d');

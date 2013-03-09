@@ -4,7 +4,10 @@ function Bees(centerPoint){
 	
 
 	this.identity = 'bee';
-	//this.index = index;
+	this.bombed = false; // ~ jensen
+
+	// check location of ant in array for bombing ~ jensen
+	this.index = null;
 
 	this.hassting = false;
 	this.enemyinsight = false;
