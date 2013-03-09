@@ -294,7 +294,7 @@ this.beeclose = function(bee)
     }//end of if distance within range
     else
         {
-            bee.stingpos.x = bee.stingpos.y = 9999;
+ //           bee.stingpos.x = bee.stingpos.y = 9999;
             bee.shootcounter = count;
         }
 

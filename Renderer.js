@@ -1,5 +1,5 @@
 function Renderer(){
-var alt=1,rr=8;
+var alt=1,rr=8,ss=4;
 
 	var timer = 0;
 
@@ -56,8 +56,8 @@ var alt=1,rr=8;
 			{
 			// pathfinding.objectgo(bees[i],player);
 				ai.beeclose(bees[i]);
-
 			}
+			if(alt%ss == 0)
 			physicsEngine.updateSting(bees[i]);
 			physicsEngine.updatePoint(bees[i]);	
 			boundcheck.detectCollisionWithWalls(bees[i]);
@@ -68,7 +68,7 @@ var alt=1,rr=8;
 			//pathfinding.enemyclose(bees[i]);
 
 		}		
-		alt++;
+		physicsEngine.updateShuriken();
 		physicsEngine.updatePoint(player);
 		boundcheck.detectCollisionWithWalls(player);		
 
@@ -101,6 +101,9 @@ var alt=1,rr=8;
 				//console.log(mysterybox.mysteryBox_spawn(timer));
 				//console.log(index);
 			}
+
+
+		alt++;
 	}
 
 	this.drawRoom = function (){
@@ -144,6 +147,7 @@ var alt=1,rr=8;
 		this.drawMysteryBox();
 		this.drawHealth();
 		this.drawStings();
+		drawShuriken();
 		//this.setWeaponHealth();
 		//hud.updateHUD();
 		//player.Intrinsic.color +=1;
@@ -217,6 +221,7 @@ var alt=1,rr=8;
 		//}
 
 	}
+	//check all bee stings Azri
 	this.drawStings = function(){
 		var bees = room.getBees();
 		for(var i=0;i<bees.length;i++)
@@ -225,6 +230,7 @@ var alt=1,rr=8;
 		}
 
 	}
+	//animate bee sting Azri
 	function drawSting(bee)
 	{
 		if(bee.stingdir == 'left')
@@ -264,6 +270,50 @@ var alt=1,rr=8;
 		    ctx.lineTo(bee.stingpos.x,bee.stingpos.y+(room.cellsize/2));
 		    ctx.lineWidth = 5;
 		    ctx.strokeStyle = 'black';
+		    ctx.stroke();					
+
+		}
+	}
+	//animate shuriken Azri
+	function drawShuriken()
+	{
+		if(player.shurikendir == Math.PI)
+		{		    
+			ctx.beginPath();
+		    ctx.moveTo(player.shurikenpos.x,player.shurikenpos.y);
+		    ctx.lineTo(player.shurikenpos.x-(room.cellsize/2),player.shurikenpos.y);
+		    ctx.lineWidth = 5;
+		    ctx.strokeStyle = 'silver';
+		    ctx.stroke();				
+
+		}
+		if(player.shurikendir == 0)
+		{
+			ctx.beginPath();
+		    ctx.moveTo(player.shurikenpos.x,player.shurikenpos.y);
+		    ctx.lineTo(player.shurikenpos.x+(room.cellsize/2),player.shurikenpos.y);
+		    ctx.lineWidth = 5;
+		    ctx.strokeStyle = 'silver';
+		    ctx.stroke();				
+//		    console.log(player.shurikenpos.x+(room.cellsize*bee.shootcounter));
+			
+		}
+		if(player.shurikendir == Math.PI*3/2)
+		{
+			ctx.beginPath();
+		    ctx.moveTo(player.shurikenpos.x,player.shurikenpos.y);
+		    ctx.lineTo(player.shurikenpos.x,player.shurikenpos.y-(room.cellsize/2));
+		    ctx.lineWidth = 5;
+		    ctx.strokeStyle = 'silver';
+		    ctx.stroke();					
+		}
+		if(player.shurikendir == Math.PI/2)
+		{
+			ctx.beginPath();
+		    ctx.moveTo(player.shurikenpos.x,player.shurikenpos.y);
+		    ctx.lineTo(player.shurikenpos.x,player.shurikenpos.y+(room.cellsize/2));
+		    ctx.lineWidth = 5;
+		    ctx.strokeStyle = 'silver';
 		    ctx.stroke();					
 
 		}

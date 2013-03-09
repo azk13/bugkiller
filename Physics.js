@@ -99,7 +99,59 @@ this.updateSting = function(bee)
 
 		return bee;
 	}	
+this.updateShuriken = function()
+	{
+//		console.log(bee.stingdir);
+		if(player.shurikendir == Math.PI)
+		{		    
+			player.shurikenpos.x = player.shurikenpos.x-room.cellsize;
+		}
+		if(player.shurikendir == 0)
+		{
+			player.shurikenpos.x = player.shurikenpos.x+room.cellsize;			
+		}
+		if(player.shurikendir == Math.PI*3/2)
+		{
+			player.shurikenpos.y=player.shurikenpos.y-room.cellsize;				
+		}
+		if(player.shurikendir == Math.PI/2)
+		{
+			player.shurikenpos.y=player.shurikenpos.y+room.cellsize;	
+		}
+		var ants = room.getAnts();
+		var bees = room.getBees();
+//update ant health when hit
+for(var i=0;i<ants.length;i++)
+{
+		if(player.shurikenpos.x == ants[i].Intrinsic.centerPoint.x && player.shurikenpos.y == ants[i].Intrinsic.centerPoint.y)
+		{
+		    ants[i].Intrinsic.health -= player.Intrinsic.attackrating;	
+		    player.shurikenpos.x = player.shurikenpos.y = 9999;
 
+		    //ant dies	
+		    if(ants[i].Intrinsic.health <= 0)	
+		    {
+		    	ants.splice(ants.indexOf(ants[i]),1); 
+		    }
+		}	
+}		
+//update ant health when hit
+for(var i=0;i<bees.length;i++)
+{
+		if(player.shurikenpos.x == bees[i].Intrinsic.centerPoint.x && player.shurikenpos.y == bees[i].Intrinsic.centerPoint.y)
+		{
+		    bees[i].Intrinsic.health -= player.Intrinsic.attackrating;	
+		    player.shurikenpos.x = player.shurikenpos.y = 9999;	
+		    //bee dies	
+		    if(bees[i].Intrinsic.health <= 0)	
+		    {
+		    	bees.splice(bees.indexOf(bees[i]),1); 
+		    }		    	
+		}	
+}		
+
+		return player;
+	}	
 	this.getVector = function(x,y){
 		var result = new Vector();
 		var magnitude = math.pythagorasTheorem(x,y);

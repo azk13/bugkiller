@@ -21,6 +21,8 @@ function Bob(centerPoint, width, height){
 	this.bombHealth = 100;
 	this.hasShurikenEquipped = false;
 	this.shurikenHealth = 100;
+	this.shurikenpos = new Point(9999,9999);
+	this.shurikendir = 'none';
 	//this.hasConverterEquipped = false;
 	//this.hasSheildEquipped = false;
 	this.activeWeapon = 'null';
@@ -73,6 +75,10 @@ function Bob(centerPoint, width, height){
 	this.usingShuriken = function(){
 		this.shurikenHealth -=20;
 		document.getElementById("shuriken-health").style.width= this.shurikenHealth + '%';
+		this.Intrinsic.attackrating=50;
+		this.shurikendir = this.Intrinsic.direction;
+		this.shurikenpos.x = this.Intrinsic.centerPoint.x;
+		this.shurikenpos.y = this.Intrinsic.centerPoint.y;
 		if(this.shurikenHealth <= 0) {
 			this.hasShurikenEquipped = false;
 			document.getElementById("shuriken-picked").innerHTML = 0;
