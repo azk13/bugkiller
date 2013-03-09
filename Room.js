@@ -98,8 +98,8 @@ function Room(){
 	weapons[0] = new Weapon(new Point(this.map[13][10].point.x, this.map[13][10].point.y), 'Attack', 'Knife');
 	weapons[1] = new Weapon(new Point(this.map[11][10].point.x, this.map[11][10].point.y), 'Attack', 'Bomb');
 	weapons[2] = new Weapon(new Point(this.map[13][13].point.x, this.map[13][13].point.y), 'Attack', 'Shuriken');
-
-
+    weapons[3] = new Weapon(new Point(this.map[12][10].point.x, this.map[12][10].point.y), 'Attack', 'Bomb');
+    weapons[4] = new Weapon(new Point(this.map[11][13].point.x, this.map[11][13].point.y), 'Attack', 'Bomb');
 
     var mysterybox = new MysteryBox(new Point(this.map[1][12].point.x, this.map[1][12].point.y), 40, 40);
     var health = new Health(new Point(this.map[0][21].point.x, this.map[0][21].point.y), 30, 30);
