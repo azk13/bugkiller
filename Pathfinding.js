@@ -297,15 +297,6 @@ room.map[objectrow][objectcol].occupied=true;
 
   }//end of objectgo function
 
-this.enemyclose = function(enemy)
-{
-  if(math.getDistanceBetweenTwoPoints(player.Intrinsic.centerPoint,enemy.Intrinsic.centerPoint) < (room.cellsize*1.1))
-    {
-      //alert("You are captured!");
-        player.health -= 0.2;
-        renderingEngine.setBobHealth();
-    }
-}
 
 this.getObjectIndexCol = function(object)
 {

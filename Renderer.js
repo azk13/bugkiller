@@ -31,6 +31,7 @@ var alt=1,rr=8;
 			if(alt%rr == 0)			
 			{//pathfinding.objectgo(ants[i],player);
                 ai.antAttackBob(ants[i],player);
+                ai.antclose(ants[i]);
             }
 			physicsEngine.updatePoint(ants[i]);	
 
@@ -185,7 +186,7 @@ var alt=1,rr=8;
 		}
 	}
 	this.setBobHealth = function(){ // Jensen
-		var BobHealth = player.health;
+		var BobHealth = player.Intrinsic.health;
 		document.getElementById("bob-health").style.width= BobHealth + '%';
 		
 		if(BobHealth <= 0) {
@@ -236,7 +237,19 @@ var alt=1,rr=8;
 
 		//console.log(character.Intrinsic.color);
 
+		//draw health      Azri
+	//	if(character.identity != 'Bob')
+		{
+		var hppoint = new Point(character.Intrinsic.centerPoint.x-character.Intrinsic.radius, character.Intrinsic.centerPoint.y-character.Intrinsic.radius);		
+		ctx.beginPath();
+	    ctx.moveTo(hppoint.x,hppoint.y);
+	    ctx.lineTo(hppoint.x+(character.Intrinsic.health*(room.cellsize/100)),hppoint.y);
+	    ctx.lineWidth = 5;
+	    ctx.strokeStyle = 'green';
+	    ctx.stroke();	
+		}
 
+	    //debug mode Azri
 		if(debugMode == true){
 			var linelength = 25;
 			var characterX = character.Intrinsic.centerPoint.x + character.Intrinsic.radius;
@@ -252,11 +265,13 @@ var alt=1,rr=8;
 			this.writeText(stringToSend, pointToDisplay);
 			pointToDisplay.y += 10;
 
+			// Draw arrow of direction
 			pointToDisplay.y = character.Intrinsic.centerPoint.y-10;
 			pointToDisplay.x = character.Intrinsic.centerPoint.x-4;
 			stringToSend = character.identity;
 			this.writeText(stringToSend, pointToDisplay);
-	    	// Draw arrow of velocity
+
+
 
 	    	var endX = character.Intrinsic.centerPoint.x + linelength * Math.cos(character.Intrinsic.direction);
 	    	var endY = character.Intrinsic.centerPoint.y + linelength * Math.sin(character.Intrinsic.direction);
