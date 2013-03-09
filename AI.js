@@ -156,8 +156,10 @@ Input : Ants which need to pickup health
 		var weaponIdentity;
 
 		weaponIdentity = room.map[row][column].weapon.identity;
-		weaponIndex = room.map[row][column].weapon.index;
 
+        weaponIndex = weapons.indexOf(room.map[row][column].weapon);
+        // delete weapon from weapons array
+        weapons.splice(weaponIndex, 1);
 
 		switch(weaponIdentity)
 		{
@@ -179,9 +181,7 @@ Input : Ants which need to pickup health
 			default:
 			  	break;
 		}
-
-        // Update the Room's knowledge of existing weapons
-		this.updateWeapon(weaponIndex);
+        
  }
 
  this.stepBombCheck = function(enemy){
@@ -193,43 +193,47 @@ Input : Ants which need to pickup health
     if(bombLocation.activeBomb == true) {
         // delete the enemy
         if(enemyType == 'bee') {
-            this.bombBlast();
-            bees.splice(enemy.index, 1);
-            // update all enemy's location in the wewapons array
+            //this.bombBlast(bombLocation);
+            bees.splice(bees.indexOf(enemy),1);
+            //bees.splice(enemy.index, 1);
+            // update all enemy's location in the weapons array
+            /*
             for(var k=0; k<bees.length; k++){
                 bees[k].index = k;
-            }
+            } */
         } else if (enemyType == 'ant') {
-            ants.splice(enemy.index, 1);
-            // update all enemy's location in the wewapons array
+            //this.bombBlast(bombLocation);
+            ants.splice(ants.indexOf(enemy),1);
+            // ants.splice(enemy.index, 1);
+            // update all enemy's location in the weapons array
+            /*
             for(var k=0; k<ants.length; k++){
                 ants[k].index = k;
-            }
+            }*/
         }
-       this.updateWeapon(bombLocation.index);
+
+        weaponIndex = weapons.indexOf(room.map[enemyRow][enemyColumn].weapon);
+        // delete weapon from weapons array
+        weapons.splice(weaponIndex, 1);
+
+       //this.updateWeapon(bombLocation.index);
     }
  }
  
- this.bombBlast = function(){
-    var blastRadius = 100;
-    ctx.fillStyle = 'white';
-    ctx.fillRect(100, 100, 100, 100);
+ this.bombBlast = function(bombLocation){
+    
+    for(var k=0; k<bees.length; k++){
+        var distance =math.getDistanceBetweenTwoPoints(bees[k],bombLocation);
+        if(distance <= 10){
+            bees.splice(bees.indexOf(bees[k]), 1);
+        }
+    }
+
     //alert('entered BombBlast');
     //setTimeout( this.bombBlast(), 1 );
 }
 
 
- // jensen
- this.updateWeapon = function(weaponIndex){
-
-    // delete weapon
-    weapons.splice(weaponIndex, 1);
-
-    // update the weapon's location in the weapons array
-    for(var k=0; k<weapons.length; k++){
-        weapons[k].index = k;
-    }
- }
 
 
 this.antclose = function(ant)
