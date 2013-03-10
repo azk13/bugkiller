@@ -17,14 +17,20 @@ function Health(centerPoint, width, height){
 		{
 			for(var j = 0; j < room.columns; j++)
 			{
-				if((!room.map[i][j].occupied && !room.map[i][j].isWeapon)) //&& i != mb.cellpos.y && j != mb.cellpos.x)
+				if((!room.map[i][j].occupied && !room.map[i][j].isWeapon) && i != mb.cellpos.y && j != mb.cellpos.x)
 					available.push(room.map[i][j]);
 			}
 		}
 
 		var index = Math.floor(Math.random() * (available.length - 1));
-		this.cellpos = new Point((available[index].x - 20) / 40 , (available[index].y-20)/40); 
-		console.log(available[index].x  + "," + available[index].y);
+		this.cellpos = new Point((available[index].point.x - 20) / 40 , (available[index].point.y-20)/40); 
+		//console.log(available[index].point.x  + "," + available[index].point.y);
+		//console.log(this.cellpos.x + "," + this.cellpos.y);
+
+		this.Intrinsic.centerPoint = new Point(available[index].point.x, available[index].point.y); 
+		console.log(available[index].point.x  + "," + available[index].point.y);
+		console.log(this.cellpos.x + "," + this.cellpos.y);
+
 	}
 
 	this.destroyHealth = function(){

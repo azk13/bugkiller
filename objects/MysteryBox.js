@@ -115,6 +115,8 @@ function MysteryBox(centerPoint, width, height){
 		//var weapons = room.getWeapons;
 		var number = weapons.length;
 
+		var health = room.getHealth();
+
 		console.log(this.item);
 
 		switch(this.item)
@@ -144,7 +146,7 @@ function MysteryBox(centerPoint, width, height){
 		{
 			for(var j = 0; j < room.columns; j++)
 			{
-				if(!room.map[i][j].occupied && !room.map[i][j].isWeapon) //&& room.map[i][j].isHealth < 0)
+				if(!room.map[i][j].occupied && !room.map[i][j].isWeapon && i != this.cellpos.x && j != this.cellpos.y)
 					available.push(room.map[i][j]);
 			}
 		}
