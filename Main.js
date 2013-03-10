@@ -77,6 +77,7 @@
            var trackActiveWeapon = 0;
            var activeWeapon = trackActiveWeapon%3; // three types of weapons
            var mb = room.getmysterybox();
+           var health = room.getHealth();
 
            // Press 1,2,3 to switch weapon ~ jensen
            if(event.keyCode == 49) {
@@ -121,6 +122,8 @@
                   default:
                       break;
                 }
+
+                
                     
            }
 
@@ -139,6 +142,12 @@
             if(room.map[playerrow][playercol-1].isWeapon) {
               ai.pickedUpWeapon(playerrow, playercol-1);
             }
+            if(playercol-1 == health.cellpos.x && playerrow == health.cellpos.y) // This is to check if there is health next to the player (Hong Shing)
+            {
+              player.heal(health.healing);  // Adds health.healing(in health.js) to the players hp
+              console.log(player.health);
+              health.destroyHealth();       // Removes the health from the screen
+            }
             }
             }
           }//end if(event.keyCode == 37)
@@ -155,6 +164,12 @@
             physicsEngine.applyForceAtAngle(player,playerspeed,0);
             if(room.map[playerrow][playercol+1].isWeapon) {
               ai.pickedUpWeapon(playerrow, playercol+1);
+            }
+            if(playercol + 1 == health.cellpos.x && playerrow == health.cellpos.y)
+            {
+              player.heal(health.healing);
+              console.log(player.health);
+              health.destroyHealth();
             }
             }
             }
@@ -173,6 +188,12 @@
             if(room.map[playerrow-1][playercol].isWeapon) {
               ai.pickedUpWeapon(playerrow-1, playercol);
             }
+            if(playercol == health.cellpos.x && playerrow - 1 == health.cellpos.y)
+            {
+              player.heal(health.healing);
+              health.destroyHealth();
+              console.log(player.health);
+            }
             }
             }
           }//end if(event.keyCode == 38)
@@ -189,6 +210,12 @@
             physicsEngine.applyForceAtAngle(player,playerspeed,Math.PI/2);
             if(room.map[playerrow+1][playercol].isWeapon) {
               ai.pickedUpWeapon(playerrow+1, playercol);
+            }
+            if(playercol == health.cellpos.x && playerrow + 1 == health.cellpos.y)
+            {
+              player.heal(health.healing);
+              health.destroyHealth();
+              console.log(player.health);
             }
             }
             }

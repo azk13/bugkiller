@@ -105,25 +105,30 @@ function MysteryBox(centerPoint, width, height){
 			item = 4// 5% chance to spawn enemy		
 	}
 
+	//console.log(item);
+
 	return item;
 	}
 
 	this.unlock_mysteryBox = function(room, timer){
 
+		//var weapons = room.getWeapons;
 		var number = weapons.length;
+
+		console.log(this.item);
 
 		switch(this.item)
 		{
 			case 1:// Spawn knife
-				weapons.push(new Weapon(this.Intrinsic.centerPoint, number, 'Attack', 'Knife'));
+				weapons.push(new Weapon(this.Intrinsic.centerPoint, 'Attack', 'Knife'));
 				console.log(weapons[number].identity);
 				break;
 			case 2:// Spawn bomb
-				weapons.push(new Weapon(this.Intrinsic.centerPoint, number, 'Attack', 'Bomb'));
+				weapons.push(new Weapon(this.Intrinsic.centerPoint, 'Attack', 'Bomb'));
 				console.log(weapons[number].identity);
 				break;
 			case 3:// Spawn shuriken
-				weapons[number] = (new Weapon(this.Intrinsic.centerPoint, number, 'Attack', 'Shuriken'))
+				weapons[number] = (new Weapon(this.Intrinsic.centerPoint, 'Attack', 'Shuriken'))
 				console.log(weapons[number].identity);
 				break;
 			case 4:// Spawn enemy
@@ -147,7 +152,7 @@ function MysteryBox(centerPoint, width, height){
 		var index = Math.floor(Math.random() * (available.length - 1));
 
 		this.spawn(available[index].point, this.mysteryBox_spawn(timer));
-		console.log(this.mysteryBox_spawn(timer));
+		//console.log(this.mysteryBox_spawn(timer));
 
 	}
 

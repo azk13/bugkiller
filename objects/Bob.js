@@ -88,6 +88,11 @@ function Bob(centerPoint, width, height){
 	}
 
 
+	// Calls this when Bob picks up health (Hong Shing)
+	this.heal = function(healing){
+		this.health += healing;
+	}
+
 
 
 

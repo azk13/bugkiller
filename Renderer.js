@@ -216,9 +216,12 @@ var alt=1,rr=8,ss=4;
 		var health = room.getHealth();
 		//for (var i = 0; i < health.length; i++)
 		//{
+		if(health.cellpos.x != -1)
+		{
 			ctx.fillStyle = health.Intrinsic.color;
 			ctx.fillRect(health.Intrinsic.centerPoint.x - 15, health.Intrinsic.centerPoint.y - 15, health.Intrinsic.width, health.Intrinsic.height);
 		//}
+		}
 
 	}
 	//check all bee stings Azri
