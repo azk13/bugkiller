@@ -208,6 +208,7 @@ Input : Ants which need to pickup health
         var distance =math.getDistanceBetweenTwoPoints(ants[k].Intrinsic.centerPoint,bombLocation.Intrinsic.centerPoint);
         if(distance <= 400){
             ants.splice(ants.indexOf(ants[k]),1);
+            player.kills++;
         }else{
             k++;
         }
@@ -217,6 +218,7 @@ Input : Ants which need to pickup health
         var distance =math.getDistanceBetweenTwoPoints(bees[k].Intrinsic.centerPoint,bombLocation.Intrinsic.centerPoint);
         if(distance <= 400){
             bees.splice(ants.indexOf(bees[k]),1);
+            player.kills++;
         }else{
             k++;
         }
@@ -304,8 +306,54 @@ this.beeclose = function(bee)
 
 
  this.Action = function(enemies)
- {
-}
+    {
+        var segment = 1;
+        var timenow = Math.round((Date.now() - start_time)/1000);
+        var stagelength = 10;
+
+        if(timenow < stagelength)
+            {segment = 1;}
+        else if(timenow < stagelength*2)
+            {segment = 99;}
+        else if(timenow < stagelength*2.5)
+            {segment = 2;}        
+        else if(timenow < stagelength*3)
+            {segment = 99;}
+        else 
+            {segment = 3;}
+
+
+        switch(segment){
+        case 1:
+
+        //stage 1
+//        console.log("Stage 1:"+timenow);
+//        alert("stage1");
+        break;
+        case 2:
+//        console.log("Stage 2:"+timenow);
+//        alert("stage2");
+        //stage 2
+        break;
+        case 3:
+//        console.log("Stage 3:"+timenow);
+//        alert("stage3");
+        //stage 3
+        break;
+
+        default:
+        //processing player behavior
+        if(player.kills > 5 || player.Intrinsic.health>70)
+            {player.skill = 'good';}
+        else
+            {player.skill = 'bad';}
+   //     alert("Processing player ability");
+        break;
+
+    }
+    
+    }
+
  function ToWin(enemies)
  {
 

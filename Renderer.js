@@ -30,6 +30,7 @@ var alt=1,rr=8,ss=4;
 
 			if(alt%rr == 0)			
 			{//pathfinding.objectgo(ants[i],player);
+				ai.Action(ants[i]);
                 ai.antAttackBob(ants[i],player);
                 ai.antclose(ants[i]);
             }

@@ -25,6 +25,8 @@ function Bob(centerPoint, width, height){
 	//this.hasConverterEquipped = false;
 	//this.hasSheildEquipped = false;
 	this.activeWeapon = 'null';
+	this.skill = 'null';
+	this.kills = 0;
 
     this.weapons=new Array();
     this.addWeapons=function(){this.weapons.push(new Weapon("",""));}

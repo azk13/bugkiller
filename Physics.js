@@ -132,6 +132,7 @@ for(var i=0;i<ants.length;i++)
 		    if(ants[i].Intrinsic.health <= 0)	
 		    {
 		    	ants.splice(ants.indexOf(ants[i]),1); 
+		    	player.kills++;
 		    }
 		}	
 }		
@@ -146,6 +147,7 @@ for(var i=0;i<bees.length;i++)
 		    if(bees[i].Intrinsic.health <= 0)	
 		    {
 		    	bees.splice(bees.indexOf(bees[i]),1); 
+		    	player.kills++;
 		    }		    	
 		}	
 }		

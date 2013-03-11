@@ -5,6 +5,7 @@ var bees = new Array();
 var baskets = new Array();
 
 
+
 function cell(x,y){
     this.point=new Point(x,y);
     this.occupied=false;
@@ -18,6 +19,7 @@ function cell(x,y){
 }
 
 function Room(){
+
     /*
      Abstract this.map drawn on top of the room to help path finding class to locate the object
      Every cell in the this.map can either can be occupied by an item object
@@ -44,7 +46,8 @@ function Room(){
      |9,0| |9,1| |9,2| |9,3| |9,4|....................................................|9,21|
      _____________________________________________________________________________________
      */
-
+    this.maxAnt=3;
+    this.maxBee=0;
     this.map = [];
     this.width = 880;
     this.height = 560;
