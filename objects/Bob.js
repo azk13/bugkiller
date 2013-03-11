@@ -74,7 +74,7 @@ function Bob(centerPoint, width, height){
 	}
 
 	this.usingShuriken = function(){
-		this.shurikenHealth -=20;
+		this.shurikenHealth -=5;
 		document.getElementById("shuriken-health").style.width= this.shurikenHealth + '%';
 		this.Intrinsic.attackrating=50;
 		this.shurikendir = this.Intrinsic.direction;

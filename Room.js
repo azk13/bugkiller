@@ -46,6 +46,7 @@ function Room(){
      |9,0| |9,1| |9,2| |9,3| |9,4|....................................................|9,21|
      _____________________________________________________________________________________
      */
+    this.finalStageSpawn = false;
     this.maxAnts=3;
     this.maxBees=0;
     this.map = [];
@@ -82,20 +83,15 @@ function Room(){
     // var weapons = new Array();
     // for now, put it as global variable as will access is when bob picked up a weapon
 
-
-	ants[0] = new Ants(new Point(this.map[7][21].point.x, this.map[7][21].point.y));
-	ants[1] = new Ants(new Point(this.map[2][10].point.x,this.map[2][10].point.y));
-    ants[2] = new Ants(new Point(this.map[6][0].point.x,this.map[6][0].point.y));
-
-
-	bees[0] = new Bees(new Point(this.map[11][1].point.x,this.map[11][1].point.y));
+    //pioneer ant
+    ants[0] = new Ants(new Point(this.map[0][21].point.x,this.map[0][21].point.y));
 
 	baskets[0] = new Basket(new Point(this.map[4][3].point.x, this.map[4][3].point.y));
 	baskets[1] = new Basket(new Point(this.map[8][10].point.x, this.map[8][10].point.y));
 	baskets[2] = new Basket(new Point(this.map[12][11].point.x, this.map[12][11].point.y));
-    baskets[3] = new Basket(new Point(this.map[5][11].point.x, this.map[5][11].point.y));
-    baskets[4] = new Basket(new Point(this.map[2][11].point.x, this.map[2][11].point.y));
-    baskets[5] = new Basket(new Point(this.map[12][5].point.x, this.map[12][5].point.y));
+//    baskets[3] = new Basket(new Point(this.map[5][11].point.x, this.map[5][11].point.y));
+//    baskets[4] = new Basket(new Point(this.map[2][11].point.x, this.map[2][11].point.y));
+//    baskets[5] = new Basket(new Point(this.map[12][5].point.x, this.map[12][5].point.y));
 
 	weapons[0] = new Weapon(new Point(this.map[13][10].point.x, this.map[13][10].point.y), 'Attack', 'Knife');
 	weapons[1] = new Weapon(new Point(this.map[11][10].point.x, this.map[11][10].point.y), 'Attack', 'Bomb');
@@ -186,9 +182,30 @@ function Room(){
         }
 
         if(Math.random() < 0.5)
-            {spawnRow=0;}
+            {
+            if(Math.random() < 0.5) 
+                {
+                    spawnRow=0;
+                }
+            else
+                {
+                    spawnRow=this.rows-1;
+                }       
+
+            }
         else
-            {spawnCol=0;}
+        {
+            if(Math.random() < 0.5) 
+                {
+                    spawnCol=0;
+                }
+            else
+                {
+                    spawnCol=this.columns-1;
+                }       
+        }
+
+        this.map[spawnRow][spawnCol].occupied = true;
 
         if(identity == 'ant')
         {

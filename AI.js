@@ -262,29 +262,33 @@ this.beeclose = function(bee)
         {
         //alert("bee shoot");
         //shoot down
-        if((beecell.y == playercell.y) && bee.Intrinsic.direction.toFixed(2) == (Math.PI/2).toFixed(2) && playercell.x>beecell.x) 
+        if((beecell.y == playercell.y) && playercell.x>beecell.x) 
         {
+            bee.Intrinsic.direction = Math.PI/2;
             bee.stingpos.x = bee.Intrinsic.centerPoint.x;
             bee.stingpos.y = bee.Intrinsic.centerPoint.y;
             bee.stingdir ='down';                                        
         }
         //shoot up
-        else if((beecell.y == playercell.y) && bee.Intrinsic.direction.toFixed(2) == (Math.PI*3/2).toFixed(2) && playercell.x<beecell.x) 
+        else if((beecell.y == playercell.y) && playercell.x<beecell.x) 
         {
+            bee.Intrinsic.direction = Math.PI*3/2;            
             bee.stingpos.x = bee.Intrinsic.centerPoint.x;
             bee.stingpos.y = bee.Intrinsic.centerPoint.y;
             bee.stingdir = 'up';       
         }
         //shoot right
-        else if((beecell.x == playercell.x) && bee.Intrinsic.direction == 0 && playercell.y>beecell.y) 
+        else if((beecell.x == playercell.x) && playercell.y>beecell.y) 
         {
+            bee.Intrinsic.direction = 0;            
             bee.stingpos.x = bee.Intrinsic.centerPoint.x;
             bee.stingpos.y = bee.Intrinsic.centerPoint.y;
             bee.stingdir = 'right';                     
         }
         //shoot left
-        else if((beecell.x == playercell.x) && bee.Intrinsic.direction.toFixed(2) == Math.PI.toFixed(2) && playercell.y<beecell.y)
+        else if((beecell.x == playercell.x)  && playercell.y<beecell.y)
         {
+            bee.Intrinsic.direction = Math.PI;            
             bee.stingpos.x = bee.Intrinsic.centerPoint.x;
             bee.stingpos.y = bee.Intrinsic.centerPoint.y;            
             bee.stingdir = 'left';            
@@ -320,9 +324,12 @@ this.beeclose = function(bee)
             {segment = 2;}        
         else if(timenow < stagelength*2.1)
             {segment = 23;}
-        else 
+        else if(timenow < stagelength*3)
             {segment = 3;}
-
+        else if(timenow < stagelength*3.1)
+            {segment = 34;}
+        else
+            {segment = 4;}
 
         switch(segment){
         case 1:
@@ -350,6 +357,9 @@ this.beeclose = function(bee)
         case 3:
         ants[0] = new Ants(new Point(room.map[0][21].point.x, room.map[0][21].point.y));
         bees[0] = new Bees(new Point(room.map[0][10].point.x, room.map[0][10].point.y));
+
+        if(bees.length == 0)
+            {room.spawnEnemies(1,'bee');}
         document.getElementById("stage-level").innerHTML = 3;
         if(enemy.identity == 'ant')
             {room.spawnEnemies(room.maxAnts,enemy.identity);}
@@ -360,9 +370,32 @@ this.beeclose = function(bee)
         //stage 3
         break;
 
+        case 4:
+        document.getElementById("stage-level").innerHTML = 4;          
+        if(room.finalStageSpawn == true)
+        {
+            if(player.skill == 'good')
+            {
+                room.spawnEnemies(10,'ant');
+                room.spawnEnemies(4,'bee');                
+            }
+            else // player is bad
+            {
+                room.spawnEnemies(7,'ant');
+                room.spawnEnemies(2,'bee');
+            }
+            room.finalStageSpawn = false;
+        }
+
+
+        break;
         default:        
         if(segment == 12)
         {
+        if(ants.length == 0)
+        {
+        room.spawnEnemies(1,'ant');
+        }            
         document.getElementById("stage-level").innerHTML = 1.2;            
         if(player.kills > 5 || player.Intrinsic.health>70)
             {
@@ -377,8 +410,12 @@ this.beeclose = function(bee)
                 room.maxAnts = 5;
             }   
         }
-        else
+        else if(segment == 23)
         {
+        if(ants.length == 0)
+        {
+        room.spawnEnemies(1,'ant');
+        }            
         document.getElementById("stage-level").innerHTML = 2.3;            
         if(player.kills > 10 || player.Intrinsic.health>70)
             {
@@ -396,6 +433,11 @@ this.beeclose = function(bee)
             }   
 
         } 
+        else // transition of stage 3 to 4
+        {
+            document.getElementById("stage-level").innerHTML = 3.4;  
+            room.finalStageSpawn = true;
+        }
    //     alert("Processing player ability");
         break;
 

@@ -9,6 +9,8 @@ var alt=1,rr=8,ss=4;
 		var baskets = room.getBaskets();
 		var weapons = room.getWeapons();
 		var mysterybox = room.getmysterybox();
+
+
 		
 		//Ai.towin(ants)
 		//if(player == winningbig)
@@ -55,6 +57,7 @@ var alt=1,rr=8,ss=4;
 		{		
 			if(alt%rr == 0)
 			{
+				ai.Action(bees[i]);				
 			// pathfinding.objectgo(bees[i],player);
 				ai.beeclose(bees[i]);
 			}
