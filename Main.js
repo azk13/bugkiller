@@ -187,7 +187,8 @@
             if(playercol == health.cellpos.x && playerrow - 1 == health.cellpos.y)
             {
               player.heal(health.healing);
-              console.log(player.health);
+              health.destroyHealth();
+
             }
             }
             }

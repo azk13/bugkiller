@@ -64,7 +64,9 @@ h2, h3, h4, ul {
 	margin-bottom: 5px;
 }
 
-
+#bob-display, #enemies-display, #weapon-display {
+  margin-bottom: 20px;
+}
 
 
 

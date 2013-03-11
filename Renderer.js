@@ -148,13 +148,14 @@ var alt=1,rr=8,ss=4;
 		this.drawMysteryBox();
 		this.drawHealth();
 		this.drawStings();
+		this.updateEnemyKillCount();
 		drawShuriken();
 		//this.setWeaponHealth();
 		//hud.updateHUD();
 		//player.Intrinsic.color +=1;
 
-
 	}
+
 	this.drawWeapons = function() {
 		var weapons = room.getWeapons();
 
@@ -203,6 +204,10 @@ var alt=1,rr=8,ss=4;
 		if(BobHealth <= 0) {
 			alert("You are dead!");
 		}
+	}
+
+	this.updateEnemyKillCount = function(){
+		document.getElementById("enemies-killed").innerHTML = player.kills;
 	}
 	
 
