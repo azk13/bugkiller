@@ -1,9 +1,9 @@
 function Renderer(){
 var alt=1,rr=8,ss=4;
 
-	var timer = 0;
+	//var timer = 0;
 
-	this.updatePoints = function(){
+	this.updatePoints = function(time_start){
 		var ants = room.getAnts();
 		var bees = room.getBees();
 		var baskets = room.getBaskets();
@@ -81,7 +81,8 @@ var alt=1,rr=8,ss=4;
 		//
 
 		//console.log(mysterybox.counter);
-		if(mysterybox.updateCounter() == 1)
+		var time_now = Date.now();
+		if((time_now - mysterybox.spawn_time)/1000 >= 10)	
 			{
 				var available = new Array();
 				// Find places that contain no items to spawn 
@@ -95,13 +96,12 @@ var alt=1,rr=8,ss=4;
 				}
 				//mysterybox.spawn(new Point((Math.floor((Math.random() * 880) / 40) + 1) * 40 + 20, (Math.floor((Math.random() * 560) / 40) + 1) * 40 + 20), mysterybox.mysteryBox_spawn(timer));
 				index = Math.floor(Math.random() * (available.length - 1));
-
-				mysterybox.spawn(available[index].point, mysterybox.mysteryBox_spawn(timer));
+				mysterybox.spawn(available[index].point, mysterybox.mysteryBox_spawn(time_start));
 				//console.log(timer);
 				//console.log(mysterybox.mysteryBox_spawn(timer));
 				//console.log(index);
 			}
-
+		
 
 		alt++;
 	}
@@ -404,11 +404,12 @@ var alt=1,rr=8,ss=4;
 		ctx.fillText(myString, myPoint.x, myPoint.y);
 	}//end writeText*/
 
-	
+	/*
 	this.update_timer = function(){
 		timer++;
 		//console.log(timer);
 		return timer;
 	}
+	*/
 	
 }

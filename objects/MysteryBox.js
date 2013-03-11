@@ -17,6 +17,7 @@ function MysteryBox(centerPoint, width, height){
 	this.cellpos = new Point((centerPoint.x - 20)/40, (centerPoint.y - 20)/40);
 	this.counter = 0; // Counter to keep track of how long the mystery box has not been touched
 	this.item = 0; // Item 1 = knife, 2 = bomb, 3 = shuriken, 4 = enemy
+	this.spawn_time; // This keeps the time of when the box was last spawned
 
 	
 	this.updateCounter = function(){
@@ -73,18 +74,22 @@ function MysteryBox(centerPoint, width, height){
 	}
 
 	
-	this.mysteryBox_spawn = function(timer)
+	this.mysteryBox_spawn = function(time_start)
 	{
+	var time_now = Date.now();
+	this.spawn_time = time_now;
+	time_elapsed = (time_now - time_start) / 1000;
+	console.log(time_elapsed);
 	var percent = Math.random() * 100;
 	var item = 0;
-	if(timer < 1000) // Early game
+	if(time_elapsed < 10) // Early game
 	{
  		if(percent <= 20)
  			item = 1// 20% chance to spawn knife 
  		else
  			item = 2// 80% chance to spawn bomb
 	}
-	else if (timer < 5000) // Mid game
+	else if (time_elapsed < 60) // Mid game
 	{
 		if(percent <= 30)
 			item = 1// 30% chance to spawn knife
@@ -95,7 +100,7 @@ function MysteryBox(centerPoint, width, height){
 	}
 	else // Late game
 	{
-		if(percent <= 30)
+		if(time_elapsed <= 120)
 			item = 1// 30% chance to spawn knife
 		else if(percent <= 65)
 			item = 2//35% chance to spawn bomb
@@ -110,7 +115,7 @@ function MysteryBox(centerPoint, width, height){
 	return item;
 	}
 
-	this.unlock_mysteryBox = function(room, timer){
+	this.unlock_mysteryBox = function(room, time_start){
 
 		//var weapons = room.getWeapons;
 		var number = weapons.length;
@@ -153,7 +158,7 @@ function MysteryBox(centerPoint, width, height){
 		//mysterybox.spawn(new Point((Math.floor((Math.random() * 880) / 40) + 1) * 40 + 20, (Math.floor((Math.random() * 560) / 40) + 1) * 40 + 20), mysterybox.mysteryBox_spawn(timer));
 		var index = Math.floor(Math.random() * (available.length - 1));
 
-		this.spawn(available[index].point, this.mysteryBox_spawn(timer));
+		this.spawn(available[index].point, this.mysteryBox_spawn(time_start));
 		//console.log(this.mysteryBox_spawn(timer));
 
 	}

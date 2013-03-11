@@ -31,7 +31,7 @@
   var ai = new AI();
   var pathfinding = new Pathfinding();
   var gridvacancy = new Gridvacancy();
-
+  var start_time = Date.now()  // When the game starts
 
 //function called in index
   function init(){
@@ -63,11 +63,11 @@
       renderingEngine.drawRoom();
 
       //update points in renderer
-      setInterval(function () {renderingEngine.updatePoints();}, screenUpdateTime);
+      setInterval(function () {renderingEngine.updatePoints(start_time);}, screenUpdateTime); // (HONG SHING) Added in start time so that mysterybox will know how much time has elapsed
       setInterval(function () {renderingEngine.draw();}, screenUpdateTime);
 
       // Update the game clock
-      setInterval(function () {renderingEngine.update_timer();}, screenUpdateTime);
+      //setInterval(function () {renderingEngine.update_timer();}, screenUpdateTime);
     }
 
     document.addEventListener('keydown', function(event) {
@@ -121,10 +121,8 @@
                     break;
                   default:
                       break;
-                }
 
-               
-                    
+                }    
            }
 
            // Press up down left right to move Bob
@@ -134,7 +132,7 @@
             {
               physicsEngine.applyForceAtAngle(player,0,Math.PI);
             if(playercol - 1 == mb.cellpos.x && playerrow == mb.cellpos.y) // This is to check if there is a mysterybox, if so, unlock instead of moving into it
-              mb.unlock_mysteryBox(room, renderingEngine.timer);
+              mb.unlock_mysteryBox(room, start_time);
             else
             {
             if(!room.map[playerrow][playercol-1].occupied)
@@ -145,7 +143,6 @@
             if(playercol-1 == health.cellpos.x && playerrow == health.cellpos.y) // This is to check if there is health next to the player (Hong Shing)
             {
               player.heal(health.healing);  // Adds health.healing(in health.js) to the players hp
-              console.log(player.health);
               health.destroyHealth();       // Removes the health from the screen
             }
             }
@@ -157,7 +154,7 @@
             {
               physicsEngine.applyForceAtAngle(player,0,0);
             if(playercol + 1 == mb.cellpos.x && playerrow == mb.cellpos.y)
-              mb.unlock_mysteryBox(room, renderingEngine.timer);
+              mb.unlock_mysteryBox(room, start_time);
             else
             {
             if(!room.map[playerrow][playercol+1].occupied)
@@ -168,7 +165,6 @@
             if(playercol + 1 == health.cellpos.x && playerrow == health.cellpos.y)
             {
               player.heal(health.healing);
-              console.log(player.health);
               health.destroyHealth();
             }
             }
@@ -180,7 +176,7 @@
             {
               physicsEngine.applyForceAtAngle(player,0,Math.PI*3/2);
             if(playercol == mb.cellpos.x && playerrow - 1 == mb.cellpos.y)
-              mb.unlock_mysteryBox(room, renderingEngine.timer);
+              mb.unlock_mysteryBox(room, start_time);
             else
             {
             if(!room.map[playerrow-1][playercol].occupied)
@@ -191,7 +187,6 @@
             if(playercol == health.cellpos.x && playerrow - 1 == health.cellpos.y)
             {
               player.heal(health.healing);
-              health.destroyHealth();
               console.log(player.health);
             }
             }
@@ -203,7 +198,7 @@
             if(playerrow != room.rows-1)
             {
             if(playercol == mb.cellpos.x && playerrow + 1 == mb.cellpos.y)
-              mb.unlock_mysteryBox(room, renderingEngine.timer);
+              mb.unlock_mysteryBox(room, start_time);
             else
             {
             if(!room.map[playerrow+1][playercol].occupied)
@@ -215,7 +210,6 @@
             {
               player.heal(health.healing);
               health.destroyHealth();
-              console.log(player.health);
             }
             }
             }
