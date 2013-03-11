@@ -206,7 +206,7 @@ Input : Ants which need to pickup health
 
     for(var k=0; k<ants.length; ){
         var distance =math.getDistanceBetweenTwoPoints(ants[k].Intrinsic.centerPoint,bombLocation.Intrinsic.centerPoint);
-        if(distance <= 400){
+        if(distance <= room.cellsize*2){
             ants.splice(ants.indexOf(ants[k]),1);
             player.kills++;
         }else{
@@ -216,7 +216,7 @@ Input : Ants which need to pickup health
 
     for(var k=0; k<bees.length; ){
         var distance =math.getDistanceBetweenTwoPoints(bees[k].Intrinsic.centerPoint,bombLocation.Intrinsic.centerPoint);
-        if(distance <= 400){
+        if(distance <= room.cellsize*2){
             bees.splice(ants.indexOf(bees[k]),1);
             player.kills++;
         }else{
@@ -310,16 +310,16 @@ this.beeclose = function(bee)
         var enemyarray;
         var segment = 1;
         var timenow = Math.round((Date.now() - start_time)/1000);
-        var stagelength = 10;
+        var stagelength = 30;
 
         if(timenow < stagelength)
             {segment = 1;}
+        else if(timenow < stagelength*1.1)
+            {segment = 12;}
         else if(timenow < stagelength*2)
-            {segment = 99;}
-        else if(timenow < stagelength*2.5)
             {segment = 2;}        
-        else if(timenow < stagelength*3)
-            {segment = 99;}
+        else if(timenow < stagelength*2.1)
+            {segment = 23;}
         else 
             {segment = 3;}
 
@@ -337,24 +337,61 @@ this.beeclose = function(bee)
 //        alert("stage1");
         break;
         case 2:
+        ants[0] = new Ants(new Point(room.map[0][21].point.x, room.map[0][21].point.y));
         document.getElementById("stage-level").innerHTML = 2;
+        if(enemy.identity == 'ant')
+            {room.spawnEnemies(room.maxAnts,enemy.identity);}
+        else
+            {room.spawnEnemies(room.maxBees,enemy.identity);}        
 //        console.log("Stage 2:"+timenow);
 //        alert("stage2");
         //stage 2
         break;
         case 3:
+        ants[0] = new Ants(new Point(room.map[0][21].point.x, room.map[0][21].point.y));
+        bees[0] = new Bees(new Point(room.map[0][10].point.x, room.map[0][10].point.y));
         document.getElementById("stage-level").innerHTML = 3;
+        if(enemy.identity == 'ant')
+            {room.spawnEnemies(room.maxAnts,enemy.identity);}
+        else
+            {room.spawnEnemies(room.maxBees,enemy.identity);}        
 //        console.log("Stage 3:"+timenow);
 //        alert("stage3");
         //stage 3
         break;
 
-        default:
-        //processing player behavior
+        default:        
+        if(segment == 12)
+        {
+        document.getElementById("stage-level").innerHTML = 1.2;            
         if(player.kills > 5 || player.Intrinsic.health>70)
-            {player.skill = 'good';}
+            {
+                player.skill = 'good';
+                room.maxAnts = 10;
+            }
         else
-            {player.skill = 'bad';}
+            {
+                player.skill = 'bad';
+                room.maxAnts = 5;
+            }   
+        }
+        else
+        {
+        document.getElementById("stage-level").innerHTML = 2.3;            
+        if(player.kills > 10 || player.Intrinsic.health>70)
+            {
+                player.skill = 'good';
+                room.maxAnts = 7;
+                room.maxBees = 3;
+            }
+        else
+            {
+                player.skill = 'bad';
+                room.maxAnts = 5;
+                room.maxBees = 1;
+            }   
+
+        } 
    //     alert("Processing player ability");
         break;
 
