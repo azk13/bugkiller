@@ -305,8 +305,9 @@ this.beeclose = function(bee)
 
 
 
- this.Action = function(enemies)
+ this.Action = function(enemy)
     {
+        var enemyarray;
         var segment = 1;
         var timenow = Math.round((Date.now() - start_time)/1000);
         var stagelength = 10;
@@ -325,8 +326,12 @@ this.beeclose = function(bee)
 
         switch(segment){
         case 1:
+        //stage 1        
+        if(enemy.identity == 'ant')
+            {room.spawnEnemies(room.maxAnts,enemy.identity);}
+        else
+            {room.spawnEnemies(room.maxBees,enemy.identity);}
 
-        //stage 1
 //        console.log("Stage 1:"+timenow);
 //        alert("stage1");
         break;

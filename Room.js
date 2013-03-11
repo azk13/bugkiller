@@ -46,8 +46,8 @@ function Room(){
      |9,0| |9,1| |9,2| |9,3| |9,4|....................................................|9,21|
      _____________________________________________________________________________________
      */
-    this.maxAnt=3;
-    this.maxBee=0;
+    this.maxAnts=3;
+    this.maxBees=0;
     this.map = [];
     this.width = 880;
     this.height = 560;
@@ -167,6 +167,29 @@ function Room(){
 	}
 
 
+    this.spawnEnemies = function(maxNum,identity)
+    {  
+        //randomizer to check for occupied space
+
+
+        if(identity == 'ant')
+        {
+            if(ants.length < maxNum)
+                {
+                    ants.push(new Ants(new Point(this.map[0][21].point.x, this.map[0][21].point.y)));
+                }            
+        }
+        else
+        {
+            if(bees.length < maxNum)
+                {
+                    bees.push(new Bees(new Point(this.map[0][21].point.x, this.map[0][21].point.y)));
+                }    
+        }
+
+
+
+    }
 
 
 }
