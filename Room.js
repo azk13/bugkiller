@@ -46,6 +46,7 @@ function Room(){
      |9,0| |9,1| |9,2| |9,3| |9,4|....................................................|9,21|
      _____________________________________________________________________________________
      */
+    this.prevtime = Date.now()/1000;
     this.finalStageSpawn = false;
     this.maxAnts=3;
     this.maxBees=0;
@@ -164,7 +165,13 @@ function Room(){
 
 //Enemy Spawning Function
     this.spawnEnemies = function(maxNum,identity)
-    {  
+    { 
+
+    var timenow = Date.now()/1000;
+    console.log((timenow-this.prevtime));
+    if(timenow-this.prevtime > 1)
+        {
+
         //randomizer to check for occupied space
 
         var spawnRow = Math.floor(Math.random() * (this.rows-1));
@@ -242,8 +249,9 @@ function Room(){
         }
 
 
-
+        this.prevtime = Date.now()/1000;
+        }
+        
     }
-
 
 }
