@@ -162,24 +162,13 @@ function Room(){
 
 	}
 
-
+//Enemy Spawning Function
     this.spawnEnemies = function(maxNum,identity)
     {  
         //randomizer to check for occupied space
 
         var spawnRow = Math.floor(Math.random() * (this.rows-1));
         var spawnCol = Math.floor(Math.random() * (this.columns-1));
-
-        if(Math.random() < 0.5)
-            {spawnRow=0;}
-        else
-            {spawnCol=0;}
-
-        while(this.map[spawnRow][spawnCol].occupied)
-        {
-            spawnRow = Math.floor(Math.random() * (this.rows-1));
-            spawnCol = Math.floor(Math.random() * (this.columns-1));            
-        }
 
         if(Math.random() < 0.5)
             {
@@ -203,7 +192,37 @@ function Room(){
                 {
                     spawnCol=this.columns-1;
                 }       
+        }                 
+
+        while(this.map[spawnRow][spawnCol].occupied)
+        {
+            spawnRow = Math.floor(Math.random() * (this.rows-1));
+            spawnCol = Math.floor(Math.random() * (this.columns-1));   
+        if(Math.random() < 0.5)
+            {
+            if(Math.random() < 0.5) 
+                {
+                    spawnRow=0;
+                }
+            else
+                {
+                    spawnRow=this.rows-1;
+                }       
+
+            }
+        else
+        {
+            if(Math.random() < 0.5) 
+                {
+                    spawnCol=0;
+                }
+            else
+                {
+                    spawnCol=this.columns-1;
+                }       
+        }                     
         }
+
 
         this.map[spawnRow][spawnCol].occupied = true;
 

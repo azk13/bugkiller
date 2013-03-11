@@ -249,6 +249,7 @@ this.antclose = function(ant)
     }
 }
 
+//Bee's action when player comes within his range Azri
 this.beeclose = function(bee)
 {
     bee.Intrinsic.attackrating = 5;
@@ -308,14 +309,15 @@ this.beeclose = function(bee)
 }
 
 
-
- this.Action = function(enemy)
+  //Basic staging and spawning stuff  Azri & Jensen
+ this.Action = function(enemy) 
     {
         var enemyarray;
         var segment = 1;
         var timenow = Math.round((Date.now() - start_time)/1000);
         var stagelength = 30;
 
+//Setting the different time region
         if(timenow < stagelength)
             {segment = 1;}
         else if(timenow < stagelength*1.1)
@@ -332,32 +334,24 @@ this.beeclose = function(bee)
             {segment = 4;}
 
         switch(segment){
-        case 1:
-        //stage 1
+        case 1: //------------------------stage 1------------------------------------
         document.getElementById("stage-level").innerHTML = 1;        
         if(enemy.identity == 'ant')
             {room.spawnEnemies(room.maxAnts,enemy.identity);}
         else
             {room.spawnEnemies(room.maxBees,enemy.identity);}
-
-//        console.log("Stage 1:"+timenow);
-//        alert("stage1");
         break;
-        case 2:
-        ants[0] = new Ants(new Point(room.map[0][21].point.x, room.map[0][21].point.y));
+        case 2: //------------------------stage 2------------------------------------
         document.getElementById("stage-level").innerHTML = 2;
         if(enemy.identity == 'ant')
             {room.spawnEnemies(room.maxAnts,enemy.identity);}
         else
             {room.spawnEnemies(room.maxBees,enemy.identity);}        
-//        console.log("Stage 2:"+timenow);
-//        alert("stage2");
-        //stage 2
-        break;
-        case 3:
-        ants[0] = new Ants(new Point(room.map[0][21].point.x, room.map[0][21].point.y));
-        bees[0] = new Bees(new Point(room.map[0][10].point.x, room.map[0][10].point.y));
 
+
+        break;
+        case 3: //------------------------stage 3------------------------------------
+        //
         if(bees.length == 0)
             {room.spawnEnemies(1,'bee');}
         document.getElementById("stage-level").innerHTML = 3;
@@ -365,12 +359,9 @@ this.beeclose = function(bee)
             {room.spawnEnemies(room.maxAnts,enemy.identity);}
         else
             {room.spawnEnemies(room.maxBees,enemy.identity);}        
-//        console.log("Stage 3:"+timenow);
-//        alert("stage3");
-        //stage 3
         break;
 
-        case 4:
+        case 4: //------------------------stage 4------------------------------------
         document.getElementById("stage-level").innerHTML = 4;          
         if(room.finalStageSpawn == true)
         {
@@ -389,14 +380,14 @@ this.beeclose = function(bee)
 
 
         break;
-        default:        
-        if(segment == 12)
+        default://The place where player's ability is checked        
+        if(segment == 12)//Transmission from stage 1 to stage 2
         {
+        document.getElementById("stage-level").innerHTML = 1.2;
+        //ensure that there is at least an ant
         if(ants.length == 0)
-        {
-        room.spawnEnemies(1,'ant');
-        }            
-        document.getElementById("stage-level").innerHTML = 1.2;            
+          {room.spawnEnemies(1,'ant');}            
+        //check if player is good or bad            
         if(player.kills > 5 || player.Intrinsic.health>70)
             {
                 player.skill = 'good';
@@ -410,38 +401,37 @@ this.beeclose = function(bee)
                 room.maxAnts = 5;
             }   
         }
-        else if(segment == 23)
+        else if(segment == 23)//Transmission from stage 2 to stage 3
         {
-        if(ants.length == 0)
-        {
-        room.spawnEnemies(1,'ant');
-        }            
-        document.getElementById("stage-level").innerHTML = 2.3;            
-        if(player.kills > 10 || player.Intrinsic.health>70)
-            {
+            document.getElementById("stage-level").innerHTML = 2.3;
+            //ensure that there is at least an ant
+            if(ants.length == 0)
+              {room.spawnEnemies(1,'ant');}
+              //check if player is good or bad            
+            if(player.kills > 10 || player.Intrinsic.health>70)
+              {
                 player.skill = 'good';
                 document.getElementById("player-skill").innerHTML = 'Good';
                 room.maxAnts = 7;
                 room.maxBees = 3;
-            }
-        else
-            {
+              }
+            else
+              {
                 player.skill = 'bad';
                 document.getElementById("player-skill").innerHTML = 'Bad';
                 room.maxAnts = 5;
                 room.maxBees = 1;
-            }   
+              }   
 
         } 
         else // transition of stage 3 to 4
-        {
+          {
             document.getElementById("stage-level").innerHTML = 3.4;  
             room.finalStageSpawn = true;
-        }
-   //     alert("Processing player ability");
+          }//last else of segment checks
         break;
 
-    }
+        }//end of the switch
     
     }
 
