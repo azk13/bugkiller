@@ -367,11 +367,13 @@ this.beeclose = function(bee)
         if(player.kills > 5 || player.Intrinsic.health>70)
             {
                 player.skill = 'good';
+                document.getElementById("player-skill").innerHTML = 'Good';
                 room.maxAnts = 10;
             }
         else
             {
                 player.skill = 'bad';
+                document.getElementById("player-skill").innerHTML = 'Bad';
                 room.maxAnts = 5;
             }   
         }
@@ -381,12 +383,14 @@ this.beeclose = function(bee)
         if(player.kills > 10 || player.Intrinsic.health>70)
             {
                 player.skill = 'good';
+                document.getElementById("player-skill").innerHTML = 'Good';
                 room.maxAnts = 7;
                 room.maxBees = 3;
             }
         else
             {
                 player.skill = 'bad';
+                document.getElementById("player-skill").innerHTML = 'Bad';
                 room.maxAnts = 5;
                 room.maxBees = 1;
             }   
