@@ -241,6 +241,7 @@ this.antclose = function(ant)
         //alert("health decreasing");
         console.log(antcell.y+":"+playercell.y);
         player.Intrinsic.health -= ant.Intrinsic.attackrating;
+        
         renderingEngine.setBobHealth();
         }
     }

@@ -10,7 +10,6 @@ function Bob(centerPoint, width, height){
 	//this.identity = 'bob'; 
 
 	this.Intrinsic.color = 'yellow';	
-	this.health = 10;
 
 	this.image = new Image();
 	this.image.src = "imgs/char_bob.png";
@@ -90,7 +89,7 @@ function Bob(centerPoint, width, height){
 
 	// Calls this when Bob picks up health (Hong Shing)
 	this.heal = function(healing){
-		this.health += healing;
+		this.Intrinsic.health += healing;
 	}
 
 
