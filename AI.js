@@ -326,7 +326,8 @@ this.beeclose = function(bee)
 
         switch(segment){
         case 1:
-        //stage 1        
+        //stage 1
+        document.getElementById("stage-level").innerHTML = 1;        
         if(enemy.identity == 'ant')
             {room.spawnEnemies(room.maxAnts,enemy.identity);}
         else
@@ -336,11 +337,13 @@ this.beeclose = function(bee)
 //        alert("stage1");
         break;
         case 2:
+        document.getElementById("stage-level").innerHTML = 2;
 //        console.log("Stage 2:"+timenow);
 //        alert("stage2");
         //stage 2
         break;
         case 3:
+        document.getElementById("stage-level").innerHTML = 3;
 //        console.log("Stage 3:"+timenow);
 //        alert("stage3");
         //stage 3
