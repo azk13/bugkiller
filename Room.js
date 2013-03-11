@@ -171,19 +171,37 @@ function Room(){
     {  
         //randomizer to check for occupied space
 
+        var spawnRow = Math.floor(Math.random() * (this.rows-1));
+        var spawnCol = Math.floor(Math.random() * (this.columns-1));
+
+        if(Math.random() < 0.5)
+            {spawnRow=0;}
+        else
+            {spawnCol=0;}
+
+        while(this.map[spawnRow][spawnCol].occupied)
+        {
+            spawnRow = Math.floor(Math.random() * (this.rows-1));
+            spawnCol = Math.floor(Math.random() * (this.columns-1));            
+        }
+
+        if(Math.random() < 0.5)
+            {spawnRow=0;}
+        else
+            {spawnCol=0;}
 
         if(identity == 'ant')
         {
             if(ants.length < maxNum)
                 {
-                    ants.push(new Ants(new Point(this.map[0][21].point.x, this.map[0][21].point.y)));
+                    ants.push(new Ants(new Point(this.map[spawnRow][spawnCol].point.x, this.map[spawnRow][spawnCol].point.y)));
                 }            
         }
         else
         {
             if(bees.length < maxNum)
                 {
-                    bees.push(new Bees(new Point(this.map[0][21].point.x, this.map[0][21].point.y)));
+                    bees.push(new Bees(new Point(this.map[spawnRow][spawnCol].point.x, this.map[spawnRow][spawnCol].point.y)));
                 }    
         }
 
