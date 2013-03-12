@@ -316,6 +316,7 @@ this.beeclose = function(bee)
         var segment = 1;
         var timenow = Math.round((Date.now() - start_time)/1000);
         var stagelength = 30;
+        var mysterybox = room.getmysterybox();
 
 //Setting the different time region
         if(timenow < stagelength)
@@ -340,6 +341,7 @@ this.beeclose = function(bee)
             {room.spawnEnemies(room.maxAnts,enemy.identity);}
         else
             {room.spawnEnemies(room.maxBees,enemy.identity);}
+        mysterybox.stage = 1;  // Mysterybox spawns the item according to the stage (HS)
         break;
         case 2: //------------------------stage 2------------------------------------
         document.getElementById("stage-level").innerHTML = 2;
@@ -348,7 +350,7 @@ this.beeclose = function(bee)
         else
             {room.spawnEnemies(room.maxBees,enemy.identity);}        
 
-
+        mysterybox.stage = 2;
         break;
         case 3: //------------------------stage 3------------------------------------
         //
@@ -359,6 +361,7 @@ this.beeclose = function(bee)
             {room.spawnEnemies(room.maxAnts,enemy.identity);}
         else
             {room.spawnEnemies(room.maxBees,enemy.identity);}        
+        mysterybox.stage = 3;
         break;
 
         case 4: //------------------------stage 4------------------------------------
@@ -377,7 +380,7 @@ this.beeclose = function(bee)
             }
             room.finalStageSpawn = false;
         }
-
+        mysterybox.stage = 4;
 
         break;
         default://The place where player's ability is checked        
@@ -430,7 +433,7 @@ this.beeclose = function(bee)
             room.finalStageSpawn = true;
           }//last else of segment checks
         break;
-
+        mysterybox.stage = 0;
         }//end of the switch
     
     }

@@ -14,10 +14,12 @@ function MysteryBox(centerPoint, width, height){
 	this.issheild = false;
 	this.isant = false;
 	this.isenemy = false;
+	this.ishelath = false;
 	this.cellpos = new Point((centerPoint.x - 20)/40, (centerPoint.y - 20)/40);
 	this.counter = 0; // Counter to keep track of how long the mystery box has not been touched
-	this.item = 0; // Item 1 = knife, 2 = bomb, 3 = shuriken, 4 = enemy
+	this.item = 0; // Item 1 = knife, 2 = bomb, 3 = shuriken, 4 = enemy, 5 = health
 	this.spawn_time; // This keeps the time of when the box was last spawned
+	this.stage = 1; // This describes the current stage and what will be spawned
 
 	
 	this.updateCounter = function(){
@@ -44,6 +46,7 @@ function MysteryBox(centerPoint, width, height){
 				this.isbomb = false;
 				this.isshuriken = false;
 				this.isenemy = false;
+				this.ishealth = false;
 				//Mystery box contains knife
 				break;
 			case 2:
@@ -52,6 +55,7 @@ function MysteryBox(centerPoint, width, height){
 				this.isbomb = true;
 				this.isshuriken = false;
 				this.isenemy = false;
+				this.ishealth = false;
 				//Mystery box contains bomb
 				break;
 			case 3:
@@ -60,6 +64,7 @@ function MysteryBox(centerPoint, width, height){
 				this.isbomb = false;
 				this.isshuriken = true;
 				this.isenemy = false;
+				this.ishealth = false;
 				//Mystery box contains shuriken
 				break;
 			case 4:
@@ -68,9 +73,20 @@ function MysteryBox(centerPoint, width, height){
 				this.isbomb = false;
 				this.isshuriken = false;
 				this.isenemy = true;
+				this.ishealth = false;
 				//Mystery box contains enemy
 				break;
+			case 5:
+				this.item = 5;
+				this.isknife = false;
+				this.isbomb = false;
+				this.isshuriken = false;
+				this.isenemy = false;
+				this.ishealth = true;
+				break;
 		}
+
+		
 	}
 
 	
@@ -79,9 +95,11 @@ function MysteryBox(centerPoint, width, height){
 	var time_now = Date.now();
 	this.spawn_time = time_now;
 	time_elapsed = (time_now - time_start) / 1000;
-	console.log(time_elapsed);
+	//console.log(time_elapsed);
 	var percent = Math.random() * 100;
 	var item = 0;
+	
+	/*
 	if(time_elapsed < 10) // Early game
 	{
  		if(percent <= 20)
@@ -111,6 +129,39 @@ function MysteryBox(centerPoint, width, height){
 	}
 
 	//console.log(item);
+	*/
+	switch(this.stage)
+		{
+			case 1: // Stage 1 - Can only spawn bomb
+			item = 2; // Can only spawn bomb
+			break;
+
+			case 2: // Stage 2 - Can only spawn bomb
+			item = 2; // Can only spawn bomb
+			break;
+
+			case 3: // Can spawn all weapons
+			if(percent <= 30)
+			item = 1// 30% chance to spawn knife
+			else if(percent <= 90)
+			item = 2// 60% chance to spawn bomb
+			else
+			item = 3//10% chance to spawn shuriken
+			break;
+
+			case 4: // Can spawn all weapons
+			if(percent <= 30)
+			item = 1// 30% chance to spawn knife
+			else if(percent <= 90)
+			item = 2// 60% chance to spawn bomb
+			else
+			item = 3//10% chance to spawn shuriken
+			break;
+
+			case 0:  // Assessment period for player
+			item = 5; // Spawn health for the player to heal
+			break;
+		}
 
 	return item;
 	}
@@ -122,7 +173,7 @@ function MysteryBox(centerPoint, width, height){
 
 		var health = room.getHealth();
 
-		console.log(this.item);
+		//console.log(this.item);
 
 		switch(this.item)
 		{
@@ -139,6 +190,11 @@ function MysteryBox(centerPoint, width, height){
 				console.log(weapons[number].identity);
 				break;
 			case 4:// Spawn enemy
+				break;
+			case 5://spawn health
+				health.cellpos = this.cellpos;
+				health.Intrinsic.centerPoint = this.Intrinsic.centerPoint;
+
 				break;
 		}
 
