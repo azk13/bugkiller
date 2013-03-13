@@ -4,8 +4,6 @@ var ants = new Array();
 var bees = new Array();
 var baskets = new Array();
 
-
-
 function cell(x,y){
     this.point=new Point(x,y);
     this.occupied=false;
@@ -74,10 +72,6 @@ function Room(){
           if(x=this.width)
              x=0;
     }
-	//Objects Creation
-	/************************************
-	*/
-
     //var ants = new Array();
     //var bees = new Array();
     //var baskets = new Array();

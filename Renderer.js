@@ -9,9 +9,6 @@ var alt=1,rr=8,ss=4;
 		var baskets = room.getBaskets();
 		var weapons = room.getWeapons();
 		var mysterybox = room.getmysterybox();
-
-
-		
 		//Ai.towin(ants)
 		//if(player == winningbig)
 		//Ai.lose(ants)
@@ -212,10 +209,7 @@ var alt=1,rr=8,ss=4;
 	this.updateEnemyKillCount = function(){
 		document.getElementById("enemies-killed").innerHTML = player.kills;
 	}
-	
-
-
-	this.drawMysteryBox = function(){
+    this.drawMysteryBox = function(){
 		var mysterybox = room.getmysterybox();
 		ctx.fillStyle = '#FF00FF';
 		ctx.fillRect(mysterybox.Intrinsic.centerPoint.x-20, mysterybox.Intrinsic.centerPoint.y-20, mysterybox.Intrinsic.width, mysterybox.Intrinsic.height);

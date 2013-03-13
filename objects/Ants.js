@@ -6,10 +6,6 @@ function Ants(centerPoint){
 
 	this.identity = 'ant';
     this.bombed = false; // ~ jensen
-
-    // check location of ant in array for bombing ~ jensen
-    //this.indexSpecial = null;
-
     //Added by Renga
     //Array of weapons for the Ants to use
     this.weapons=new Array();
