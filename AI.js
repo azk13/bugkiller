@@ -329,18 +329,21 @@ this.determineMaxant=function(time,max)
 
         }
 
-        var enterLoop1 = true;
+        var enterLoop1;
         var enterLoop2 = false;
         var enemyKilledNow = player.kills;
         var enemyKilledPrev;
         var timePrev;
         var timeNow = Date.now();
 
+        console.log("Start time =" + start_time);
+
         // For the first run, set enemykilledprev to 0
-        if(!enterLoop2)
+        if((timeNow - start_time)/1000 < 1)
         {
             enemyKilledPrev = 0;
-            enterLoop2 = true;
+            timePrev = timeNow;
+            enterLoop1 = true;
         }
 
         // Check Bob Attack Power
@@ -372,8 +375,13 @@ this.determineMaxant=function(time,max)
             timePrev = timeNow;
             enterLoop1 = false;
             enemyKilledPrev = enemyKilledNow;
+            console.log("enemyKilledPrev = " + enemyKilledPrev);
+            console.log("enemyKilledNow = " + enemyKilledNow);
+            console.log('The number of enemies killed is ' +(enemyKilledNow - enemyKilledPrev));
+            //alert('stop');
 
         }
+
         
 
         //Setting the different time region
