@@ -114,15 +114,6 @@ Output:Decide whether this ant can attack bob and then attack
 
  }
 /************************************
-Input : Ant,bob
- Output:Decide whether this ant can attack bob
-************************************/
- this.antDefendBob=function(ant,bob)
- {
-
-
- }
-/************************************
 Input : All the Ants and bob and the index of the ant
 Output: Id ant is 10 cells closet to bob it will move towards another ant
  ************************************/
@@ -151,12 +142,21 @@ Input : Ants which need to pickup health
  {
 
  }
+
+this.determineMaxant=function(time,max)
+{
+    var ymax_time = 0.9;
+    var secdiv= 93/ymax_time;
+    var tensiondivision=1/secdiv;
+    var newTime= time/tensiondivision;
+    var maxAnt =Math.round(newTime +Math.sin((2*newTime)-1)+Math.sin(9*newTime)+(max-2.5));
+
+    return maxAnt;
+}
+
  this.pickedUpWeapon = function(row, column){
-
 		var weaponIdentity;
-
-		weaponIdentity = room.map[row][column].weapon.identity;
-
+        weaponIdentity = room.map[row][column].weapon.identity;
         weaponIndex = weapons.indexOf(room.map[row][column].weapon);
         // delete weapon from weapons array
         weapons.splice(weaponIndex, 1);
@@ -183,7 +183,6 @@ Input : Ants which need to pickup health
 		}
         
  }
-
  this.stepBombCheck = function(enemy){
     var enemyRow = enemy.Intrinsic.cellPos.x;
     var enemyColumn = enemy.Intrinsic.cellPos.y;
@@ -201,7 +200,6 @@ Input : Ants which need to pickup health
 
     }
  }
- 
  this.bombBlast = function(bombLocation){
 
     for(var k=0; k<ants.length; ){
@@ -225,13 +223,8 @@ Input : Ants which need to pickup health
     }
 
 }
-
-
-
-
 //ant attack function Azri
-this.antclose = function(ant)
-{
+ this.antclose = function(ant){
   if(math.getDistanceBetweenTwoPoints(player.Intrinsic.centerPoint,ant.Intrinsic.centerPoint) < (room.cellsize*1.5))
     {
         var antcell = ant.Intrinsic.cellPos;
@@ -248,10 +241,8 @@ this.antclose = function(ant)
         }
     }
 }
-
 //Bee's action when player comes within his range Azri
-this.beeclose = function(bee)
-{
+ this.beeclose = function(bee){
     bee.Intrinsic.attackrating = 5;
     var count = 5;
   if(math.getDistanceBetweenTwoPoints(player.Intrinsic.centerPoint,bee.Intrinsic.centerPoint) < (room.cellsize*5.2))
@@ -309,6 +300,7 @@ this.beeclose = function(bee)
 }
 
 
+
   //Basic staging and spawning stuff  Azri & Jensen
  this.Action = function(enemy) 
     {
@@ -353,7 +345,6 @@ this.beeclose = function(bee)
         mysterybox.stage = 2;
         break;
         case 3: //------------------------stage 3------------------------------------
-        //
         if(bees.length == 0)
             {room.spawnEnemies(1,'bee');}
         document.getElementById("stage-level").innerHTML = 3;
