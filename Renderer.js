@@ -9,10 +9,15 @@ var alt=1,rr=8,ss=4;
 		var baskets = room.getBaskets();
 		var weapons = room.getWeapons();
 		var mysterybox = room.getmysterybox();
+		var timenow = Math.round((Date.now() - start_time)/1000);
 		//Ai.towin(ants)
 		//if(player == winningbig)
 		//Ai.lose(ants)
 		//Ai.towin(bee)
+		if(ants.length == 0 && timenow < 90)
+		{
+			room.spawnEnemies(1,'ant');
+		}
 		for(var i=0;i<baskets.length;i++)
 		{		
 			physicsEngine.updatePoint(baskets[i]);	
