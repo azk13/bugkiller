@@ -318,7 +318,43 @@ this.beeclose = function(bee)
         var stagelength = 30;
         var mysterybox = room.getmysterybox();
 
-//Setting the different time region
+        // Global Decision Making
+        /************************************/
+
+        // Check Bob Health
+        if(player.Intrinsic.health > 70) {
+
+            // 
+        }else {
+
+        }
+
+        // Check Bob Attack Power
+        if(/* 2 seconds has passed */) {
+
+            if(/*bob kills more than 2 ants in 2 seconds */){
+
+            // Stage 1
+            // Bob or Basket (60/40)
+
+            // Stage 2
+            // Bob or Basket (70/30)
+
+            // Stage 3
+            // Bob or Basket (75/25)
+
+            // Stage 4
+            // Bob or Basket (60/40)
+
+            }else {
+
+                // Default
+                // Bob or Basket (50/50)
+            }
+        }
+        
+
+        //Setting the different time region
         if(timenow < stagelength)
             {segment = 1;}
         else if(timenow < stagelength*1.1)
