@@ -329,11 +329,28 @@ this.determineMaxant=function(time,max)
 
         }
 
+        var enterLoop1 = true;
+        var enterLoop2 = false;
+        var enemyKilledNow = player.kills;
+        var enemyKilledPrev;
+        var timePrev;
+        var timeNow = Date.now();
+
+        // For the first run, set enemykilledprev to 0
+        if(!enterLoop2)
+        {
+            enemyKilledPrev = 0;
+            enterLoop2 = true;
+        }
+
         // Check Bob Attack Power
-        //if(/* 2 seconds has passed */) {
+        if(enterLoop1 || (timeNow-timePrev)/1000 > 3 ) {
+            console.log('entered Loop 1');
+            console.log('The number of enemies killed is ' +(enemyKilledNow - enemyKilledPrev));
 
-            //if(/*bob kills more than 2 ants in 2 seconds */){
+            if(enemyKilledNow - enemyKilledPrev > 2){
 
+                console.log('entered Loop 2');
             // Stage 1
             // Bob or Basket (60/40)
 
@@ -351,6 +368,11 @@ this.determineMaxant=function(time,max)
                 // Default
                 // Bob or Basket (50/50)
             }
+
+            timePrev = timeNow;
+            enterLoop1 = false;
+            enemyKilledPrev = enemyKilledNow;
+
         }
         
 
