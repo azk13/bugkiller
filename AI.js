@@ -406,12 +406,19 @@ this.determineMaxant=function(time,max)
         if(enemy.identity == 'ant')
             {
               room.spawnEnemies(room.maxAnts,enemy.identity);
+              //if(law flag is false || default flag == true)
               //default: bob or basket 50/50
-              //if 2 ants killed in 3 sec
+              //if (2 ants killed in 3 sec and ant law flag is false && default flag is false)
               //if(Math.random < 0.5)
-              //bob or basket 60/40
+              //bob or basket 60/40,  raise law flag for particular ant
               //else
-              //do nothing
+              //default flag = true          
+
+              //if(lawflag)
+              //bob or basket 60/40
+
+
+              //room.maxAnt = this.determineMaxant(timenow,maxantever);
             }
         else
             {room.spawnEnemies(room.maxBees,enemy.identity);}
@@ -420,7 +427,23 @@ this.determineMaxant=function(time,max)
         case 2: //------------------------stage 2------------------------------------
         document.getElementById("stage-level").innerHTML = 2;
         if(enemy.identity == 'ant')
-            {room.spawnEnemies(room.maxAnts,enemy.identity);}
+            {
+              room.spawnEnemies(room.maxAnts,enemy.identity);
+              //if(law flag is false || default flag == true)
+              //default: bob or basket 50/50
+              //if (2 ants killed in 3 sec and ant law flag is false && default flag is false)
+              //if(Math.random < 0.5)
+              //bob or basket 60/40,  raise law flag for particular ant
+              //else
+              //default flag = true          
+
+              //if(lawflag)
+              //bob or basket 70/30
+
+
+              //room.maxAnt = this.determineMaxant(timenow,maxantever);
+
+            }
         else
             {room.spawnEnemies(room.maxBees,enemy.identity);}        
 
@@ -431,7 +454,22 @@ this.determineMaxant=function(time,max)
             {room.spawnEnemies(1,'bee');}
         document.getElementById("stage-level").innerHTML = 3;
         if(enemy.identity == 'ant')
-            {room.spawnEnemies(room.maxAnts,enemy.identity);}
+            {
+              room.spawnEnemies(room.maxAnts,enemy.identity);
+              //if(law flag is false || default flag == true)
+              //default: bob or basket 50/50
+              //if (2 ants killed in 3 sec and ant law flag is false && default flag is false)
+              //if(Math.random < 0.5)
+              //bob or basket 60/40,  raise law flag for particular ant
+              //else
+              //default flag = true          
+
+              //if(lawflag)
+              //bob or basket 75/25
+
+
+              //room.maxAnt = this.determineMaxant(timenow,maxantever);
+            }
         else
             {room.spawnEnemies(room.maxBees,enemy.identity);}        
         mysterybox.stage = 3;
