@@ -165,7 +165,7 @@ function Room(){
     { 
 
     var timenow = Date.now()/1000;
-    console.log((timenow-this.prevtime));
+    //console.log((timenow-this.prevtime));
     if(timenow-this.prevtime > 1)
         {
 

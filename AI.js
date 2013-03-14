@@ -157,9 +157,15 @@ this.determineMaxant=function(time,max)
  this.pickedUpWeapon = function(row, column){
 		var weaponIdentity;
         weaponIdentity = room.map[row][column].weapon.identity;
-        weaponIndex = weapons.indexOf(room.map[row][column].weapon);
-        // delete weapon from weapons array
-        weapons.splice(weaponIndex, 1);
+
+        if(room.map[row][column].weapon.activeBomb ==  true){
+
+        }else{
+            weaponIndex = weapons.indexOf(room.map[row][column].weapon);
+            // delete weapon from weapons array
+            weapons.splice(weaponIndex, 1);
+        }
+        
 
 		switch(weaponIdentity)
 		{
@@ -197,6 +203,7 @@ this.determineMaxant=function(time,max)
         weaponIndex = weapons.indexOf(bombLocation);
         // delete weapon from weapons array
         weapons.splice(weaponIndex, 1);
+        room.map[enemyRow][enemyColumn].weapon.activeBomb = false;
 
     }
  }
@@ -336,7 +343,7 @@ this.determineMaxant=function(time,max)
         var timePrev;
         var timeNow = Date.now();
 
-        console.log("Start time =" + start_time);
+        //console.log("Start time =" + start_time);
 
         // For the first run, set enemykilledprev to 0
         if((timeNow - start_time)/1000 < 1)
@@ -348,12 +355,12 @@ this.determineMaxant=function(time,max)
 
         // Check Bob Attack Power
         if(enterLoop1 || (timeNow-timePrev)/1000 > 3 ) {
-            console.log('entered Loop 1');
-            console.log('The number of enemies killed is ' +(enemyKilledNow - enemyKilledPrev));
+            //console.log('entered Loop 1');
+            //console.log('The number of enemies killed is ' +(enemyKilledNow - enemyKilledPrev));
 
             if(enemyKilledNow - enemyKilledPrev > 2){
 
-                console.log('entered Loop 2');
+                //console.log('entered Loop 2');
             // Stage 1
             // Bob or Basket (60/40)
 
@@ -375,9 +382,9 @@ this.determineMaxant=function(time,max)
             timePrev = timeNow;
             enterLoop1 = false;
             enemyKilledPrev = enemyKilledNow;
-            console.log("enemyKilledPrev = " + enemyKilledPrev);
-            console.log("enemyKilledNow = " + enemyKilledNow);
-            console.log('The number of enemies killed is ' +(enemyKilledNow - enemyKilledPrev));
+            //console.log("enemyKilledPrev = " + enemyKilledPrev);
+            //console.log("enemyKilledNow = " + enemyKilledNow);
+            //console.log('The number of enemies killed is ' +(enemyKilledNow - enemyKilledPrev));
             //alert('stop');
 
         }
