@@ -298,8 +298,16 @@ this.determineMaxant=function(time,max)
         }
 
 }
+ this.determineMaxant=function(time,max)
+    {
+        var ymax_time = 0.9;
+        var secdiv= 93/ymax_time;
+        var tensiondivision=1/secdiv;
+        var newTime= time/tensiondivision;
+        var maxAnt =Math.round(newTime +Math.sin((2*newTime)-1)+Math.sin(9*newTime)+(max-2.5));
 
-
+        return maxAnt;
+    }
 
   //Basic staging and spawning stuff  Azri & Jensen
  this.Action = function(enemy) 
@@ -322,9 +330,9 @@ this.determineMaxant=function(time,max)
         }
 
         // Check Bob Attack Power
-        if(/* 2 seconds has passed */) {
+        //if(/* 2 seconds has passed */) {
 
-            if(/*bob kills more than 2 ants in 2 seconds */){
+            //if(/*bob kills more than 2 ants in 2 seconds */){
 
             // Stage 1
             // Bob or Basket (60/40)
