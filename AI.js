@@ -396,7 +396,15 @@ this.determineMaxant=function(time,max)
         case 1: //------------------------stage 1------------------------------------
         document.getElementById("stage-level").innerHTML = 1;        
         if(enemy.identity == 'ant')
-            {room.spawnEnemies(room.maxAnts,enemy.identity);}
+            {
+              room.spawnEnemies(room.maxAnts,enemy.identity);
+              //default: bob or basket 50/50
+              //if 2 ants killed in 3 sec
+              //if(Math.random < 0.5)
+              //bob or basket 60/40
+              //else
+              //do nothing
+            }
         else
             {room.spawnEnemies(room.maxBees,enemy.identity);}
         mysterybox.stage = 1;  // Mysterybox spawns the item according to the stage (HS)
