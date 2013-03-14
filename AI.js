@@ -1,5 +1,7 @@
 function AI(){
 
+var enemyKilledPrev = 0; // Used in this.Action
+var time_previous = 0; // Used in this.Action
 
 function getNearestBasketIndex(enemy)
 {
@@ -385,31 +387,18 @@ for(var i=0;i<baskets.length;i++)
 
         }
 
-        var enterLoop1;
-        var enterLoop2 = false;
+
         var enemyKilledNow = player.kills;
-        var enemyKilledPrev;
-        var timePrev;
         var timeNow = Date.now();
-
-        //console.log("Start time =" + start_time);
-
-        // For the first run, set enemykilledprev to 0
-        if((timeNow - start_time)/1000 < 1)
-        {
-            enemyKilledPrev = 0;
-            timePrev = timeNow;
-            enterLoop1 = true;
-        }
-
+        
         // Check Bob Attack Power
-        if(enterLoop1 || (timeNow-timePrev)/1000 > 3 ) {
-            //console.log('entered Loop 1');
-            //console.log('The number of enemies killed is ' +(enemyKilledNow - enemyKilledPrev));
+        if((timeNow-time_previous)/1000 > 3 ) {
+            console.log('entered Loop 1');
+            console.log('The number of enemies killed is ' +(enemyKilledNow - enemyKilledPrev));
 
             if(enemyKilledNow - enemyKilledPrev > 2){
 
-                //console.log('entered Loop 2');
+            console.log('entered Loop 2');
             // Stage 1
             // Bob or Basket (60/40)
 
@@ -428,14 +417,8 @@ for(var i=0;i<baskets.length;i++)
                 // Bob or Basket (50/50)
             }
 
-            timePrev = timeNow;
-            enterLoop1 = false;
+            time_previous = timeNow;
             enemyKilledPrev = enemyKilledNow;
-            //console.log("enemyKilledPrev = " + enemyKilledPrev);
-            //console.log("enemyKilledNow = " + enemyKilledNow);
-            //console.log('The number of enemies killed is ' +(enemyKilledNow - enemyKilledPrev));
-            //alert('stop');
-
         }
 
         

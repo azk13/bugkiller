@@ -179,15 +179,15 @@ function MysteryBox(centerPoint, width, height){
 		{
 			case 1:// Spawn knife
 				weapons.push(new Weapon(this.Intrinsic.centerPoint, 'Attack', 'Knife'));
-				console.log(weapons[number].identity);
+				//console.log(weapons[number].identity);
 				break;
 			case 2:// Spawn bomb
 				weapons.push(new Weapon(this.Intrinsic.centerPoint, 'Attack', 'Bomb'));
-				console.log(weapons[number].identity);
+				//console.log(weapons[number].identity);
 				break;
 			case 3:// Spawn shuriken
 				weapons[number] = (new Weapon(this.Intrinsic.centerPoint, 'Attack', 'Shuriken'))
-				console.log(weapons[number].identity);
+				//console.log(weapons[number].identity);
 				break;
 			case 4:// Spawn enemy
 				break;
