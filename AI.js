@@ -232,9 +232,10 @@ this.determineMaxant=function(time,max)
 }
 //ant attack function Azri
  this.antclose = function(ant){
+
+ var antcell = ant.Intrinsic.cellPos;
   if(math.getDistanceBetweenTwoPoints(player.Intrinsic.centerPoint,ant.Intrinsic.centerPoint) < (room.cellsize*1.5))
     {
-        var antcell = ant.Intrinsic.cellPos;
         var playercell = player.Intrinsic.cellPos;
 
 
@@ -247,6 +248,28 @@ this.determineMaxant=function(time,max)
         renderingEngine.setBobHealth();
         }
     }
+
+var baskets = room.getBaskets();
+
+for(var i=0;i<baskets.length;i++)
+{
+  if(math.getDistanceBetweenTwoPoints(baskets[i].Intrinsic.centerPoint,ant.Intrinsic.centerPoint) < (room.cellsize*1.5))
+    {
+        var basketscell = baskets[i].Intrinsic.cellPos;
+
+
+        if( ((antcell.y == basketscell.y) && ant.Intrinsic.direction.toFixed(2) == (Math.PI/2).toFixed(2) && basketscell.x>antcell.x) || ((antcell.y == basketscell.y) && ant.Intrinsic.direction.toFixed(2) == (Math.PI*3/2).toFixed(2) && basketscell.x<antcell.x) || ((antcell.x == basketscell.x) && ant.Intrinsic.direction == 0 && basketscell.y>antcell.y) || ((antcell.x == basketscell.x) && ant.Intrinsic.direction.toFixed(2) == Math.PI.toFixed(2) && basketscell.y<antcell.y) )
+        {
+        baskets[i].Intrinsic.health -= ant.Intrinsic.attackrating;
+        //remove basket if destroyed
+        if(baskets[i].Intrinsic.health <= 0)
+        {
+          baskets.splice(baskets.indexOf(baskets[i]),1);
+        }
+        }
+    }
+
+}
 }
 //Bee's action when player comes within his range Azri
  this.beeclose = function(bee){

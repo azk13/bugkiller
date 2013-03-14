@@ -31,6 +31,8 @@ var alt=1,rr=8,ss=4;
 			{//pathfinding.objectgo(ants[i],player);
 				ai.Action(ants[i]);
                 ai.antAttackBob(ants[i],player);
+ //				if(baskets.length !=0)
+ //				ai.attackNearestBasket(ants[i]);
                 ai.antclose(ants[i]);
             }
 			physicsEngine.updatePoint(ants[i]);	
@@ -181,6 +183,14 @@ var alt=1,rr=8,ss=4;
 		for (var i=0;i<baskets.length;i++){
 			ctx.fillStyle = baskets[i].Intrinsic.color;
 	    	ctx.fillRect(baskets[i].Intrinsic.centerPoint.x-20, baskets[i].Intrinsic.centerPoint.y-20, baskets[i].Intrinsic.width, baskets[i].Intrinsic.height);
+
+		var hppoint = new Point(baskets[i].Intrinsic.centerPoint.x-baskets[i].Intrinsic.radius, baskets[i].Intrinsic.centerPoint.y-baskets[i].Intrinsic.radius);		
+		ctx.beginPath();
+	    ctx.moveTo(hppoint.x,hppoint.y);
+	    ctx.lineTo(hppoint.x+(baskets[i].Intrinsic.health*(room.cellsize/100)),hppoint.y);
+	    ctx.lineWidth = 5;
+	    ctx.strokeStyle = 'green';
+	    ctx.stroke();		    	
 		}
 	}
 	this.drawAnts = function(){
@@ -362,10 +372,22 @@ var alt=1,rr=8,ss=4;
 	    ctx.strokeStyle = 'green';
 	    ctx.stroke();	
 		}
+	
+		var linelength = 25;
+		// Draw arrow of direction
+	    var endX = character.Intrinsic.centerPoint.x + linelength * Math.cos(character.Intrinsic.direction);
+	    var endY = character.Intrinsic.centerPoint.y + linelength * Math.sin(character.Intrinsic.direction);
+	    ctx.beginPath();
+	    ctx.moveTo(character.Intrinsic.centerPoint.x,character.Intrinsic.centerPoint.y);
+	    ctx.lineTo(endX,endY);
+	    ctx.lineWidth = 5;
+	    ctx.strokeStyle = 'red';
+	    ctx.stroke();
+
 
 	    //debug mode Azri
 		if(debugMode == true){
-			var linelength = 25;
+			
 			var characterX = character.Intrinsic.centerPoint.x + character.Intrinsic.radius;
 			var characterY = character.Intrinsic.centerPoint.y;
 			var stringToSend = "Row:"+Math.floor(character.Intrinsic.centerPoint.x/room.cellsize)+" Column:"+Math.floor(characterY/room.cellsize);			
@@ -379,22 +401,13 @@ var alt=1,rr=8,ss=4;
 			this.writeText(stringToSend, pointToDisplay);
 			pointToDisplay.y += 10;
 
-			// Draw arrow of direction
+			//Identity
 			pointToDisplay.y = character.Intrinsic.centerPoint.y-10;
 			pointToDisplay.x = character.Intrinsic.centerPoint.x-4;
 			stringToSend = character.identity;
 			this.writeText(stringToSend, pointToDisplay);
 
 
-
-	    	var endX = character.Intrinsic.centerPoint.x + linelength * Math.cos(character.Intrinsic.direction);
-	    	var endY = character.Intrinsic.centerPoint.y + linelength * Math.sin(character.Intrinsic.direction);
-	    	ctx.beginPath();
-	    	ctx.moveTo(character.Intrinsic.centerPoint.x,character.Intrinsic.centerPoint.y);
-	    	ctx.lineTo(endX,endY);
-	    	ctx.lineWidth = 5;
-	    	ctx.strokeStyle = 'red';
-	    	ctx.stroke();
 
 	    }//end if(debugMode == true)
 
