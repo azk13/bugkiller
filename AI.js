@@ -230,6 +230,19 @@ this.determineMaxant=function(time,max)
     }
 
 }
+
+ this.antAttackrating = function(ant,identity)
+ {
+  var firstTension = 25,secondTension = 88; 
+  var timenow = Math.round((Date.now() - start_time)/1000);  
+  ant.Intrinsic.attackrating = 0.5;
+  if((timenow < (firstTension+5) && timenow > firstTension) || (timenow < (secondTension+5) && timenow > secondTension))
+  {
+    ant.Intrinsic.attackrating = player.Intrinsic.health*0.05;
+  }
+
+ }
+
 //ant attack function Azri
  this.antclose = function(ant){
 

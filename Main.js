@@ -82,6 +82,7 @@
            // Press 1,2,3 to switch weapon ~ jensen
            if(event.keyCode == 49) {
                 if(player.hasBombEquipped) {
+                    player.Intrinsic.attackcolor = 'aqua';  
                     player.activeWeapon = 'Bomb';
                     document.getElementById("active-weapon").innerHTML = 'Bomb';
                 }
@@ -90,7 +91,7 @@
 
            if(event.keyCode == 50) {
                 if(player.hasKnifeEquipped){
-                    
+                    player.Intrinsic.attackcolor = 'grey';    
                     player.activeWeapon = 'Knife';
                     document.getElementById("active-weapon").innerHTML = 'Knife';
                 }
@@ -99,6 +100,7 @@
 
            if(event.keyCode == 51) {
                 if(player.hasShurikenEquipped){
+                  player.Intrinsic.attackcolor = 'red';    
                   player.activeWeapon = 'Shuriken';
                   document.getElementById("active-weapon").innerHTML = 'Shuriken';
                 }
@@ -106,7 +108,7 @@
            }
 
            // Press Shift to use Active Weapon ~ jensen
-           if(event.keyCode == 16) {
+           if(event.keyCode == 90) {
               
                 switch(player.activeWeapon)
                 {
@@ -120,6 +122,7 @@
                      player.usingShuriken();
                     break;
                   default:
+                      player.usingPunch();
                       break;
 
                 }    

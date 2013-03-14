@@ -33,11 +33,26 @@ function Bob(centerPoint, width, height){
     this.hasWeapons=function(){if(this.weapons.length>1) return true;}
 
 
+    this.usingPunch = function(){
+    	this.Intrinsic.attackrating = 5;
+        if(player.Intrinsic.isattacking)
+          {player.Intrinsic.attackcolor = 'black';}
+        else
+          {player.Intrinsic.attackcolor = 'brown';}
+        player.Intrinsic.isattacking = !player.Intrinsic.isattacking;    
+        punchAttack();	
+    }
 
 
 	this.usingKnife = function(){
-
-		this.knifeHealth -= 20;
+		this.Intrinsic.attackrating=25;
+        if(player.Intrinsic.isattacking)
+          {player.Intrinsic.attackcolor = 'white';}
+        else
+          {player.Intrinsic.attackcolor = 'red';}
+        player.Intrinsic.isattacking = !player.Intrinsic.isattacking;
+        knifeAttack();
+		this.knifeHealth -= 5;
 		document.getElementById("knife-health").style.width= this.knifeHealth + '%';
 		if(this.knifeHealth <= 0) {
 		this.hasKnifeEquipped = false;
@@ -48,7 +63,7 @@ function Bob(centerPoint, width, height){
 	}
 
 	this.usingBomb = function(playerrow, playercol){
-
+		player.Intrinsic.attackcolor = 'blue';
 		this.bombHealth -= 100;
 
 		weapons[weapons.length] = new Weapon(new Point(room.map[playerrow][playercol].point.x, room.map[playerrow][playercol].point.y), weapons.length, 'Attack', 'Bomb');
@@ -74,6 +89,7 @@ function Bob(centerPoint, width, height){
 	}
 
 	this.usingShuriken = function(){
+		player.Intrinsic.attackcolor = 'silver';		
 		this.shurikenHealth -=5;
 		document.getElementById("shuriken-health").style.width= this.shurikenHealth + '%';
 		this.Intrinsic.attackrating=50;
@@ -94,9 +110,89 @@ function Bob(centerPoint, width, height){
 		this.Intrinsic.health += healing;
 	}
 
+}
+
+function knifeAttack()
+{
+    var ants = room.getAnts();
+    var bees = room.getBees();
+
+        for(var i=0;i<ants.length;i++)
+        {
+        var ant = ants[i];
+  		if(math.getDistanceBetweenTwoPoints(player.Intrinsic.centerPoint,ant.Intrinsic.centerPoint) < (room.cellsize*1.5))
+    		{
+			    var playercell = player.Intrinsic.cellPos;
+			    var antcell = ant.Intrinsic.cellPos;
+
+		        if( ((antcell.y == playercell.y) && player.Intrinsic.direction.toFixed(2) == (Math.PI/2).toFixed(2) && antcell.x>playercell.x) || ((antcell.y == playercell.y) && player.Intrinsic.direction.toFixed(2) == (Math.PI*3/2).toFixed(2) && antcell.x<playercell.x) || ((antcell.x == playercell.x) && player.Intrinsic.direction == 0 && antcell.y>playercell.y) || (( playercell.x==antcell.x ) && player.Intrinsic.direction.toFixed(2) == Math.PI.toFixed(2) && antcell.y<playercell.y) )
+		        {
+		 //       alert("health decreasing");
+		        ant.Intrinsic.health -= player.Intrinsic.attackrating; 
+		        if(ant.Intrinsic.health <= 0)
+		        {ants.splice(ants.indexOf(ant),1); }
+		        }
+    		}
+        }
 
 
+        for(var i=0;i<bees.length;i++)
+        {
+  		if(math.getDistanceBetweenTwoPoints(player.Intrinsic.centerPoint,bee.Intrinsic.centerPoint) < (room.cellsize*1.5))
+    		{
+			    var playercell = player.Intrinsic.cellPos;
+			    var beecell = bee.Intrinsic.cellPos;
+
+		        if( ((beecell.y == playercell.y) && player.Intrinsic.direction.toFixed(2) == (Math.PI/2).toFixed(2) && beecell.x>playercell.x) || ((beecell.y == playercell.y) && player.Intrinsic.direction.toFixed(2) == (Math.PI*3/2).toFixed(2) && beecell.x<playercell.x) || ((beecell.x == playercell.x) && player.Intrinsic.direction == 0 && beecell.y>playercell.y) || (( playercell.x==beecell.x ) && player.Intrinsic.direction.toFixed(2) == Math.PI.toFixed(2) && beecell.y<playercell.y) )
+		        {
+		 //       alert("health decreasing");
+		        bee.Intrinsic.health -= player.Intrinsic.attackrating; 
+		        if(bee.Intrinsic.health <= 0)
+		        {bees.splice(bees.indexOf(bee),1); }
+		        }
+    		}        	
+        }
+}	
 
 
+function punchAttack()
+{
+    var ants = room.getAnts();
+    var bees = room.getBees();
 
+        for(var i=0;i<ants.length;i++)
+        {
+        var ant = ants[i];
+  		if(math.getDistanceBetweenTwoPoints(player.Intrinsic.centerPoint,ant.Intrinsic.centerPoint) < (room.cellsize*1.5))
+    		{
+			    var playercell = player.Intrinsic.cellPos;
+			    var antcell = ant.Intrinsic.cellPos;
+
+		        if( ((antcell.y == playercell.y) && player.Intrinsic.direction.toFixed(2) == (Math.PI/2).toFixed(2) && antcell.x>playercell.x) || ((antcell.y == playercell.y) && player.Intrinsic.direction.toFixed(2) == (Math.PI*3/2).toFixed(2) && antcell.x<playercell.x) || ((antcell.x == playercell.x) && player.Intrinsic.direction == 0 && antcell.y>playercell.y) || (( playercell.x==antcell.x ) && player.Intrinsic.direction.toFixed(2) == Math.PI.toFixed(2) && antcell.y<playercell.y) )
+		        {
+		 //       alert("health decreasing");
+		        ant.Intrinsic.health -= player.Intrinsic.attackrating; 
+		        if(ant.Intrinsic.health <= 0)
+		        {ants.splice(ants.indexOf(ant),1); }
+		        }
+    		}
+        }
+
+
+        for(var i=0;i<bees.length;i++)
+        {
+  		if(math.getDistanceBetweenTwoPoints(player.Intrinsic.centerPoint,bee.Intrinsic.centerPoint) < (room.cellsize*1.5))
+    		{
+			    var playercell = player.Intrinsic.cellPos;
+			    var beecell = bee.Intrinsic.cellPos;
+
+		        if( ((beecell.y == playercell.y) && player.Intrinsic.direction.toFixed(2) == (Math.PI/2).toFixed(2) && beecell.x>playercell.x) || ((beecell.y == playercell.y) && player.Intrinsic.direction.toFixed(2) == (Math.PI*3/2).toFixed(2) && beecell.x<playercell.x) || ((beecell.x == playercell.x) && player.Intrinsic.direction == 0 && beecell.y>playercell.y) || (( playercell.x==beecell.x ) && player.Intrinsic.direction.toFixed(2) == Math.PI.toFixed(2) && beecell.y<playercell.y) )
+		        {
+		 //       alert("health decreasing");
+		        bee.Intrinsic.health -= player.Intrinsic.attackrating; 
+		        if(bee.Intrinsic.health <= 0)
+		        {bees.splice(bees.indexOf(bee),1); }
+		        }
+    		}        	
+        }
 }
