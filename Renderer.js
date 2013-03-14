@@ -30,9 +30,9 @@ var alt=1,rr=8,ss=4;
 			if(alt%rr == 0)			
 			{//pathfinding.objectgo(ants[i],player);
 				ai.Action(ants[i]);
-                ai.antAttackBob(ants[i],player);
- //				if(baskets.length !=0)
- //				ai.attackNearestBasket(ants[i]);
+//                ai.antAttackBob(ants[i],player);
+ 				if(baskets.length !=0)
+ 				ai.attackNearestBasket(ants[i]);
                 ai.antclose(ants[i]);
             }
 			physicsEngine.updatePoint(ants[i]);	
@@ -381,7 +381,7 @@ var alt=1,rr=8,ss=4;
 	    ctx.moveTo(character.Intrinsic.centerPoint.x,character.Intrinsic.centerPoint.y);
 	    ctx.lineTo(endX,endY);
 	    ctx.lineWidth = 5;
-	    ctx.strokeStyle = 'red';
+	    ctx.strokeStyle = character.Intrinsic.attackcolor;
 	    ctx.stroke();
 
 

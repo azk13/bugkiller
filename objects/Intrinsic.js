@@ -21,7 +21,7 @@ function Intrinsic(centerPoint, width, height){
 	this.isattacking = false;
 	this.contructing = false;
 	this.isdying = false;
-	
+    this.attackcolor = 'blue';	
 
 	this.stop = function() {
 		this.direction=0;

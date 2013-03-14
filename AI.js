@@ -234,6 +234,7 @@ this.determineMaxant=function(time,max)
  this.antclose = function(ant){
 
  var antcell = ant.Intrinsic.cellPos;
+ ant.Intrinsic.attackcolor = 'blue'; 
   if(math.getDistanceBetweenTwoPoints(player.Intrinsic.centerPoint,ant.Intrinsic.centerPoint) < (room.cellsize*1.5))
     {
         var playercell = player.Intrinsic.cellPos;
@@ -241,12 +242,19 @@ this.determineMaxant=function(time,max)
 
         if( ((antcell.y == playercell.y) && ant.Intrinsic.direction.toFixed(2) == (Math.PI/2).toFixed(2) && playercell.x>antcell.x) || ((antcell.y == playercell.y) && ant.Intrinsic.direction.toFixed(2) == (Math.PI*3/2).toFixed(2) && playercell.x<antcell.x) || ((antcell.x == playercell.x) && ant.Intrinsic.direction == 0 && playercell.y>antcell.y) || ((antcell.x == playercell.x) && ant.Intrinsic.direction.toFixed(2) == Math.PI.toFixed(2) && playercell.y<antcell.y) )
         {
-        //alert("health decreasing");
+ //       alert("health decreasing");
         console.log(antcell.y+":"+playercell.y);
-        player.Intrinsic.health -= ant.Intrinsic.attackrating;
-        
+        player.Intrinsic.health -= ant.Intrinsic.attackrating; 
+        if(ant.Intrinsic.isattacking)
+          {ant.Intrinsic.attackcolor = 'red';}
+        else
+          {ant.Intrinsic.attackcolor = 'green';}
+        ant.Intrinsic.isattacking = !ant.Intrinsic.isattacking;
         renderingEngine.setBobHealth();
         }
+
+
+
     }
 
 var baskets = room.getBaskets();
@@ -261,6 +269,11 @@ for(var i=0;i<baskets.length;i++)
         if( ((antcell.y == basketscell.y) && ant.Intrinsic.direction.toFixed(2) == (Math.PI/2).toFixed(2) && basketscell.x>antcell.x) || ((antcell.y == basketscell.y) && ant.Intrinsic.direction.toFixed(2) == (Math.PI*3/2).toFixed(2) && basketscell.x<antcell.x) || ((antcell.x == basketscell.x) && ant.Intrinsic.direction == 0 && basketscell.y>antcell.y) || ((antcell.x == basketscell.x) && ant.Intrinsic.direction.toFixed(2) == Math.PI.toFixed(2) && basketscell.y<antcell.y) )
         {
         baskets[i].Intrinsic.health -= ant.Intrinsic.attackrating;
+        if(ant.Intrinsic.isattacking)
+          {ant.Intrinsic.attackcolor = 'brown';}
+        else
+          {ant.Intrinsic.attackcolor = 'purple';}    
+        ant.Intrinsic.isattacking = !ant.Intrinsic.isattacking;              
         //remove basket if destroyed
         if(baskets[i].Intrinsic.health <= 0)
         {
