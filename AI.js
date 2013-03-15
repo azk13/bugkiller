@@ -435,7 +435,7 @@ for(var i=0;i<baskets.length;i++)
         document.getElementById("stage-level").innerHTML = 1;        
         if(enemy.identity == 'ant')
             {
-              room.maxAnt = this.determineMaxant(timenow,10);
+              room.maxAnts = this.determineMaxant(timenow,10);
               room.spawnEnemies(room.maxAnts,enemy.identity);
               //if(law flag is false || default flag == true)
               //default: bob or basket 50/50
@@ -459,7 +459,7 @@ for(var i=0;i<baskets.length;i++)
         document.getElementById("stage-level").innerHTML = 2;
         if(enemy.identity == 'ant')
             {
-              room.maxAnt = this.determineMaxant(timenow,10);
+              room.maxAnts = this.determineMaxant(timenow,10);
               room.spawnEnemies(room.maxAnts,enemy.identity);
               //if(law flag is false || default flag == true)
               //default: bob or basket 50/50
@@ -487,7 +487,7 @@ for(var i=0;i<baskets.length;i++)
         document.getElementById("stage-level").innerHTML = 3;
         if(enemy.identity == 'ant')
             {
-              room.maxAnt = this.determineMaxant(timenow,10);
+              room.maxAnts = this.determineMaxant(timenow,10);
               room.spawnEnemies(room.maxAnts,enemy.identity);
               //if(law flag is false || default flag == true)
               //default: bob or basket 50/50

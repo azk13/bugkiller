@@ -233,6 +233,7 @@ function Room(){
 
         if(identity == 'ant')
         {
+            console.log("ant length:" + ants.length + " : "+maxNum);
             if(ants.length < maxNum)
                 {
                     ants.push(new Ants(new Point(this.map[spawnRow][spawnCol].point.x, this.map[spawnRow][spawnCol].point.y)));

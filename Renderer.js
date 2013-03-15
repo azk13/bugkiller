@@ -145,7 +145,6 @@ var alt=1,rr=8,ss=4;
 	}
 	
 	this.draw = function(){
-		var ants = room.getAnts();
 		this.drawRoom();
 		this.drawBaskets();
 		this.drawAnts();
