@@ -130,7 +130,10 @@ function knifeAttack()
 		 //       alert("health decreasing");
 		        ant.Intrinsic.health -= player.Intrinsic.attackrating; 
 		        if(ant.Intrinsic.health <= 0)
-		        {ants.splice(ants.indexOf(ant),1); }
+		        {
+		        	ants.splice(ants.indexOf(ant),1); 
+		        	player.kills++;
+		        }
 		        }
     		}
         }
@@ -138,6 +141,7 @@ function knifeAttack()
 
         for(var i=0;i<bees.length;i++)
         {
+        	var bee = bees[i];
   		if(math.getDistanceBetweenTwoPoints(player.Intrinsic.centerPoint,bee.Intrinsic.centerPoint) < (room.cellsize*1.5))
     		{
 			    var playercell = player.Intrinsic.cellPos;
@@ -148,7 +152,10 @@ function knifeAttack()
 		 //       alert("health decreasing");
 		        bee.Intrinsic.health -= player.Intrinsic.attackrating; 
 		        if(bee.Intrinsic.health <= 0)
-		        {bees.splice(bees.indexOf(bee),1); }
+		        {
+		        	bees.splice(bees.indexOf(bee),1); 
+		        	player.kills++;
+		        }
 		        }
     		}        	
         }
@@ -173,7 +180,10 @@ function punchAttack()
 		 //       alert("health decreasing");
 		        ant.Intrinsic.health -= player.Intrinsic.attackrating; 
 		        if(ant.Intrinsic.health <= 0)
-		        {ants.splice(ants.indexOf(ant),1); }
+		        {
+		        	ants.splice(ants.indexOf(ant),1); 
+		        	player.kills++;
+		        }
 		        }
     		}
         }
@@ -181,6 +191,7 @@ function punchAttack()
 
         for(var i=0;i<bees.length;i++)
         {
+        	var bee = bees[i];
   		if(math.getDistanceBetweenTwoPoints(player.Intrinsic.centerPoint,bee.Intrinsic.centerPoint) < (room.cellsize*1.5))
     		{
 			    var playercell = player.Intrinsic.cellPos;
@@ -191,7 +202,10 @@ function punchAttack()
 		 //       alert("health decreasing");
 		        bee.Intrinsic.health -= player.Intrinsic.attackrating; 
 		        if(bee.Intrinsic.health <= 0)
-		        {bees.splice(bees.indexOf(bee),1); }
+		        {
+		        	bees.splice(bees.indexOf(bee),1); 
+		        	player.kills++;
+		        }
 		        }
     		}        	
         }

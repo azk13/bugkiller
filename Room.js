@@ -164,9 +164,10 @@ function Room(){
     this.spawnEnemies = function(maxNum,identity)
     { 
 
+    var spawnrate = (Math.random()*10)+1.5;
     var timenow = Date.now()/1000;
     //console.log((timenow-this.prevtime));
-    if(timenow-this.prevtime > 1)
+    if(timenow-this.prevtime > spawnrate)
         {
 
         //randomizer to check for occupied space

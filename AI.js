@@ -147,12 +147,13 @@ Input : Ants which need to pickup health
 
 this.determineMaxant=function(time,max)
 {
-    var ymax_time = 0.9;
-    var secdiv= 93/ymax_time;
-    var tensiondivision=1/secdiv;
-    var newTime= time/tensiondivision;
-    var maxAnt =Math.round(newTime +Math.sin((2*newTime)-1)+Math.sin(9*newTime)+(max-2.5));
 
+    var ymax_time = 0.9;
+    var secdiv = ymax_time/93;
+    var tensiondivision=1/secdiv;
+    var newTime = (time/tensiondivision);
+    var maxAnt = Math.round(newTime +Math.sin((2*newTime)-1)+Math.sin(9*newTime)+(max-2.5));
+    console.log("Max Ants:"+maxAnt);
     return maxAnt;
 }
 
@@ -356,23 +357,13 @@ for(var i=0;i<baskets.length;i++)
         }
 
 }
- this.determineMaxant=function(time,max)
-    {
-        var ymax_time = 0.9;
-        var secdiv= 93/ymax_time;
-        var tensiondivision=1/secdiv;
-        var newTime= time/tensiondivision;
-        var maxAnt =Math.round(newTime +Math.sin((2*newTime)-1)+Math.sin(9*newTime)+(max-2.5));
-
-        return maxAnt;
-    }
 
   //Basic staging and spawning stuff  Azri & Jensen
  this.Action = function(enemy) 
     {
-        var enemyarray;
+        var ants = room.getAnts;        
         var segment = 1;
-        var timenow = Math.round((Date.now() - start_time)/1000);
+        var timenow = (Date.now() - start_time)/1000;
         var stagelength = 30;
         var mysterybox = room.getmysterybox();
 
@@ -444,6 +435,7 @@ for(var i=0;i<baskets.length;i++)
         document.getElementById("stage-level").innerHTML = 1;        
         if(enemy.identity == 'ant')
             {
+              room.maxAnt = this.determineMaxant(timenow,10);
               room.spawnEnemies(room.maxAnts,enemy.identity);
               //if(law flag is false || default flag == true)
               //default: bob or basket 50/50
@@ -456,8 +448,8 @@ for(var i=0;i<baskets.length;i++)
               //if(lawflag)
               //bob or basket 60/40
 
+              //console.log("tension curve ant :" + this.determineMaxant(timenow,10) + " maxAnt :"+room.maxAnt);
 
-              //room.maxAnt = this.determineMaxant(timenow,maxantever);
             }
         else
             {room.spawnEnemies(room.maxBees,enemy.identity);}
@@ -467,6 +459,7 @@ for(var i=0;i<baskets.length;i++)
         document.getElementById("stage-level").innerHTML = 2;
         if(enemy.identity == 'ant')
             {
+              room.maxAnt = this.determineMaxant(timenow,10);
               room.spawnEnemies(room.maxAnts,enemy.identity);
               //if(law flag is false || default flag == true)
               //default: bob or basket 50/50
@@ -480,7 +473,7 @@ for(var i=0;i<baskets.length;i++)
               //bob or basket 70/30
 
 
-              //room.maxAnt = this.determineMaxant(timenow,maxantever);
+              
 
             }
         else
@@ -494,6 +487,7 @@ for(var i=0;i<baskets.length;i++)
         document.getElementById("stage-level").innerHTML = 3;
         if(enemy.identity == 'ant')
             {
+              room.maxAnt = this.determineMaxant(timenow,10);
               room.spawnEnemies(room.maxAnts,enemy.identity);
               //if(law flag is false || default flag == true)
               //default: bob or basket 50/50
@@ -507,7 +501,7 @@ for(var i=0;i<baskets.length;i++)
               //bob or basket 75/25
 
 
-              //room.maxAnt = this.determineMaxant(timenow,maxantever);
+              
             }
         else
             {room.spawnEnemies(room.maxBees,enemy.identity);}        
@@ -518,17 +512,23 @@ for(var i=0;i<baskets.length;i++)
         document.getElementById("stage-level").innerHTML = 4;          
         if(room.finalStageSpawn == true)
         {
+
             if(player.skill == 'good')
             {
                 room.spawnEnemies(10,'ant');
-                room.spawnEnemies(4,'bee');                
+                room.spawnEnemies(4,'bee');
+                
+                if(ants.length >= 9)
+                {room.finalStageSpawn = false;}                
             }
             else // player is bad
             {
                 room.spawnEnemies(7,'ant');
                 room.spawnEnemies(2,'bee');
+                if(ants.length >= 6)
+                {room.finalStageSpawn = false;}            
             }
-            room.finalStageSpawn = false;
+            
         }
         mysterybox.stage = 4;
 
