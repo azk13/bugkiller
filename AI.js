@@ -2,7 +2,7 @@ function AI(){
 
 var enemyKilledPrev = 0; // Used in this.Action
 var time_previous = 0; // Used in this.Action
-
+var graphx=0;
 function getNearestBasketIndex(enemy)
 {
 	var baskets = room.getBaskets();
@@ -68,34 +68,32 @@ this.antMoveToNearestAnt=function(enemy,ants,excludeindex)
 Input : Ant,bob
 Output:Decide whether this ant can attack bob and then attack
 ************************************/
- this.antAttackBob=function(ant,bob)
+ this.antAttackBob=function(ant)
  {
      //Todo must implement attack function for the ant to attack
 
      //how many cell difference
-     var noofCells=5;
+     var noofCells=2;
      //ant properties
      var antCenterPoint=ant.Intrinsic.centerPoint;
      var anthealth=ant.Intrinsic.health;
-     var anthasweapon=ant.hasWeapons();
      //player properties
-     var bobCenterPoint =bob.Intrinsic.centerPoint;
-     var bobhealth=bob.health;
-     var bobhasWeapons=bob.hasWeapons();
+     var bobCenterPoint =player.Intrinsic.centerPoint;
+     var bobhealth=player.Intrinsic.health;
+     var bobhasWeapons=player.hasWeapons();
 
      var attack=false;
     // check whether ant is within no of cells specified
     if(checkEnemyFromBob(antCenterPoint,bobCenterPoint,noofCells))
     {
-        //move towards the bob first
-        pathfinding.objectgo(ant,bob);
+
          //if ant health below 10%  and has weapon just try to attack and die
-         if(anthealth<10&anthasweapon)
+         if(anthealth<10)
          {
              attack=true;
          }
          //if anthealth is greater than bob health and ant has a weapon
-         else if((anthealth>bobhealth)&&anthasweapon)
+         else if(anthealth>bobhealth)
          {
              attack =true
          }
@@ -115,39 +113,11 @@ Output:Decide whether this ant can attack bob and then attack
      }
 
  }
-/************************************
-Input : All the Ants and bob and the index of the ant
-Output: Id ant is 10 cells closet to bob it will move towards another ant
- ************************************/
- this.antfleefromBob=function(ants,bob)
- {
-     //if bob is 3 cell away from ant
-        var  noofcells=3;
-     var antCenterPoint;
-     var bobCenterPoint=bob.Intrinsic.centerPoint;;
-     for(var i=0;i<ants.length;i++)
-     {
-         antCenterPoint=ants[i].Intrinsic.centerPoint;;
 
-     if(checkEnemyFromBob(antCenterPoint,bobCenterPoint,noofcells))
-     {
-         this.antMoveToNearestAnt(ants[i],ants,i)
-     }
-     }
 
- }
-/************************************
-Input : Ants which need to pickup health
- Output: Ant will pickup health
-************************************/
- this.antpickUpHealth=function(ant)
- {
-
- }
 
 this.determineMaxant=function(time,max)
 {
-
     var ymax_time = 0.9;
     var secdiv = ymax_time/93;
     var tensiondivision=1/secdiv;
@@ -233,9 +203,7 @@ this.determineMaxant=function(time,max)
     }
 
 }
-
- this.antAttackrating = function(ant,identity)
- {
+ this.antAttackrating = function(ant,identity){
   var baskets = room.getBaskets();
   var firstTension = 25,secondTension = 88; 
   var timenow = Math.round((Date.now() - start_time)/1000);  
@@ -255,10 +223,8 @@ this.determineMaxant=function(time,max)
   }
 
  }
-
 //ant attack function Azri
  this.antclose = function(ant){
-
  var antcell = ant.Intrinsic.cellPos;
  ant.Intrinsic.attackcolor = 'blue'; 
   if(math.getDistanceBetweenTwoPoints(player.Intrinsic.centerPoint,ant.Intrinsic.centerPoint) < (room.cellsize*1.5))
@@ -365,69 +331,7 @@ for(var i=0;i<baskets.length;i++)
  //           bee.stingpos.x = bee.stingpos.y = 9999;
             bee.shootcounter = count;
         }
-
 }
-
-// Dynamic AI Decision Making
-/************************************/
-
-// based on flags, give commands to AI
-this.AiCommander = function(enemy){
-
-
-
-}
-
-this.bobHealthGlobal = function(){
-    // Check Bob Health
-    if(player.Intrinsic.health > 70) {
-
-        // 
-    }else {
-
-    }
-}
-
-this.bobKillStrength = function(ant, attackBobPercent){
-    var enemyKilledNow = player.kills;
-    var timeNow = Date.now();
-    
-    // Check Bob Attack Power
-    if((timeNow-time_previous)/1000 > 3 ) {
-        console.log('entered Loop 1');
-        console.log('The number of enemies killed is ' +(enemyKilledNow - enemyKilledPrev));
-
-        if(enemyKilledNow - enemyKilledPrev > 2){
-
-        console.log('entered Loop 2');
-        // Stage 1
-        // Bob or Basket (60/40)
-
-        if(Math.random() <0.5){
-            pathfinding.objectgo(ant, player);
-        }else{
-            this.attackNearestBasket(ant);
-        }
-        // Stage 2
-        // Bob or Basket (70/30)
-
-        // Stage 3
-        // Bob or Basket (75/25)
-
-        // Stage 4
-        // Bob or Basket (60/40)
-
-        }else {
-
-            // Default
-            // Bob or Basket (50/50)
-        }
-
-        time_previous = timeNow;
-        enemyKilledPrev = enemyKilledNow;
-    }
-}
-
   //Basic staging and spawning stuff  Azri & Jensen
  this.Action = function(enemy,length) 
     {
@@ -437,6 +341,49 @@ this.bobKillStrength = function(ant, attackBobPercent){
         var stagelength = 30;
         var mysterybox = room.getmysterybox();
 
+        // Global Decision Making
+        /************************************/
+
+        // Check Bob Health
+        if(player.Intrinsic.health > 70)
+        {
+
+            // 
+        }else {
+
+        }
+        var enemyKilledNow = player.kills;
+        var timeNow = Date.now();
+        
+        // Check Bob Attack Power
+        if((timeNow-time_previous)/1000 > 3 ) {
+            console.log('entered Loop 1');
+            console.log('The number of enemies killed is ' +(enemyKilledNow - enemyKilledPrev));
+
+            if(enemyKilledNow - enemyKilledPrev > 2){
+
+            console.log('entered Loop 2');
+            // Stage 1
+            // Bob or Basket (60/40)
+
+            // Stage 2
+            // Bob or Basket (70/30)
+
+            // Stage 3
+            // Bob or Basket (75/25)
+
+            // Stage 4
+            // Bob or Basket (60/40)
+
+            }else {
+
+                // Default
+                // Bob or Basket (50/50)
+            }
+
+            time_previous = timeNow;
+            enemyKilledPrev = enemyKilledNow;
+        }
         //Setting the different time region
         if(timenow < stagelength)
             {segment = 1;}
@@ -460,9 +407,6 @@ this.bobKillStrength = function(ant, attackBobPercent){
             {
               room.maxAnts = this.determineMaxant(timenow,10);
               room.spawnEnemies(room.maxAnts,enemy.identity);
-
-              this.bobKillStrength(enemy, 60);
-
               //if(law flag is false || default flag == true)
               //default: bob or basket 50/50
               //if (2 ants killed in 3 sec and ant law flag is false && default flag is false)
@@ -476,28 +420,17 @@ this.bobKillStrength = function(ant, attackBobPercent){
 
               //console.log("tension curve ant :" + this.determineMaxant(timenow,10) + " maxAnt :"+room.maxAnt);
 
-              this.AiCommander(enemy);
-
             }
         else
-            {
-                room.spawnEnemies(room.maxBees,enemy.identity);
-                this.AiCommander(enemy);
-            }
+            {room.spawnEnemies(room.maxBees,enemy.identity);}
         mysterybox.stage = 1;  // Mysterybox spawns the item according to the stage (HS)
-
-            
         break;
-
         case 2: //------------------------stage 2------------------------------------
         document.getElementById("stage-level").innerHTML = 2;
         if(enemy.identity == 'ant')
             {
               room.maxAnts = this.determineMaxant(timenow,10);
               room.spawnEnemies(room.maxAnts,enemy.identity);
-
-              this.bobKillStrength(enemy, 70);
-
               //if(law flag is false || default flag == true)
               //default: bob or basket 50/50
               //if (2 ants killed in 3 sec and ant law flag is false && default flag is false)
@@ -509,15 +442,12 @@ this.bobKillStrength = function(ant, attackBobPercent){
               //if(lawflag)
               //bob or basket 70/30
 
-              this.AiCommander(enemy);
+
               
 
             }
         else
-            {
-                room.spawnEnemies(room.maxBees,enemy.identity);
-                this.AiCommander(enemy);
-            }        
+            {room.spawnEnemies(room.maxBees,enemy.identity);}        
 
         mysterybox.stage = 2;
         break;
@@ -529,8 +459,6 @@ this.bobKillStrength = function(ant, attackBobPercent){
             {
               room.maxAnts = this.determineMaxant(timenow,10);
               room.spawnEnemies(room.maxAnts,enemy.identity);
-
-              this.bobKillStrength(enemy, 75);
               //if(law flag is false || default flag == true)
               //default: bob or basket 50/50
               //if (2 ants killed in 3 sec and ant law flag is false && default flag is false)
@@ -542,22 +470,16 @@ this.bobKillStrength = function(ant, attackBobPercent){
               //if(lawflag)
               //bob or basket 75/25
 
-              this.AiCommander(enemy);
+
               
             }
         else
-            {
-                room.spawnEnemies(room.maxBees,enemy.identity);
-                this.AiCommander(enemy);
-            }        
+            {room.spawnEnemies(room.maxBees,enemy.identity);}        
         mysterybox.stage = 3;
         break;
 
         case 4: //------------------------stage 4------------------------------------
-        document.getElementById("stage-level").innerHTML = 4;
-        this.bobKillStrength(enemy, 75);
-
-
+        document.getElementById("stage-level").innerHTML = 4;          
         if(room.finalStageSpawn == true)
         {
 
@@ -632,22 +554,4 @@ this.bobKillStrength = function(ant, attackBobPercent){
     
     }
 
- function ToWin(enemies)
- {
-
-
-	}
- function ToLose(enemies)
- {
-
-
-	}
- function Attack(enemies,bob)
- {
-
-	}
- function Defend(self)
- {
-
-	}
 }

@@ -2,8 +2,6 @@ function Health(centerPoint, width, height){
 	this.Intrinsic = new Intrinsic(centerPoint, width, height);
 	this.centerPoint = centerPoint;	
 	this.Intrinsic.color = '#ACFA58';
-	this.istaken = false;
-	this.isvisible = false;
 	this.cellpos = new Point((centerPoint.x - 20)/40, (centerPoint.y - 20)/40);
 	this.healing = 2; // How much to heal the player when the player picks up health
 	//this.index = index; // Which part of the array is the current health at
