@@ -34,8 +34,9 @@ var alt=1,rr=8,ss=4;
 
 			if(alt%rr == 0)			
 			{//pathfinding.objectgo(ants[i],player);
-				ai.Action(ants[i],ants.length);
+				if(baskets.length !=0)
 				ai.antAttackrating(ants[i],'bob');				
+				ai.Action(ants[i],ants.length);				
 //                ai.antAttackBob(ants[i],player);
  				if(baskets.length !=0)
  				ai.attackNearestBasket(ants[i]);

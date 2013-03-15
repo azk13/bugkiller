@@ -153,7 +153,7 @@ this.determineMaxant=function(time,max)
     var tensiondivision=1/secdiv;
     var newTime = (time/tensiondivision);
     var maxAnt = Math.round(newTime +Math.sin((2*newTime)-1)+Math.sin(9*newTime)+(max-2.5));
-    console.log("Max Ants:"+maxAnt);
+//    console.log("Max Ants:"+maxAnt);
     return maxAnt;
 }
 
@@ -236,11 +236,21 @@ this.determineMaxant=function(time,max)
 
  this.antAttackrating = function(ant,identity)
  {
+  var baskets = room.getBaskets();
   var firstTension = 25,secondTension = 88; 
   var timenow = Math.round((Date.now() - start_time)/1000);  
   ant.Intrinsic.attackrating = 0.5;
-  if((timenow < (firstTension+5) && timenow > firstTension) || (timenow < (secondTension+5) && timenow > secondTension))
+
+  if(timenow < (firstTension+5) && timenow > firstTension) 
   {
+    console.log("Tension 1 occuring");
+    ant.Intrinsic.attackrating = baskets[getNearestBasketIndex(ant)].Intrinsic.health*0.05;
+  }
+
+
+  if((timenow < (secondTension+5) && timenow > secondTension))
+  {
+    console.log("Tension 2 occuring");
     ant.Intrinsic.attackrating = player.Intrinsic.health*0.05;
   }
 
@@ -259,7 +269,7 @@ this.determineMaxant=function(time,max)
         if( ((antcell.y == playercell.y) && ant.Intrinsic.direction.toFixed(2) == (Math.PI/2).toFixed(2) && playercell.x>antcell.x) || ((antcell.y == playercell.y) && ant.Intrinsic.direction.toFixed(2) == (Math.PI*3/2).toFixed(2) && playercell.x<antcell.x) || ((antcell.x == playercell.x) && ant.Intrinsic.direction == 0 && playercell.y>antcell.y) || ((antcell.x == playercell.x) && ant.Intrinsic.direction.toFixed(2) == Math.PI.toFixed(2) && playercell.y<antcell.y) )
         {
  //       alert("health decreasing");
-        console.log(antcell.y+":"+playercell.y);
+ //       console.log(antcell.y+":"+playercell.y);
         player.Intrinsic.health -= ant.Intrinsic.attackrating; 
         if(ant.Intrinsic.isattacking)
           {ant.Intrinsic.attackcolor = 'red';}
@@ -517,7 +527,7 @@ for(var i=0;i<baskets.length;i++)
             {
                 room.spawnEnemies(10,'ant');
                 room.spawnEnemies(4,'bee');
-                console.log("Finalstagespawn:"+ room.finalStageSpawn + " ant length:" + length);
+            //    console.log("Finalstagespawn:"+ room.finalStageSpawn + " ant length:" + length);
                 if(length >= 10)
                 {room.finalStageSpawn = false;}                
             }
