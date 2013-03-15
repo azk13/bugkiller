@@ -368,6 +368,66 @@ for(var i=0;i<baskets.length;i++)
 
 }
 
+// Dynamic AI Decision Making
+/************************************/
+
+// based on flags, give commands to AI
+this.AiCommander = function(enemy){
+
+
+
+}
+
+this.bobHealthGlobal = function(){
+    // Check Bob Health
+    if(player.Intrinsic.health > 70) {
+
+        // 
+    }else {
+
+    }
+}
+
+this.bobKillStrength = function(ant, attackBobPercent){
+    var enemyKilledNow = player.kills;
+    var timeNow = Date.now();
+    
+    // Check Bob Attack Power
+    if((timeNow-time_previous)/1000 > 3 ) {
+        console.log('entered Loop 1');
+        console.log('The number of enemies killed is ' +(enemyKilledNow - enemyKilledPrev));
+
+        if(enemyKilledNow - enemyKilledPrev > 2){
+
+        console.log('entered Loop 2');
+        // Stage 1
+        // Bob or Basket (60/40)
+
+        if(Math.random() <0.5){
+            pathfinding.objectgo(ant, player);
+        }else{
+            this.attackNearestBasket(ant);
+        }
+        // Stage 2
+        // Bob or Basket (70/30)
+
+        // Stage 3
+        // Bob or Basket (75/25)
+
+        // Stage 4
+        // Bob or Basket (60/40)
+
+        }else {
+
+            // Default
+            // Bob or Basket (50/50)
+        }
+
+        time_previous = timeNow;
+        enemyKilledPrev = enemyKilledNow;
+    }
+}
+
   //Basic staging and spawning stuff  Azri & Jensen
  this.Action = function(enemy,length) 
     {
@@ -376,53 +436,6 @@ for(var i=0;i<baskets.length;i++)
         var timenow = (Date.now() - start_time)/1000;
         var stagelength = 30;
         var mysterybox = room.getmysterybox();
-
-        // Global Decision Making
-        /************************************/
-
-        // Check Bob Health
-        if(player.Intrinsic.health > 70) {
-
-            // 
-        }else {
-
-        }
-
-
-        var enemyKilledNow = player.kills;
-        var timeNow = Date.now();
-        
-        // Check Bob Attack Power
-        if((timeNow-time_previous)/1000 > 3 ) {
-            console.log('entered Loop 1');
-            console.log('The number of enemies killed is ' +(enemyKilledNow - enemyKilledPrev));
-
-            if(enemyKilledNow - enemyKilledPrev > 2){
-
-            console.log('entered Loop 2');
-            // Stage 1
-            // Bob or Basket (60/40)
-
-            // Stage 2
-            // Bob or Basket (70/30)
-
-            // Stage 3
-            // Bob or Basket (75/25)
-
-            // Stage 4
-            // Bob or Basket (60/40)
-
-            }else {
-
-                // Default
-                // Bob or Basket (50/50)
-            }
-
-            time_previous = timeNow;
-            enemyKilledPrev = enemyKilledNow;
-        }
-
-        
 
         //Setting the different time region
         if(timenow < stagelength)
@@ -447,6 +460,9 @@ for(var i=0;i<baskets.length;i++)
             {
               room.maxAnts = this.determineMaxant(timenow,10);
               room.spawnEnemies(room.maxAnts,enemy.identity);
+
+              this.bobKillStrength(enemy, 60);
+
               //if(law flag is false || default flag == true)
               //default: bob or basket 50/50
               //if (2 ants killed in 3 sec and ant law flag is false && default flag is false)
@@ -460,17 +476,28 @@ for(var i=0;i<baskets.length;i++)
 
               //console.log("tension curve ant :" + this.determineMaxant(timenow,10) + " maxAnt :"+room.maxAnt);
 
+              this.AiCommander(enemy);
+
             }
         else
-            {room.spawnEnemies(room.maxBees,enemy.identity);}
+            {
+                room.spawnEnemies(room.maxBees,enemy.identity);
+                this.AiCommander(enemy);
+            }
         mysterybox.stage = 1;  // Mysterybox spawns the item according to the stage (HS)
+
+            
         break;
+
         case 2: //------------------------stage 2------------------------------------
         document.getElementById("stage-level").innerHTML = 2;
         if(enemy.identity == 'ant')
             {
               room.maxAnts = this.determineMaxant(timenow,10);
               room.spawnEnemies(room.maxAnts,enemy.identity);
+
+              this.bobKillStrength(enemy, 70);
+
               //if(law flag is false || default flag == true)
               //default: bob or basket 50/50
               //if (2 ants killed in 3 sec and ant law flag is false && default flag is false)
@@ -482,12 +509,15 @@ for(var i=0;i<baskets.length;i++)
               //if(lawflag)
               //bob or basket 70/30
 
-
+              this.AiCommander(enemy);
               
 
             }
         else
-            {room.spawnEnemies(room.maxBees,enemy.identity);}        
+            {
+                room.spawnEnemies(room.maxBees,enemy.identity);
+                this.AiCommander(enemy);
+            }        
 
         mysterybox.stage = 2;
         break;
@@ -499,6 +529,8 @@ for(var i=0;i<baskets.length;i++)
             {
               room.maxAnts = this.determineMaxant(timenow,10);
               room.spawnEnemies(room.maxAnts,enemy.identity);
+
+              this.bobKillStrength(enemy, 75);
               //if(law flag is false || default flag == true)
               //default: bob or basket 50/50
               //if (2 ants killed in 3 sec and ant law flag is false && default flag is false)
@@ -510,16 +542,22 @@ for(var i=0;i<baskets.length;i++)
               //if(lawflag)
               //bob or basket 75/25
 
-
+              this.AiCommander(enemy);
               
             }
         else
-            {room.spawnEnemies(room.maxBees,enemy.identity);}        
+            {
+                room.spawnEnemies(room.maxBees,enemy.identity);
+                this.AiCommander(enemy);
+            }        
         mysterybox.stage = 3;
         break;
 
         case 4: //------------------------stage 4------------------------------------
-        document.getElementById("stage-level").innerHTML = 4;          
+        document.getElementById("stage-level").innerHTML = 4;
+        this.bobKillStrength(enemy, 75);
+
+
         if(room.finalStageSpawn == true)
         {
 

@@ -38,8 +38,8 @@ var alt=1,rr=8,ss=4;
 				ai.antAttackrating(ants[i],'bob');				
 				ai.Action(ants[i],ants.length);				
 //                ai.antAttackBob(ants[i],player);
- 				if(baskets.length !=0)
- 				ai.attackNearestBasket(ants[i]);
+ 				//if(baskets.length !=0)
+ 				//ai.attackNearestBasket(ants[i]);
                 ai.antclose(ants[i]);
             }
 			physicsEngine.updatePoint(ants[i]);	
