@@ -372,6 +372,20 @@ function AI(){
 // based on flags, give commands to AI
     this.AiCommander = function(enemy){
 
+      if(enemy.Intrinsic.lawflag == false)
+      {
+        if(enemy.Intrinsic.defaultA) // attackbob
+        {pathfinding.objectgo(enemy,player);}
+        else //attackbasket
+        {this.attackNearestBasket(enemy);}
+      }
+      else // lawflag activated
+      {
+        if(enemy.Intrinsic.lawA) // attackbob
+        {pathfinding.objectgo(enemy,player);}
+        else //attackbasket
+        {this.attackNearestBasket(enemy);}    
+      }
 
 
     }
@@ -459,6 +473,24 @@ function AI(){
                     room.spawnEnemies(room.maxAnts,enemy.identity);
 
                     this.bobKillStrength(enemy, 60);
+
+                    if(!enemy.Intrinsic.defaultActivated);
+                    {
+                      if(Math.random() < 0.4)
+                      {enemy.Intrinsic.defaultA = true;}
+                      else
+                      {}   
+                      enemy.Intrinsic.defaultActivated = true;       
+                    }
+
+//                    if(!enemy.Intrinsic.lawActivated);
+//                    {
+//                      if(Math.random() < 0.5)
+//                      {enemy.Intrinsic.defaultA = true;}
+//                      else
+//                      {}   
+//                      enemy.Intrinsic.lawActivated = true;       
+ //                   }                    
 
                     //if(law flag is false || default flag == true)
                     //default: bob or basket 50/50

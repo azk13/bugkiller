@@ -18,6 +18,14 @@ function Intrinsic(centerPoint, width, height){
 	this.isattacking = false;
 	this.attackcolor = 'blue';
 
+	this.lawActivated = false;
+	this.defaultActivated = false;	
+	this.lawflag = false;
+	this.defaultA = false;
+	this.lawA = false;
+
+
+
 	this.stop = function() {
 		this.direction=0;
 		this.velocity = 0;
