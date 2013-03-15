@@ -2,19 +2,6 @@ function MysteryBox(centerPoint, width, height){
 	this.Intrinsic = new Intrinsic(centerPoint, width, height);
 	this.centerPoint = centerPoint;	
 	this.Intrinsic.color = '#FF00FF';
-	this.istaken = false;
-	this.isvisible = false;
-	this.isbomb = false;
-	this.isknife = false;
-	this.isshuriken = false;
-	this.isconverter = false;
-	this.ispesticide = false;
-	this.isbricks = false;
-	this.iscamouflage = false;
-	this.issheild = false;
-	this.isant = false;
-	this.isenemy = false;
-	this.ishelath = false;
 	this.cellpos = new Point((centerPoint.x - 20)/40, (centerPoint.y - 20)/40);
 	this.counter = 0; // Counter to keep track of how long the mystery box has not been touched
 	this.item = 0; // Item 1 = knife, 2 = bomb, 3 = shuriken, 4 = enemy, 5 = health

@@ -15,13 +15,8 @@ function Intrinsic(centerPoint, width, height){
     //
 	this.cellPos = new Point(0,0);
 	this.attackrating = 0.5;
-	this.defenserating = 0;
-	this.isalive = false;
-	this.isdefending = false;
 	this.isattacking = false;
-	this.contructing = false;
-	this.isdying = false;
-    this.attackcolor = 'blue';	
+	this.attackcolor = 'blue';
 
 	this.stop = function() {
 		this.direction=0;

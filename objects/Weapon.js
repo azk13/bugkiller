@@ -9,8 +9,7 @@ function Weapon(centerPoint, type,name)
 {
 	
 	this.Intrinsic = new Intrinsic(centerPoint, 20, 20);
-
-	this.row = 0;
+    this.row = 0;
 	this.column = 0;
 	this.identity = null; // weapon identity, e.g. knife, bomb etc. (to pick up weapon purposes)
 

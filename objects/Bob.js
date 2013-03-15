@@ -1,19 +1,7 @@
 function Bob(centerPoint, width, height){
-
-	var x, y, row, column;
-
 	this.Intrinsic = new Intrinsic(centerPoint, width, height);
 	this.identity='Bob'
-	//Jensen
-	this.row = 0;
-	this.column = 0;
-	//this.identity = 'bob'; 
-
-	this.Intrinsic.color = 'yellow';	
-
-	this.image = new Image();
-	this.image.src = "imgs/char_bob.png";
-
+	this.Intrinsic.color = 'yellow';
 	this.hasKnifeEquipped = false;
 	this.knifeHealth = 100;
 	this.hasBombEquipped = false;
@@ -22,16 +10,14 @@ function Bob(centerPoint, width, height){
 	this.shurikenHealth = 100;
 	this.shurikenpos = new Point(9999,9999);
 	this.shurikendir = 'none';
-	//this.hasConverterEquipped = false;
-	//this.hasSheildEquipped = false;
 	this.activeWeapon = 'null';
 	this.skill = 'null';
 	this.kills = 0;
 
-    this.weapons=new Array();
-    this.addWeapons=function(){this.weapons.push(new Weapon("",""));}
-    this.hasWeapons=function(){if(this.weapons.length>1) return true;}
-
+    this.hasWeapons=function(){
+        if(this.hasKnifeEquipped==true||this.hasBombEquipped==true ||this.hasShurikenEquipped==true)
+        return true;
+    }
 
     this.usingPunch = function(){
     	this.Intrinsic.attackrating = 5;
@@ -42,7 +28,6 @@ function Bob(centerPoint, width, height){
         player.Intrinsic.isattacking = !player.Intrinsic.isattacking;    
         punchAttack();	
     }
-
 
 	this.usingKnife = function(){
 		this.Intrinsic.attackrating=25;
@@ -103,15 +88,12 @@ function Bob(centerPoint, width, height){
 			this.activeWeapon = 'null';
 		}
 	}
-
-
 	// Calls this when Bob picks up health (Hong Shing)
 	this.heal = function(healing){
 		this.Intrinsic.health += healing;
 	}
 
 }
-
 function knifeAttack()
 {
     var ants = room.getAnts();
@@ -159,9 +141,7 @@ function knifeAttack()
 		        }
     		}        	
         }
-}	
-
-
+}
 function punchAttack()
 {
     var ants = room.getAnts();
