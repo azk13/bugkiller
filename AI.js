@@ -359,9 +359,9 @@ for(var i=0;i<baskets.length;i++)
 }
 
   //Basic staging and spawning stuff  Azri & Jensen
- this.Action = function(enemy) 
+ this.Action = function(enemy,length) 
     {
-        var ants = room.getAnts;        
+              
         var segment = 1;
         var timenow = (Date.now() - start_time)/1000;
         var stagelength = 30;
@@ -517,15 +517,15 @@ for(var i=0;i<baskets.length;i++)
             {
                 room.spawnEnemies(10,'ant');
                 room.spawnEnemies(4,'bee');
-                
-                if(ants.length >= 9)
+                console.log("Finalstagespawn:"+ room.finalStageSpawn + " ant length:" + length);
+                if(length >= 10)
                 {room.finalStageSpawn = false;}                
             }
             else // player is bad
             {
                 room.spawnEnemies(7,'ant');
                 room.spawnEnemies(2,'bee');
-                if(ants.length >= 6)
+                if(length >= 7)
                 {room.finalStageSpawn = false;}            
             }
             
@@ -537,9 +537,7 @@ for(var i=0;i<baskets.length;i++)
         if(segment == 12)//Transmission from stage 1 to stage 2
         {
         document.getElementById("stage-level").innerHTML = 1.2;
-        //ensure that there is at least an ant
-        if(ants.length == 0)
-          {room.spawnEnemies(1,'ant');}            
+
         //check if player is good or bad            
         if(player.kills > 5 || player.Intrinsic.health>70)
             {
@@ -557,9 +555,7 @@ for(var i=0;i<baskets.length;i++)
         else if(segment == 23)//Transmission from stage 2 to stage 3
         {
             document.getElementById("stage-level").innerHTML = 2.3;
-            //ensure that there is at least an ant
-            if(ants.length == 0)
-              {room.spawnEnemies(1,'ant');}
+
               //check if player is good or bad            
             if(player.kills > 10 || player.Intrinsic.health>70)
               {
