@@ -16,7 +16,9 @@ function Bob(centerPoint, width, height){
 
     this.hasWeapons=function(){
         if(this.hasKnifeEquipped==true||this.hasBombEquipped==true ||this.hasShurikenEquipped==true)
-        return true;
+        {return true;}
+
+        return false;
     }
 
     this.usingPunch = function(){
