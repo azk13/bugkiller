@@ -405,35 +405,27 @@ function AI(){
         var timeNow = Date.now();
 
         // Check Bob Attack Power
+
+        // For every 3 seconds
         if((timeNow-time_previous)/1000 > 3 ) {
-            console.log('entered Loop 1');
-            console.log('The number of enemies killed is ' +(enemyKilledNow - enemyKilledPrev));
+            //console.log('entered Loop 1');
+            //console.log('The number of enemies killed is ' +(enemyKilledNow - enemyKilledPrev));
 
-            if(enemyKilledNow - enemyKilledPrev > 2){
+            // Enemies killed by Bob is more than 2
+            if(enemyKilledNow - enemyKilledPrev > 2 && !ant.Intrinsic.killflag){
 
-                console.log('entered Loop 2');
+                //console.log('entered Loop 2');
                 // Stage 1
                 // Bob or Basket (60/40)
-
-                if(Math.random() <0.5){
+                if(Math.random() < (attackBobPercent / 100)){
                     pathfinding.objectgo(ant, player);
                 }else{
                     this.attackNearestBasket(ant);
                 }
-                // Stage 2
-                // Bob or Basket (70/30)
 
-                // Stage 3
-                // Bob or Basket (75/25)
-
-                // Stage 4
-                // Bob or Basket (60/40)
-
-            }else {
-
-                // Default
-                // Bob or Basket (50/50)
+            ant.Intrinsic.killflag = true;
             }
+
 
             time_previous = timeNow;
             enemyKilledPrev = enemyKilledNow;

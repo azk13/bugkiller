@@ -24,6 +24,8 @@ function Intrinsic(centerPoint, width, height){
 	this.defaultA = false;
 	this.lawA = false;
 
+	this.killflag = false; //Kill flag checks whether Bob has killed more than a certain amt of enemies in a time period before. Used in AI.bobKillStrength (HS)  
+
 
 
 	this.stop = function() {
