@@ -1,7 +1,6 @@
 function Renderer(){
 var alt=1,rr=8,ss=4;
 
-	//var timer = 0;
 
 	this.updatePoints = function(time_start){
 		var ants = room.getAnts();
@@ -119,7 +118,6 @@ var alt=1,rr=8,ss=4;
 			ctx.stroke();
 		}
 	}
-	
 	this.draw = function(){
 		this.drawRoom();
 		this.drawBaskets();
@@ -127,7 +125,6 @@ var alt=1,rr=8,ss=4;
 		this.drawBees();
 		this.drawCharacter(player); 
 		this.drawWeapons();
-		this.drawPath();
 		this.drawMysteryBox();
 		this.drawHealth();
 		this.drawStings();
@@ -136,7 +133,6 @@ var alt=1,rr=8,ss=4;
 		drawShuriken();
 
 	}
-
 	this.drawWeapons = function() {
 		var weapons = room.getWeapons();
 
@@ -180,7 +176,6 @@ var alt=1,rr=8,ss=4;
 			this.drawCharacter(bees[i]);  // Jensen
 		}
 	}
-
     this.setBobHealth = function(){ // Jensen
 		var BobHealth = player.Intrinsic.health;
 		document.getElementById("bob-health").style.width= BobHealth + '%';
@@ -308,8 +303,6 @@ var alt=1,rr=8,ss=4;
 
 		}
 	}
-
-
 	this.drawCharacter = function(character){
 
 		// clear current image
