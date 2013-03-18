@@ -35,6 +35,7 @@ var alt=1,rr=8,ss=4;
                 room.spawnEnemies(room.maxAnts,ants[i].identity);
                 ai.AiCommander(ants[i]);
                 ai.antclose(ants[i]);
+                ai.antCluster(ants[i]);
 
             }
 			physicsEngine.updatePoint(ants[i]);	

@@ -113,6 +113,13 @@ function AI(){
      Input : All the Ants and bob and the index of the ant
      Output: Id ant is 10 cells closet to bob it will move towards another ant
      ************************************/
+    this.antCluster=function(ant)
+    {
+        var clusterpoint=room.map[3][17].point;
+        var dummy= new Dummy(clusterpoint);
+        pathfinding.objectgo(ant,dummy);
+
+    }
     this.antfleefromBob=function(ant){
         //if bob is 3 cell away from ant
         var  noofcells=3;
@@ -136,9 +143,7 @@ function AI(){
       }
 
     }
-    this.determineMaxant=function(time,max)
-    {
-
+    this.determineMaxant=function(time,max){
         var ymax_time = 0.9;
         var secdiv = ymax_time/93;
         var tensiondivision=1/secdiv;
@@ -223,8 +228,7 @@ function AI(){
         }
 
     }
-    this.antAttackrating = function(ant,identity)
-    {
+    this.antAttackrating = function(ant,identity)  {
         var baskets = room.getBaskets();
         var firstTension = 25,secondTension = 88;
         var timenow = Math.round((Date.now() - start_time)/1000);
@@ -299,6 +303,7 @@ function AI(){
         }
     }
     //Bee's action when player comes within his range Azri
+
     this.beeclose = function(bee){
         bee.Intrinsic.attackrating = 5;
         var count = 5;
@@ -355,10 +360,8 @@ function AI(){
         }
 
     }
-
     // Dynamic AI Decision Making
     /************************************/
-
     // based on flags, give commands to AI
     this.AiCommander = function(enemy){
 
@@ -443,7 +446,6 @@ function AI(){
         var stagelength = 30;
         var mysterybox = room.getmysterybox();
         //Setting the different time region
-
         if(timenow < stagelength)
         {segment = 1;}
         else if(timenow < stagelength*1.1)
@@ -458,7 +460,6 @@ function AI(){
         {segment = 34;}
         else
         {segment = 4;}
-
         switch(segment){
             case 1: //------------------------stage 1------------------------------------
                 document.getElementById("stage-level").innerHTML = 1;

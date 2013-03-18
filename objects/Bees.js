@@ -6,5 +6,4 @@ function Bees(centerPoint){
 	this.shootcounter = 5;
 	this.stingpos = new Point(9999,9999);
 	this.stingdir = 'none';
-
 }
