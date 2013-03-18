@@ -1,5 +1,4 @@
 function AI(){
-
     var enemyKilledPrev = 0; // Used in this.Action
     var time_previous = 0; // Used in this.Action
 
@@ -117,7 +116,16 @@ function AI(){
     {
         var clusterpoint=room.map[3][17].point;
         var dummy= new Dummy(clusterpoint);
-        pathfinding.objectgo(ant,dummy);
+        if(!checkEnemyFromBob(ant,dummy,2))
+        {
+            pathfinding.objectgo(ant,dummy);            
+        }
+        if(ant.Intrinsic.velocity == 0)
+        {
+            ant.Intrinsic.goals.pop();
+        }
+
+
 
     }
     this.antfleefromBob=function(ant){
@@ -383,20 +391,22 @@ function AI(){
 
                     break;
                 case 5: //cluster
-                
-                    break;                
+                this.antCluster(enemy);
+                    break;            
+                case 6: //limited time attacking bob
+                this.shortAttack(enemy);
+                    break;                            
             }//end of switch
 
-        /*
-         if(enemy.Intrinsic.lawflag == false)
-         {
-
-         }
-         else // lawflag activated
-         {
-
-         }
-         */
+    this.shortAttack = function(enemy)
+    {
+        pathfinding.objectgo(enemy,player);
+        if(this.frametime%120)
+        {
+            alert("back to normal");
+            enemy.Intrinsic.goals.pop();
+        }
+    }
 
          }
     }
@@ -512,6 +522,7 @@ function AI(){
                         enemy.Intrinsic.lawActivated = true;
                         }
                     }
+
 
                 }
                 mysterybox.stage = 1;  // Mysterybox spawns the item according to the stage (HS)

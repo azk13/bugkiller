@@ -1,5 +1,6 @@
 function Renderer(){
-var alt=1,rr=8,ss=4;
+this.frametime=1;	
+var rr=8,ss=4;
 
 
 	this.updatePoints = function(time_start){
@@ -26,16 +27,21 @@ var alt=1,rr=8,ss=4;
 		for(var i=0;i<ants.length;i++)
 		{
 
-			if(alt%rr == 0)			
-			{
+			if(this.frametime%rr == 0)			
+			{				
 				if(baskets.length !=0)
 				ai.antAttackrating(ants[i],'bob');
 
 				ai.Action(ants[i],ants.length);
                 room.spawnEnemies(room.maxAnts,ants[i].identity);
+              
+                if(this.frametime%240 == 0)
+                {
+                	ants[i].Intrinsic.goals.push(6);
+                	ants[i].Intrinsic.goals.push(5);
+                }  
                 ai.AiCommander(ants[i]);
                 ai.antclose(ants[i]);
-                ai.antCluster(ants[i]);
 
             }
 			physicsEngine.updatePoint(ants[i]);	
@@ -50,7 +56,7 @@ var alt=1,rr=8,ss=4;
 		}
 		for(var i=0;i<bees.length;i++)
 		{		
-			if(alt%rr == 0)
+			if(this.frametime%rr == 0)
 			{
 				ai.Action(bees[i],bees.length);
 
@@ -58,7 +64,7 @@ var alt=1,rr=8,ss=4;
                 ai.AiCommander(bees[i]);
                 ai.beeclose(bees[i]);
 			}
-			if(alt%ss == 0)
+			if(this.frametime%ss == 0)
 			physicsEngine.updateSting(bees[i]);
 			physicsEngine.updatePoint(bees[i]);	
 			boundcheck.detectCollisionWithWalls(bees[i]);
@@ -92,10 +98,8 @@ var alt=1,rr=8,ss=4;
 				//console.log(timer);
 				//console.log(mysterybox.mysteryBox_spawn(timer));
 				//console.log(index);
-			}
-		
-
-		alt++;
+			}	
+		this.frametime++;
 	}
 	this.drawRoom = function (){
 		//Draw the entire room
