@@ -354,36 +354,21 @@ function AI(){
 
 // based on flags, give commands to AI
     this.AiCommander = function(enemy){
-
-        console.log("Goal length"+enemy.Intrinsic.goals.length);
-        if(enemy.Intrinsic.goals.length >0)
-        {
-        switch(enemy.Intrinsic.retrieveLastGoal()){
-            case 1: //Attack Bob
-            pathfinding.objectgo(enemy,player);
-            break;
-            case 2: //Attack Basket
-            this.attackNearestBasket(enemy);
-            break;
-            case 3: //Flee Bob
-
-            break;
-
-            case 4: //Conering
-
-            break;
-        }//end of switch
-        }
-        /*
         if(enemy.Intrinsic.lawflag == false)
         {
-
+            if(enemy.Intrinsic.defaultA==true) // attackbob
+            {this.attackNearestBasket(enemy);}
+            else //attackbasket
+            {pathfinding.objectgo(enemy,player,false)}
         }
         else // lawflag activated
         {
-
+             if(enemy.Intrinsic.lawA) // attackbob
+             {pathfinding.objectgo(enemy,player);}
+             else //attackbasket
+             {this.attackNearestBasket(enemy);}
         }
-*/
+
 
     }
 
@@ -436,7 +421,7 @@ function AI(){
     {
         var segment=1;
         var timenow = (Date.now() - start_time)/1000;
-   //     console.log(timenow);
+        console.log(timenow);
         var stagelength = 30;
         var mysterybox = room.getmysterybox();
         //Setting the different time region
@@ -465,26 +450,11 @@ function AI(){
                     room.maxAnts = this.determineMaxant(timenow,5);
                     if(true!=enemy.Intrinsic.defaultActivated)
                     {
-
-                        var toss= Math.floor(Math.random() * 11)  + 1;
-
+                        var toss=  Math.floor(Math.random() * (11 - 1 + 1)) + 1;
                         if(toss<= 5)
-                        {// Attack Bob
-                            if(1 != enemy.Intrinsic.goals[enemy.Intrinsic.goals.length-1])
-                            {
-                            enemy.Intrinsic.goals.push(1);
-                            }
-                            
-                        }
-                        else // Attack basket
-                        {
-                          
-                            if(2 != enemy.Intrinsic.goals[enemy.Intrinsic.goals.length-1])
-                            {
-                            enemy.Intrinsic.goals.push(2);
-                            }
-                            
-                        }
+                        {enemy.Intrinsic.defaultA = true;}
+                        else
+                        {enemy.Intrinsic.defaultA = false;}
                         enemy.Intrinsic.defaultActivated = true;
                     }
                 }

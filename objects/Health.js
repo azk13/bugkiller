@@ -5,7 +5,6 @@ function Health(centerPoint, width, height){
 	this.cellpos = new Point((centerPoint.x - 20)/40, (centerPoint.y - 20)/40);
 	this.healing = 20; // How much to heal the player when the player picks up health
 	//this.index = index; // Which part of the array is the current health at
-
 	this.spawnHealth = function(room){
 		var available = new Array();
 		var mb = room.getmysterybox();
@@ -30,7 +29,6 @@ function Health(centerPoint, width, height){
 		console.log(this.cellpos.x + "," + this.cellpos.y);
 
 	}
-
 	this.destroyHealth = function(){
 		this.cellpos = new Point(-1 , -1);
 	}
