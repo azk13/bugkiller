@@ -480,7 +480,7 @@ function AI(){
                         }
                         else // Attack basket
                         {
-                            if(1 != enemy.Intrinsic.goals[enemy.Intrinsic.goals.length-1])
+                            if(2 != enemy.Intrinsic.goals[enemy.Intrinsic.goals.length-1])
                             {
                             enemy.Intrinsic.goals.push(2);
                             }
