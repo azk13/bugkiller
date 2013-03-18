@@ -3,8 +3,7 @@ function AI(){
     var enemyKilledPrev = 0; // Used in this.Action
     var time_previous = 0; // Used in this.Action
 
-    function getNearestBasketIndex(enemy)
-    {
+    function getNearestBasketIndex(enemy){
         var baskets = room.getBaskets();
         var prevDistance=999999,Distance =0;
         var Index = 0;
@@ -20,8 +19,7 @@ function AI(){
         return Index;
 
     }
-    function getNearestAntIndex(enemy,indextoexclude)
-    {
+    function getNearestAntIndex(enemy,indextoexclude) {
         var ants = room.getAnts();
         var prevDistance=999999,Distance =0;
         var Index = 0;
@@ -42,8 +40,7 @@ function AI(){
      Input : Enemy centrepoint,player centre point,how many cells to check
      Output: True if Enemy no of cells  from bee cell
      ************************************/
-    function checkEnemyFromBob(enemy,player,noOfCells)
-    {
+    function checkEnemyFromBob(enemy,player,noOfCells) {
         var checkdistance=room.cellsize*noOfCells;
         var distance =math.getDistanceBetweenTwoPoints(enemy,player);
         if(distance<=checkdistance)
@@ -51,16 +48,14 @@ function AI(){
         else
             return false;
     }
-    this.attackNearestBasket = function(enemy)
-    { var baskets = room.getBaskets();
+    this.attackNearestBasket = function(enemy) { var baskets = room.getBaskets();
         pathfinding.objectgo(enemy,baskets[getNearestBasketIndex(enemy)]);
     }
     /************************************
      Input : ant that need to go to the nearest ant and its index
      Output: The enemy move to nearest ant
      ************************************/
-    this.antMoveToNearestAnt=function(enemy,ants,excludeindex)
-    {
+    this.antMoveToNearestAnt=function(enemy,ants,excludeindex){
         var nearestant= getNearestAntIndex(enemy,excludeindex)
         if(checkEnemyFromBob(enemy,ants[nearestant],1))
         {enemy.Intrinsic.removegoal();}
@@ -71,10 +66,7 @@ function AI(){
      Input : Ant,bob
      Output:Decide whether this ant can attack bob and then attack
      ************************************/
-    this.antAttackBob=function(ant)
-    {
-        //Todo must implement attack function for the ant to attack
-
+    this.antAttackBob=function(ant){
         //how many cell difference
         var noofCells=5;
         //ant properties
@@ -121,8 +113,7 @@ function AI(){
      Input : All the Ants and bob and the index of the ant
      Output: Id ant is 10 cells closet to bob it will move towards another ant
      ************************************/
-    this.antfleefromBob=function(ant)
-    {
+    this.antfleefromBob=function(ant){
         //if bob is 3 cell away from ant
         var  noofcells=3;
         var antCenterPoint;
@@ -232,7 +223,6 @@ function AI(){
         }
 
     }
-
     this.antAttackrating = function(ant,identity)
     {
         var baskets = room.getBaskets();
@@ -254,8 +244,7 @@ function AI(){
         }
 
     }
-
-//ant attack function Azri
+    //ant attack function Azri
     this.antclose = function(ant){
 
         var antcell = ant.Intrinsic.cellPos;
@@ -309,7 +298,7 @@ function AI(){
 
         }
     }
-//Bee's action when player comes within his range Azri
+    //Bee's action when player comes within his range Azri
     this.beeclose = function(bee){
         bee.Intrinsic.attackrating = 5;
         var count = 5;
@@ -367,10 +356,10 @@ function AI(){
 
     }
 
-// Dynamic AI Decision Making
+    // Dynamic AI Decision Making
     /************************************/
 
-// based on flags, give commands to AI
+    // based on flags, give commands to AI
     this.AiCommander = function(enemy){
 
         console.log("Goal length"+enemy.Intrinsic.goals.length);
@@ -403,7 +392,7 @@ function AI(){
          }
          */
 
-    }
+         }
     }
     this.bobHealthGlobal = function(){
         // Check Bob Health
@@ -414,7 +403,6 @@ function AI(){
 
         }
     }
-
     this.bobKillStrength = function(ant, attackBobPercent){
         var enemyKilledNow = player.kills;
         var timeNow = Date.now();
@@ -446,9 +434,6 @@ function AI(){
             enemyKilledPrev = enemyKilledNow;
         }
     }
-
-
-
     //Basic staging and spawning stuff  Azri & Jensen
     this.Action = function(enemy,length)
     {
