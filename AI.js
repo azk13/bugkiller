@@ -413,17 +413,14 @@ function AI(){
         var timeNow = Date.now();
 
         // Check Bob Attack Power
-
         // For every 3 seconds
         if((timeNow-time_previous)/1000 > 3 ) {
             //console.log('entered Loop 1');
             //console.log('The number of enemies killed is ' +(enemyKilledNow - enemyKilledPrev));
 
             // Enemies killed by Bob is more than 2
-            if(enemyKilledNow - enemyKilledPrev > 2 && player.Intrinsic.killflag){
-
+            if(enemyKilledNow - enemyKilledPrev > 2){
                 return true;
-                player.Intrinsic.killflag = true;
             }
             else
             {
@@ -493,7 +490,6 @@ function AI(){
                     //default action run once on start
                     if(true!=enemy.Intrinsic.defaultActivated)
                     {
-
                         this.tossCoin(enemy,50);
                         enemy.Intrinsic.defaultActivated = true;
                     }
@@ -505,13 +501,13 @@ function AI(){
                             var toss= Math.floor(Math.random() * 11)  + 1;
                             if(toss <= 5) //50/50 (the law or not)
                             {
+                            //alert("60/40");
                             this.tossCoin(enemy,60);
                             }
+                            //else
+                            //{alert("50/50");}
                         enemy.Intrinsic.lawActivated = true;
                         }
-
-
-
                     }
 
                 }
@@ -522,7 +518,30 @@ function AI(){
 
                 if(enemy.identity == 'ant')
                 {
-                    room.maxAnts = this.determineMaxant(timenow,10);
+                    room.maxAnts = this.determineMaxant(timenow,7);
+
+                    //default action run once on start
+                    if(true!=enemy.Intrinsic.defaultActivated)
+                    {
+                        this.tossCoin(enemy,50);
+                        enemy.Intrinsic.defaultActivated = true;
+                    }
+                    //action run once when activated
+                    if(false!=enemy.Intrinsic.defaultActivated && true!=enemy.Intrinsic.lawActivated)
+                    {
+                        if(this.bobKillStrength())
+                        {
+                            var toss= Math.floor(Math.random() * 11)  + 1;
+                            if(toss <= 5) //50/50 (the law or not)
+                            {
+                            //alert("70/30");
+                            this.tossCoin(enemy,70);
+                            }
+                            else
+                            //{alert("50/50");}
+                        enemy.Intrinsic.lawActivated = true;
+                        }
+                    }
 
                 }
                 mysterybox.stage = 2;
@@ -533,8 +552,34 @@ function AI(){
                 if(bees.length == 0)
                 {room.spawnEnemies(1,'bee');}
 
-                if(enemy.identity == 'ant')
-                {room.maxAnts = this.determineMaxant(timenow,10);}
+               if(enemy.identity == 'ant')
+                {
+                    room.maxAnts = this.determineMaxant(timenow,7);
+
+                    //default action run once on start
+                    if(true!=enemy.Intrinsic.defaultActivated)
+                    {
+                        this.tossCoin(enemy,50);
+                        enemy.Intrinsic.defaultActivated = true;
+                    }
+                    //action run once when activated
+                    if(false!=enemy.Intrinsic.defaultActivated && true!=enemy.Intrinsic.lawActivated)
+                    {
+                        if(this.bobKillStrength())
+                        {
+                            var toss= Math.floor(Math.random() * 11)  + 1;
+                            if(toss <= 5) //50/50 (the law or not)
+                            {
+                            //alert("70/30");
+                            this.tossCoin(enemy,75);
+                            }
+                            else
+                            //{alert("50/50");}
+                        enemy.Intrinsic.lawActivated = true;
+                        }
+                    }
+
+                }
                 else
                 {//To-do Curve bee
                     room.maxBees=1;
