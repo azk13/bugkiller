@@ -85,6 +85,7 @@ function MysteryBox(centerPoint, width, height){
 	//console.log(time_elapsed);
 	var percent = Math.random() * 100;
 	var item = 0;
+	var dying = false;
 	
 	/*
 	if(time_elapsed < 10) // Early game
@@ -117,14 +118,23 @@ function MysteryBox(centerPoint, width, height){
 
 	//console.log(item);
 	*/
+
+	console.log("Percent = " + percent);
+
 	switch(this.stage)
 		{
-			case 1: // Stage 1 - Can only spawn bomb
+			case 1: // Stage 1 - Can only spawn bomb and knife
+			if(percent <= 50)
 			item = 2; // Can only spawn bomb
+			else
+			item = 1; // Spawn knife
 			break;
 
 			case 2: // Stage 2 - Can only spawn bomb
+			if(percent <= 50)
 			item = 2; // Can only spawn bomb
+			else
+			item = 1; // Spawn knife
 			break;
 
 			case 3: // Can spawn all weapons
@@ -150,6 +160,30 @@ function MysteryBox(centerPoint, width, height){
 			break;
 		}
 
+	// If player health is below a certain amount, increase probability of spawning health
+	if(player.Intrinsic.health < 50)
+		{
+			if(percent < 10)
+				item = 5;
+		}
+	else
+	{
+		if(percent < 5)
+			item = 5;
+	}
+	if(player.Intrinsic.health < 25)
+	{
+		if(percent < 20)
+			item = 5;
+	}
+	if(player.Intrinsic.health < 5)
+	{
+		if(percent < 50)
+			item = 5;
+
+	}
+	
+	console.log("Item is " + item);
 	return item;
 	}
 

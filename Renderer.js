@@ -82,7 +82,7 @@ var alt=1,rr=8,ss=4;
 
 		//console.log(mysterybox.counter);
 		var time_now = Date.now();
-		if((time_now - mysterybox.spawn_time)/1000 >= 10)	
+		if((time_now - mysterybox.spawn_time)/1000 >= Math.floor((Math.random()*10)+7))	
 			{
 				var available = new Array();
 				// Find places that contain no items to spawn 
