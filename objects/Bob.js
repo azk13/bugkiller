@@ -66,7 +66,6 @@ function Bob(centerPoint, width, height){
 		// load weapon object in the cell
 		room.map[playerrow][playercol].weapon = weapons[weapons.length];
 
-		document.getElementById("bomb-health").style.width= this.bombHealth + '%';
 
 		if(this.bombHealth <= 0) {
 			this.hasBombEquipped = false;
