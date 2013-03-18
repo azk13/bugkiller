@@ -61,7 +61,11 @@ function AI(){
      ************************************/
     this.antMoveToNearestAnt=function(enemy,ants,excludeindex)
     {
-        pathfinding.objectgo(enemy,ants[getNearestAntIndex(enemy,excludeindex)]);
+        var nearestant= getNearestAntIndex(enemy,excludeindex)
+        if(checkEnemyFromBob(enemy,ants[nearestant],1))
+        {enemy.Intrinsic.removegoal();}
+        else
+        {pathfinding.objectgo(enemy,ants[nearestant]);}
     }
     /************************************
      Input : Ant,bob
@@ -136,10 +140,11 @@ function AI(){
                     }
                }
       this.antMoveToNearestAnt(ant,ants,exclude);
+
+
       }
 
     }
-
     this.determineMaxant=function(time,max)
     {
 
@@ -151,7 +156,6 @@ function AI(){
 //    console.log("Max Ants:"+maxAnt);
         return maxAnt;
     }
-
     this.pickedUpWeapon = function(row, column){
         var weaponIdentity;
         weaponIdentity = room.map[row][column].weapon.identity;
