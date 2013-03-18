@@ -134,14 +134,6 @@ function AI(){
             }
         }
     }
-    /************************************
-     Input : Ants which need to pickup health
-     Output: Ant will pickup health
-     ************************************/
-    this.antpickUpHealth=function(ant)
-    {
-
-    }
 
     this.determineMaxant=function(time,max)
     {
@@ -371,21 +363,20 @@ function AI(){
 
 // based on flags, give commands to AI
     this.AiCommander = function(enemy){
-
-      if(enemy.Intrinsic.lawflag == false)
-      {
-        if(enemy.Intrinsic.defaultA) // attackbob
-        {pathfinding.objectgo(enemy,player);}
-        else //attackbasket
-        {this.attackNearestBasket(enemy);}
-      }
-      else // lawflag activated
-      {
-        if(enemy.Intrinsic.lawA) // attackbob
-        {pathfinding.objectgo(enemy,player);}
-        else //attackbasket
-        {this.attackNearestBasket(enemy);}    
-      }
+        if(enemy.Intrinsic.lawflag == false)
+        {
+            if(enemy.Intrinsic.defaultA==true) // attackbob
+            {this.attackNearestBasket(enemy);}
+            else //attackbasket
+            {pathfinding.objectgo(enemy,player,false)}
+        }
+        else // lawflag activated
+        {
+             if(enemy.Intrinsic.lawA) // attackbob
+             {pathfinding.objectgo(enemy,player);}
+             else //attackbasket
+             {this.attackNearestBasket(enemy);}
+        }
 
 
     }
@@ -423,7 +414,7 @@ function AI(){
                     this.attackNearestBasket(ant);
                 }
 
-            ant.Intrinsic.killflag = true;
+                ant.Intrinsic.killflag = true;
             }
 
 
@@ -435,9 +426,9 @@ function AI(){
     //Basic staging and spawning stuff  Azri & Jensen
     this.Action = function(enemy,length)
     {
-
-        var segment = 1;
+        var segment=1;
         var timenow = (Date.now() - start_time)/1000;
+        console.log(timenow);
         var stagelength = 30;
         var mysterybox = room.getmysterybox();
 //Setting the different time region
@@ -461,20 +452,22 @@ function AI(){
                 document.getElementById("stage-level").innerHTML = 1;
                 if(enemy.identity == 'ant')
                 {
-                    room.maxAnts = this.determineMaxant(timenow,10);
+                    room.maxAnts = this.determineMaxant(timenow,5);
                     room.spawnEnemies(room.maxAnts,enemy.identity);
 
-                    this.bobKillStrength(enemy, 60);
-
-                    if(!enemy.Intrinsic.defaultActivated);
+                    if(true!=enemy.Intrinsic.defaultActivated)
                     {
-                      if(Math.random() < 0.4)
-                      {enemy.Intrinsic.defaultA = true;}
-                      else
-                      {}   
-                      enemy.Intrinsic.defaultActivated = true;       
-                    }
+                        var toss= Math.floor(Math.random() * (11 - 1 + 1)) + 1;
 
+                        if(toss<= 4)
+                        {enemy.Intrinsic.defaultA = true;}
+                        else
+                        {enemy.Intrinsic.defaultA = false;}
+                        enemy.Intrinsic.defaultActivated = true;
+
+                        mysterybox.stage = 1;  // Mysterybox spawns the item according to the stage (HS)
+                    }
+                }
 //                    if(!enemy.Intrinsic.lawActivated);
 //                    {
 //                      if(Math.random() < 0.5)
@@ -482,31 +475,24 @@ function AI(){
 //                      else
 //                      {}   
 //                      enemy.Intrinsic.lawActivated = true;       
- //                   }                    
+                //                   }
 
-                    //if(law flag is false || default flag == true)
-                    //default: bob or basket 50/50
-                    //if (2 ants killed in 3 sec and ant law flag is false && default flag is false)
-                    //if(Math.random < 0.5)
-                    //bob or basket 60/40,  raise law flag for particular ant
-                    //else
-                    //default flag = true
+                //if(law flag is false || default flag == true)
+                //default: bob or basket 50/50
+                //if (2 ants killed in 3 sec and ant law flag is false && default flag is false)
+                //if(Math.random < 0.5)
+                //bob or basket 60/40,  raise law flag for particular ant
+                //else
+                //default flag = true
 
-                    //if(lawflag)
-                    //bob or basket 60/40
+                //if(lawflag)
+                //bob or basket 60/40
 
-                    //console.log("tension curve ant :" + this.determineMaxant(timenow,10) + " maxAnt :"+room.maxAnt);
-
-                    this.AiCommander(enemy);
-
-                }
+                //console.log("tension curve ant :" + this.determineMaxant(timenow,10) + " maxAnt :"+room.maxAnt);
                 else
-                {
-                    room.spawnEnemies(room.maxBees,enemy.identity);
-                    this.AiCommander(enemy);
-                }
-                mysterybox.stage = 1;  // Mysterybox spawns the item according to the stage (HS)
+                {room.spawnEnemies(room.maxBees,enemy.identity);}
 
+                ai.AiCommander(enemy);
 
                 break;
 
@@ -517,7 +503,7 @@ function AI(){
                     room.maxAnts = this.determineMaxant(timenow,10);
                     room.spawnEnemies(room.maxAnts,enemy.identity);
 
-                    this.bobKillStrength(enemy, 70);
+                    // this.bobKillStrength(enemy, 70);
 
                     //if(law flag is false || default flag == true)
                     //default: bob or basket 50/50
@@ -551,7 +537,7 @@ function AI(){
                     room.maxAnts = this.determineMaxant(timenow,10);
                     room.spawnEnemies(room.maxAnts,enemy.identity);
 
-                    this.bobKillStrength(enemy, 75);
+                    // this.bobKillStrength(enemy, 75);
                     //if(law flag is false || default flag == true)
                     //default: bob or basket 50/50
                     //if (2 ants killed in 3 sec and ant law flag is false && default flag is false)
@@ -576,9 +562,7 @@ function AI(){
 
             case 4: //------------------------stage 4------------------------------------
                 document.getElementById("stage-level").innerHTML = 4;
-                this.bobKillStrength(enemy, 75);
-
-
+                //this.bobKillStrength(enemy, 75);
                 if(room.finalStageSpawn == true)
                 {
 
@@ -647,8 +631,10 @@ function AI(){
                     document.getElementById("stage-level").innerHTML = 3.4;
                     room.finalStageSpawn = true;
                 }//last else of segment checks
-                break;
+
                 mysterybox.stage = 0;
+                break;
+
         }//end of the switch
 
     }

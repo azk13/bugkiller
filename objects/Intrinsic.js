@@ -19,7 +19,7 @@ function Intrinsic(centerPoint, width, height){
 	this.attackcolor = 'blue';
 
 	this.lawActivated = false;
-	this.defaultActivated = false;	
+    this.defaultActivated = false;
 	this.lawflag = false;
 	this.defaultA = false;
 	this.lawA = false;

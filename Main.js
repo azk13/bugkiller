@@ -9,7 +9,9 @@
   // Canvas
   var canvas;
   var ctx;
+
   var logDiv;
+
 
   var hudCanvas;
   var hudCtx;
@@ -27,6 +29,7 @@
   var hud = new HUD();
   var player = new Bob(new Point(500,380),40,40);
 
+
   var boundcheck = new Boundcheck();
   var ai = new AI();
   var pathfinding = new Pathfinding();
@@ -39,6 +42,7 @@
     //the different canvas
     logDiv = document.getElementById('logger');
     canvas = document.getElementById('gameCanvas');
+    gcanvas=document.getElementById('graphCanvas');
     //hudCanvas = document.getElementById('hudCanvas');
     //sideCanvas = document.getElementById('sideCanvas');
     //we don't need canvas for the side and header - can use HTML <section> - Jensen
@@ -59,7 +63,10 @@
     if (canvas.getContext){
       ctx = canvas.getContext('2d');
 
-      //initial draw
+
+
+
+
       renderingEngine.drawRoom();
 
       //update points in renderer

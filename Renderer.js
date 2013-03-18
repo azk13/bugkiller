@@ -10,10 +10,6 @@ var alt=1,rr=8,ss=4;
 		var weapons = room.getWeapons();
 		var mysterybox = room.getmysterybox();
 		var timenow = Math.round((Date.now() - start_time)/1000);
-		//Ai.towin(ants)
-		//if(player == winningbig)
-		//Ai.lose(ants)
-		//Ai.towin(bee)
 		if(ants.length == 0 && timenow < 90)
 		{
 			room.spawnEnemies(1,'ant');
@@ -33,14 +29,10 @@ var alt=1,rr=8,ss=4;
 		{
 
 			if(alt%rr == 0)			
-			{//pathfinding.objectgo(ants[i],player);
+			{
 				if(baskets.length !=0)
 				ai.antAttackrating(ants[i],'bob');				
-				ai.Action(ants[i],ants.length);				
-//                ai.antAttackBob(ants[i],player);
- 				//if(baskets.length !=0)
- 				//ai.attackNearestBasket(ants[i]);
-                ai.antclose(ants[i]);
+				ai.Action(ants[i],ants.length);
             }
 			physicsEngine.updatePoint(ants[i]);	
 
@@ -75,8 +67,6 @@ var alt=1,rr=8,ss=4;
 
 			// step on Bomb ~ Jensen
 			ai.stepBombCheck(bees[i]);
-			//pathfinding.enemyclose(bees[i]);
-
 		}		
 		physicsEngine.updateShuriken();
 		physicsEngine.updatePoint(player);
@@ -157,10 +147,8 @@ var alt=1,rr=8,ss=4;
 		this.drawHealth();
 		this.drawStings();
 		this.updateEnemyKillCount();
+
 		drawShuriken();
-		//this.setWeaponHealth();
-		//hud.updateHUD();
-		//player.Intrinsic.color +=1;
 
 	}
 
@@ -213,7 +201,33 @@ var alt=1,rr=8,ss=4;
 			this.drawCharacter(bees[i]);  // Jensen
 		}
 	}
-	this.setBobHealth = function(){ // Jensen
+    this.drawGraph=function(){
+
+
+        //gctx.fillRect(graph.point.x,graph.point.y, 10, 10);
+         //gctx.translate(gcanvas.width / 2, gcanvas.height / 2);
+       // gctx.rotate(Math.PI);
+       //this.drawPixel(graph.point.y,graph.point.x, 0, 0, 0, 255);
+       //this.updateGCanvas();
+    }
+// That's how you define the value of a pixel //
+    this.drawPixel=function(x, y, r, g, b, a) {
+            var index = (x + y * gcanvasWidth) * 4;
+
+            canvasData.data[index + 0] = r;
+            canvasData.data[index + 1] = g;
+            canvasData.data[index + 2] = b;
+            canvasData.data[index + 3] = a;
+        }
+
+// That's how you update the canvas, so that your //
+// modification are taken in consideration //
+    this.updateGCanvas=function() {
+            gctx.putImageData(canvasData, 0, 0);
+        }
+
+
+    this.setBobHealth = function(){ // Jensen
 		var BobHealth = player.Intrinsic.health;
 		document.getElementById("bob-health").style.width= BobHealth + '%';
 		
@@ -416,22 +430,12 @@ var alt=1,rr=8,ss=4;
 
 
 	    }//end if(debugMode == true)
-
-	
-	}
-	/*write text to the canvas*/
+	// /*write text to the canvas*/
 	this.writeText = function (myString, myPoint) {
 		ctx.fillStyle = "blue";
 		ctx.font = "bold 10px Arial";
 		ctx.fillText(myString, myPoint.x, myPoint.y);
-	}//end writeText*/
-
-	/*
-	this.update_timer = function(){
-		timer++;
-		//console.log(timer);
-		return timer;
 	}
-	*/
 	
+}
 }
