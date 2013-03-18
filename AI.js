@@ -121,8 +121,22 @@ function AI(){
     {
         //if bob is 3 cell away from ant
         var  noofcells=3;
-        var antCenterPoint;
-        var bobCenterPoint=player.Intrinsic.centerPoint;
+        var ants=room.getAnts();
+        var exclude;
+        if(checkEnemyFromBob(ant,player,noofcells))
+        {
+            for(var i=0;i<ants.length;i++)
+            {
+               if(ants[i].Intrinsic.cellPos.x==ant.Intrinsic.cellPos.x&&ants[i].Intrinsic.cellPos.y==ant.Intrinsic.cellPos.y)
+               {
+                   exclude=i;
+                   break;
+               }
+            }
+            this.antMoveToNearestAnt(ant,ants,exclude);
+        }
+
+
 
     }
 
