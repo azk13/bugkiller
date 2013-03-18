@@ -31,8 +31,13 @@ var alt=1,rr=8,ss=4;
 			if(alt%rr == 0)			
 			{
 				if(baskets.length !=0)
-				ai.antAttackrating(ants[i],'bob');				
+				ai.antAttackrating(ants[i],'bob');
+
 				ai.Action(ants[i],ants.length);
+                room.spawnEnemies(room.maxAnts,ants[i].identity);
+                ai.AiCommander(ants[i]);
+                ai.antclose(ants[i]);
+
             }
 			physicsEngine.updatePoint(ants[i]);	
 
@@ -55,9 +60,11 @@ var alt=1,rr=8,ss=4;
 		{		
 			if(alt%rr == 0)
 			{
-				ai.Action(bees[i],bees.length);				
-			// pathfinding.objectgo(bees[i],player);
-				ai.beeclose(bees[i]);
+				ai.Action(bees[i],bees.length);
+
+                room.spawnEnemies(room.maxBees,bees[i].identity);
+                ai.AiCommander(bees[i]);
+                ai.beeclose(bees[i]);
 			}
 			if(alt%ss == 0)
 			physicsEngine.updateSting(bees[i]);
