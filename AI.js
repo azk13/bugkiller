@@ -380,7 +380,7 @@ function AI(){
                     this.attackNearestBasket(enemy);
                     break;
                 case 3: //Flee Bob
-
+                    this.antfleefromBob(enemy);
                     break;
 
                 case 4: //Conering
