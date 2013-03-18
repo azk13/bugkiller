@@ -23,8 +23,7 @@ var alt=1,rr=8,ss=4;
 		{		
 			physicsEngine.updatePoint(weapons[i]);	
 			gridvacancy.occupancy();
-		}		
-				
+		}
 		for(var i=0;i<ants.length;i++)
 		{
 
@@ -49,13 +48,6 @@ var alt=1,rr=8,ss=4;
 			//pathfinding.enemyclose(ants[i]);
 
 		}
-
-		//ant to go for basket
-//		physicsEngine.updatePoint(ants[0]);	
-//		boundcheck.detectCollisionWithWalls(ants[0]);
-//		gridvacancy.occupancy();
-//        ai.antfleefromBob(ants,player);
-
 		for(var i=0;i<bees.length;i++)
 		{		
 			if(alt%rr == 0)
@@ -77,17 +69,10 @@ var alt=1,rr=8,ss=4;
 		}		
 		physicsEngine.updateShuriken();
 		physicsEngine.updatePoint(player);
-		boundcheck.detectCollisionWithWalls(player);		
-
-//		room.setAnts(ants);
-//		room.setBees(bees);		
-
-		
+		boundcheck.detectCollisionWithWalls(player);
 		// -Mysterybox updating-
 		// Updates the co-ordinates of the mysterybox every 10 counts if it is untouched
 		//
-
-		//console.log(mysterybox.counter);
 		var time_now = Date.now();
 		if((time_now - mysterybox.spawn_time)/1000 >= Math.floor((Math.random()*10)+7))	
 			{
@@ -133,13 +118,6 @@ var alt=1,rr=8,ss=4;
 
 			ctx.stroke();
 		}
-
-
-	    
-//		for (var i = 0; i<room.regions.length; i++){
-//			ctx.fillStyle = room.regions[i].color;
-//			ctx.fillRect(room.regions[i].x, room.regions[i].y, room.regions[i].width, room.regions[i].height);
-//		}		
 	}
 	
 	this.draw = function(){
@@ -172,12 +150,6 @@ var alt=1,rr=8,ss=4;
 	    	ctx.fillRect(weapons[i].Intrinsic.centerPoint.x-10, weapons[i].Intrinsic.centerPoint.y-10, weapons[i].Intrinsic.width, weapons[i].Intrinsic.height);
 		}
 	}
-	this.drawPath = function() {
-
-		// draw the path of all enemies
-		// use bees[] and ants[] etc.
-
-	}
 	this.drawBaskets = function() {
 		var baskets = room.getBaskets();
 
@@ -208,31 +180,6 @@ var alt=1,rr=8,ss=4;
 			this.drawCharacter(bees[i]);  // Jensen
 		}
 	}
-    this.drawGraph=function(){
-
-
-        //gctx.fillRect(graph.point.x,graph.point.y, 10, 10);
-         //gctx.translate(gcanvas.width / 2, gcanvas.height / 2);
-       // gctx.rotate(Math.PI);
-       //this.drawPixel(graph.point.y,graph.point.x, 0, 0, 0, 255);
-       //this.updateGCanvas();
-    }
-// That's how you define the value of a pixel //
-    this.drawPixel=function(x, y, r, g, b, a) {
-            var index = (x + y * gcanvasWidth) * 4;
-
-            canvasData.data[index + 0] = r;
-            canvasData.data[index + 1] = g;
-            canvasData.data[index + 2] = b;
-            canvasData.data[index + 3] = a;
-        }
-
-// That's how you update the canvas, so that your //
-// modification are taken in consideration //
-    this.updateGCanvas=function() {
-            gctx.putImageData(canvasData, 0, 0);
-        }
-
 
     this.setBobHealth = function(){ // Jensen
 		var BobHealth = player.Intrinsic.health;
@@ -338,7 +285,7 @@ var alt=1,rr=8,ss=4;
 		    ctx.lineWidth = 5;
 		    ctx.strokeStyle = 'silver';
 		    ctx.stroke();				
-//		    console.log(player.shurikenpos.x+(room.cellsize*bee.shootcounter));
+
 			
 		}
 		if(player.shurikendir == Math.PI*3/2)
