@@ -96,7 +96,6 @@ var alt=1,rr=8,ss=4;
 
 		alt++;
 	}
-
 	this.drawRoom = function (){
 		//Draw the entire room
 		canvas.width = room.width;
@@ -184,7 +183,6 @@ var alt=1,rr=8,ss=4;
 			alert("You are dead!");
 		}
 	}
-
 	this.updateEnemyKillCount = function(){
 		document.getElementById("enemies-killed").innerHTML = player.kills;
 	}
@@ -193,7 +191,6 @@ var alt=1,rr=8,ss=4;
 		ctx.fillStyle = '#FF00FF';
 		ctx.fillRect(mysterybox.Intrinsic.centerPoint.x-20, mysterybox.Intrinsic.centerPoint.y-20, mysterybox.Intrinsic.width, mysterybox.Intrinsic.height);
 	}
-
 	this.drawHealth = function(){
 		var health = room.getHealth();
 		//for (var i = 0; i < health.length; i++)
@@ -216,8 +213,7 @@ var alt=1,rr=8,ss=4;
 
 	}
 	//animate bee sting Azri
-	function drawSting(bee)
-	{
+	function drawSting(bee){
 		if(bee.stingdir == 'left')
 		{		    
 			ctx.beginPath();
@@ -260,8 +256,7 @@ var alt=1,rr=8,ss=4;
 		}
 	}
 	//animate shuriken Azri
-	function drawShuriken()
-	{
+	function drawShuriken()	{
 		if(player.shurikendir == Math.PI)
 		{		    
 			ctx.beginPath();
@@ -383,6 +378,8 @@ var alt=1,rr=8,ss=4;
 		ctx.font = "bold 10px Arial";
 		ctx.fillText(myString, myPoint.x, myPoint.y);
 	}
-	
+
 }
+}
+
 
