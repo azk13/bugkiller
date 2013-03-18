@@ -1,3 +1,4 @@
+
 function Intrinsic(centerPoint, width, height){
 
 	this.centerPoint = centerPoint;
@@ -25,10 +26,13 @@ function Intrinsic(centerPoint, width, height){
 	this.lawA = false;
 
 	this.killflag = false; //Kill flag checks whether Bob has killed more than a certain amt of enemies in a time period before. Used in AI.bobKillStrength (HS)  
+    this.goals=new Array();
+    this.removegoal=function(){
+        this.goal.pop();
+    }
+  
 
-
-
-	this.stop = function() {
+   	this.stop = function() {
 		this.direction=0;
 		this.velocity = 0;
 		this.acceleration = 0;
