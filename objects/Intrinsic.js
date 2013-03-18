@@ -28,8 +28,12 @@ function Intrinsic(centerPoint, width, height){
 	this.killflag = false; //Kill flag checks whether Bob has killed more than a certain amt of enemies in a time period before. Used in AI.bobKillStrength (HS)  
     this.goals=new Array();
     this.removegoal=function(){
-        this.goal.pop();
+        this.goals.pop();
     }
+    this.retrieveLastGoal=function(){
+        
+        return goals[this.goals.length-1];
+    }    
   
 
    	this.stop = function() {
