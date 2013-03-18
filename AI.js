@@ -453,8 +453,6 @@ function AI(){
                 if(enemy.identity == 'ant')
                 {
                     room.maxAnts = this.determineMaxant(timenow,5);
-                    room.spawnEnemies(room.maxAnts,enemy.identity);
-
                     if(true!=enemy.Intrinsic.defaultActivated)
                     {
                         var toss= Math.floor(Math.random() * (11 - 1 + 1)) + 1;
@@ -465,35 +463,10 @@ function AI(){
                         {enemy.Intrinsic.defaultA = false;}
                         enemy.Intrinsic.defaultActivated = true;
 
-                        mysterybox.stage = 1;  // Mysterybox spawns the item according to the stage (HS)
+
                     }
                 }
-//                    if(!enemy.Intrinsic.lawActivated);
-//                    {
-//                      if(Math.random() < 0.5)
-//                      {enemy.Intrinsic.defaultA = true;}
-//                      else
-//                      {}   
-//                      enemy.Intrinsic.lawActivated = true;       
-                //                   }
-
-                //if(law flag is false || default flag == true)
-                //default: bob or basket 50/50
-                //if (2 ants killed in 3 sec and ant law flag is false && default flag is false)
-                //if(Math.random < 0.5)
-                //bob or basket 60/40,  raise law flag for particular ant
-                //else
-                //default flag = true
-
-                //if(lawflag)
-                //bob or basket 60/40
-
-                //console.log("tension curve ant :" + this.determineMaxant(timenow,10) + " maxAnt :"+room.maxAnt);
-                else
-                {room.spawnEnemies(room.maxBees,enemy.identity);}
-
-                ai.AiCommander(enemy);
-
+                mysterybox.stage = 1;  // Mysterybox spawns the item according to the stage (HS)
                 break;
 
             case 2: //------------------------stage 2------------------------------------
@@ -501,31 +474,9 @@ function AI(){
                 if(enemy.identity == 'ant')
                 {
                     room.maxAnts = this.determineMaxant(timenow,10);
-                    room.spawnEnemies(room.maxAnts,enemy.identity);
-
-                    // this.bobKillStrength(enemy, 70);
-
-                    //if(law flag is false || default flag == true)
-                    //default: bob or basket 50/50
-                    //if (2 ants killed in 3 sec and ant law flag is false && default flag is false)
-                    //if(Math.random < 0.5)
-                    //bob or basket 60/40,  raise law flag for particular ant
-                    //else
-                    //default flag = true
-
-                    //if(lawflag)
-                    //bob or basket 70/30
-
-                    this.AiCommander(enemy);
 
 
                 }
-                else
-                {
-                    room.spawnEnemies(room.maxBees,enemy.identity);
-                    this.AiCommander(enemy);
-                }
-
                 mysterybox.stage = 2;
                 break;
             case 3: //------------------------stage 3------------------------------------
@@ -535,27 +486,13 @@ function AI(){
                 if(enemy.identity == 'ant')
                 {
                     room.maxAnts = this.determineMaxant(timenow,10);
-                    room.spawnEnemies(room.maxAnts,enemy.identity);
-
-                    // this.bobKillStrength(enemy, 75);
-                    //if(law flag is false || default flag == true)
-                    //default: bob or basket 50/50
-                    //if (2 ants killed in 3 sec and ant law flag is false && default flag is false)
-                    //if(Math.random < 0.5)
-                    //bob or basket 60/40,  raise law flag for particular ant
-                    //else
-                    //default flag = true
-
-                    //if(lawflag)
-                    //bob or basket 75/25
-
-                    this.AiCommander(enemy);
 
                 }
                 else
                 {
-                    room.spawnEnemies(room.maxBees,enemy.identity);
-                    this.AiCommander(enemy);
+                    //To-do Curve for bee
+                    room.maxBees=1;
+
                 }
                 mysterybox.stage = 3;
                 break;
@@ -584,8 +521,7 @@ function AI(){
 
                 }
                 mysterybox.stage = 4;
-
-                break;
+               break;
             default://The place where player's ability is checked
                 if(segment == 12)//Transmission from stage 1 to stage 2
                 {
@@ -596,13 +532,13 @@ function AI(){
                     {
                         player.skill = 'good';
                         document.getElementById("player-skill").innerHTML = 'Good';
-                        room.maxAnts = 10;
+
                     }
                     else
                     {
                         player.skill = 'bad';
                         document.getElementById("player-skill").innerHTML = 'Bad';
-                        room.maxAnts = 5;
+
                     }
                 }
                 else if(segment == 23)//Transmission from stage 2 to stage 3
@@ -614,15 +550,13 @@ function AI(){
                     {
                         player.skill = 'good';
                         document.getElementById("player-skill").innerHTML = 'Good';
-                        room.maxAnts = 7;
-                        room.maxBees = 3;
+
+
                     }
                     else
                     {
                         player.skill = 'bad';
                         document.getElementById("player-skill").innerHTML = 'Bad';
-                        room.maxAnts = 5;
-                        room.maxBees = 1;
                     }
 
                 }
