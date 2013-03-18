@@ -13,11 +13,6 @@
   var logDiv;
 
 
-  var hudCanvas;
-  var hudCtx;
-
-  var sideCanvas;
-  var sideCtx;
 
   // Objects
   var logger = new Logger();
@@ -26,7 +21,6 @@
   var renderingEngine = new Renderer();
   var physicsEngine = new Physics();
   var debugMode = false;
-  var hud = new HUD();
   var player = new Bob(new Point(500,380),40,40);
 
 
