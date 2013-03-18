@@ -114,16 +114,26 @@ function AI(){
      ************************************/
     this.antCluster=function(ant)
     {
+        var condition = true;
+        var ants = room.getAnts();
         var clusterpoint=room.map[3][17].point;
         var dummy= new Dummy(clusterpoint);
-        if(!checkEnemyFromBob(ant,dummy,2))
+        if(!checkEnemyFromBob(ant.Intrinsic.centerPoint,dummy.Intrinsic.centerPoint,1))
         {
             pathfinding.objectgo(ant,dummy);            
         }
-        if(ant.Intrinsic.velocity == 0)
+
+        for(var i=0;i<ants.length;i++)
         {
-            ant.Intrinsic.goals.pop();
+        if(!checkEnemyFromBob(ants[i].Intrinsic.centerPoint,dummy.Intrinsic.centerPoint,2))
+        {
+            condition = false;            
         }
+
+        }
+        if(condition == true)
+        {ant.Intrinsic.goals.pop();}
+       
 
 
 
@@ -921,4 +931,5 @@ function AI(){
                 //change map cell to occumpied
             }
         }  
+    }
 }
