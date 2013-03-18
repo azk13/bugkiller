@@ -382,6 +382,9 @@ function AI(){
                 case 4: //Conering
 
                     break;
+                case 5: //cluster
+                
+                    break;                
             }//end of switch
 
         /*

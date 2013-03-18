@@ -6,7 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 function Dummy(CenterPoint){
-    this.Intrinsic = new Intrinsic(centerPoint, 40, 40);
+    this.Intrinsic = new Intrinsic(CenterPoint, 40, 40);
 
 
 }
