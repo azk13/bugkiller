@@ -1,3 +1,4 @@
+
 function Bob(centerPoint, width, height){
 	this.Intrinsic = new Intrinsic(centerPoint, width, height);
 	this.identity='Bob'

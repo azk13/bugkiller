@@ -1,3 +1,4 @@
+
 function Bees(centerPoint){
 	this.Intrinsic = new Intrinsic(centerPoint, 40, 40);
 	this.Intrinsic.color = 'orange';	
