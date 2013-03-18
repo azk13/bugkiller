@@ -403,7 +403,9 @@ function AI(){
 
         }
     }
-    this.bobKillStrength = function(ant, attackBobPercent){
+
+
+    this.bobKillStrength = function(ant){
         var enemyKilledNow = player.kills;
         var timeNow = Date.now();
 
@@ -415,18 +417,14 @@ function AI(){
             //console.log('The number of enemies killed is ' +(enemyKilledNow - enemyKilledPrev));
 
             // Enemies killed by Bob is more than 2
-            if(enemyKilledNow - enemyKilledPrev > 2 && !ant.Intrinsic.killflag){
+            if(enemyKilledNow - enemyKilledPrev > 2 && player.Intrinsic.killflag){
 
-                //console.log('entered Loop 2');
-                // Stage 1
-                // Bob or Basket (60/40)
-                if(Math.random() < (attackBobPercent / 100)){
-                    pathfinding.objectgo(ant, player);
-                }else{
-                    this.attackNearestBasket(ant);
-                }
-
-                ant.Intrinsic.killflag = true;
+                return true;
+                player.Intrinsic.killflag = true;
+            }
+            else
+            {
+                return false;
             }
 
 
@@ -434,6 +432,31 @@ function AI(){
             enemyKilledPrev = enemyKilledNow;
         }
     }
+<<<<<<< HEAD
+=======
+
+    this.tossCoin = function(enemy,probability)
+    {
+    var toss= Math.floor(Math.random() * 11)  + 1;
+
+        if(toss<= probability/10)
+        {// Attack Bob
+            if(1 != enemy.Intrinsic.goals[enemy.Intrinsic.goals.length-1])
+            {
+            enemy.Intrinsic.goals.push(1);
+            }
+                            
+        }
+        else // Attack basket
+        {
+                          
+            if(2 != enemy.Intrinsic.goals[enemy.Intrinsic.goals.length-1])
+            {
+            enemy.Intrinsic.goals.push(2);
+            }                    
+        }
+    }
+>>>>>>> Law and default done
     //Basic staging and spawning stuff  Azri & Jensen
     this.Action = function(enemy,length)
     {
@@ -466,23 +489,31 @@ function AI(){
                 if(enemy.identity == 'ant')
                 {
                     room.maxAnts = this.determineMaxant(timenow,5);
+
+                    //default action run once on start
                     if(true!=enemy.Intrinsic.defaultActivated)
                     {
 
-                        var toss= Math.floor(Math.random() * 11)  + 1;
-
-                        if(toss<= 5)
-                        {// Attack Bob
-                            if(1 != enemy.Intrinsic.goals[enemy.Intrinsic.goals.length-1])
-                            {enemy.Intrinsic.goals.push(1);}
-                        }
-                        else // Attack basket
-                        {
-                            if(2 != enemy.Intrinsic.goals[enemy.Intrinsic.goals.length-1])
-                            {enemy.Intrinsic.goals.push(2);}
-                        }
+                        this.tossCoin(enemy,50);
                         enemy.Intrinsic.defaultActivated = true;
                     }
+                    //action run once when activated
+                    if(false!=enemy.Intrinsic.defaultActivated && true!=enemy.Intrinsic.lawActivated)
+                    {
+                        if(this.bobKillStrength())
+                        {
+                            var toss= Math.floor(Math.random() * 11)  + 1;
+                            if(toss <= 5) //50/50 (the law or not)
+                            {
+                            this.tossCoin(enemy,60);
+                            }
+                        enemy.Intrinsic.lawActivated = true;
+                        }
+
+
+
+                    }
+
                 }
                 mysterybox.stage = 1;  // Mysterybox spawns the item according to the stage (HS)
                 break;
