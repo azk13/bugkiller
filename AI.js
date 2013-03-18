@@ -405,7 +405,7 @@ function AI(){
     }
 
 
-    this.bobKillStrength = function(ant){
+    this.bobKillStrength = function(){
         var enemyKilledNow = player.kills;
         var timeNow = Date.now();
 
@@ -432,8 +432,7 @@ function AI(){
             enemyKilledPrev = enemyKilledNow;
         }
     }
-<<<<<<< HEAD
-=======
+
 
     this.tossCoin = function(enemy,probability)
     {
@@ -456,7 +455,7 @@ function AI(){
             }                    
         }
     }
->>>>>>> Law and default done
+
     //Basic staging and spawning stuff  Azri & Jensen
     this.Action = function(enemy,length)
     {
