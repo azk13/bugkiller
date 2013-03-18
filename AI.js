@@ -67,7 +67,7 @@ function AI(){
      Input : Ant,bob
      Output:Decide whether this ant can attack bob and then attack
      ************************************/
-    this.antAttackBob=function(ant,bob)
+    this.antAttackBob=function(ant)
     {
         //Todo must implement attack function for the ant to attack
 
@@ -78,16 +78,15 @@ function AI(){
         var anthealth=ant.Intrinsic.health;
         var anthasweapon=ant.hasWeapons();
         //player properties
-        var bobCenterPoint =bob.Intrinsic.centerPoint;
-        var bobhealth=bob.health;
-        var bobhasWeapons=bob.hasWeapons();
+        var bobCenterPoint =player.Intrinsic.centerPoint;
+        var bobhealth=player.health;
+        var bobhasWeapons=player.hasWeapons();
 
         var attack=false;
         // check whether ant is within no of cells specified
         if(checkEnemyFromBob(antCenterPoint,bobCenterPoint,noofCells))
         {
-            //move towards the bob first
-            pathfinding.objectgo(ant,bob);
+
             //if ant health below 10%  and has weapon just try to attack and die
             if(anthealth<10&anthasweapon)
             {
@@ -109,7 +108,7 @@ function AI(){
         if(attack)
         {
             //find bob
-            pathfinding.objectgo(ant,bob);
+            pathfinding.objectgo(ant,player,false);
             //and attack him
         }
 
@@ -118,21 +117,13 @@ function AI(){
      Input : All the Ants and bob and the index of the ant
      Output: Id ant is 10 cells closet to bob it will move towards another ant
      ************************************/
-    this.antfleefromBob=function(ants,bob)
+    this.antfleefromBob=function(ant)
     {
         //if bob is 3 cell away from ant
         var  noofcells=3;
         var antCenterPoint;
-        var bobCenterPoint=bob.Intrinsic.centerPoint;;
-        for(var i=0;i<ants.length;i++)
-        {
-            antCenterPoint=ants[i].Intrinsic.centerPoint;;
+        var bobCenterPoint=player.Intrinsic.centerPoint;
 
-            if(checkEnemyFromBob(antCenterPoint,bobCenterPoint,noofcells))
-            {
-                this.antMoveToNearestAnt(ants[i],ants,i)
-            }
-        }
     }
 
     this.determineMaxant=function(time,max)
@@ -423,6 +414,8 @@ function AI(){
         }
     }
 
+
+
     //Basic staging and spawning stuff  Azri & Jensen
     this.Action = function(enemy,length)
     {
@@ -431,7 +424,8 @@ function AI(){
         console.log(timenow);
         var stagelength = 30;
         var mysterybox = room.getmysterybox();
-//Setting the different time region
+        //Setting the different time region
+
         if(timenow < stagelength)
         {segment = 1;}
         else if(timenow < stagelength*1.1)
@@ -450,49 +444,43 @@ function AI(){
         switch(segment){
             case 1: //------------------------stage 1------------------------------------
                 document.getElementById("stage-level").innerHTML = 1;
+
                 if(enemy.identity == 'ant')
                 {
                     room.maxAnts = this.determineMaxant(timenow,5);
                     if(true!=enemy.Intrinsic.defaultActivated)
                     {
-                        var toss= Math.floor(Math.random() * (11 - 1 + 1)) + 1;
-
-                        if(toss<= 4)
+                        var toss=  Math.floor(Math.random() * (11 - 1 + 1)) + 1;
+                        if(toss<= 5)
                         {enemy.Intrinsic.defaultA = true;}
                         else
                         {enemy.Intrinsic.defaultA = false;}
                         enemy.Intrinsic.defaultActivated = true;
-
-
                     }
                 }
                 mysterybox.stage = 1;  // Mysterybox spawns the item according to the stage (HS)
                 break;
-
             case 2: //------------------------stage 2------------------------------------
                 document.getElementById("stage-level").innerHTML = 2;
+
                 if(enemy.identity == 'ant')
                 {
-                    room.maxAnts = this.determineMaxant(timenow,10);
-
+                  room.maxAnts = this.determineMaxant(timenow,10);
 
                 }
                 mysterybox.stage = 2;
                 break;
             case 3: //------------------------stage 3------------------------------------
+                document.getElementById("stage-level").innerHTML = 3;
+
                 if(bees.length == 0)
                 {room.spawnEnemies(1,'bee');}
-                document.getElementById("stage-level").innerHTML = 3;
+
                 if(enemy.identity == 'ant')
-                {
-                    room.maxAnts = this.determineMaxant(timenow,10);
-
-                }
+                {room.maxAnts = this.determineMaxant(timenow,10);}
                 else
-                {
-                    //To-do Curve for bee
-                    room.maxBees=1;
-
+                {//To-do Curve bee
+                 room.maxBees=1;
                 }
                 mysterybox.stage = 3;
                 break;
@@ -502,12 +490,10 @@ function AI(){
                 //this.bobKillStrength(enemy, 75);
                 if(room.finalStageSpawn == true)
                 {
-
                     if(player.skill == 'good')
                     {
                         room.spawnEnemies(10,'ant');
                         room.spawnEnemies(4,'bee');
-                        //    console.log("Finalstagespawn:"+ room.finalStageSpawn + " ant length:" + length);
                         if(length >= 10)
                         {room.finalStageSpawn = false;}
                     }
@@ -518,39 +504,33 @@ function AI(){
                         if(length >= 7)
                         {room.finalStageSpawn = false;}
                     }
-
                 }
                 mysterybox.stage = 4;
-               break;
+                break;
             default://The place where player's ability is checked
                 if(segment == 12)//Transmission from stage 1 to stage 2
                 {
                     document.getElementById("stage-level").innerHTML = 1.2;
-
                     //check if player is good or bad
                     if(player.kills > 5 || player.Intrinsic.health>70)
                     {
                         player.skill = 'good';
                         document.getElementById("player-skill").innerHTML = 'Good';
-
                     }
                     else
                     {
                         player.skill = 'bad';
                         document.getElementById("player-skill").innerHTML = 'Bad';
-
                     }
                 }
                 else if(segment == 23)//Transmission from stage 2 to stage 3
                 {
                     document.getElementById("stage-level").innerHTML = 2.3;
-
                     //check if player is good or bad
                     if(player.kills > 10 || player.Intrinsic.health>70)
                     {
                         player.skill = 'good';
                         document.getElementById("player-skill").innerHTML = 'Good';
-
 
                     }
                     else
@@ -565,7 +545,6 @@ function AI(){
                     document.getElementById("stage-level").innerHTML = 3.4;
                     room.finalStageSpawn = true;
                 }//last else of segment checks
-
                 mysterybox.stage = 0;
                 break;
 
