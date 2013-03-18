@@ -387,7 +387,7 @@ function AI(){
 
                     break;
             }//end of switch
-        }
+
         /*
          if(enemy.Intrinsic.lawflag == false)
          {
