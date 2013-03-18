@@ -470,21 +470,20 @@ function AI(){
 
                         if(toss<= 5)
                         {// Attack Bob
-                            if(enemy.Intrinsic.goals.length > 0)
-                            {
                             if(1 != enemy.Intrinsic.goals[enemy.Intrinsic.goals.length-1])
                             {
                             enemy.Intrinsic.goals.push(1);
                             }
-                            }
+                            
                         }
                         else // Attack basket
                         {
+                          
                             if(2 != enemy.Intrinsic.goals[enemy.Intrinsic.goals.length-1])
                             {
                             enemy.Intrinsic.goals.push(2);
                             }
-
+                            
                         }
                         enemy.Intrinsic.defaultActivated = true;
                     }
