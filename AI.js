@@ -47,8 +47,27 @@ function AI(){
         else
             return false;
     }
-    this.attackNearestBasket = function(enemy) { var baskets = room.getBaskets();
+    this.attackNearestBasket = function(enemy) {
+
+        var ants=room.getAnts();
+        var baskets = room.getBaskets();
+        var attack =true
+        for(var i=0;i<ants.length;i++)
+        {
+            if(ants[i].Intrinsic.ClusterFlag==true)
+            {
+
+                enemy.Intrinsic.goals.push(6);
+                enemy.Intrinsic.goals.push(5);
+
+                attack=false;
+                break;
+            }
+        }
+        if(attack==true)
         pathfinding.objectgo(enemy,baskets[getNearestBasketIndex(enemy)]);
+
+
     }
     /************************************
      Input : ant that need to go to the nearest ant and its index
@@ -108,6 +127,25 @@ function AI(){
         }
 
     }
+
+    this.antAttackBobnew=function(enemy){
+        var attack =true;
+        var ants=room.getAnts();
+        for(var i=0;i<ants.length;i++)
+        {
+            if(ants[i].Intrinsic.ClusterFlag==true)
+            {
+
+                enemy.Intrinsic.goals.push(6);
+                enemy.Intrinsic.goals.push(5);
+                attack=false;
+                break;
+            }
+        }
+        if(attack==true)
+           pathfinding.objectgo(enemy,player);
+
+    }
     /************************************
      Input : All the Ants and bob and the index of the ant
      Output: Id ant is 10 cells closet to bob it will move towards another ant
@@ -127,12 +165,14 @@ function AI(){
         {
         if(!checkEnemyFromBob(ants[i].Intrinsic.centerPoint,dummy.Intrinsic.centerPoint,2))
         {
-            condition = false;            
+            ant.Intrinsic.ClusterFlag = true;
+            condition = false;
         }
 
         }
         if(condition == true)
-        {ant.Intrinsic.goals.pop();}
+        { ant.Intrinsic.ClusterFlag = false;
+            ant.Intrinsic.goals.pop();}
        
 
 
@@ -141,8 +181,6 @@ function AI(){
     this.antfleefromBob=function(ant){
         //if bob is 3 cell away from ant
         var  noofcells=3;
-        var antCenterPoint;
-        var bobCenterPoint=player.Intrinsic.centerPoint;
         var ants=room.getAnts();
         var exclude;
           if(checkEnemyFromBob(ant,player,noofcells))
@@ -388,7 +426,7 @@ function AI(){
         {
             switch(enemy.Intrinsic.retrieveLastGoal()){
                 case 1: //Attack Bob
-                    pathfinding.objectgo(enemy,player);
+                    this.antAttackBobnew(enemy);
                     break;
                 case 2: //Attack Basket
                     this.attackNearestBasket(enemy);
@@ -401,7 +439,8 @@ function AI(){
                     this.cornering(enemy);
                     break;
                 case 5: //cluster
-                this.antCluster(enemy);
+
+                      this.antCluster(enemy);
                     break;            
                 case 6: //limited time attacking bob
                 this.shortAttack(enemy);
@@ -411,9 +450,9 @@ function AI(){
     this.shortAttack = function(enemy)
     {
         pathfinding.objectgo(enemy,player);
-        if(this.frametime%120)
+        if(renderingEngine.frametime%8==0)
         {
-            alert("back to normal");
+           //alert("back to normal");
             enemy.Intrinsic.goals.pop();
         }
     }
@@ -463,6 +502,7 @@ function AI(){
 
         if(toss<= probability/10)
         {// Attack Bob
+
             if(1 != enemy.Intrinsic.goals[enemy.Intrinsic.goals.length-1])
             {
             enemy.Intrinsic.goals.push(1);
