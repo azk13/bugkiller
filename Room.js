@@ -72,11 +72,7 @@ function Room(){
           if(x=this.width)
              x=0;
     }
-    //var ants = new Array();
-    //var bees = new Array();
-    //var baskets = new Array();
-    // var weapons = new Array();
-    // for now, put it as global variable as will access is when bob picked up a weapon
+
 
     //pioneer ant
     ants[0] = new Ants(new Point(this.map[0][21].point.x,this.map[0][21].point.y));
@@ -97,9 +93,6 @@ function Room(){
     var health = new Health(new Point(this.map[2][20].point.x, this.map[2][20].point.y), 30, 30);
     health.cellpos.x = -1; // Even though health is initiated, if cellPos is set to -1, it is not active on the map (Hong Shing)
 
-
-    
-
 	this.getBaskets = function() {
 		return baskets;
 	}
@@ -112,13 +105,6 @@ function Room(){
 	this.getBees = function(){
 		return bees;
 	}
-	this.setAnts = function(allAnts){
-	 	this.ants = allAnts;
-	}
-    this.setBees = function(allBees){
-        this.bees = allBees;
-    }    
-
     this.getmysterybox = function(){
         return mysterybox;
     }

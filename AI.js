@@ -57,8 +57,8 @@ function AI(){
             if(ants[i].Intrinsic.ClusterFlag==true)
             {
 
-                enemy.Intrinsic.goals.push(6);
-                enemy.Intrinsic.goals.push(5);
+                enemy.Intrinsic.addGoal(6);
+                enemy.Intrinsic.addGoal(5);
 
                 attack=false;
                 break;
@@ -136,8 +136,8 @@ function AI(){
             if(ants[i].Intrinsic.ClusterFlag==true)
             {
 
-                enemy.Intrinsic.goals.push(6);
-                enemy.Intrinsic.goals.push(5);
+                enemy.Intrinsic.addGoal(6);
+                enemy.Intrinsic.addGoal(5);
                 attack=false;
                 break;
             }
@@ -419,6 +419,285 @@ function AI(){
         }
 
     }
+    this.cornering = function(ant){
+
+        var Bobrow = pathfinding.getObjectIndexCol(player);
+        var Bobcol = pathfinding.getObjectIndexRow(player);
+        //var dummy = new Dummy();
+        var dummy = new Dummy(room.map[5][5].point);
+        if(player.Intrinsic.cellPos.x <= 4 && player.Intrinsic.cellPos.y <= 4)
+        {
+            //Bob is in segment 1
+
+            //Check in terms of priority which of the 5 corner cell is empty and go there if it is empty
+            if(true!=room.map[5][5].occupied){
+                // Add in centrepoint for dummy
+                dummy.Intrinsic.centerPoint = room.map[5][5].point;
+                room.map[5][5].occupied=true;
+                if(!checkEnemyFromBob(ant.Intrinsic.centerPoint,dummy.Intrinsic.centerPoint,0))
+                {
+
+                    pathfinding.objectgo(ant,dummy);
+                }
+                //change map cell to occumpied
+            }
+            else if(true!=room.map[3][5].occupied){
+                //go to room[3][5]
+
+                // Add in centrepoint for dummy
+                // var dummy = new Dummy(room.map[3][5].centrePoint);
+                dummy.Intrinsic.centerPoint = room.map[3][5].point;
+                //go to room[3][5]
+                room.map[3][5].occupied=true;
+                if(!checkEnemyFromBob(ant.Intrinsic.centerPoint,dummy.Intrinsic.centerPoint,0))
+                {
+
+                    pathfinding.objectgo(ant,dummy);
+                }
+                //change map cell to occupied
+            }
+            else if(true!=room.map[5][3].occupied){
+                //go to room[5][3]
+
+                // Add in centrepoint for dummy
+                // var dummy = new Dummy(room.map[5][3].centrePoint);
+                dummy.Intrinsic.centerPoint = room.map[5][3].point;
+                //go to room[5][3]
+                //pathfinding.objectgo(ant, dummy);
+                room.map[5][3].occupied=true;
+
+                if(!checkEnemyFromBob(ant.Intrinsic.centerPoint,dummy.Intrinsic.centerPoint,0))
+                {
+
+                    pathfinding.objectgo(ant,dummy);
+                }
+                //change map cell to occumpied
+            }
+            else if(true!=room.map[5][1].occupied){
+                //go to room[5][1]
+
+                // Add in centrepoint for dummy
+                // var dummy = new Dummy(room.map[5][1].centrePoint);
+                dummy.Intrinsic.centerPoint = room.map[5][1].point;
+                //go to room[5][5]
+                //pathfinding.objectgo(ant, dummy);
+                room.map[5][1].occupied=true;
+                if(!checkEnemyFromBob(ant.Intrinsic.centerPoint,dummy.Intrinsic.centerPoint,0))
+                {
+
+                    pathfinding.objectgo(ant,dummy);
+                }
+                //change map cell to occumpied
+            }
+            else if(true!=room.map[1][5].occupied){
+                //go to room[1][5]
+
+                // Add in centrepoint for dummy
+                // var dummy = new Dummy(room.map[1][5].centrePoint);
+                dummy.Intrinsic.centrePoint = room.map[1][5].point;
+                //go to room[5][5]
+                //pathfinding.objectgo(ant, dummy);
+
+                if(!checkEnemyFromBob(ant.Intrinsic.centerPoint,dummy.Intrinsic.centerPoint,0))
+                {
+                    room.map[1][5].occupied=true;
+                    pathfinding.objectgo(ant,dummy);
+                }
+                //change map cell to occumpied
+            }
+
+
+            //go to room[5][5]
+            // pathfinding.objectgo(ant, dummy);
+
+        }
+
+        if(Bobrow <= 4 && Bobcol >= 17)
+        {
+            //Bob is in segment 2
+
+            //Check in terms of priority which of the 5 corner cell is empty and go there if it is empty
+            if(!room.map[5][16].occupied){
+                //go to room[5][16]
+
+                // Add in centrepoint for dummy
+                // var dummy = new Dummy(room.map[5][16].centrePoint);
+
+                //go to room[5][16]
+                //pathfinding.objectgo(ant, dummy);
+
+                //change map cell to occumpied
+            }
+            else if(!room.map[5][18].occupied){
+                //go to room[5][18]
+
+                // Add in centrepoint for dummy
+                // var dummy = new Dummy(room.map[5][18].centrePoint);
+
+                //go to room[5][18]
+                //pathfinding.objectgo(ant, dummy);
+
+                //change map cell to occumpied
+            }
+            else if(!room.map[3][15].occupied){
+                //go to room[3][15]
+
+                // Add in centrepoint for dummy
+                // var dummy = new Dummy(room.map[3][15].centrePoint);
+
+                //go to room[3][15]
+                //pathfinding.objectgo(ant, dummy);
+
+                //change map cell to occumpied
+            }
+            else if(!room.map[1][15].occupied){
+                //go to room[1][15]
+
+                // Add in centrepoint for dummy
+                // var dummy = new Dummy(room.map[1][15].centrePoint);
+
+                //go to room[1][15]
+                //pathfinding.objectgo(ant, dummy);
+
+                //change map cell to occumpied
+            }
+            else if(!room.map[5][20].occupied){
+                //go to room[5][20]
+
+                // Add in centrepoint for dummy
+                // var dummy = new Dummy(room.map[5][20].centrePoint);
+
+                //go to room[5][20]
+                //pathfinding.objectgo(ant, dummy);
+
+                //change map cell to occumpied
+            }
+        }
+
+        if(Bobrow >= 9 && Bobcol <= 4)
+        {
+            //Bob is in segment 3
+
+            //Check in terms of priority which of the 5 corner cell is empty and go there if it is empty
+            if(!room.map[8][5].occupied){
+                //go to room[8][5]
+
+                // Add in centrepoint for dummy
+                // var dummy = new Dummy(room.map[8][5].centrePoint);
+
+                //go to room[8][5]
+                //pathfinding.objectgo(ant, dummy);
+
+                //change map cell to occumpied
+            }
+            else if(!room.map[10][5].occupied){
+                //go to room[10][5]
+
+                // Add in centrepoint for dummy
+                // var dummy = new Dummy(room.map[10][5].centrePoint);
+
+                //go to room[10][5]
+                //pathfinding.objectgo(ant, dummy);
+
+                //change map cell to occumpied
+            }
+            else if(!room.map[8][3].occupied){
+                //go to room[8][3]
+
+                // Add in centrepoint for dummy
+                // var dummy = new Dummy(room.map[8][3].centrePoint);
+
+                //go to room[8][3]
+                //pathfinding.objectgo(ant, dummy);
+
+                //change map cell to occumpied
+            }
+            else if(!room.map[12][5].occupied){
+                //go to room[12][5]
+
+                // Add in centrepoint for dummy
+                // var dummy = new Dummy(room.map[12][5].centrePoint);
+
+                //go to room[12][5]
+                //pathfinding.objectgo(ant, dummy);
+
+                //change map cell to occumpied
+            }
+            else if(!room.map[8][1].occupied){
+                //go to room[8][1]
+
+                // Add in centrepoint for dummy
+                // var dummy = new Dummy(room.map[8][1].centrePoint);
+
+                //go to room[8][1]
+                //pathfinding.objectgo(ant, dummy);
+
+                //change map cell to occumpied
+            }
+        }
+
+        if(Bobrow >= 9 && Bobcol >= 17)
+        {
+            //Bob is in segment 4
+
+            //Check in terms of priority which of the 5 corner cell is empty and go there if it is empty
+            if(!room.map[8][16].occupied){
+                //go to room[8][16]
+
+                // Add in centrepoint for dummy
+                // var dummy = new Dummy(room.map[8][16].centrePoint);
+
+                //go to room[8][16]
+                //pathfinding.objectgo(ant, dummy);
+
+                //change map cell to occumpied
+            }
+            else if(!room.map[8][18].occupied){
+                //go to room[8][18]
+
+                // Add in centrepoint for dummy
+                // var dummy = new Dummy(room.map[8][18].centrePoint);
+
+                //go to room[8][18]
+                //pathfinding.objectgo(ant, dummy);
+
+                //change map cell to occumpied
+            }
+            else if(!room.map[9][16].occupied){
+                //go to room[9][16]
+
+                // Add in centrepoint for dummy
+                // var dummy = new Dummy(room.map[9][16].centrePoint);
+
+                //go to room[5][5]
+                //pathfinding.objectgo(ant, dummy);
+
+                //change map cell to occumpied
+            }
+            else if(!room.map[12][16].occupied){
+                //go to room[12][16]
+
+                // Add in centrepoint for dummy
+                // var dummy = new Dummy(room.map[12][16].centrePoint);
+
+                //go to room[5][5]
+                //pathfinding.objectgo(ant, dummy);
+
+                //change map cell to occumpied
+            }
+            else if(!room.map[8][20].occupied){
+                //go to room[8][20]
+
+                // Add in centrepoint for dummy
+                // var dummy = new Dummy(room.map[8][20].centrePoint);
+
+                //go to room[5][5]
+                //pathfinding.objectgo(ant, dummy);
+
+                //change map cell to occumpied
+            }
+        }
+    }
     // Dynamic AI Decision Making
     /************************************/
     // based on flags, give commands to AI
@@ -502,7 +781,7 @@ function AI(){
 
             if(1 != enemy.Intrinsic.goals[enemy.Intrinsic.goals.length-1])
             {
-            enemy.Intrinsic.goals.push(1);
+            enemy.Intrinsic.addGoal(1);
             }
                             
         }
@@ -511,7 +790,7 @@ function AI(){
                           
             if(2 != enemy.Intrinsic.goals[enemy.Intrinsic.goals.length-1])
             {
-            enemy.Intrinsic.goals.push(2);
+            enemy.Intrinsic.goals.addGoal(2);
             }                    
         }
     }
@@ -715,283 +994,5 @@ function AI(){
 
     }
     
-    this.cornering = function(ant){
 
-        var Bobrow = pathfinding.getObjectIndexCol(player);
-        var Bobcol = pathfinding.getObjectIndexRow(player);
-        //var dummy = new Dummy();
-        var dummy = new Dummy(room.map[5][5].point);
-        if(player.Intrinsic.cellPos.x <= 4 && player.Intrinsic.cellPos.y <= 4)
-        {
-            //Bob is in segment 1
-
-            //Check in terms of priority which of the 5 corner cell is empty and go there if it is empty
-            if(true!=room.map[5][5].occupied){
-                // Add in centrepoint for dummy 
-                dummy.Intrinsic.centerPoint = room.map[5][5].point;
-                room.map[5][5].occupied=true;
-                if(!checkEnemyFromBob(ant.Intrinsic.centerPoint,dummy.Intrinsic.centerPoint,0))
-                {
-
-                    pathfinding.objectgo(ant,dummy);
-                }
-                //change map cell to occumpied
-            }
-            else if(true!=room.map[3][5].occupied){
-                //go to room[3][5]
-
-                // Add in centrepoint for dummy 
-                // var dummy = new Dummy(room.map[3][5].centrePoint); 
-                dummy.Intrinsic.centerPoint = room.map[3][5].point;
-                //go to room[3][5]
-                room.map[3][5].occupied=true;
-                if(!checkEnemyFromBob(ant.Intrinsic.centerPoint,dummy.Intrinsic.centerPoint,0))
-                {
-
-                    pathfinding.objectgo(ant,dummy);
-                }
-                //change map cell to occupied
-            }
-            else if(true!=room.map[5][3].occupied){
-                //go to room[5][3]
-
-                // Add in centrepoint for dummy 
-                // var dummy = new Dummy(room.map[5][3].centrePoint); 
-                dummy.Intrinsic.centerPoint = room.map[5][3].point;
-                //go to room[5][3]
-                //pathfinding.objectgo(ant, dummy);
-                room.map[5][3].occupied=true;
-
-                if(!checkEnemyFromBob(ant.Intrinsic.centerPoint,dummy.Intrinsic.centerPoint,0))
-                {
-
-                    pathfinding.objectgo(ant,dummy);
-                }
-                //change map cell to occumpied
-            }
-            else if(true!=room.map[5][1].occupied){
-                //go to room[5][1]
-
-                // Add in centrepoint for dummy 
-                // var dummy = new Dummy(room.map[5][1].centrePoint); 
-                dummy.Intrinsic.centerPoint = room.map[5][1].point;
-                //go to room[5][5]
-                //pathfinding.objectgo(ant, dummy);
-                room.map[5][1].occupied=true;
-                if(!checkEnemyFromBob(ant.Intrinsic.centerPoint,dummy.Intrinsic.centerPoint,0))
-                {
-
-                    pathfinding.objectgo(ant,dummy);
-                }
-                //change map cell to occumpied
-            }
-            else if(true!=room.map[1][5].occupied){
-                //go to room[1][5]
-
-                // Add in centrepoint for dummy 
-                // var dummy = new Dummy(room.map[1][5].centrePoint); 
-                dummy.Intrinsic.centrePoint = room.map[1][5].point;
-                //go to room[5][5]
-                //pathfinding.objectgo(ant, dummy);
-
-                if(!checkEnemyFromBob(ant.Intrinsic.centerPoint,dummy.Intrinsic.centerPoint,0))
-                {
-                    room.map[1][5].occupied=true;
-                    pathfinding.objectgo(ant,dummy);
-                }
-                //change map cell to occumpied
-            }
-
-
-            //go to room[5][5]
-           // pathfinding.objectgo(ant, dummy);
-
-        }
-
-        if(Bobrow <= 4 && Bobcol >= 17)
-        {
-            //Bob is in segment 2
-            
-            //Check in terms of priority which of the 5 corner cell is empty and go there if it is empty
-            if(!room.map[5][16].occupied){
-                //go to room[5][16]
-
-                // Add in centrepoint for dummy 
-                // var dummy = new Dummy(room.map[5][16].centrePoint); 
-
-                //go to room[5][16]
-                //pathfinding.objectgo(ant, dummy);
-
-                //change map cell to occumpied
-            }
-            else if(!room.map[5][18].occupied){
-                //go to room[5][18]
-
-                // Add in centrepoint for dummy 
-                // var dummy = new Dummy(room.map[5][18].centrePoint); 
-
-                //go to room[5][18]
-                //pathfinding.objectgo(ant, dummy);
-
-                //change map cell to occumpied
-            }
-            else if(!room.map[3][15].occupied){
-                //go to room[3][15]
-
-                // Add in centrepoint for dummy 
-                // var dummy = new Dummy(room.map[3][15].centrePoint); 
-
-                //go to room[3][15]
-                //pathfinding.objectgo(ant, dummy);
-
-                //change map cell to occumpied
-            }
-            else if(!room.map[1][15].occupied){
-                //go to room[1][15]
-
-                // Add in centrepoint for dummy 
-                // var dummy = new Dummy(room.map[1][15].centrePoint); 
-
-                //go to room[1][15]
-                //pathfinding.objectgo(ant, dummy);
-
-                //change map cell to occumpied
-            }
-            else if(!room.map[5][20].occupied){
-                //go to room[5][20]
-
-                // Add in centrepoint for dummy 
-                // var dummy = new Dummy(room.map[5][20].centrePoint); 
-
-                //go to room[5][20]
-                //pathfinding.objectgo(ant, dummy);
-
-                //change map cell to occumpied
-            }
-        }
-
-        if(Bobrow >= 9 && Bobcol <= 4)
-        {
-            //Bob is in segment 3
-
-            //Check in terms of priority which of the 5 corner cell is empty and go there if it is empty
-            if(!room.map[8][5].occupied){
-                //go to room[8][5]
-
-                // Add in centrepoint for dummy 
-                // var dummy = new Dummy(room.map[8][5].centrePoint); 
-
-                //go to room[8][5]
-                //pathfinding.objectgo(ant, dummy);
-
-                //change map cell to occumpied
-            }
-            else if(!room.map[10][5].occupied){
-                //go to room[10][5]
-
-                // Add in centrepoint for dummy 
-                // var dummy = new Dummy(room.map[10][5].centrePoint); 
-
-                //go to room[10][5]
-                //pathfinding.objectgo(ant, dummy);
-
-                //change map cell to occumpied
-            }
-            else if(!room.map[8][3].occupied){
-                //go to room[8][3]
-
-                // Add in centrepoint for dummy 
-                // var dummy = new Dummy(room.map[8][3].centrePoint); 
-
-                //go to room[8][3]
-                //pathfinding.objectgo(ant, dummy);
-
-                //change map cell to occumpied
-            }
-            else if(!room.map[12][5].occupied){
-                //go to room[12][5]
-
-                // Add in centrepoint for dummy 
-                // var dummy = new Dummy(room.map[12][5].centrePoint); 
-
-                //go to room[12][5]
-                //pathfinding.objectgo(ant, dummy);
-
-                //change map cell to occumpied
-            }
-            else if(!room.map[8][1].occupied){
-                //go to room[8][1]
-
-                // Add in centrepoint for dummy 
-                // var dummy = new Dummy(room.map[8][1].centrePoint); 
-
-                //go to room[8][1]
-                //pathfinding.objectgo(ant, dummy);
-
-                //change map cell to occumpied
-            }
-        }
-
-        if(Bobrow >= 9 && Bobcol >= 17)
-        {
-            //Bob is in segment 4
-
-            //Check in terms of priority which of the 5 corner cell is empty and go there if it is empty
-            if(!room.map[8][16].occupied){
-                //go to room[8][16]
-
-                // Add in centrepoint for dummy 
-                // var dummy = new Dummy(room.map[8][16].centrePoint); 
-
-                //go to room[8][16]
-                //pathfinding.objectgo(ant, dummy);
-
-                //change map cell to occumpied
-            }
-            else if(!room.map[8][18].occupied){
-                //go to room[8][18]
-
-                // Add in centrepoint for dummy 
-                // var dummy = new Dummy(room.map[8][18].centrePoint); 
-
-                //go to room[8][18]
-                //pathfinding.objectgo(ant, dummy);
-
-                //change map cell to occumpied
-            }
-            else if(!room.map[9][16].occupied){
-                //go to room[9][16]
-
-                // Add in centrepoint for dummy 
-                // var dummy = new Dummy(room.map[9][16].centrePoint); 
-
-                //go to room[5][5]
-                //pathfinding.objectgo(ant, dummy);
-
-                //change map cell to occumpied
-            }
-            else if(!room.map[12][16].occupied){
-                //go to room[12][16]
-
-                // Add in centrepoint for dummy 
-                // var dummy = new Dummy(room.map[12][16].centrePoint); 
-
-                //go to room[5][5]
-                //pathfinding.objectgo(ant, dummy);
-
-                //change map cell to occumpied
-            }
-            else if(!room.map[8][20].occupied){
-                //go to room[8][20]
-
-                // Add in centrepoint for dummy 
-                // var dummy = new Dummy(room.map[8][20].centrePoint); 
-
-                //go to room[5][5]
-                //pathfinding.objectgo(ant, dummy);
-
-                //change map cell to occumpied
-            }
-        }  
-    }
 }

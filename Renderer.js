@@ -39,7 +39,7 @@ var rr=8,ss=4;
                 {
                 	if(ants.length == room.maxAnts)
                 	{
-                	ants[i].Intrinsic.goals.push(4);	
+                	ants[i].Intrinsic.addGoal(4);
                 	//ants[i].Intrinsic.goals.push(6);
                 	//ants[i].Intrinsic.goals.push(5);
                 	}
