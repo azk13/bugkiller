@@ -124,10 +124,10 @@ function AI(){
             //find bob
             pathfinding.objectgo(ant,player,false);
             //and attack him
+            this.antclose(ant);
         }
 
     }
-
     this.antAttackBobnew=function(enemy){
         var attack =true;
         var ants=room.getAnts();
@@ -142,9 +142,11 @@ function AI(){
                 break;
             }
         }
-        if(attack==true)
-           pathfinding.objectgo(enemy,player);
+        if(attack==true){
 
+           pathfinding.objectgo(enemy,player);
+            this.antclose(enemy);
+        }
     }
     /************************************
      Input : All the Ants and bob and the index of the ant
@@ -305,7 +307,8 @@ function AI(){
 
     }
     //ant attack function Azri
-    this.antclose = function(ant){
+    this.antclose = function(ant)
+    {
 
         var antcell = ant.Intrinsic.cellPos;
         ant.Intrinsic.attackcolor = 'blue';
@@ -359,8 +362,8 @@ function AI(){
         }
     }
     //Bee's action when player comes within his range Azri
-
-    this.beeclose = function(bee){
+    this.beeclose = function(bee)
+    {
         bee.Intrinsic.attackrating = 5;
         var count = 5;
         if(math.getDistanceBetweenTwoPoints(player.Intrinsic.centerPoint,bee.Intrinsic.centerPoint) < (room.cellsize*5.2))
@@ -419,9 +422,8 @@ function AI(){
     // Dynamic AI Decision Making
     /************************************/
     // based on flags, give commands to AI
-    this.AiCommander = function(enemy){
-
-        console.log("Goal length"+enemy.Intrinsic.goals.length);
+    this.AiCommander = function(enemy)
+    {
         if(enemy.Intrinsic.goals.length >0)
         {
             switch(enemy.Intrinsic.retrieveLastGoal()){
@@ -434,17 +436,15 @@ function AI(){
                 case 3: //Flee Bob
                     this.antfleefromBob(enemy);
                     break;
-
-                case 4: //Conering
+                case 4: //Cornering
                     this.cornering(enemy);
                     break;
                 case 5: //cluster
-
-                      this.antCluster(enemy);
-                    break;            
+                     this.antCluster(enemy);
+                     break;
                 case 6: //limited time attacking bob
-                this.shortAttack(enemy);
-                    break;                            
+                     this.shortAttack(enemy);
+                     break;
             }//end of switch
 
     this.shortAttack = function(enemy)
@@ -452,14 +452,14 @@ function AI(){
         pathfinding.objectgo(enemy,player);
         if(renderingEngine.frametime%8==0)
         {
-           //alert("back to normal");
             enemy.Intrinsic.goals.pop();
         }
     }
 
          }
     }
-    this.bobHealthGlobal = function(){
+    this.bobHealthGlobal = function()
+    {
         // Check Bob Health
         if(player.Intrinsic.health > 70) {
 
@@ -468,9 +468,8 @@ function AI(){
 
         }
     }
-
-
-    this.bobKillStrength = function(){
+    this.bobKillStrength = function()
+    {
         var enemyKilledNow = player.kills;
         var timeNow = Date.now();
 
@@ -494,8 +493,6 @@ function AI(){
             enemyKilledPrev = enemyKilledNow;
         }
     }
-
-
     this.tossCoin = function(enemy,probability)
     {
     var toss= Math.floor(Math.random() * 11)  + 1;
@@ -723,66 +720,91 @@ function AI(){
         var Bobrow = pathfinding.getObjectIndexCol(player);
         var Bobcol = pathfinding.getObjectIndexRow(player);
         //var dummy = new Dummy();
-
+        var dummy = new Dummy(room.map[5][5].point);
         if(player.Intrinsic.cellPos.x <= 4 && player.Intrinsic.cellPos.y <= 4)
         {
             //Bob is in segment 1
 
             //Check in terms of priority which of the 5 corner cell is empty and go there if it is empty
-            if(!room.map[5][5].occupied){
+            if(true!=room.map[5][5].occupied){
                 // Add in centrepoint for dummy 
-                // dummy.Intrinsic.centrePoint = room.map[5][5].centrePoint;
-                var dummy = new Dummy(room.map[5][5].point); 
+                dummy.Intrinsic.centerPoint = room.map[5][5].point;
+                room.map[5][5].occupied=true;
+                if(!checkEnemyFromBob(ant.Intrinsic.centerPoint,dummy.Intrinsic.centerPoint,0))
+                {
 
-                //go to room[5][5]
-                pathfinding.objectgo(ant, dummy);
-
+                    pathfinding.objectgo(ant,dummy);
+                }
                 //change map cell to occumpied
             }
-            else if(!room.map[3][5].occupied){
+            else if(true!=room.map[3][5].occupied){
                 //go to room[3][5]
 
                 // Add in centrepoint for dummy 
                 // var dummy = new Dummy(room.map[3][5].centrePoint); 
-
+                dummy.Intrinsic.centerPoint = room.map[3][5].point;
                 //go to room[3][5]
-                //pathfinding.objectgo(ant, dummy);
+                room.map[3][5].occupied=true;
+                if(!checkEnemyFromBob(ant.Intrinsic.centerPoint,dummy.Intrinsic.centerPoint,0))
+                {
 
+                    pathfinding.objectgo(ant,dummy);
+                }
                 //change map cell to occupied
             }
-            else if(!room.map[5][3].occupied){
+            else if(true!=room.map[5][3].occupied){
                 //go to room[5][3]
 
                 // Add in centrepoint for dummy 
                 // var dummy = new Dummy(room.map[5][3].centrePoint); 
-
+                dummy.Intrinsic.centerPoint = room.map[5][3].point;
                 //go to room[5][3]
                 //pathfinding.objectgo(ant, dummy);
+                room.map[5][3].occupied=true;
 
+                if(!checkEnemyFromBob(ant.Intrinsic.centerPoint,dummy.Intrinsic.centerPoint,0))
+                {
+
+                    pathfinding.objectgo(ant,dummy);
+                }
                 //change map cell to occumpied
             }
-            else if(!room.map[5][1].occupied){
+            else if(true!=room.map[5][1].occupied){
                 //go to room[5][1]
 
                 // Add in centrepoint for dummy 
                 // var dummy = new Dummy(room.map[5][1].centrePoint); 
-
+                dummy.Intrinsic.centerPoint = room.map[5][1].point;
                 //go to room[5][5]
                 //pathfinding.objectgo(ant, dummy);
+                room.map[5][1].occupied=true;
+                if(!checkEnemyFromBob(ant.Intrinsic.centerPoint,dummy.Intrinsic.centerPoint,0))
+                {
 
+                    pathfinding.objectgo(ant,dummy);
+                }
                 //change map cell to occumpied
             }
-            else if(!room.map[1][5].occupied){
+            else if(true!=room.map[1][5].occupied){
                 //go to room[1][5]
 
                 // Add in centrepoint for dummy 
                 // var dummy = new Dummy(room.map[1][5].centrePoint); 
-
+                dummy.Intrinsic.centrePoint = room.map[1][5].point;
                 //go to room[5][5]
                 //pathfinding.objectgo(ant, dummy);
 
+                if(!checkEnemyFromBob(ant.Intrinsic.centerPoint,dummy.Intrinsic.centerPoint,0))
+                {
+                    room.map[1][5].occupied=true;
+                    pathfinding.objectgo(ant,dummy);
+                }
                 //change map cell to occumpied
             }
+
+
+            //go to room[5][5]
+           // pathfinding.objectgo(ant, dummy);
 
         }
 
