@@ -163,12 +163,20 @@ var rr=8,ss=4;
 			ctx.fillStyle = baskets[i].Intrinsic.color;
 	    	ctx.fillRect(baskets[i].Intrinsic.centerPoint.x-20, baskets[i].Intrinsic.centerPoint.y-20, baskets[i].Intrinsic.width, baskets[i].Intrinsic.height);
 
+	    if(baskets[i].Intrinsic.health > 80)
+		{ctx.strokeStyle = 'green';}
+		else if(baskets[i].Intrinsic.health > 60)
+		{ctx.strokeStyle = 'yellow';}
+		else if(baskets[i].Intrinsic.health > 30)
+		{ctx.strokeStyle = 'orange';}
+		else
+		{ctx.strokeStyle = 'red';}	
+	
 		var hppoint = new Point(baskets[i].Intrinsic.centerPoint.x-baskets[i].Intrinsic.radius, baskets[i].Intrinsic.centerPoint.y-baskets[i].Intrinsic.radius);		
 		ctx.beginPath();
 	    ctx.moveTo(hppoint.x,hppoint.y);
-	    ctx.lineTo(hppoint.x+(baskets[i].Intrinsic.health*(room.cellsize/100)),hppoint.y);
+	    ctx.lineTo(hppoint.x+room.cellsize,hppoint.y);
 	    ctx.lineWidth = 5;
-	    ctx.strokeStyle = 'green';
 	    ctx.stroke();		    	
 		}
 	}
@@ -352,14 +360,23 @@ var rr=8,ss=4;
 		//console.log(character.Intrinsic.color);
 
 		//draw health      Azri
+		if(character.Intrinsic.health > 80)
+		{ctx.strokeStyle = 'green';}
+		else if(character.Intrinsic.health > 60)
+		{ctx.strokeStyle = 'yellow';}
+		else if(character.Intrinsic.health > 30)
+		{ctx.strokeStyle = 'orange';}
+		else
+		{ctx.strokeStyle = 'red';}
+
 		if(character.identity != 'Bob')
 		{
 		var hppoint = new Point(character.Intrinsic.centerPoint.x-character.Intrinsic.radius, character.Intrinsic.centerPoint.y-character.Intrinsic.radius);		
 		ctx.beginPath();
 	    ctx.moveTo(hppoint.x,hppoint.y);
-	    ctx.lineTo(hppoint.x+(character.Intrinsic.health*(room.cellsize/100)),hppoint.y);
+	    ctx.lineTo(hppoint.x+room.cellsize,hppoint.y);
 	    ctx.lineWidth = 5;
-	    ctx.strokeStyle = 'green';
+	    
 	    ctx.stroke();	
 		}
 	
