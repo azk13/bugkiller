@@ -34,18 +34,18 @@ var rr=8,ss=4;
 				ai.Action(ants[i],ants.length);
 
               
-                if(this.frametime%240 == 0)
+                if(this.frametime%880 == 0)
                 {
                 	if(ants.length == room.maxAnts)
                 	{
                 	var random=Math.random();
                     if(random<0.5)
-                    {ants[i].Intrinsic.goals.push(6);}
+                    {ants[i].Intrinsic.addGoal(6);}
 
                     else
-                    {ants[i].Intrinsic.goals.push(7);}
+                    {ants[i].Intrinsic.addGoal(7);}
 
-                     ants[i].Intrinsic.goals.push(5);
+                     ants[i].Intrinsic.addGoal(5);
                 	}
                 }  
                 room.spawnEnemies(room.maxAnts,ants[i].identity);                

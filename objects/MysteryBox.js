@@ -6,9 +6,7 @@ function MysteryBox(centerPoint, width, height){
 	this.counter = 0; // Counter to keep track of how long the mystery box has not been touched
 	this.item = 0; // Item 1 = knife, 2 = bomb, 3 = shuriken, 4 = enemy, 5 = health
 	this.spawn_time; // This keeps the time of when the box was last spawned
-	this.stage = 1; // This describes the current stage and what will be spawned
-
-	
+	this.stage = 1; // This describes the current stage and what will be spawne
 	this.updateCounter = function(){
 		this.counter++;
 		if(this.counter == 500)
@@ -75,10 +73,7 @@ function MysteryBox(centerPoint, width, height){
 
 		
 	}
-
-	
-	this.mysteryBox_spawn = function(time_start)
-	{
+	this.mysteryBox_spawn = function(time_start){
 	var time_now = Date.now();
 	this.spawn_time = time_now;
 	time_elapsed = (time_now - time_start) / 1000;
@@ -186,7 +181,6 @@ function MysteryBox(centerPoint, width, height){
 	console.log("Item is " + item);
 	return item;
 	}
-
 	this.unlock_mysteryBox = function(room, time_start){
 
 		//var weapons = room.getWeapons;
@@ -239,6 +233,4 @@ function MysteryBox(centerPoint, width, height){
 		//console.log(this.mysteryBox_spawn(timer));
 
 	}
-
-	
 }

@@ -306,8 +306,7 @@ function AI(){
 
     }
     //ant attack function Azri
-    this.antclose = function(ant)
-    {
+    this.antclose = function(ant) {
 
         var antcell = ant.Intrinsic.cellPos;
         ant.Intrinsic.attackcolor = 'blue';
@@ -361,8 +360,7 @@ function AI(){
         }
     }
     //Bee's action when player comes within his range Azri
-    this.beeclose = function(bee)
-    {
+    this.beeclose = function(bee) {
         bee.Intrinsic.attackrating = 5;
         var count = 5;
         if(math.getDistanceBetweenTwoPoints(player.Intrinsic.centerPoint,bee.Intrinsic.centerPoint) < (room.cellsize*5.2))
@@ -735,7 +733,7 @@ function AI(){
     this.shortBasket= function(enemy)
     {
         this.attackNearestBasket(enemy);
-        if(renderingEngine.frametime%160==0)
+        if(renderingEngine.frametime%320==0)
         {
             enemy.Intrinsic.removeGoal();
         }
