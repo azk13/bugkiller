@@ -2,7 +2,6 @@ function Renderer(){
 this.frametime=1;	
 var rr=8,ss=4;
 
-
 	this.updatePoints = function(time_start){
 		var ants = room.getAnts();
 		var bees = room.getBees();
@@ -39,9 +38,14 @@ var rr=8,ss=4;
                 {
                 	if(ants.length == room.maxAnts)
                 	{
-                	ants[i].Intrinsic.addGoal(4);
-                	//ants[i].Intrinsic.goals.push(6);
-                	//ants[i].Intrinsic.goals.push(5);
+                	var random=Math.random();
+                    if(random<0.5)
+                    {ants[i].Intrinsic.goals.push(6);}
+
+                    else
+                    {ants[i].Intrinsic.goals.push(7);}
+
+                     ants[i].Intrinsic.goals.push(5);
                 	}
                 }  
                 room.spawnEnemies(room.maxAnts,ants[i].identity);                
@@ -194,7 +198,6 @@ var rr=8,ss=4;
 			this.drawCharacter(bees[i]);  // Jensen
 		}
 	}
-
     this.setBobHealth = function(){ // Jensen
 		var BobHealth = player.Intrinsic.health;
 
@@ -218,7 +221,6 @@ var rr=8,ss=4;
 			alert("You are dead!");
 		}
 	}
-
 	this.updateEnemyKillCount = function(){
 		document.getElementById("enemies-killed").innerHTML = player.kills;
 	}

@@ -152,8 +152,7 @@ function AI(){
      Input : All the Ants and bob and the index of the ant
      Output: Id ant is 10 cells closet to bob it will move towards another ant
      ************************************/
-    this.antCluster=function(ant)
-    {
+    this.antCluster=function(ant)   {
         var condition = true;
         var ants = room.getAnts();
         var clusterpoint=room.map[3][17].point;
@@ -724,8 +723,23 @@ function AI(){
                 case 6: //limited time attacking bob
                      this.shortAttack(enemy);
                      break;
+                case 7: //limited time attacking bob
+                    this.shortBasket(enemy);
+                    break;
             }//end of switch
 
+
+
+         }
+    }
+    this.shortBasket= function(enemy)
+    {
+        this.attackNearestBasket(enemy);
+        if(renderingEngine.frametime%160==0)
+        {
+            enemy.Intrinsic.removeGoal();
+        }
+    }
     this.shortAttack = function(enemy)
     {
         pathfinding.objectgo(enemy,player);
@@ -733,9 +747,6 @@ function AI(){
         {
             enemy.Intrinsic.removeGoal();
         }
-    }
-
-         }
     }
     this.bobHealthGlobal = function()
     {
