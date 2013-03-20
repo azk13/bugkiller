@@ -291,7 +291,7 @@ var upfailed =0,downfailed=0,leftfailed=0,rightfailed=0;
   }
 //  }
 
-room.map[objectrow][objectcol].occupied=true;
+//room.map[objectrow][objectcol].occupied=true;
   prevy = object.Intrinsic.centerPoint.y;
   prevx = object.Intrinsic.centerPoint.x;
 
