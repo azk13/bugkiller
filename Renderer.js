@@ -138,6 +138,7 @@ var rr=8,ss=4;
 		this.drawHealth();
 		this.drawStings();
 		this.updateEnemyKillCount();
+		this.setBobHealth();
 
 		drawShuriken();
 
@@ -185,14 +186,31 @@ var rr=8,ss=4;
 			this.drawCharacter(bees[i]);  // Jensen
 		}
 	}
+
     this.setBobHealth = function(){ // Jensen
 		var BobHealth = player.Intrinsic.health;
-		document.getElementById("bob-health").style.width= BobHealth + '%';
+
+		if(BobHealth > 80) {
+			document.getElementById("bob-health").innerHTML= "1. Good :)";
+		}
+
+		if(BobHealth > 60 && BobHealth < 80) {
+			document.getElementById("bob-health").innerHTML= "2. Crippled..";
+		}
+
+		if(BobHealth > 30 && BobHealth < 60) {
+			document.getElementById("bob-health").innerHTML= "3. Dying...";
+		}
+
+		if(BobHealth > 0 && BobHealth < 30) {
+			document.getElementById("bob-health").innerHTML= "4. Critical!!!";
+		}
 		
 		if(BobHealth <= 0) {
 			alert("You are dead!");
 		}
 	}
+
 	this.updateEnemyKillCount = function(){
 		document.getElementById("enemies-killed").innerHTML = player.kills;
 	}
