@@ -76,7 +76,7 @@ function AI(){
     this.antMoveToNearestAnt=function(enemy,ants,excludeindex){
         var nearestant= getNearestAntIndex(enemy,excludeindex)
         if(checkEnemyFromBob(enemy,ants[nearestant],1))
-        {enemy.Intrinsic.removegoal();}
+        {enemy.Intrinsic.removeGoal();}
         else
         {pathfinding.objectgo(enemy,ants[nearestant]);}
     }
@@ -174,7 +174,7 @@ function AI(){
         }
         if(condition == true)
         { ant.Intrinsic.ClusterFlag = false;
-            ant.Intrinsic.goals.pop();}
+            ant.Intrinsic.removeGoal();}
        
 
 
@@ -731,7 +731,7 @@ function AI(){
         pathfinding.objectgo(enemy,player);
         if(renderingEngine.frametime%8==0)
         {
-            enemy.Intrinsic.goals.pop();
+            enemy.Intrinsic.removeGoal();
         }
     }
 
@@ -790,7 +790,7 @@ function AI(){
                           
             if(2 != enemy.Intrinsic.goals[enemy.Intrinsic.goals.length-1])
             {
-            enemy.Intrinsic.goals.addGoal(2);
+            enemy.Intrinsic.addGoal(2);
             }                    
         }
     }

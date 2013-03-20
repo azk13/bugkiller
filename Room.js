@@ -73,7 +73,6 @@ function Room(){
              x=0;
     }
 
-
     //pioneer ant
     ants[0] = new Ants(new Point(this.map[0][21].point.x,this.map[0][21].point.y));
 
@@ -108,13 +107,9 @@ function Room(){
     this.getmysterybox = function(){
         return mysterybox;
     }
-
     this.getHealth = function(){
         return health;
     }
-
-
-
     this.regions = new Array();
 
     // Always label regions from largest to smallest

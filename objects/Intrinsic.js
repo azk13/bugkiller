@@ -28,7 +28,7 @@ function Intrinsic(centerPoint, width, height){
 	this.ClusterFlag = false;
     this.CornerFlag = false;
     this.goals=new Array();
-    this.removegoal=function(){
+    this.removeGoal=function(){
         this.goals.pop();
     }
     this.retrieveLastGoal=function(){
