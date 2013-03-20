@@ -1,5 +1,7 @@
 function Renderer(){
-this.frametime=1;	
+this.frametime=1;
+this.shortAttacks=1;
+this.sFlag = false;	
 var rr=8,ss=4;
 
 	this.updatePoints = function(time_start){
@@ -23,6 +25,7 @@ var rr=8,ss=4;
 			physicsEngine.updatePoint(weapons[i]);	
 			gridvacancy.occupancy();
 		}
+        var random=Math.random();
 		for(var i=0;i<ants.length;i++)
 		{
 
@@ -32,13 +35,15 @@ var rr=8,ss=4;
 				ai.antAttackrating(ants[i],'bob');
 
 				ai.Action(ants[i],ants.length);
-
+                	
+                if(i==ants.length-1 && this.sFlag == true)
+                {this.shortAttacks++;}
               
-                if(this.frametime%880 == 0)
+                if(this.frametime%440 == 0)
                 {
                 	if(ants.length == room.maxAnts)
                 	{
-                	var random=Math.random();
+
                     if(random<0.5)
                     {ants[i].Intrinsic.addGoal(6);}
 

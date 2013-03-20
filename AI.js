@@ -694,18 +694,33 @@ function AI(){
     }
     this.shortBasket= function(enemy)
     {
+        renderingEngine.sFlag=true;
         this.attackNearestBasket(enemy);
-        if(renderingEngine.frametime%320==0)
+        if(renderingEngine.shortAttacks%15==0)
         {
-            enemy.Intrinsic.removeGoal();
+            renderingEngine.sFlag=false;
+            renderingEngine.shortAttacks=1;
+            var ants = room.getAnts();
+            for(var i=0;i<ants.length;i++)
+            {
+                ants[i].Intrinsic.removeGoal();
+            }
+
         }
     }
     this.shortAttack = function(enemy)
-    {
+    {        
+        renderingEngine.sFlag=true;
         pathfinding.objectgo(enemy,player);
-        if(renderingEngine.frametime%8==0)
+        if(renderingEngine.shortAttacks%15==0)
         {
-            enemy.Intrinsic.removeGoal();
+            renderingEngine.sFlag=false;
+            renderingEngine.shortAttacks = 1;
+            var ants = room.getAnts();
+            for(var i=0;i<ants.length;i++)
+            {
+                ants[i].Intrinsic.removeGoal();
+            }
         }
     }
     this.bobHealthGlobal = function()
