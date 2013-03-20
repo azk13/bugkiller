@@ -194,19 +194,19 @@ var rr=8,ss=4;
 			document.getElementById("bob-health").innerHTML= "1. Good :)";
 		}
 
-		if(BobHealth > 60 && BobHealth < 80) {
+		else if(BobHealth > 60 && BobHealth < 80) {
 			document.getElementById("bob-health").innerHTML= "2. Crippled..";
 		}
 
-		if(BobHealth > 30 && BobHealth < 60) {
+		else if(BobHealth > 30 && BobHealth < 60) {
 			document.getElementById("bob-health").innerHTML= "3. Dying...";
 		}
 
-		if(BobHealth > 0 && BobHealth < 30) {
+		else if(BobHealth > 0 && BobHealth < 30) {
 			document.getElementById("bob-health").innerHTML= "4. Critical!!!";
 		}
 		
-		if(BobHealth <= 0) {
+		else if(BobHealth <= 0) {
 			alert("You are dead!");
 		}
 	}
