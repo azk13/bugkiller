@@ -398,7 +398,7 @@ function AI(){
                     break;
 
                 case 4: //Conering
-
+                    this.cornering(enemy);
                     break;
                 case 5: //cluster
                 this.antCluster(enemy);
@@ -684,7 +684,7 @@ function AI(){
         var Bobcol = pathfinding.getObjectIndexRow(player);
         //var dummy = new Dummy();
 
-        if(Bobrow <= 4 && Bobcol <= 4)
+        if(player.Intrinsic.cellPos.x <= 4 && player.Intrinsic.cellPos.y <= 4)
         {
             //Bob is in segment 1
 
@@ -692,10 +692,10 @@ function AI(){
             if(!room.map[5][5].occupied){
                 // Add in centrepoint for dummy 
                 // dummy.Intrinsic.centrePoint = room.map[5][5].centrePoint;
-                // var dummy = new Dummy(room.map[5][5].centrePoint); 
+                var dummy = new Dummy(room.map[5][5].point); 
 
                 //go to room[5][5]
-                //pathfinding.objectgo(ant, dummy);
+                pathfinding.objectgo(ant, dummy);
 
                 //change map cell to occumpied
             }

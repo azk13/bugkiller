@@ -33,13 +33,18 @@ var rr=8,ss=4;
 				ai.antAttackrating(ants[i],'bob');
 
 				ai.Action(ants[i],ants.length);
-                room.spawnEnemies(room.maxAnts,ants[i].identity);
+
               
                 if(this.frametime%240 == 0)
                 {
-                	ants[i].Intrinsic.goals.push(6);
-                	ants[i].Intrinsic.goals.push(5);
+                	if(ants.length == room.maxAnts)
+                	{
+                	ants[i].Intrinsic.goals.push(4);	
+                	//ants[i].Intrinsic.goals.push(6);
+                	//ants[i].Intrinsic.goals.push(5);
+                	}
                 }  
+                room.spawnEnemies(room.maxAnts,ants[i].identity);                
                 ai.AiCommander(ants[i]);
                 ai.antclose(ants[i]);
 
