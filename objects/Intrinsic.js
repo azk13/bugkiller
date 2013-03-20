@@ -39,6 +39,12 @@ function Intrinsic(centerPoint, width, height){
     this.retrieveLastGoal=function(){
         return this.goals[this.goals.length-1];
     }    
+    this.retrieve2ndLastGoal=function(){
+        return this.goals[this.goals.length-2];
+    }    
+    this.retrieve3rdLastGoal=function(){
+        return this.goals[this.goals.length-3];
+    }            
 
     this.addGoal=function(goalno){
         if(this.retrieveLastGoal()!=goalno)

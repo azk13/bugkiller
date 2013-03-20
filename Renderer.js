@@ -396,32 +396,65 @@ var rr=8,ss=4;
 
 	    //debug mode Azri
 		if(debugMode == true){
-			
+
+			var typeattack = 'none';
+
 			var characterX = character.Intrinsic.centerPoint.x + character.Intrinsic.radius;
 			var characterY = character.Intrinsic.centerPoint.y;
-			var stringToSend = "Row:"+Math.floor(character.Intrinsic.centerPoint.x/room.cellsize)+" Column:"+Math.floor(characterY/room.cellsize);			
+
+			var stringToSend = "1st:"+this.goalName(character.Intrinsic.retrieveLastGoal());			
 			var pointToDisplay = new Point(characterX, characterY);
-			this.writeText(stringToSend, pointToDisplay);
+			this.writeText(stringToSend, pointToDisplay,"blue");
 			pointToDisplay.y += 10;
-			stringToSend = "X:"+character.Intrinsic.centerPoint.x+" Y:"+characterY;
-			this.writeText(stringToSend, pointToDisplay);
+
+			stringToSend = "2nd:"+this.goalName(character.Intrinsic.retrieve2ndLastGoal());
+			this.writeText(stringToSend, pointToDisplay,"red");
 			pointToDisplay.y += 10;			
-			stringToSend = "Dir:"+character.Intrinsic.direction.toFixed(2);
-			this.writeText(stringToSend, pointToDisplay);
+			stringToSend = "3rd:"+this.goalName(character.Intrinsic.retrieve3rdLastGoal());
+			this.writeText(stringToSend, pointToDisplay,"white");
 			pointToDisplay.y += 10;
 
 			//Identity
 			pointToDisplay.y = character.Intrinsic.centerPoint.y-10;
 			pointToDisplay.x = character.Intrinsic.centerPoint.x-4;
 			stringToSend = character.identity;
-			this.writeText(stringToSend, pointToDisplay);
+			this.writeText(stringToSend, pointToDisplay,"blue");
 
 
 
 	    }//end if(debugMode == true)
 	// /*write text to the canvas*/
-	this.writeText = function (myString, myPoint) {
-		ctx.fillStyle = "blue";
+	this.goalName = function(number)
+	{
+
+			switch(number){
+			case 1:
+			typeattack = 'attack bob';
+			break;
+			case 2:
+			typeattack = 'attack baskets';
+			break;
+			case 3:
+			typeattack = 'flee';
+			break;
+			case 4:
+			typeattack = 'cornering';
+			break;
+			case 5:
+			typeattack = 'clustering';
+			break;
+			case 6:
+			typeattack = 'shortattack';
+			break;
+			case 7:
+			typeattack = 'short basket';
+			break;
+			}	
+
+			return typeattack;		
+	}
+	this.writeText = function (myString, myPoint,color) {
+		ctx.fillStyle = color;
 		ctx.font = "bold 10px Arial";
 		ctx.fillText(myString, myPoint.x, myPoint.y);
 	}
