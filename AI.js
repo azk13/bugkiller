@@ -307,6 +307,7 @@ function AI(){
         if(timenow < (firstTension+10) && timenow > firstTension)
         {
             console.log("Scenario A occuring");
+            document.getElementById("scenario").innerHTML = 'A';
             ant.Intrinsic.attackrating = baskets[getNearestBasketIndex(ant)].Intrinsic.health*0.05;
         }
 
@@ -314,6 +315,7 @@ function AI(){
         if((timenow < (secondTension+10) && timenow > secondTension))
         {
             console.log("Scenario B occuring");
+            document.getElementById("scenario").innerHTML = 'B';
             ant.Intrinsic.attackrating = baskets[getNearestBasketIndex(ant)].Intrinsic.health*0.05;
         }
 
@@ -1012,12 +1014,12 @@ function AI(){
                     if(player.kills > 5 || player.Intrinsic.health>70)
                     {
                         player.skill = 'good';
-                        document.getElementById("player-skill").innerHTML = 'Good';
+                        //document.getElementById("player-skill").innerHTML = 'Good';
                     }
                     else
                     {
                         player.skill = 'bad';
-                        document.getElementById("player-skill").innerHTML = 'Bad';
+                        //document.getElementById("player-skill").innerHTML = 'Bad';
                     }
                 }
                 else if(segment == 23)//Transmission from stage 2 to stage 3
@@ -1027,13 +1029,13 @@ function AI(){
                     if(player.kills > 10 || player.Intrinsic.health>70)
                     {
                         player.skill = 'good';
-                        document.getElementById("player-skill").innerHTML = 'Good';
+                        //document.getElementById("player-skill").innerHTML = 'Good';
 
                     }
                     else
                     {
                         player.skill = 'bad';
-                        document.getElementById("player-skill").innerHTML = 'Bad';
+                        //document.getElementById("player-skill").innerHTML = 'Bad';
                     }
 
                 }
