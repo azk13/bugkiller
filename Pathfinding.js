@@ -176,14 +176,14 @@ var upfailed =0,downfailed=0,leftfailed=0,rightfailed=0;
           if(!(room.map[(objectrow+1)][objectcol-1].occupied))  
           {
             goleft=true;            
-            goup = true;
+            godown = true;
 
           } 
           else if(objectcol != (room.columns-1)) //not last col
           if(!(room.map[(objectrow+1)][objectcol+1].occupied))         
           {
             goright = true;
-            goup = true;
+            godown = true;
           }             
         }         
       }
