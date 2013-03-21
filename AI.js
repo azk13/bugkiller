@@ -311,8 +311,7 @@ function AI(){
             document.getElementById("scenario").innerHTML = 'A';
             //ant.Intrinsic.attackrating = baskets[getNearestBasketIndex(ant)].Intrinsic.health*0.10;
             ant.Intrinsic.attackrating = 3;
-            //
-            //ant.Intrinsic.addGoal(2);
+
         }
 
         else if((timenow < (secondTension+10) && timenow > secondTension) && baskets.length == 2)
