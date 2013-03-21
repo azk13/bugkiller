@@ -157,11 +157,11 @@ function AI(){
             }
         }
         //if anthealth is greater than bob health and ant has a weapon
- //       if((bobhealth>80)&&(bobUsingKnife=="Knife"))
- //      {
-//            alert("Im fleeing");
- //           enemy.Intrinsic.addGoal(3);
- //       }
+        if((bobhealth>80)&&(bobUsingKnife=="Knife"))
+       {
+           //alert("Im fleeing");
+           enemy.Intrinsic.addGoal(3);
+        }
         if(attack==true){
            pathfinding.objectgo(enemy,player);
         }
