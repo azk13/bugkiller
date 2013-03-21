@@ -143,12 +143,11 @@ function AI(){
         var attack =true;
         var ants=room.getAnts();
         var bobhealth=player.Intrinsic.health;
-        var bobUsingKnife=player.activeWeapon
+        var bobUsingKnife=player.activeWeapon;
         for(var i=0;i<ants.length;i++)
         {
             if(ants[i].Intrinsic.ClusterFlag==true)
             {
-
                 enemy.Intrinsic.addGoal(6);
                 enemy.Intrinsic.addGoal(5);
                 attack=false;
@@ -156,14 +155,13 @@ function AI(){
             }
         }
         //if anthealth is greater than bob health and ant has a weapon
-        if((bobhealth>80)&&(bobUsingKnife=="Knife"))
-        {
-            attack =false
-        }
+ //       if((bobhealth>80)&&(bobUsingKnife=="Knife"))
+ //      {
+//            alert("Im fleeing");
+ //           enemy.Intrinsic.addGoal(3);
+ //       }
         if(attack==true){
-
            pathfinding.objectgo(enemy,player);
-            this.antclose(enemy);
         }
     }
     /************************************
@@ -304,20 +302,21 @@ function AI(){
         var timenow = Math.round((Date.now() - start_time)/1000);
         ant.Intrinsic.attackrating = 0.5;
 
-        if(timenow < (firstTension+10) && timenow > firstTension)
+        if(timenow < (firstTension+10) && timenow > firstTension && baskets.length == 3)
         {
             document.getElementById("scenario").innerHTML = 'A';
             //ant.Intrinsic.attackrating = baskets[getNearestBasketIndex(ant)].Intrinsic.health*0.10;
             ant.Intrinsic.attackrating = 1;
-            ant.Intrinsic.addGoal(2);
+            //
+            //ant.Intrinsic.addGoal(2);
         }
 
-        else if((timenow < (secondTension+10) && timenow > secondTension))
+        else if((timenow < (secondTension+10) && timenow > secondTension) && baskets.length == 2)
         {
             document.getElementById("scenario").innerHTML = 'B';
             //ant.Intrinsic.attackrating = baskets[getNearestBasketIndex(ant)].Intrinsic.health*0.10;
             ant.Intrinsic.attackrating = 1;
-            ant.Intrinsic.addGoal(2);
+            //ant.Intrinsic.addGoal(2);
         }
 
         
@@ -698,7 +697,7 @@ function AI(){
         }
         else
         {
-            if(ant.cpoint.x != 0)
+            if(ant.cpoint.x > 0)
             {
             dummy.Intrinsic.centerPoint = room.map[ant.cpoint.x][ant.cpoint.y].point;
             pathfinding.objectgo(ant,dummy);
@@ -858,7 +857,7 @@ function AI(){
 
                 if(enemy.identity == 'ant')
                 {
-                    room.maxAnts = this.determineMaxant(timenow,5);
+                    room.maxAnts = this.determineMaxant(timenow,8);
 
                     //default action run once on start
                     if(false == enemy.Intrinsic.defaultActivated)
@@ -892,7 +891,7 @@ function AI(){
 
                 if(enemy.identity == 'ant')
                 {
-                    room.maxAnts = this.determineMaxant(timenow,7);
+                    room.maxAnts = this.determineMaxant(timenow,11);
 
                     //default action run once on start
                     if(false == enemy.Intrinsic.defaultActivated)
@@ -928,7 +927,7 @@ function AI(){
 
                if(enemy.identity == 'ant')
                 {
-                    room.maxAnts = this.determineMaxant(timenow,7);
+                    room.maxAnts = this.determineMaxant(timenow,12);
 
                     //default action run once on start
                     if(false == enemy.Intrinsic.defaultActivated)
@@ -984,7 +983,7 @@ function AI(){
 
                if(enemy.identity == 'ant')
                 {
-                    room.maxAnts = this.determineMaxant(timenow,7);
+                    room.maxAnts = this.determineMaxant(timenow,13);
 
                     //default action run once on start
                     if(false == enemy.Intrinsic.defaultActivated)
@@ -1013,6 +1012,9 @@ function AI(){
                 mysterybox.stage = 4;
                 break;
             default://The place where player's ability is checked
+/*
+
+
                 if(segment == 12)//Transmission from stage 1 to stage 2
                 {
                     document.getElementById("stage-level").innerHTML = 1.2;
@@ -1052,7 +1054,7 @@ function AI(){
                 }//last else of segment checks
                 mysterybox.stage = 0;
                 break;
-
+*/
         }//end of the switch
 
     }

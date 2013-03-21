@@ -65,7 +65,7 @@ var upfailed =0,downfailed=0,leftfailed=0,rightfailed=0;
       if(leftfailed)
       {
         
-        if(objectrow != 0)  //not 1st row
+        if(objectrow > 0)  //not 1st row
         {
           
           //goupleft
@@ -74,7 +74,7 @@ var upfailed =0,downfailed=0,leftfailed=0,rightfailed=0;
             goup = true;
             goleft=true;
           } 
-          else if(objectrow != (room.rows-1)) //not last row
+          else if(objectrow < (room.rows-1)) //not last row
           if(!(room.map[(objectrow+1)][objectcol-1].occupied))         
           {
             godown = true;
@@ -85,7 +85,7 @@ var upfailed =0,downfailed=0,leftfailed=0,rightfailed=0;
       if(rightfailed)
       {
         
-        if(objectrow != 0)  //not 1st row
+        if(objectrow > 0)  //not 1st row
         {
           
           //goupright
@@ -94,7 +94,7 @@ var upfailed =0,downfailed=0,leftfailed=0,rightfailed=0;
             goup = true;
             goright=true;
           } 
-          else if(objectrow != (room.rows-1)) //not last row
+          else if(objectrow < (room.rows-1)) //not last row
           if(!(room.map[(objectrow+1)][objectcol+1].occupied))         
           {
             godown = true;
@@ -105,7 +105,7 @@ var upfailed =0,downfailed=0,leftfailed=0,rightfailed=0;
       if(upfailed)
       {
         
-        if(objectcol != 0)  //not 1st col
+        if(objectcol > 0)  //not 1st col
         {
           
           //goupleft
@@ -115,7 +115,7 @@ var upfailed =0,downfailed=0,leftfailed=0,rightfailed=0;
             goup = true;
 
           } 
-          else if(objectcol != (room.columns-1)) //not last col
+          else if(objectcol < (room.columns-1)) //not last col
           if(!(room.map[(objectrow-1)][objectcol+1].occupied))         
           {
             goright = true;
@@ -126,7 +126,7 @@ var upfailed =0,downfailed=0,leftfailed=0,rightfailed=0;
       if(downfailed)
       {
         
-        if(objectcol != 0)  //not 1st col
+        if(objectcol > 0)  //not 1st col
         {
           
           //godownleft
@@ -136,7 +136,7 @@ var upfailed =0,downfailed=0,leftfailed=0,rightfailed=0;
             godown = true;
 
           } 
-          else if(objectcol != (room.columns-1)) //not last col
+          else if(objectcol < (room.columns-1)) //not last col
           if(!(room.map[(objectrow+1)][objectcol+1].occupied))         
           {
             goright = true;

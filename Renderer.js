@@ -48,7 +48,7 @@ this.randomCluster[0][3]=new Point(9,17)
 
 			if(this.frametime%rr == 0)			
 			{				
-				if(baskets.length !=0)
+				if(baskets.length >0)
 				ai.antAttackrating(ants[i],'bob');
 
 				ai.Action(ants[i],ants.length);
@@ -268,7 +268,7 @@ this.randomCluster[0][3]=new Point(9,17)
 		var health = room.getHealth();
 		//for (var i = 0; i < health.length; i++)
 		//{
-		if(health.cellpos.x != -1)
+		if(health.cellpos.x >= 0)
 		{
 			ctx.fillStyle = health.Intrinsic.color;
 			ctx.fillRect(health.Intrinsic.centerPoint.x - 15, health.Intrinsic.centerPoint.y - 15, health.Intrinsic.width, health.Intrinsic.height);
