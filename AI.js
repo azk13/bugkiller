@@ -1,6 +1,7 @@
 function AI(){
     var enemyKilledPrev = 0; // Used in this.Action
     var time_previous = 0; // Used in this.Action
+    var previousdistance = math.getDistanceBetweenTwoPoints(baskets[0].Intrinsic.centerPoint,player.Intrinsic.centerPoint);
 
     function getNearestBasketIndex(enemy){
         var baskets = room.getBaskets();
@@ -301,15 +302,16 @@ function AI(){
     }
     this.antAttackrating = function(ant,identity)  {
         var baskets = room.getBaskets();
-        var firstTension = 50,secondTension = 70;
+        var firstTension = 50,secondTension = 70, thirdtension = 90;
         var timenow = Math.round((Date.now() - start_time)/1000);
+        var currentdistance = math.getDistanceBetweenTwoPoints(baskets[0].Intrinsic.centerPoint,player.Intrinsic.centerPoint);
         ant.Intrinsic.attackrating = 0.5;
 
         if(timenow < (firstTension+10) && timenow > firstTension && baskets.length == 3)
         {
             document.getElementById("scenario").innerHTML = 'A';
             //ant.Intrinsic.attackrating = baskets[getNearestBasketIndex(ant)].Intrinsic.health*0.10;
-            ant.Intrinsic.attackrating = 2;
+            ant.Intrinsic.attackrating = 3;
             //
             //ant.Intrinsic.addGoal(2);
         }
@@ -318,10 +320,21 @@ function AI(){
         {
             document.getElementById("scenario").innerHTML = 'B';
             //ant.Intrinsic.attackrating = baskets[getNearestBasketIndex(ant)].Intrinsic.health*0.10;
-            ant.Intrinsic.attackrating = 2;
+            ant.Intrinsic.attackrating = 3;
             //ant.Intrinsic.addGoal(2);
         }
-
+        
+        else if((timenow < (thirdtension+10) && timenow > thirdtension))
+        {
+            document.getElementById("scenario").innerHTML = 'C';
+            if(currentdistance < previousdistance )
+            {ant.Intrinsic.attackrating = baskets[getNearestBasketIndex(ant)].Intrinsic.health*0.05;}
+            else
+            {ant.Intrinsic.attackrating = 0.5;}
+            //ant.Intrinsic.attackrating = 3;
+            //ant.Intrinsic.addGoal(2);
+        }        
+        previousdistance = math.getDistanceBetweenTwoPoints(baskets[0].Intrinsic.centerPoint,player.Intrinsic.centerPoint);
         
         else {
             document.getElementById("scenario").innerHTML = 'NA';

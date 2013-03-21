@@ -144,6 +144,7 @@ this.randomCluster[0][3]=new Point(9,17)
 				//console.log(index);
 			}	
 		this.frametime++;
+		hollywoodCounter++;
 	}
 	this.drawRoom = function (){
 		//Draw the entire room

@@ -22,7 +22,7 @@
   var physicsEngine = new Physics();
   var debugMode = false;
   var player = new Bob(new Point(500,380),40,40);
-
+  var hollywoodCounter = 0;
 
   var boundcheck = new Boundcheck();
   var ai = new AI();
@@ -108,9 +108,10 @@
                     
            }
 
-           // Press Shift to use Active Weapon ~ jensen
+           // Press z to use Active Weapon ~ jensen
            if(event.keyCode == 90) {
-              
+                
+
                 switch(player.activeWeapon)
                 {
                   case 'Knife':
@@ -126,7 +127,9 @@
                       player.usingPunch();
                       break;
 
-                }    
+                }
+                hollywoodCounter=0;
+
            }
 
            // Press up down left right to move Bob
