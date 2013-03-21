@@ -158,12 +158,12 @@ function AI(){
             }
         }
         //if anthealth is greater than bob health and ant has a weapon
-        if((bobhealth>80)&&(bobUsingKnife=="Knife")&&(checkEnemyFromBob(enemy.Intrinsic.centerPoint,player.Intrinsic.centerPoint,1)))
+/*        if((bobhealth>80)&&(bobUsingKnife=="Knife")&&(checkEnemyFromBob(enemy.Intrinsic.centerPoint,player.Intrinsic.centerPoint,1)))
        {
            //alert("Im fleeing");
            this.antfleefromBob(enemy);
            attack=false;
-        }
+        }*/
         if(attack==true){
            pathfinding.objectgo(enemy,player);
         }
@@ -311,8 +311,8 @@ function AI(){
             //ant.Intrinsic.attackrating = baskets[getNearestBasketIndex(ant)].Intrinsic.health*0.10;
             ant.Intrinsic.attackrating = 3;
 
-            //
-            ant.Intrinsic.addGoal(2);
+            
+            ant.Intrinsic.addGoal(8);
 
 
         }
@@ -322,23 +322,27 @@ function AI(){
             document.getElementById("scenario").innerHTML = 'B';
             //ant.Intrinsic.attackrating = baskets[getNearestBasketIndex(ant)].Intrinsic.health*0.10;
             ant.Intrinsic.attackrating = 3;
-            
-            //ant.Intrinsic.addGoal(2);
+
+            ant.Intrinsic.addGoal(8);
         }
         
-        else if((timenow < (thirdtension+10) && timenow > thirdtension))
+        else if(timenow < (thirdtension+10) && timenow > thirdtension || baskets.length == 1)
         {
+           // room.maxAnt=0;
             document.getElementById("scenario").innerHTML = 'C';
-            if(currentdistance < previousdistance )
+            if(currentdistance < previousdistance || hollywoodCounter < 90)
             {ant.Intrinsic.attackrating = baskets[getNearestBasketIndex(ant)].Intrinsic.health*0.05;}
             else
             {ant.Intrinsic.attackrating = 0.5;}
             //ant.Intrinsic.attackrating = 3;
-            //ant.Intrinsic.addGoal(2);
+            ant.Intrinsic.addGoal(8);
 
         }        
         
         else {
+            if(ant.Intrinsic.retrieveLastGoal() == 8)
+            {ant.Intrinsic.removeGoal();}
+            ant.Intrinsic.attackrating = 0.5;
             document.getElementById("scenario").innerHTML = 'NA';
             ant.Intrinsic.attackrating = 0.5;
         }
@@ -754,6 +758,9 @@ function AI(){
                 case 7: //limited time attacking basket
                     this.shortBasket(enemy);
                     break;
+                case 8: //limited time attacking basket
+                    this.attackNearestBasket(enemy);
+                    break;                    
             }//end of switch
 
 
@@ -914,7 +921,7 @@ function AI(){
 
                 if(enemy.identity == 'ant')
                 {
-                    room.maxAnts = this.determineMaxant(timenow,11);
+                    room.maxAnts = this.determineMaxant(timenow,8);
 
                     //default action run once on start
                     if(true != enemy.Intrinsic.defaultActivated)
@@ -950,7 +957,7 @@ function AI(){
 
                if(enemy.identity == 'ant')
                 {
-                    room.maxAnts = this.determineMaxant(timenow,12);
+                    room.maxAnts = this.determineMaxant(timenow,9);
 
                     //default action run once on start
                     if(false == enemy.Intrinsic.defaultActivated)
@@ -1006,7 +1013,7 @@ function AI(){
 
                if(enemy.identity == 'ant')
                 {
-                    room.maxAnts = this.determineMaxant(timenow,13);
+                    //room.maxAnts = this.determineMaxant(timenow,13);
 
                     //default action run once on start
                     if(false == enemy.Intrinsic.defaultActivated)

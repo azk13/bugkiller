@@ -49,7 +49,7 @@ this.randomCluster[0][3]=new Point(9,17)
 			if(this.frametime%rr == 0)			
 			{				
 				if(baskets.length >0)
-				ai.antAttackrating(ants[i],'bob');
+
 
 				ai.Action(ants[i],ants.length);
                 	
@@ -77,6 +77,7 @@ this.randomCluster[0][3]=new Point(9,17)
                 //	ants[i].Intrinsic.addGoal(4);
           //      	}
                 }  
+				ai.antAttackrating(ants[i],'bob');                
                 room.spawnEnemies(room.maxAnts,ants[i].identity);                
                 ai.AiCommander(ants[i]);
                 ai.antclose(ants[i]);

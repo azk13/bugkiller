@@ -143,7 +143,7 @@ function Room(){
     var spawnrate = (Math.random()*10)+1.5;
     var timenow = Date.now()/1000;
     //console.log((timenow-this.prevtime));
-    if(timenow-this.prevtime > spawnrate)
+    if(timenow-this.prevtime > spawnrate && baskets.length>1)
         {
 
         //randomizer to check for occupied space

@@ -32,7 +32,7 @@ function Intrinsic(centerPoint, width, height){
         var lastgoal=this.retrieveLastGoal();
         if(1!=this.goals.length){
         for (var i=this.goals.length-1; i>=0; i--) {
-            if (this.goals[i] === lastgoal) {
+            if (this.goals[i] == lastgoal) {
                 this.goals.splice(i, 1);
             }
         }
