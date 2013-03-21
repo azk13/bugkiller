@@ -904,7 +904,7 @@ function AI(){
                             //alert("70/30");
                             this.tossCoin(enemy,70);
                             }
-                            else
+                           
                             //{alert("50/50");}
                         enemy.Intrinsic.lawActivated = true;
                         }
@@ -940,7 +940,7 @@ function AI(){
                             //alert("70/30");
                             this.tossCoin(enemy,75);
                             }
-                            else
+                            
                             //{alert("50/50");}
                         enemy.Intrinsic.lawActivated = true;
                         }
