@@ -300,21 +300,21 @@ function AI(){
     }
     this.antAttackrating = function(ant,identity)  {
         var baskets = room.getBaskets();
-        var firstTension = 25,secondTension = 88;
+        var firstTension = 50,secondTension = 70;
         var timenow = Math.round((Date.now() - start_time)/1000);
         ant.Intrinsic.attackrating = 0.5;
 
-        if(timenow < (firstTension+5) && timenow > firstTension)
+        if(timenow < (firstTension+10) && timenow > firstTension)
         {
-            console.log("Tension 1 occuring");
+            console.log("Scenario A occuring");
             ant.Intrinsic.attackrating = baskets[getNearestBasketIndex(ant)].Intrinsic.health*0.05;
         }
 
 
-        if((timenow < (secondTension+5) && timenow > secondTension))
+        if((timenow < (secondTension+10) && timenow > secondTension))
         {
-            console.log("Tension 2 occuring");
-            ant.Intrinsic.attackrating = player.Intrinsic.health*0.05;
+            console.log("Scenario B occuring");
+            ant.Intrinsic.attackrating = baskets[getNearestBasketIndex(ant)].Intrinsic.health*0.05;
         }
 
     }
