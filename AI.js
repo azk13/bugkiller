@@ -834,15 +834,15 @@ function AI(){
         if(timenow < stagelength)
         {segment = 1;}
         else if(timenow < stagelength*1.1)
-        {segment = 12;}
+        {segment = 1;}
         else if(timenow < stagelength*2)
         {segment = 2;}
         else if(timenow < stagelength*2.1)
-        {segment = 23;}
+        {segment = 2;}
         else if(timenow < stagelength*3)
         {segment = 3;}
         else if(timenow < stagelength*3.1)
-        {segment = 34;}
+        {segment = 3;}
         else
         {segment = 4;}
         switch(segment){
@@ -974,6 +974,35 @@ function AI(){
                         {room.finalStageSpawn = false;}
                     }
                 }
+
+               if(enemy.identity == 'ant')
+                {
+                    room.maxAnts = this.determineMaxant(timenow,7);
+
+                    //default action run once on start
+                    if(true!=enemy.Intrinsic.defaultActivated)
+                    {
+                        this.tossCoin(enemy,50);
+                        enemy.Intrinsic.defaultActivated = true;
+                    }
+                    //action run once when activated
+                    if(false!=enemy.Intrinsic.defaultActivated && true!=enemy.Intrinsic.lawActivated)
+                    {
+                        if(this.bobKillStrength())
+                        {
+                            var toss= Math.floor(Math.random() * 11)  + 1;
+                            if(toss <= 5) //50/50 (the law or not)
+                            {
+                            //alert("70/30");
+                            this.tossCoin(enemy,75);
+                            }
+                            else
+                            //{alert("50/50");}
+                        enemy.Intrinsic.lawActivated = true;
+                        }
+                    }
+
+                }                
                 mysterybox.stage = 4;
                 break;
             default://The place where player's ability is checked

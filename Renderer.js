@@ -18,7 +18,7 @@ this.randomCluster[0][3]=new Point(9,17)
 		var weapons = room.getWeapons();
 		var mysterybox = room.getmysterybox();
 		var timenow = Math.round((Date.now() - start_time)/1000);
-		if(ants.length == 0 && timenow < 90)
+		if(ants.length == 0 && timenow < 100)
 		{
 			room.spawnEnemies(1,'ant');
 		}
