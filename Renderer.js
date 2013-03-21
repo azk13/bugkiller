@@ -18,15 +18,21 @@ this.randomCluster[0][3]=new Point(9,17)
 		var weapons = room.getWeapons();
 		var mysterybox = room.getmysterybox();
 		var timenow = Math.round((Date.now() - start_time)/1000);
+
+		//make sure there is always an ant
 		if(ants.length == 0 && timenow < 100)
 		{
 			room.spawnEnemies(1,'ant');
 		}
+
+		//---------------------Update Baskets---------------------------
 		for(var i=0;i<baskets.length;i++)
 		{		
 			physicsEngine.updatePoint(baskets[i]);	
 			gridvacancy.occupancy();
 		}
+
+		//---------------------Update Weapons---------------------------
 		for(var i=0;i<weapons.length;i++)
 		{		
 			physicsEngine.updatePoint(weapons[i]);	
@@ -35,6 +41,8 @@ this.randomCluster[0][3]=new Point(9,17)
         var random=Math.random();
         this.randomChooser= Math.floor(Math.random() * 4) ;
 
+
+		//---------------------Update Ants---------------------------
 		for(var i=0;i<ants.length;i++)
 		{
 
@@ -84,6 +92,8 @@ this.randomCluster[0][3]=new Point(9,17)
 			//pathfinding.enemyclose(ants[i]);
 
 		}
+
+		//---------------------Update Bees---------------------------		
 		for(var i=0;i<bees.length;i++)
 		{		
 			if(this.frametime%rr == 0)
@@ -97,17 +107,19 @@ this.randomCluster[0][3]=new Point(9,17)
                 ai.beeclose(bees[i]);
 			}
 			if(this.frametime%ss == 0)
-			physicsEngine.updateSting(bees[i]);
+			{physicsEngine.updateSting(bees[i]);}
 			physicsEngine.updatePoint(bees[i]);	
 			boundcheck.detectCollisionWithWalls(bees[i]);
 			gridvacancy.occupancy();
 
 			// step on Bomb ~ Jensen
 			ai.stepBombCheck(bees[i]);
-		}		
+		}
+		//---------------------Update Players---------------------------				
 		physicsEngine.updateShuriken();
 		physicsEngine.updatePoint(player);
 		boundcheck.detectCollisionWithWalls(player);
+		gridvacancy.occupancy();
 		// -Mysterybox updating-
 		// Updates the co-ordinates of the mysterybox every 10 counts if it is untouched
 		//

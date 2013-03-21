@@ -35,6 +35,7 @@ function Gridvacancy()
 						room.map[i][j].isEnemy = true;
 						ants[k].Intrinsic.cellPos.x = i;
 						ants[k].Intrinsic.cellPos.y = j;
+						break;
 					}		
 				}
 				for(var k=0;k<bees.length;k++)
@@ -45,6 +46,7 @@ function Gridvacancy()
 						room.map[i][j].isEnemy = true;
 						bees[k].Intrinsic.cellPos.x = i;
 						bees[k].Intrinsic.cellPos.y = j;
+						break;
 					}		
 				}		
 				for(var k=0;k<baskets.length;k++)
@@ -55,6 +57,7 @@ function Gridvacancy()
 						room.map[i][j].isBasket = true;
 						baskets[k].Intrinsic.cellPos.x = i;
 						baskets[k].Intrinsic.cellPos.y = j;
+						break;
 					}		
 				}
 				for(var k=0;k<weapons.length;k++)
@@ -68,7 +71,7 @@ function Gridvacancy()
 						weapons[k].Intrinsic.cellPos.y = j;
 						// load weapon object in the cell
 						room.map[i][j].weapon = weapons[k];
-
+						break;
 					}	
 				}											
 			}
