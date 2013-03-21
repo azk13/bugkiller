@@ -197,7 +197,7 @@ function AI(){
     }
     this.antfleefromBob=function(ant){
         //if bob is 3 cell away from ant
-        var  noofcells=1;
+        var  noofcells=3;
         var ants=room.getAnts();
         var exclude;
           if(checkEnemyFromBob(ant.Intrinsic.centerPoint,player.Intrinsic.centerPoint,noofcells))
