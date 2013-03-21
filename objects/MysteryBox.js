@@ -119,35 +119,39 @@ function MysteryBox(centerPoint, width, height){
 	switch(this.stage)
 		{
 			case 1: // Stage 1 - Can only spawn bomb and knife
-			if(percent <= 50)
+			if(percent <= 30)
 			item = 2; // Can only spawn bomb
-			else
+			else if(percent <= 90)
 			item = 1; // Spawn knife
+			else
+			item = 3; // Spawn shuriken
 			break;
 
-			case 2: // Stage 2 - Can only spawn bomb
-			if(percent <= 50)
+			case 2: // Stage 2 
+			if(percent <= 20)
 			item = 2; // Can only spawn bomb
-			else
+			else if(percent <= 80)
 			item = 1; // Spawn knife
+			else
+			item = 3; // Spawn shuriken
 			break;
 
 			case 3: // Can spawn all weapons
-			if(percent <= 30)
-			item = 1// 30% chance to spawn knife
-			else if(percent <= 90)
-			item = 2// 60% chance to spawn bomb
+			if(percent <= 50)
+			item = 1// 50% chance to spawn knife
+			else if(percent <= 75)
+			item = 2// 25% chance to spawn bomb
 			else
-			item = 3//10% chance to spawn shuriken
+			item = 3//25% chance to spawn shuriken
 			break;
 
 			case 4: // Can spawn all weapons
-			if(percent <= 30)
-			item = 1// 30% chance to spawn knife
-			else if(percent <= 90)
-			item = 2// 60% chance to spawn bomb
+			if(percent <= 60)
+			item = 1// 60% chance to spawn knife
+			else if(percent <= 80)
+			item = 2// 20% chance to spawn bomb
 			else
-			item = 3//10% chance to spawn shuriken
+			item = 3//20% chance to spawn shuriken
 			break;
 
 			case 0:  // Assessment period for player
