@@ -314,6 +314,7 @@ function AI(){
             //
             ant.Intrinsic.addGoal(2);
 
+
         }
 
         else if((timenow < (secondTension+10) && timenow > secondTension) && baskets.length == 2)
@@ -321,6 +322,7 @@ function AI(){
             document.getElementById("scenario").innerHTML = 'B';
             //ant.Intrinsic.attackrating = baskets[getNearestBasketIndex(ant)].Intrinsic.health*0.10;
             ant.Intrinsic.attackrating = 3;
+            
             //ant.Intrinsic.addGoal(2);
         }
         
@@ -338,6 +340,7 @@ function AI(){
         
         else {
             document.getElementById("scenario").innerHTML = 'NA';
+            ant.Intrinsic.attackrating = 0.5;
         }
         previousdistance = math.getDistanceBetweenTwoPoints(baskets[0].Intrinsic.centerPoint,player.Intrinsic.centerPoint);        
 
