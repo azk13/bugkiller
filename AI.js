@@ -148,7 +148,11 @@ function AI(){
         {
             if(ants[i].Intrinsic.ClusterFlag==true)
             {
-                enemy.Intrinsic.addGoal(6);
+                if(enemy.Intrinsic.goals.length==0)
+                {
+                    this.tossCoin(enemy,50);                    
+                }
+                enemy.Intrinsic.addGoal(6);  //this should be according to the others
                 enemy.Intrinsic.addGoal(5);
                 attack=false;
                 break;
@@ -714,6 +718,7 @@ function AI(){
             switch(enemy.Intrinsic.retrieveLastGoal()){
                 case 1: //Attack Bob
                     this.antAttackBobnew(enemy);
+                    //pathfinding.objectgo(enemy,player);
                     break;
                 case 2: //Attack Basket
                     this.attackNearestBasket(enemy);
@@ -812,19 +817,19 @@ function AI(){
         if(toss<= probability/10)
         {// Attack Bob
 
-            if(1 != enemy.Intrinsic.goals[enemy.Intrinsic.goals.length-1])
-            {
+    //        if(1 != enemy.Intrinsic.goals[enemy.Intrinsic.goals.length-1])
+    //        {
             enemy.Intrinsic.addGoal(1);
-            }
+    //        }
                             
         }
         else // Attack basket
         {
                           
-            if(2 != enemy.Intrinsic.goals[enemy.Intrinsic.goals.length-1])
-            {
+ //           if(2 != enemy.Intrinsic.goals[enemy.Intrinsic.goals.length-1])
+    //        {
             enemy.Intrinsic.addGoal(2);
-            }                    
+    //        }                    
         }
     }
 
