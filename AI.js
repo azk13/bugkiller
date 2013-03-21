@@ -78,7 +78,6 @@ function AI(){
         {
             if(ants[i].Intrinsic.ClusterFlag==true)
             {
-
                 enemy.Intrinsic.addGoal(6);
                 enemy.Intrinsic.addGoal(5);
 
@@ -190,7 +189,7 @@ function AI(){
         }
 
         }
-        if(condition == true)
+        if(condition == true||checkEnemyFromBob(dummy.Intrinsic.centerPoint,player.Intrinsic.centerPoint,3))
         { ant.Intrinsic.ClusterFlag = false;
             ant.Intrinsic.removeGoal();}
     }
