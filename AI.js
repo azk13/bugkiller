@@ -854,13 +854,13 @@ function AI(){
                     room.maxAnts = this.determineMaxant(timenow,5);
 
                     //default action run once on start
-                    if(true!=enemy.Intrinsic.defaultActivated)
+                    if(false == enemy.Intrinsic.defaultActivated)
                     {
                         this.tossCoin(enemy,50);
                         enemy.Intrinsic.defaultActivated = true;
                     }
                     //action run once when activated
-                    if(false!=enemy.Intrinsic.defaultActivated && true!=enemy.Intrinsic.lawActivated)
+                    if(true == enemy.Intrinsic.defaultActivated && false == enemy.Intrinsic.lawActivated)
                     {
                         if(this.bobKillStrength())
                         {
@@ -888,13 +888,13 @@ function AI(){
                     room.maxAnts = this.determineMaxant(timenow,7);
 
                     //default action run once on start
-                    if(true!=enemy.Intrinsic.defaultActivated)
+                    if(false == enemy.Intrinsic.defaultActivated)
                     {
                         this.tossCoin(enemy,50);
                         enemy.Intrinsic.defaultActivated = true;
                     }
                     //action run once when activated
-                    if(false!=enemy.Intrinsic.defaultActivated && true!=enemy.Intrinsic.lawActivated)
+                    if(true == enemy.Intrinsic.defaultActivated && false == enemy.Intrinsic.lawActivated)
                     {
                         if(this.bobKillStrength())
                         {
@@ -924,13 +924,13 @@ function AI(){
                     room.maxAnts = this.determineMaxant(timenow,7);
 
                     //default action run once on start
-                    if(true!=enemy.Intrinsic.defaultActivated)
+                    if(false == enemy.Intrinsic.defaultActivated)
                     {
                         this.tossCoin(enemy,50);
                         enemy.Intrinsic.defaultActivated = true;
                     }
                     //action run once when activated
-                    if(false!=enemy.Intrinsic.defaultActivated && true!=enemy.Intrinsic.lawActivated)
+                    if(true == enemy.Intrinsic.defaultActivated && false == enemy.Intrinsic.lawActivated)
                     {
                         if(this.bobKillStrength())
                         {
@@ -980,13 +980,13 @@ function AI(){
                     room.maxAnts = this.determineMaxant(timenow,7);
 
                     //default action run once on start
-                    if(true!=enemy.Intrinsic.defaultActivated)
+                    if(false == enemy.Intrinsic.defaultActivated)
                     {
                         this.tossCoin(enemy,50);
                         enemy.Intrinsic.defaultActivated = true;
                     }
                     //action run once when activated
-                    if(false!=enemy.Intrinsic.defaultActivated && true!=enemy.Intrinsic.lawActivated)
+                    if(true == enemy.Intrinsic.defaultActivated && false == enemy.Intrinsic.lawActivated)
                     {
                         if(this.bobKillStrength())
                         {

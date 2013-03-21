@@ -55,9 +55,9 @@ this.randomCluster[0][3]=new Point(9,17)
 
                     this.randomRow= this.randomCluster[0][this.randomChooser].x;
                     this.randomCol= this.randomCluster[0][this.randomChooser].y;
-                	if(ants.length == room.maxAnts)
-                	{
-                	/*
+         //       	if(ants.length == room.maxAnts)
+         //       	{
+                	
                     if(random<0.5)
                     {ants[i].Intrinsic.addGoal(6);}
 
@@ -65,9 +65,9 @@ this.randomCluster[0][3]=new Point(9,17)
                     {ants[i].Intrinsic.addGoal(7);}
 
                      ants[i].Intrinsic.addGoal(5);
-                	*/
-                	ants[i].Intrinsic.addGoal(4);
-                	}
+                	
+                //	ants[i].Intrinsic.addGoal(4);
+          //      	}
                 }  
                 room.spawnEnemies(room.maxAnts,ants[i].identity);                
                 ai.AiCommander(ants[i]);
