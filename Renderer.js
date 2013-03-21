@@ -43,7 +43,7 @@ var rr=8,ss=4;
                 {
                 	if(ants.length == room.maxAnts)
                 	{
-
+                	/*
                     if(random<0.5)
                     {ants[i].Intrinsic.addGoal(6);}
 
@@ -51,6 +51,8 @@ var rr=8,ss=4;
                     {ants[i].Intrinsic.addGoal(7);}
 
                      ants[i].Intrinsic.addGoal(5);
+                	*/
+                	ants[i].Intrinsic.addGoal(4);
                 	}
                 }  
                 room.spawnEnemies(room.maxAnts,ants[i].identity);                
@@ -75,7 +77,8 @@ var rr=8,ss=4;
 				ai.Action(bees[i],bees.length);
 
                 room.spawnEnemies(room.maxBees,bees[i].identity);
-                ai.AiCommander(bees[i]);
+                //ai.AiCommander(bees[i]);
+                ai.attackNearestBasket(bees[i]);
                 ai.beeclose(bees[i]);
 			}
 			if(this.frametime%ss == 0)
