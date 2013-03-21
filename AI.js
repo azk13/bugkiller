@@ -166,7 +166,6 @@ function AI(){
         }
         if(attack==true){
            pathfinding.objectgo(enemy,player);
-            this.antclose(ant);
         }
     }
     /************************************
