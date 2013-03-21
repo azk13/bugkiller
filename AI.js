@@ -91,8 +91,6 @@ function AI(){
 
 
     }
-
-
     /************************************
      Input : ant that need to go to the nearest ant and its index
      Output: The enemy move to nearest ant
@@ -200,7 +198,7 @@ function AI(){
         var  noofcells=3;
         var ants=room.getAnts();
         var exclude;
-          if(checkEnemyFromBob(ant,player,noofcells))
+          if(checkEnemyFromBob(ant.Intrinsic.centerPoint,player.Intrinsic.centerPoint,noofcells))
              {
                   for(var i=0;i<ants.length;i++)
                  {
