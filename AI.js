@@ -312,6 +312,9 @@ function AI(){
             //ant.Intrinsic.attackrating = baskets[getNearestBasketIndex(ant)].Intrinsic.health*0.10;
             ant.Intrinsic.attackrating = 3;
 
+            //
+            ant.Intrinsic.addGoal(2);
+
         }
 
         else if((timenow < (secondTension+10) && timenow > secondTension) && baskets.length == 2)
@@ -331,11 +334,14 @@ function AI(){
             {ant.Intrinsic.attackrating = 0.5;}
             //ant.Intrinsic.attackrating = 3;
             //ant.Intrinsic.addGoal(2);
-        }
+
+        }        
+        
         else {
             document.getElementById("scenario").innerHTML = 'NA';
         }
-        previousdistance = math.getDistanceBetweenTwoPoints(baskets[0].Intrinsic.centerPoint,player.Intrinsic.centerPoint);
+        previousdistance = math.getDistanceBetweenTwoPoints(baskets[0].Intrinsic.centerPoint,player.Intrinsic.centerPoint);        
+
     }
     //ant attack function Azri
     this.antclose = function(ant) {
