@@ -158,7 +158,7 @@ function AI(){
             }
         }
         //if anthealth is greater than bob health and ant has a weapon
-        if((bobhealth>80)&&(bobUsingKnife=="Knife"))
+        if((bobhealth>80)&&(bobUsingKnife=="Knife")&&(checkEnemyFromBob(enemy.Intrinsic.centerPoint,player.Intrinsic.centerPoint,1)))
        {
            //alert("Im fleeing");
            this.antfleefromBob(enemy);
@@ -197,7 +197,7 @@ function AI(){
     }
     this.antfleefromBob=function(ant){
         //if bob is 3 cell away from ant
-        var  noofcells=3;
+        var  noofcells=1;
         var ants=room.getAnts();
         var exclude;
           if(checkEnemyFromBob(ant.Intrinsic.centerPoint,player.Intrinsic.centerPoint,noofcells))
@@ -210,9 +210,7 @@ function AI(){
                        break;
                     }
                }
-      this.antMoveToNearestAnt(ant,ants,exclude);
-
-
+           this.antMoveToNearestAnt(ant,ants,exclude);
       }
 
     }
@@ -279,7 +277,7 @@ function AI(){
     }
     this.bombBlast = function(bombLocation){
 
-        for(var k=0; k<ants.length; ){
+        for(var k=0; k<ants.length;k++ ){
             var distance =math.getDistanceBetweenTwoPoints(ants[k].Intrinsic.centerPoint,bombLocation.Intrinsic.centerPoint);
             if(distance <= room.cellsize*2){
                 ants.splice(ants.indexOf(ants[k]),1);
@@ -289,7 +287,7 @@ function AI(){
             }
         }
 
-        for(var k=0; k<bees.length; ){
+        for(var k=0; k<bees.length;k++ ){
             var distance =math.getDistanceBetweenTwoPoints(bees[k].Intrinsic.centerPoint,bombLocation.Intrinsic.centerPoint);
             if(distance <= room.cellsize*2){
                 bees.splice(ants.indexOf(bees[k]),1);
@@ -333,13 +331,11 @@ function AI(){
             {ant.Intrinsic.attackrating = 0.5;}
             //ant.Intrinsic.attackrating = 3;
             //ant.Intrinsic.addGoal(2);
-        }        
-        previousdistance = math.getDistanceBetweenTwoPoints(baskets[0].Intrinsic.centerPoint,player.Intrinsic.centerPoint);
-        
+        }
         else {
             document.getElementById("scenario").innerHTML = 'NA';
         }
-
+        previousdistance = math.getDistanceBetweenTwoPoints(baskets[0].Intrinsic.centerPoint,player.Intrinsic.centerPoint);
     }
     //ant attack function Azri
     this.antclose = function(ant) {
@@ -503,7 +499,8 @@ function AI(){
     var flag19 = false;
     var flag20 = false;
 
-    this.clear_cflags = function(){
+    this.clear_cflags = function()
+    {
         flag1 = false;
         flag2 = false;
         flag3 = false;
@@ -525,7 +522,8 @@ function AI(){
         flag19 = false;
         flag20 = false;
     }
-    this.cornering = function(ant){
+    this.cornering = function(ant)
+    {
 
         var dummy = new Dummy(room.map[1][1].point);
 
@@ -617,7 +615,6 @@ function AI(){
 
                 flag10 = true;
             }
-
             ant.cflag = true;
         }
 
@@ -1074,8 +1071,6 @@ function AI(){
                 break;
 */
         }//end of the switch
-
     }
-    
 
 }
