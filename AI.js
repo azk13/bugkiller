@@ -716,7 +716,6 @@ function AI(){
             switch(enemy.Intrinsic.retrieveLastGoal()){
                 case 1: //Attack Bob
                     this.antAttackBobnew(enemy);
-                    //pathfinding.objectgo(enemy,player);
                     break;
                 case 2: //Attack Basket
                     this.attackNearestBasket(enemy);
@@ -817,16 +816,18 @@ function AI(){
 
     //        if(1 != enemy.Intrinsic.goals[enemy.Intrinsic.goals.length-1])
     //        {
-            enemy.Intrinsic.addGoal(1);
+            alert("toss");
+            enemy.Intrinsic.goals.push(1);
     //        }
                             
         }
         else // Attack basket
         {
+            alert("toss");
                           
  //           if(2 != enemy.Intrinsic.goals[enemy.Intrinsic.goals.length-1])
     //        {
-            enemy.Intrinsic.addGoal(2);
+            enemy.Intrinsic.goals.push(2);
     //        }                    
         }
     }
@@ -863,13 +864,13 @@ function AI(){
                     room.maxAnts = this.determineMaxant(timenow,8);
 
                     //default action run once on start
-                    if(false == enemy.Intrinsic.defaultActivated)
+                    if(true != enemy.Intrinsic.defaultActivated)
                     {
                         this.tossCoin(enemy,50);
                         enemy.Intrinsic.defaultActivated = true;
                     }
                     //action run once when activated
-                    if(true == enemy.Intrinsic.defaultActivated && false == enemy.Intrinsic.lawActivated)
+                    if(false != enemy.Intrinsic.defaultActivated && true != enemy.Intrinsic.lawActivated)
                     {
                         if(this.bobKillStrength())
                         {
@@ -897,13 +898,13 @@ function AI(){
                     room.maxAnts = this.determineMaxant(timenow,11);
 
                     //default action run once on start
-                    if(false == enemy.Intrinsic.defaultActivated)
+                    if(true != enemy.Intrinsic.defaultActivated)
                     {
                         this.tossCoin(enemy,50);
                         enemy.Intrinsic.defaultActivated = true;
                     }
                     //action run once when activated
-                    if(true == enemy.Intrinsic.defaultActivated && false == enemy.Intrinsic.lawActivated)
+                    if(false != enemy.Intrinsic.defaultActivated && true != enemy.Intrinsic.lawActivated)
                     {
                         if(this.bobKillStrength())
                         {
