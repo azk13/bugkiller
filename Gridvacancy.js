@@ -73,7 +73,11 @@ function Gridvacancy()
 						room.map[i][j].weapon = weapons[k];
 						break;
 					}	
-				}											
+				}
+				
+				// Mysterybox now occupies a grid (HONG SHING)
+				var mysterybox = room.getmysterybox();
+				room.map[mysterybox.cellpos.y][mysterybox.cellpos.x].occupied = true;
 			}
 		}		
 	}
