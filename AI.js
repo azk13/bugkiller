@@ -306,20 +306,21 @@ function AI(){
 
         if(timenow < (firstTension+10) && timenow > firstTension)
         {
-            console.log("Scenario A occuring");
             document.getElementById("scenario").innerHTML = 'A';
             //ant.Intrinsic.attackrating = baskets[getNearestBasketIndex(ant)].Intrinsic.health*0.10;
-            ant.Intrinsic.attackrating = 5;
+            ant.Intrinsic.attackrating = 1;
             ant.Intrinsic.addGoal(2);
         }
 
         else if((timenow < (secondTension+10) && timenow > secondTension))
         {
-            console.log("Scenario B occuring");
             document.getElementById("scenario").innerHTML = 'B';
             //ant.Intrinsic.attackrating = baskets[getNearestBasketIndex(ant)].Intrinsic.health*0.10;
-            ant.Intrinsic.attackrating = 15;
+            ant.Intrinsic.attackrating = 1;
+            ant.Intrinsic.addGoal(2);
         }
+
+        
         else {
             document.getElementById("scenario").innerHTML = 'NA';
         }
