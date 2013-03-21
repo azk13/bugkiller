@@ -92,6 +92,7 @@ this.updateSting = function(bee)
 		}
 		if(bee.stingpos.x == player.Intrinsic.centerPoint.x && bee.stingpos.y == player.Intrinsic.centerPoint.y)
 		{
+			bee.Intrinsic.attackrating = 5;
 		    player.Intrinsic.health -= bee.Intrinsic.attackrating;
 		    renderingEngine.setBobHealth();		
 		    bee.stingpos.x = bee.stingpos.y = 9999;		

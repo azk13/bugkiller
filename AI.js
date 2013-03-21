@@ -361,12 +361,12 @@ function AI(){
     }
     //Bee's action when player comes within his range Azri
     this.beeclose = function(bee) {
-        bee.Intrinsic.attackrating = 5;
+        
         var count = 5;
+        var beecell = bee.Intrinsic.cellPos;
+        var playercell = player.Intrinsic.cellPos;        
         if(math.getDistanceBetweenTwoPoints(player.Intrinsic.centerPoint,bee.Intrinsic.centerPoint) < (room.cellsize*5.2))
         {
-            var beecell = bee.Intrinsic.cellPos;
-            var playercell = player.Intrinsic.cellPos;
 
             if(bee.shootcounter == count)
             {
@@ -414,6 +414,35 @@ function AI(){
             //           bee.stingpos.x = bee.stingpos.y = 9999;
             bee.shootcounter = count;
         }
+
+
+        var baskets = room.getBaskets();
+
+        for(var i=0;i<baskets.length;i++)
+        {
+            if(math.getDistanceBetweenTwoPoints(baskets[i].Intrinsic.centerPoint,bee.Intrinsic.centerPoint) < (room.cellsize*1.5))
+            {
+                var basketscell = baskets[i].Intrinsic.cellPos;
+
+
+                if( ((beecell.y == basketscell.y) && bee.Intrinsic.direction.toFixed(2) == (Math.PI/2).toFixed(2) && basketscell.x>beecell.x) || ((beecell.y == basketscell.y) && bee.Intrinsic.direction.toFixed(2) == (Math.PI*3/2).toFixed(2) && basketscell.x<beecell.x) || ((beecell.x == basketscell.x) && bee.Intrinsic.direction == 0 && basketscell.y>beecell.y) || ((beecell.x == basketscell.x) && bee.Intrinsic.direction.toFixed(2) == Math.PI.toFixed(2) && basketscell.y<beecell.y) )
+                {
+                    bee.Intrinsic.attackrating = 0.5;
+                    baskets[i].Intrinsic.health -= bee.Intrinsic.attackrating;
+                    if(bee.Intrinsic.isattacking)
+                    {bee.Intrinsic.attackcolor = 'brown';}
+                    else
+                    {bee.Intrinsic.attackcolor = 'purple';}
+                    bee.Intrinsic.isattacking = !bee.Intrinsic.isattacking;
+                    //remove basket if destroyed
+                    if(baskets[i].Intrinsic.health <= 0)
+                    {
+                        baskets.splice(baskets.indexOf(baskets[i]),1);
+                    }
+                }
+            }
+
+        }        
 
     }
     // Flags for cornering to make sure no more than 1 ants go to the cornering position

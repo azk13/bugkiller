@@ -77,8 +77,9 @@ var rr=8,ss=4;
 				ai.Action(bees[i],bees.length);
 
                 room.spawnEnemies(room.maxBees,bees[i].identity);
-                //ai.AiCommander(bees[i]);
+
                 ai.attackNearestBasket(bees[i]);
+                //ai.AiCommander(bees[i]);
                 ai.beeclose(bees[i]);
 			}
 			if(this.frametime%ss == 0)
