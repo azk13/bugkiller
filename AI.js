@@ -309,7 +309,7 @@ function AI(){
         {
             document.getElementById("scenario").innerHTML = 'A';
             //ant.Intrinsic.attackrating = baskets[getNearestBasketIndex(ant)].Intrinsic.health*0.10;
-            ant.Intrinsic.attackrating = 1;
+            ant.Intrinsic.attackrating = 2;
             //
             //ant.Intrinsic.addGoal(2);
         }
@@ -318,7 +318,7 @@ function AI(){
         {
             document.getElementById("scenario").innerHTML = 'B';
             //ant.Intrinsic.attackrating = baskets[getNearestBasketIndex(ant)].Intrinsic.health*0.10;
-            ant.Intrinsic.attackrating = 1;
+            ant.Intrinsic.attackrating = 2;
             //ant.Intrinsic.addGoal(2);
         }
 

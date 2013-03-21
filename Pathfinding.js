@@ -27,7 +27,7 @@ var upfailed =0,downfailed=0,leftfailed=0,rightfailed=0;
       if(!(room.map[(objectrow+1)][objectcol].occupied))         
       {godown = true;}
       else
-      {downfailed = 1;}
+      {downfailed = true;}
     }
 //row index increment to go up    
     if(objectrow > endpointrow)
@@ -35,7 +35,7 @@ var upfailed =0,downfailed=0,leftfailed=0,rightfailed=0;
       if(!(room.map[(objectrow-1)][objectcol].occupied))  
       {goup = true;}
     else
-      {upfailed=1;}
+      {upfailed=true;}
     }
 //col index increment to go right    
     if(objectcol < endpointcol)
@@ -43,7 +43,7 @@ var upfailed =0,downfailed=0,leftfailed=0,rightfailed=0;
       if(!(room.map[objectrow][(objectcol+1)].occupied))  
       {goright = true;}
     else
-      {rightfailed=1;}
+      {rightfailed=true;}
     }
 //col index increment to go left   
     if(objectcol > endpointcol)
@@ -52,7 +52,7 @@ var upfailed =0,downfailed=0,leftfailed=0,rightfailed=0;
       if(!(room.map[objectrow][(objectcol-1)].occupied))
       {goleft = true;}
     else
-      {leftfailed=1;}
+      {leftfailed=true;}
     }
   
 
@@ -67,77 +67,76 @@ var upfailed =0,downfailed=0,leftfailed=0,rightfailed=0;
         
         if(objectrow > 0)  //not 1st row
         {
-          
           //goupleft
-          if(!(room.map[(objectrow-1)][objectcol-1].occupied))  
+          if(!(room.map[(objectrow-1)][objectcol-1].occupied)&& math.getDistanceBetweenTwoPoints(room.map[(objectrow-1)][objectcol-1].point,endpoint.Intrinsic.centerPoint) < math.getDistanceBetweenTwoPoints(object.Intrinsic.centerPoint,endpoint.Intrinsic.centerPoint))  
           {
             goup = true;
             goleft=true;
           } 
           else if(objectrow < (room.rows-1)) //not last row
-          if(!(room.map[(objectrow+1)][objectcol-1].occupied))         
+          if(!(room.map[(objectrow+1)][objectcol-1].occupied)&& math.getDistanceBetweenTwoPoints(room.map[(objectrow+1)][objectcol-1].point,endpoint.Intrinsic.centerPoint) < math.getDistanceBetweenTwoPoints(object.Intrinsic.centerPoint,endpoint.Intrinsic.centerPoint))         
           {
             godown = true;
             goleft=true;
           }             
         }
       }
-      if(rightfailed)
+      else if(rightfailed)
       {
         
         if(objectrow > 0)  //not 1st row
         {
           
           //goupright
-          if(!(room.map[(objectrow-1)][objectcol+1].occupied))  
+          if(!(room.map[(objectrow-1)][objectcol+1].occupied)&& math.getDistanceBetweenTwoPoints(room.map[(objectrow-1)][objectcol+1].point,endpoint.Intrinsic.centerPoint) < math.getDistanceBetweenTwoPoints(object.Intrinsic.centerPoint,endpoint.Intrinsic.centerPoint))  
           {
             goup = true;
             goright=true;
           } 
           else if(objectrow < (room.rows-1)) //not last row
-          if(!(room.map[(objectrow+1)][objectcol+1].occupied))         
+          if(!(room.map[(objectrow+1)][objectcol+1].occupied)&& math.getDistanceBetweenTwoPoints(room.map[(objectrow+1)][objectcol+1].point,endpoint.Intrinsic.centerPoint) < math.getDistanceBetweenTwoPoints(object.Intrinsic.centerPoint,endpoint.Intrinsic.centerPoint))         
           {
             godown = true;
             goright=true;
           }             
         }
       }
-      if(upfailed)
+      else if(upfailed)
       {
         
         if(objectcol > 0)  //not 1st col
         {
           
           //goupleft
-          if(!(room.map[(objectrow-1)][objectcol-1].occupied))  
+          if(!(room.map[(objectrow-1)][objectcol-1].occupied)&& math.getDistanceBetweenTwoPoints(room.map[(objectrow-1)][objectcol-1].point,endpoint.Intrinsic.centerPoint) < math.getDistanceBetweenTwoPoints(object.Intrinsic.centerPoint,endpoint.Intrinsic.centerPoint))  
           {
             goleft=true;            
             goup = true;
 
           } 
           else if(objectcol < (room.columns-1)) //not last col
-          if(!(room.map[(objectrow-1)][objectcol+1].occupied))         
+          if(!(room.map[(objectrow-1)][objectcol+1].occupied)&& math.getDistanceBetweenTwoPoints(room.map[(objectrow-1)][objectcol+1].point,endpoint.Intrinsic.centerPoint) < math.getDistanceBetweenTwoPoints(object.Intrinsic.centerPoint,endpoint.Intrinsic.centerPoint))         
           {
             goright = true;
             goup = true;
           }             
         }    
       }
-      if(downfailed)
+      else if(downfailed)
       {
         
         if(objectcol > 0)  //not 1st col
         {
           
           //godownleft
-          if(!(room.map[(objectrow+1)][objectcol-1].occupied))  
+          if(!(room.map[(objectrow+1)][objectcol-1].occupied)&& math.getDistanceBetweenTwoPoints(room.map[(objectrow+1)][objectcol-1].point,endpoint.Intrinsic.centerPoint) < math.getDistanceBetweenTwoPoints(object.Intrinsic.centerPoint,endpoint.Intrinsic.centerPoint))  
           {
             goleft=true;            
             godown = true;
 
           } 
           else if(objectcol < (room.columns-1)) //not last col
-          if(!(room.map[(objectrow+1)][objectcol+1].occupied))         
+          if(!(room.map[(objectrow+1)][objectcol+1].occupied)&& math.getDistanceBetweenTwoPoints(room.map[(objectrow+1)][objectcol+1].point,endpoint.Intrinsic.centerPoint) < math.getDistanceBetweenTwoPoints(object.Intrinsic.centerPoint,endpoint.Intrinsic.centerPoint))         
           {
             goright = true;
             godown = true;
