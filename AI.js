@@ -160,7 +160,8 @@ function AI(){
         if((bobhealth>80)&&(bobUsingKnife=="Knife"))
        {
            //alert("Im fleeing");
-           enemy.Intrinsic.addGoal(3);
+           this.antfleefromBob(enemy);
+           attack=false;
         }
         if(attack==true){
            pathfinding.objectgo(enemy,player);
