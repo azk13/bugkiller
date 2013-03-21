@@ -133,7 +133,7 @@ function AI(){
         if(!attack)
         {
             //find bob
-            pathfinding.objectgo(ant,player,false);
+            pathfinding.objectgo(ant,player);
             //and attack him
             this.antclose(ant);
         }
