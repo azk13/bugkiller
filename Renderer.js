@@ -2,7 +2,14 @@ function Renderer(){
 this.frametime=1;
 this.shortAttacks=1;
 this.sFlag = false;	
-var rr=8,ss=4;
+var rr=8,ss=4
+//random location for cluster
+this.randomCluster=[]
+this.randomCluster[0]=new Array();
+this.randomCluster[0][0]=new Point(3,17);
+this.randomCluster[0][1]=new Point(3,9);
+this.randomCluster[0][2]=new Point(9,3);
+this.randomCluster[0][3]=new Point(9,17)
 
 	this.updatePoints = function(time_start){
 		var ants = room.getAnts();
@@ -26,6 +33,8 @@ var rr=8,ss=4;
 			gridvacancy.occupancy();
 		}
         var random=Math.random();
+        this.randomChooser= Math.floor(Math.random() * 4) ;
+
 		for(var i=0;i<ants.length;i++)
 		{
 
@@ -41,6 +50,11 @@ var rr=8,ss=4;
               
                 if(this.frametime%440 == 0)
                 {
+                    if(i==0)
+                    {this.randombasket=Math.floor(Math.random()*(baskets.length-1))};
+
+                    this.randomRow= this.randomCluster[0][this.randomChooser].x;
+                    this.randomCol= this.randomCluster[0][this.randomChooser].y;
                 	if(ants.length == room.maxAnts)
                 	{
                 	/*

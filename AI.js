@@ -69,6 +69,31 @@ function AI(){
 
 
     }
+    this.attackBasket = function(enemy) {
+
+        var ants=room.getAnts();
+        var baskets = room.getBaskets();
+        var attack =true
+        for(var i=0;i<ants.length;i++)
+        {
+            if(ants[i].Intrinsic.ClusterFlag==true)
+            {
+
+                enemy.Intrinsic.addGoal(6);
+                enemy.Intrinsic.addGoal(5);
+
+                attack=false;
+                break;
+            }
+        }
+        if(attack==true)
+
+            pathfinding.objectgo(enemy,baskets[renderingEngine.randombasket]);
+
+
+    }
+
+
     /************************************
      Input : ant that need to go to the nearest ant and its index
      Output: The enemy move to nearest ant
@@ -93,33 +118,20 @@ function AI(){
         var anthasweapon=ant.hasWeapons();
         //player properties
         var bobCenterPoint =player.Intrinsic.centerPoint;
-        var bobhealth=player.health;
-        var bobhasWeapons=player.hasWeapons();
-
+        var bobhealth=player.Intrinsic.health;
+        var bobUsingKnife=player.activeWeapon
         var attack=false;
         // check whether ant is within no of cells specified
         if(checkEnemyFromBob(antCenterPoint,bobCenterPoint,noofCells))
         {
-
-            //if ant health below 10%  and has weapon just try to attack and die
-            if(anthealth<10&anthasweapon)
+         //if anthealth is greater than bob health and ant has a weapon
+            if((bobhealth>80)&&(bobUsingKnife=="Knife"))
             {
-                attack=true;
-            }
-            //if anthealth is greater than bob health and ant has a weapon
-            else if((anthealth>bobhealth)&&anthasweapon)
-            {
-                attack =true
-            }
-            // bobhashealth is greater than 70 %  and no weapon go then attach
-            else if(!bobhasWeapons&&bobhealth>70)
-            {
-                attack=true
-
+                attack =false
             }
         }
         // any of the above three conditions meet
-        if(attack)
+        if(!attack)
         {
             //find bob
             pathfinding.objectgo(ant,player,false);
@@ -131,6 +143,8 @@ function AI(){
     this.antAttackBobnew=function(enemy){
         var attack =true;
         var ants=room.getAnts();
+        var bobhealth=player.Intrinsic.health;
+        var bobUsingKnife=player.activeWeapon
         for(var i=0;i<ants.length;i++)
         {
             if(ants[i].Intrinsic.ClusterFlag==true)
@@ -141,6 +155,11 @@ function AI(){
                 attack=false;
                 break;
             }
+        }
+        //if anthealth is greater than bob health and ant has a weapon
+        if((bobhealth>80)&&(bobUsingKnife=="Knife"))
+        {
+            attack =false
         }
         if(attack==true){
 
@@ -155,7 +174,7 @@ function AI(){
     this.antCluster=function(ant)   {
         var condition = true;
         var ants = room.getAnts();
-        var clusterpoint=room.map[3][17].point;
+        var clusterpoint=room.map[renderingEngine.randomRow][renderingEngine.randomCol].point;
         var dummy= new Dummy(clusterpoint);
         if(!checkEnemyFromBob(ant.Intrinsic.centerPoint,dummy.Intrinsic.centerPoint,1))
         {
@@ -174,10 +193,6 @@ function AI(){
         if(condition == true)
         { ant.Intrinsic.ClusterFlag = false;
             ant.Intrinsic.removeGoal();}
-       
-
-
-
     }
     this.antfleefromBob=function(ant){
         //if bob is 3 cell away from ant
@@ -249,7 +264,6 @@ function AI(){
         var enemyColumn = enemy.Intrinsic.cellPos.y;
         var enemyType = enemy.identity;
         var bombLocation = room.map[enemyRow][enemyColumn].weapon;
-
         if(bombLocation.activeBomb == true) {
 
             this.bombBlast(bombLocation);
@@ -489,8 +503,6 @@ function AI(){
         flag19 = false;
         flag20 = false;
     }
-
-
     this.cornering = function(ant){
 
         var dummy = new Dummy(room.map[1][1].point);
@@ -712,7 +724,7 @@ function AI(){
                 case 6: //limited time attacking bob
                      this.shortAttack(enemy);
                      break;
-                case 7: //limited time attacking bob
+                case 7: //limited time attacking basket
                     this.shortBasket(enemy);
                     break;
             }//end of switch
@@ -724,7 +736,7 @@ function AI(){
     this.shortBasket= function(enemy)
     {
         renderingEngine.sFlag=true;
-        this.attackNearestBasket(enemy);
+        this.attackBasket(enemy);
         if(renderingEngine.shortAttacks%15==0)
         {
             renderingEngine.sFlag=false;
