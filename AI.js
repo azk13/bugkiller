@@ -817,14 +817,14 @@ function AI(){
 
     //        if(1 != enemy.Intrinsic.goals[enemy.Intrinsic.goals.length-1])
     //        {
-            alert("toss");
+            //alert("toss");
             enemy.Intrinsic.goals.push(1);
     //        }
                             
         }
         else // Attack basket
         {
-            alert("toss");
+            //alert("toss");
                           
  //           if(2 != enemy.Intrinsic.goals[enemy.Intrinsic.goals.length-1])
     //        {
