@@ -1,3 +1,5 @@
+//Rengaswamy A0073676U
+
 // Set weapon as global variable, as bob is accessing it ~ jensen
 var weapons = new Array();
 var ants = new Array();

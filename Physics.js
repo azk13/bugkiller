@@ -1,3 +1,4 @@
+//Everybody contributed
 function Physics(){
 	this.applyForceAtAngle = function(object, force, forceAngle){
 		var direction = forceAngle;

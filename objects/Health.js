@@ -1,3 +1,4 @@
+//Chua Hong Shing U094743N
 function Health(centerPoint, width, height){
 	this.Intrinsic = new Intrinsic(centerPoint, width, height);
 	this.centerPoint = centerPoint;	

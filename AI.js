@@ -1,9 +1,11 @@
+
 function AI(){
     this.endTimer =0;
     var enemyKilledPrev = 0; // Used in this.Action
     var time_previous = 0; // Used in this.Action
     var previousdistance = math.getDistanceBetweenTwoPoints(baskets[0].Intrinsic.centerPoint,player.Intrinsic.centerPoint);
 
+//Muhammad Azri A0073951B
     function getNearestBasketIndex(enemy){
         var baskets = room.getBaskets();
         var prevDistance=999999,Distance =0;
@@ -36,11 +38,14 @@ function AI(){
         }
         return Index;
 
+
+
     }
     /************************************
      Input : Enemy centrepoint,player centre point,how many cells to check
      Output: True if Enemy no of cells  from bee cell
      ************************************/
+//Rengaswamy A0073676U
     function checkEnemyFromBob(enemy,player,noOfCells) {
         var checkdistance=room.cellsize*noOfCells;
         var distance =math.getDistanceBetweenTwoPoints(enemy,player);
@@ -60,6 +65,7 @@ function AI(){
         }
         return index;
     }
+//Muhammad Azri A0073951B    
     this.attackDyingBasket = function(enemy) {
 
         var ants=room.getAnts();
@@ -89,9 +95,9 @@ function AI(){
         }
         if(attack==true)
         pathfinding.objectgo(enemy,baskets[getNearestBasketIndex(enemy)]);
-
-
     }
+
+//Rengaswamy A0073676U    
     this.attackBasket = function(enemy) {
 
         var ants=room.getAnts();
@@ -118,6 +124,7 @@ function AI(){
      Input : ant that need to go to the nearest ant and its index
      Output: The enemy move to nearest ant
      ************************************/
+//Rengaswamy A0073676U     
     this.antMoveToNearestAnt=function(enemy,ants,excludeindex){
         var nearestant= getNearestAntIndex(enemy,excludeindex)
         if(checkEnemyFromBob(enemy,ants[nearestant],1))
@@ -128,7 +135,7 @@ function AI(){
     /************************************
      Input : Ant,bob
      Output:Decide whether this ant can attack bob and then attack
-     ************************************/
+     ************************************/   
     this.antAttackBobnew=function(enemy){
         var attack =true;
         var ants=room.getAnts();
@@ -219,6 +226,8 @@ function AI(){
 //    console.log("Max Ants:"+maxAnt);
         return maxAnt;
     }
+
+//Jensen Tan U084010H    
     this.pickedUpWeapon = function(row, column){
         var weaponIdentity;
         weaponIdentity = room.map[row][column].weapon.identity;
@@ -293,6 +302,8 @@ function AI(){
         }
 
     }
+
+//Jensen Tan U084010H & Muhammad Azri A0073951B    
     this.antAttackrating = function(ant,identity)  {
         var baskets = room.getBaskets();
         var firstTension = 50,secondTension = 70, thirdtension = 90;
@@ -351,7 +362,7 @@ function AI(){
         previousdistance = math.getDistanceBetweenTwoPoints(baskets[0].Intrinsic.centerPoint,player.Intrinsic.centerPoint);        
 
     }
-    //ant attack function Azri
+//Muhammad Azri A0073951B
     this.antclose = function(ant) {
 
         var antcell = ant.Intrinsic.cellPos;
@@ -500,6 +511,7 @@ function AI(){
         }        
 
     }
+//Chua Hong Shing U094743N
     // Flags for cornering to make sure no more than 1 ants go to the cornering position
     var flag1 = false;
     var flag2 = false;
@@ -740,6 +752,8 @@ function AI(){
             }
         }  
     }
+
+//Everybody contributed    
     // Dynamic AI Decision Making
     /************************************/
     // based on flags, give commands to AI
@@ -778,6 +792,7 @@ function AI(){
 
          }
     }
+//Muhammad Azri A0073951B & Rengaswamy A0073676U    
     this.shortBasket= function(enemy)
     {
         renderingEngine.sFlag=true;
@@ -809,6 +824,8 @@ function AI(){
             }
         }
     }
+
+//Jensen Tan U084010H    
     this.bobKillStrength = function()
     {
         var enemyKilledNow = player.kills;
@@ -834,6 +851,7 @@ function AI(){
             enemyKilledPrev = enemyKilledNow;
         }
     }
+//Muhammad Azri A0073951B    
     this.tossCoin = function(enemy,probability)
     {
     var toss= Math.floor(Math.random() * 11)  + 1;
@@ -858,7 +876,7 @@ function AI(){
     //        }                    
         }
     }
-
+//Muhammad Azri A0073951B & Jensen Tan U084010H
     //Basic staging and spawning stuff  Azri & Jensen
     this.Action = function(enemy,length)
     {

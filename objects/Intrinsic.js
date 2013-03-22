@@ -1,4 +1,4 @@
-
+//Everybody Contributed
 function Intrinsic(centerPoint, width, height){
 
 	this.centerPoint = centerPoint;

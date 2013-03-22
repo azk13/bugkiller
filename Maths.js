@@ -1,3 +1,4 @@
+//Everybody contributed
 function Maths(){
 
     this.getAngleWithQuadrobject = function(angle){

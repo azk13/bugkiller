@@ -1,3 +1,5 @@
+  //Everybody contributed
+
   // Globals
   /*const FPS = 30;
   const screenUpdateTime = 1000/FPS;*/

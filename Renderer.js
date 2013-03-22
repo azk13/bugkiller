@@ -1,3 +1,5 @@
+//Everybody contributed equally
+
 function Renderer(){
 this.frametime=1;
 this.shortAttacks=1;
