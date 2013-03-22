@@ -49,9 +49,7 @@ function AI(){
         else
             return false;
     }
-
-    function lowestBasketHealthIndex(baskets)
-    {
+    function lowestBasketHealthIndex(baskets) {
         var index = 0;
         for(var i=0; i<baskets.length;i++)
         {
@@ -62,7 +60,6 @@ function AI(){
         }
         return index;
     }
-
     this.attackDyingBasket = function(enemy) {
 
         var ants=room.getAnts();
@@ -132,7 +129,6 @@ function AI(){
      Input : Ant,bob
      Output:Decide whether this ant can attack bob and then attack
      ************************************/
-
     this.antAttackBobnew=function(enemy){
         var attack =true;
         var ants=room.getAnts();
@@ -192,9 +188,10 @@ function AI(){
     }
     this.antfleefromBob=function(ant){
         //if bob is 3 cell away from ant
-        var  noofcells=3;
+        var  noofcells=2;
         var ants=room.getAnts();
         var exclude;
+        var fleebobflag=false;
           if(checkEnemyFromBob(ant.Intrinsic.centerPoint,player.Intrinsic.centerPoint,noofcells))
              {
                   for(var i=0;i<ants.length;i++)
@@ -202,10 +199,14 @@ function AI(){
                      if(ants[i].Intrinsic.cellPos.x==ant.Intrinsic.cellPos.x&&ants[i].Intrinsic.cellPos.y==ant.Intrinsic.cellPos.y)
                     {
                              exclude=i;
-                       break;
+                             fleebobflag=true;
+                             break;
                     }
                }
+             if(fleebobflag)
+             {
            this.antMoveToNearestAnt(ant,ants,exclude);
+             }
       }
 
     }
@@ -256,14 +257,13 @@ function AI(){
     this.stepBombCheck = function(enemy){
         var enemyRow = enemy.Intrinsic.cellPos.x;
         var enemyColumn = enemy.Intrinsic.cellPos.y;
-        var enemyType = enemy.identity;
         var bombLocation = room.map[enemyRow][enemyColumn].weapon;
         if(bombLocation.activeBomb == true) {
 
             this.bombBlast(bombLocation);
 
             // Get Bomb's location in weapons array
-            weaponIndex = weapons.indexOf(bombLocation);
+            var weaponIndex = weapons.indexOf(bombLocation);
             // delete weapon from weapons array
             weapons.splice(weaponIndex, 1);
             room.map[enemyRow][enemyColumn].weapon.activeBomb = false;
