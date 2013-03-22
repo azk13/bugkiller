@@ -1,4 +1,5 @@
 function AI(){
+    this.endTimer =0;
     var enemyKilledPrev = 0; // Used in this.Action
     var time_previous = 0; // Used in this.Action
     var previousdistance = math.getDistanceBetweenTwoPoints(baskets[0].Intrinsic.centerPoint,player.Intrinsic.centerPoint);
@@ -328,6 +329,7 @@ function AI(){
         
         else if(timenow < (thirdtension+10) && timenow > thirdtension || baskets.length == 1)
         {
+            
            // room.maxAnt=0;
             document.getElementById("scenario").innerHTML = 'C';
             if(currentdistance < previousdistance || hollywoodCounter < 90)

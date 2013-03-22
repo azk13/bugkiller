@@ -20,7 +20,7 @@ this.randomCluster[0][3]=new Point(9,17)
 		var timenow = Math.round((Date.now() - start_time)/1000);
 
 		//make sure there is always an ant
-		if(ants.length == 0 && timenow < 100)
+		if(ants.length == 0)
 		{
 			room.spawnEnemies(1,'ant');
 		}
@@ -486,6 +486,9 @@ this.randomCluster[0][3]=new Point(9,17)
 			case 7:
 			typeattack = 'short basket';
 			break;
+			case 8:
+			typeattack = 'special attack basket';
+			break;			
 			}	
 
 			return typeattack;		

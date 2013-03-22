@@ -30,7 +30,7 @@ function Intrinsic(centerPoint, width, height){
     this.goals=new Array();
     this.removeGoal=function(){
         var lastgoal=this.retrieveLastGoal();
-        if(1!=this.goals.length){
+        if(this.goals.length>1){
         for (var i=this.goals.length-1; i>=0; i--) {
             if (this.goals[i] == lastgoal) {
                 this.goals.splice(i, 1);
@@ -49,8 +49,14 @@ function Intrinsic(centerPoint, width, height){
     }            
 
     this.addGoal=function(goalno){
-        if(this.retrieveLastGoal()!=goalno)
-          this.goals.push(goalno);
+        var booladdgoal = true;
+       for(var i=0;i < this.goals.length;i++)
+       {
+        if(this.goals[i]==goalno)
+            {booladdgoal = false;}
+       }
+        if(this.retrieveLastGoal()!=goalno && booladdgoal == true)
+          {this.goals.push(goalno);}
 
     }
 
