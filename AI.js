@@ -49,6 +49,30 @@ function AI(){
         else
             return false;
     }
+
+    function lowestBasketHealthIndex(baskets)
+    {
+        var index = 0;
+        for(var i=0; i<baskets.length;i++)
+        {
+            if(baskets[i].Intrinsic.health < baskets[index].Intrinsic.health)
+            {
+                index = i;
+            }
+        }
+        return index;
+    }
+
+    this.attackDyingBasket = function(enemy) {
+
+        var ants=room.getAnts();
+        var baskets = room.getBaskets();
+        var attack =true
+
+        pathfinding.objectgo(enemy,baskets[lowestBasketHealthIndex(baskets)]);
+
+
+    }    
     this.attackNearestBasket = function(enemy) {
 
         var ants=room.getAnts();
@@ -108,37 +132,7 @@ function AI(){
      Input : Ant,bob
      Output:Decide whether this ant can attack bob and then attack
      ************************************/
-    this.antAttackBob=function(ant){
-        //how many cell difference
-        var noofCells=5;
-        //ant properties
-        var antCenterPoint=ant.Intrinsic.centerPoint;
-        var anthealth=ant.Intrinsic.health;
-        var anthasweapon=ant.hasWeapons();
-        //player properties
-        var bobCenterPoint =player.Intrinsic.centerPoint;
-        var bobhealth=player.Intrinsic.health;
-        var bobUsingKnife=player.activeWeapon
-        var attack=false;
-        // check whether ant is within no of cells specified
-        if(checkEnemyFromBob(antCenterPoint,bobCenterPoint,noofCells))
-        {
-         //if anthealth is greater than bob health and ant has a weapon
-            if((bobhealth>80)&&(bobUsingKnife=="Knife"))
-            {
-                attack =false
-            }
-        }
-        // any of the above three conditions meet
-        if(!attack)
-        {
-            //find bob
-            pathfinding.objectgo(ant,player);
-            //and attack him
-            this.antclose(ant);
-        }
 
-    }
     this.antAttackBobnew=function(enemy){
         var attack =true;
         var ants=room.getAnts();
@@ -185,14 +179,14 @@ function AI(){
 
         for(var i=0;i<ants.length;i++)
         {
-        if(!checkEnemyFromBob(ants[i].Intrinsic.centerPoint,dummy.Intrinsic.centerPoint,2))
+        if(!checkEnemyFromBob(ants[i].Intrinsic.centerPoint,dummy.Intrinsic.centerPoint,3))
         {
             ant.Intrinsic.ClusterFlag = true;
             condition = false;
         }
 
         }
-        if(condition == true||checkEnemyFromBob(dummy.Intrinsic.centerPoint,player.Intrinsic.centerPoint,3))
+        if(condition == true||checkEnemyFromBob(dummy.Intrinsic.centerPoint,player.Intrinsic.centerPoint,4))
         { ant.Intrinsic.ClusterFlag = false;
             ant.Intrinsic.removeGoal();}
     }
@@ -312,7 +306,8 @@ function AI(){
             //ant.Intrinsic.attackrating = baskets[getNearestBasketIndex(ant)].Intrinsic.health*0.10;
             ant.Intrinsic.attackrating = 3;
 
-            
+ //           ant.Intrinsic.addGoal(7);
+ //           ant.Intrinsic.addGoal(5);
             ant.Intrinsic.addGoal(8);
 
 
@@ -761,7 +756,7 @@ function AI(){
                     this.shortBasket(enemy);
                     break;
                 case 8: //limited time attacking basket
-                    this.attackNearestBasket(enemy);
+                    this.attackDyingBasket(enemy);
                     break;                    
             }//end of switch
 
@@ -798,16 +793,6 @@ function AI(){
             {
                 ants[i].Intrinsic.removeGoal();
             }
-        }
-    }
-    this.bobHealthGlobal = function()
-    {
-        // Check Bob Health
-        if(player.Intrinsic.health > 70) {
-
-            //
-        }else {
-
         }
     }
     this.bobKillStrength = function()

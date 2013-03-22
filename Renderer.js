@@ -47,9 +47,7 @@ this.randomCluster[0][3]=new Point(9,17)
 		{
 
 			if(this.frametime%rr == 0)			
-			{				
-				if(baskets.length >0)
-
+			{		
 
 				ai.Action(ants[i],ants.length);
                 	
