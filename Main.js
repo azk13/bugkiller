@@ -11,10 +11,7 @@
   // Canvas
   var canvas;
   var ctx;
-
   var logDiv;
-
-
 
   // Objects
   var logger = new Logger();
