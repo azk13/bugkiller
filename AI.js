@@ -272,7 +272,7 @@ function AI(){
     }
     this.bombBlast = function(bombLocation){
 
-        for(var k=0; k<ants.length;k++ ){
+        for(var k=0; k<ants.length; ){
             var distance =math.getDistanceBetweenTwoPoints(ants[k].Intrinsic.centerPoint,bombLocation.Intrinsic.centerPoint);
             if(distance <= room.cellsize*2){
                 ants.splice(ants.indexOf(ants[k]),1);
@@ -282,7 +282,7 @@ function AI(){
             }
         }
 
-        for(var k=0; k<bees.length;k++ ){
+        for(var k=0; k<bees.length; ){
             var distance =math.getDistanceBetweenTwoPoints(bees[k].Intrinsic.centerPoint,bombLocation.Intrinsic.centerPoint);
             if(distance <= room.cellsize*2){
                 bees.splice(ants.indexOf(bees[k]),1);
