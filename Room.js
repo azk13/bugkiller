@@ -120,7 +120,7 @@ function Room(){
 
 
     //console.log((timenow-this.prevtime));
-    if(timenow-this.prevtime > spawnrate && ai.endTimer < 11)
+    if(timenow-this.prevtime > spawnrate && ai.endTimer < 5)
         {
     if(baskets.length==1)
     {

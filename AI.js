@@ -322,13 +322,18 @@ function AI(){
             ant.Intrinsic.addGoal(8);
         }
         
-        else if(timenow < (thirdtension+10) && timenow > thirdtension || baskets.length == 1)
+        else if(timenow < (thirdtension+10) && timenow > thirdtension || baskets.length == 1 || player.Intrinsic.health<20)
         {
             
            // room.maxAnt=0;
             document.getElementById("scenario").innerHTML = 'C';
             if(currentdistance < previousdistance || hollywoodCounter < 90)
-            {ant.Intrinsic.attackrating = baskets[getNearestBasketIndex(ant)].Intrinsic.health*0.05;}
+            {
+                if(player.Intrinsic.health<20)
+                    {ant.Intrinsic.attackrating = player.Intrinsic.health*0.05;}
+                ant.Intrinsic.attackrating = baskets[getNearestBasketIndex(ant)].Intrinsic.health*0.05;
+                
+            }
             else
             {ant.Intrinsic.attackrating = 0.5;}
             //ant.Intrinsic.attackrating = 3;
@@ -415,6 +420,8 @@ function AI(){
                 //shoot down
                 if((beecell.y == playercell.y) && playercell.x>beecell.x)
                 {
+                    if(bee.Intrinsic.velocity > 400)
+                        {bee.Intrinsic.velocity=400;}
                     bee.Intrinsic.direction = Math.PI/2;
                     bee.stingpos.x = bee.Intrinsic.centerPoint.x;
                     bee.stingpos.y = bee.Intrinsic.centerPoint.y;
@@ -423,6 +430,8 @@ function AI(){
                 //shoot up
                 else if((beecell.y == playercell.y) && playercell.x<beecell.x)
                 {
+                    if(bee.Intrinsic.velocity > 400)
+                        {bee.Intrinsic.velocity=400;}
                     bee.Intrinsic.direction = Math.PI*3/2;
                     bee.stingpos.x = bee.Intrinsic.centerPoint.x;
                     bee.stingpos.y = bee.Intrinsic.centerPoint.y;
@@ -431,6 +440,8 @@ function AI(){
                 //shoot right
                 else if((beecell.x == playercell.x) && playercell.y>beecell.y)
                 {
+                    if(bee.Intrinsic.velocity > 400)
+                        {bee.Intrinsic.velocity=400;}
                     bee.Intrinsic.direction = 0;
                     bee.stingpos.x = bee.Intrinsic.centerPoint.x;
                     bee.stingpos.y = bee.Intrinsic.centerPoint.y;
@@ -439,6 +450,8 @@ function AI(){
                 //shoot left
                 else if((beecell.x == playercell.x)  && playercell.y<beecell.y)
                 {
+                    if(bee.Intrinsic.velocity > 400)
+                        {bee.Intrinsic.velocity=400;}
                     bee.Intrinsic.direction = Math.PI;
                     bee.stingpos.x = bee.Intrinsic.centerPoint.x;
                     bee.stingpos.y = bee.Intrinsic.centerPoint.y;
@@ -464,7 +477,8 @@ function AI(){
             if(math.getDistanceBetweenTwoPoints(baskets[i].Intrinsic.centerPoint,bee.Intrinsic.centerPoint) < (room.cellsize*1.5))
             {
                 var basketscell = baskets[i].Intrinsic.cellPos;
-
+                if(bee.Intrinsic.velocity > 400)
+                        {bee.Intrinsic.velocity=400;}
 
                 if( ((beecell.y == basketscell.y) && bee.Intrinsic.direction.toFixed(2) == (Math.PI/2).toFixed(2) && basketscell.x>beecell.x) || ((beecell.y == basketscell.y) && bee.Intrinsic.direction.toFixed(2) == (Math.PI*3/2).toFixed(2) && basketscell.x<beecell.x) || ((beecell.x == basketscell.x) && bee.Intrinsic.direction == 0 && basketscell.y>beecell.y) || ((beecell.x == basketscell.x) && bee.Intrinsic.direction.toFixed(2) == Math.PI.toFixed(2) && basketscell.y<beecell.y) )
                 {
